@@ -7,7 +7,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'hoatrinh.dev',
+    title: 'Hi, I\'m Hoa - Yet another nerd developer',
     meta: [
       { charset: 'utf-8' },
       {
@@ -17,23 +17,37 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content: ''
+        content: 'Welcome to my service world. Checkout what I can do for you and be my client today!'
       }
     ],
     link: [
       {
         rel: 'icon',
-        type: 'image/x-icon',
-        href: '/favicon.ico'
+        type: 'image/png',
+        href: '/favicon.png'
+      }
+    ],
+    script: [
+      {
+        type: 'module',
+        src: 'https://kit.fontawesome.com/748bbdcbdf.js'
       }
     ]
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [],
+  css: [
+    // swiper
+    'swiper/css/swiper.css'
+  ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: [
+    {
+      src: '@/plugins/nuxt-swiper-plugin.js',
+      mode: 'client'
+    }
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -43,29 +57,29 @@ export default {
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
     // https://go.nuxtjs.dev/tailwindcss
-    '@nuxtjs/tailwindcss'
+    '@nuxtjs/tailwindcss',
+    '@nuxtjs/svg'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
-    '@nuxtjs/apollo'
+    '@nuxtjs/strapi',
+    // cloudinary
+    '@nuxtjs/cloudinary'
   ],
 
-  // Apollo for GraphQL
-  apollo: {
-    clientConfigs: {
-      default: {
-        httpEndpoint: process.env.BACKEND_URL || 'http://localhost:1337/graphql'
-      }
-    }
+  // Strapi API for nuxt
+  strapi: {
+    entities: ['frameworks', 'cms', 'databases', 'platforms'],
+    url: process.env.PRODUCTION === 'true' && process.env.HTD_API ? process.env.HTD_API : 'http://localhost:1337'
   },
 
-  // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
+  // cloudinary config
+  cloudinary: {
+    cloudName: process.env.CLOUDINARY_NAME
+  },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
@@ -82,5 +96,24 @@ export default {
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {}
+  build: {
+    postcss: {
+      plugins: {
+        // Disable `postcss-url`
+        'postcss-url': false,
+        // Add some plugins
+        'postcss-nested': {}
+      },
+      preset: {
+        autoprefixer: {
+          grid: true
+        }
+      }
+    }
+  },
+
+  loading: {
+    color: 'green',
+    height: '2px'
+  }
 }

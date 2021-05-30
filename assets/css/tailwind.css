@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  -webkit-tap-highlight-color: transparent;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 30px;
+  color: #555;
+  margin: 0;
+  background-color: #fff;
+}
+
+*, :after, :before {
+  box-sizing: inherit;
+}
+
+.container {
+  @apply px-5 w-full mx-auto;
+}
+
+.container .row {
+  @apply flex flex-wrap -mx-5;
+}
+
+button {
+  @apply normal-case p-0 m-0;
+}
+button:focus {
+  outline: none;
+}
+
+p {
+  @apply mt-0 mb-4;
+}
+
+a {
+  color: green;
+  @apply transition-all duration-300 relative no-underline cursor-pointer bg-transparent;
+}
+
+a:hover, a:active, a:focus {
+  @apply underline;
+}

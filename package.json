@@ -11,23 +11,36 @@
     "lint": "yarn lint:js"
   },
   "dependencies": {
-    "@nuxtjs/apollo": "^4.0.1-rc.5",
-    "@nuxtjs/axios": "^5.13.1",
+    "@fortawesome/fontawesome-free": "^5.15.3",
+    "@fortawesome/fontawesome-svg-core": "^1.2.35",
+    "@fortawesome/free-brands-svg-icons": "^5.15.3",
+    "@fortawesome/free-regular-svg-icons": "^5.15.3",
+    "@fortawesome/free-solid-svg-icons": "^5.15.3",
+    "@fortawesome/vue-fontawesome": "^2.0.2",
+    "@nuxtjs/cloudinary": "^1.0.3-beta-4",
     "@nuxtjs/pwa": "^3.3.5",
+    "@nuxtjs/strapi": "^0.3.1",
+    "autoprefixer": "^10.2.5",
     "core-js": "^3.9.1",
     "graphql": "^15.5.0",
     "nuxt": "^2.15.3",
-    "vue": "^2.6.12"
+    "postcss-nested": "^5.0.5",
+    "swiper": "5.x",
+    "vue-awesome-swiper": "^4.1.1"
   },
   "devDependencies": {
     "@nuxt/types": "~2.15.0",
     "@nuxtjs/eslint-config": "^6.0.0",
     "@nuxtjs/eslint-module": "^3.0.2",
+    "@nuxtjs/svg": "^0.1.12",
     "@nuxtjs/tailwindcss": "^4.0.1",
     "babel-eslint": "^10.1.0",
-    "eslint": "^7.22.0",
+    "eslint": "^7.26.0",
     "eslint-plugin-nuxt": "^2.0.0",
     "eslint-plugin-vue": "^7.7.0",
-    "postcss": "^8.2.8"
+    "fibers": "^5.0.0",
+    "postcss": "^8.2.15",
+    "postcss-import": "^14.0.2",
+    "tailwindcss": "^2.1.2"
   }
 }

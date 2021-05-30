@@ -1,5 +1,10 @@
+<template>
+  <div />
+</template>
+
 <script>
 export default {
+  layout: 'blog',
   scrollToTop: true,
   data () {
     return {
