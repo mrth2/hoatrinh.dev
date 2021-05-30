@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/posts", {data:[{}],fetch:{"0":{_error:{message:"Cannot read property 'get' of undefined",statusCode:500}}},mutations:void 0});
