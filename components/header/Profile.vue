@@ -4,7 +4,7 @@
     <div class="container">
       <div class="row personal-profile">
         <div class="md:m-w-4/12 personal-profile__avatar">
-          <img class="" src="/images/avatar.jpg" alt="avatar">
+          <img class="" src="/images/kyle-bw.png" alt="avatar">
         </div>
         <div class="md:w-8/12 w-full relative px-3">
           <p class="personal-profile__name">
@@ -21,22 +21,22 @@
               <dd>{{ age }}</dd>
               <dt>Email:</dt>
               <dd><a :href="`mailto:${email}`">{{ email }}</a></dd>
-              <dt>Address:</dt>
+              <dt>Live:</dt>
               <dd>Hanoi, Vietnam</dd>
             </dl>
           </div>
           <p class="personal-profile__social">
-            <a :href="`https://github.com/${github}`" target="_blank">
+            <a :href="getGithub" target="_blank">
               <i class="fab fa-github" />
             </a>
-            <a :href="`https://facebook.com/${facebook}/`" target="_blank">
+            <a :href="getFacebook" target="_blank">
               <i class="fab fa-facebook-square" />
             </a>
-            <a :href="`skype:${skype}?chat`" target="_blank">
+            <a :href="getSkype" target="_blank">
               <i class="fab fa-skype" />
             </a>
-            <a :href="`https://upwork.com/fl/${upwork}`" target="_blank">
-              <img class="upwork-icon" src="~assets/img/upwork.png">
+            <a :href="getUpwork" target="_blank">
+              <img alt="upwork" class="upwork-icon" src="~assets/img/upwork.png">
             </a>
           </p>
         </div>
@@ -47,17 +47,12 @@
 </template>
 
 <script>
+import { mapState, mapGetters } from 'vuex'
+
 export default {
-  components: {},
-  data () {
-    return {
-      age: new Date().getFullYear() - 1990,
-      email: 'hi@hoatrinh.dev',
-      github: 'mrth2',
-      skype: 'trinh.hai.hoa',
-      facebook: 'trinhhaihoa',
-      upwork: 'hoatrinhhai'
-    }
+  computed: {
+    ...mapState('personal', ['age', 'email']),
+    ...mapGetters('personal', ['getFacebook', 'getGithub', 'getSkype', 'getUpwork'])
   }
 }
 </script>

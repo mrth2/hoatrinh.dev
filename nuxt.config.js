@@ -25,6 +25,10 @@ export default {
         rel: 'icon',
         type: 'image/png',
         href: '/favicon.png'
+      },
+      {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Mono&family=Inconsolata&display=block'
       }
     ],
     script: [
@@ -45,6 +49,10 @@ export default {
   plugins: [
     {
       src: '@/plugins/nuxt-swiper-plugin.js',
+      mode: 'client'
+    },
+    {
+      src: '@/plugins/dom-utils.js',
       mode: 'client'
     }
   ],

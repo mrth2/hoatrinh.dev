@@ -5,9 +5,34 @@
   </div>
 </template>
 
-<style lang="postcss">
-@import url('https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Mono&family=Inconsolata&display=swap');
+<script>
+import { mapState } from 'vuex'
 
+export default {
+  data () {
+    return {
+      isModalOpen: this.$store.state['app/modalOpen']
+    }
+  },
+  head () {
+    return {
+      bodyAttrs: {
+        class: this.isModalOpen ? 'modal-open' : ''
+      }
+    }
+  },
+  computed: {
+    ...mapState('app', ['modalOpen'])
+  },
+  watch: {
+    modalOpen (value) {
+      this.isModalOpen = value
+    }
+  }
+}
+</script>
+
+<style lang="postcss">
 @screen sm {
   .container {
     max-width: 540px;
@@ -68,5 +93,9 @@
       }
     }
   }
+}
+
+.modal-open {
+  @apply overflow-hidden;
 }
 </style>

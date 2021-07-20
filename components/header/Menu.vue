@@ -86,6 +86,10 @@ nav {
 
   &--active &__wrapper {
     @apply mt-5;
+    a {
+      color: #555 !important;
+      @apply opacity-100;
+    }
   }
 
   &__wrapper {
