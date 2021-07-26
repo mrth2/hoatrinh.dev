@@ -28,7 +28,7 @@ export default {
       },
       {
         rel: 'stylesheet',
-        href: 'https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Mono&family=Inconsolata&display=block'
+        href: 'https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Mono&family=Inconsolata&display=swap'
       }
     ],
     script: [
@@ -49,7 +49,8 @@ export default {
   plugins: [
     {
       src: '@/plugins/nuxt-swiper-plugin.js',
-      mode: 'client'
+      // mode: 'client'
+      ssr: true
     },
     {
       src: '@/plugins/dom-utils.js',

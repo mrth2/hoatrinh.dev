@@ -26,7 +26,7 @@ body {
 }
 
 .container .row {
-  @apply flex flex-wrap -mx-5;
+  @apply flex flex-wrap mx-5;
 }
 
 button, input, optgroup, select, textarea {

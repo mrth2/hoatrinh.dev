@@ -50,13 +50,13 @@ export default {
 }
 
 .background {
-  @apply bg-green-50 h-full bg-no-repeat bg-cover;
+  @apply bg-green-50 h-full bg-no-repeat bg-cover relative;
   background-position: 50%;
   color: #fff;
 
   &:before {
     background: linear-gradient(54deg, rgb(20 158 24 / 95%) 34%, rgb(59 130 246 / 50%));
-    @apply h-full left-0 right-0 absolute;
+    @apply h-full inset-0 absolute;
     content: "";
     z-index: 0;
   }
