@@ -1,5 +1,5 @@
 <template>
-  <div class="background review-bg" :style="{backgroundImage: `url(${require('~/assets/img/footer-bg.jpeg')})`}">
+  <div class="background review-bg" :style="{backgroundImage: `url(${require('~/assets/img/footer-bg.jpeg?webp')})`}">
     <div id="contact" class="container section">
       <div class="row">
         <div class="md:w-full">

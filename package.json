@@ -29,7 +29,6 @@
     "vue-awesome-swiper": "^4.1.1"
   },
   "devDependencies": {
-    "@aceforth/nuxt-optimized-images": "^1.4.0",
     "@nuxt/types": "~2.15.0",
     "@nuxtjs/eslint-config": "^6.0.0",
     "@nuxtjs/eslint-module": "^3.0.2",
@@ -40,18 +39,9 @@
     "eslint-plugin-nuxt": "^2.0.0",
     "eslint-plugin-vue": "^7.7.0",
     "fibers": "^5.0.0",
-    "imagemin-gifsicle": "^7.0.0",
-    "imagemin-mozjpeg": "^9.0.0",
-    "imagemin-pngquant": "^9.0.2",
-    "imagemin-svgo": "^9.0.0",
-    "lqip-loader": "^2.2.1",
     "postcss": "^8.2.15",
     "postcss-import": "^14.0.2",
-    "responsive-loader": "^2.3.0",
-    "sharp": "^0.28.3",
-    "sqip-loader": "^1.0.0",
     "tailwindcss": "^2.1.2",
-    "vuex": "^3.6.2",
-    "webp-loader": "^0.6.0"
+    "vuex": "^3.6.2"
   }
 }

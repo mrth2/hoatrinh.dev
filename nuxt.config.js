@@ -124,31 +124,5 @@ export default {
   loading: {
     color: 'green',
     height: '2px'
-  },
-
-  optimizedImages: {
-    responsiveImagesName: ({ isDev }) => isDev ? '[path][name]--[width][hash:optimized].[ext]' : 'img/[contenthash:7]-[width].[ext]',
-    handleImages: ['jpeg', 'png', 'svg', 'webp', 'gif'],
-    optimizeImages: true,
-    optimizeImagesInDev: true,
-    defaultImageLoader: 'img-loader',
-    mozjpeg: {
-      quality: 80
-    },
-    optipng: {
-      optimizationLevel: 3
-    },
-    pngquant: false,
-    gifsicle: {
-      interlaced: true,
-      optimizationLevel: 3
-    },
-    svgo: {
-      // enable/disable svgo plugins here
-    },
-    webp: {
-      preset: 'default',
-      quality: 75
-    }
   }
 }
