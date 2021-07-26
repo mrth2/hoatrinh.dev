@@ -9,10 +9,7 @@ module.exports = {
     extend: {
       screens: {
         xsm: '480px'
-      },
-      backgroundImage: theme => ({
-        family: 'url(\'/images/family.jpeg\')'
-      })
+      }
     }
   },
   variants: {},

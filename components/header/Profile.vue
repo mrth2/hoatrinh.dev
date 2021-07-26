@@ -1,10 +1,10 @@
 <template>
   <!--Header-->
-  <header class="main-header" style="background-image: url(/images/family.jpeg)">
+  <header class="main-header" :style="{backgroundImage: `url(${require('~/assets/img/family.jpeg')})`}">
     <div class="container">
       <div class="row personal-profile">
         <div class="md:m-w-4/12 personal-profile__avatar">
-          <img class="" src="/images/kyle-bw.png" alt="avatar">
+          <img class="" :src="require('~/assets/img/kyle-bw.png')" alt="avatar">
         </div>
         <div class="md:w-8/12 w-full relative px-3">
           <p class="personal-profile__name">

@@ -1,5 +1,5 @@
 <template>
-  <div class="background review-bg">
+  <div class="background review-bg" :style="{backgroundImage: `url(${require('~/assets/img/footer-bg.jpeg')})`}">
     <div id="contact" class="container section">
       <div class="row">
         <div class="md:w-full">
@@ -77,10 +77,6 @@ export default {
 </script>
 
 <style scoped lang="postcss">
-.review-bg {
-  background-image: url('~/static/images/footer-bg.jpeg');
-}
-
 #contact {
   @apply text-white relative;
 }
