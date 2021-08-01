@@ -15,8 +15,10 @@
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import Vue from 'vue'
+
+export default Vue.extend({
   beforeMount () {
     window.addEventListener('scroll', this.showSectionTitleOnScroll)
   },
@@ -27,12 +29,12 @@ export default {
   },
   methods: {
     // section title
-    clearSectionTitle () {
-      document.querySelectorAll('.section__title').forEach((title) => {
+    clearSectionTitle (): void {
+      document.querySelectorAll<HTMLElement>('.section__title').forEach((title) => {
         title.style.color = 'transparent'
       })
     },
-    typeWriter (textElement, text, currentAt) {
+    typeWriter (textElement: HTMLElement, text: string, currentAt: number): void {
       if (currentAt < text.length) {
         textElement.innerHTML += text.charAt(currentAt)
         currentAt++
@@ -44,20 +46,20 @@ export default {
         textElement.classList.add('typed')
       }
     },
-    showSectionTitleOnScroll () {
-      document.querySelectorAll('.section__title:not(.typed)').forEach((title) => {
+    showSectionTitleOnScroll (): void {
+      document.querySelectorAll<HTMLElement>('.section__title:not(.typed)').forEach((title) => {
         if (this.$isInViewport(title) && !title.classList.contains('typed') && !title.classList.contains('typing')) {
           title.classList.add('typing')
           let text = title.innerHTML
           title.innerHTML = ''
-          title.style.color = null
+          title.style.color = ''
           text = text.trim()
           this.typeWriter(title, text, 0)
         }
       })
     }
   }
-}
+})
 </script>
 
 <style scoped lang="postcss">

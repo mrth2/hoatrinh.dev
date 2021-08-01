@@ -27,28 +27,31 @@
   </section>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import Vue from 'vue'
+import { BlogPost } from '@nuxt/types'
+
+export default Vue.extend({
   data () {
     return {
       // blogs
       blogsLoaded: false,
-      blogs: []
+      blogs: [] as BlogPost[]
     }
   },
   async fetch () {
-    this.blogs = await this.$strapi.find('blogs', { _limit: 3 })
+    this.blogs = await this.$strapi.find<BlogPost[]>('blogs', { _limit: 3 })
     this.blogsLoaded = true
   },
   methods: {
     // date
-    parseCreatedAt (createdAt) {
+    parseCreatedAt (createdAt: number): string {
       const date = new Date(createdAt)
       const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
       return `${months[date.getMonth()]} ${date.getDay()}, ${date.getFullYear()}`
     }
   }
-}
+})
 </script>
 
 <style lang="postcss" scoped>

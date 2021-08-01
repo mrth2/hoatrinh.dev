@@ -12,7 +12,7 @@
         <div class="md:w-full">
           <nav>
             <ul>
-              <li><a @click="filterProjects(true)">all</a></li>
+              <li><a @click="filterProjects('all')">all</a></li>
               <li v-for="category in categories" :key="category.id">
                 <a @click="filterProjects(category.id)">{{ category.name }}</a>
               </li>
@@ -99,26 +99,28 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from 'vue'
 import { mapState } from 'vuex'
 import { directive as swiper } from 'vue-awesome-swiper'
+import { Project, ProjectCategory } from '@nuxt/types'
 
-export default {
+export default Vue.extend({
   directives: {
     swiper
   },
   data () {
     return {
       loaded: false,
-      projects: [],
-      filteredProjects: [],
-      categories: [],
-      viewingProject: null
+      projects: [] as Project[],
+      filteredProjects: [] as Project[],
+      categories: [] as ProjectCategory[],
+      viewingProject: null as Project
     }
   },
   async fetch () {
-    this.projects = await this.$strapi.find('projects')
-    let categories = []
+    this.projects = await this.$strapi.find<Project[]>('projects')
+    let categories = [] as ProjectCategory[]
     this.projects.forEach((project) => {
       categories = [...project.project_categories]
     })
@@ -134,11 +136,11 @@ export default {
     ...mapState('config', ['swiperOptions'])
   },
   methods: {
-    getProjectLink (link) {
+    getProjectLink (link: string): URL {
       return new URL(link).hostname
     },
-    filterProjects (categoryId) {
-      if (categoryId === true) {
+    filterProjects (categoryId: string): Object<Project> {
+      if (categoryId === 'all') {
         this.filteredProjects = this.projects
       } else {
         this.filteredProjects = this.projects.filter((project) => {
@@ -146,14 +148,14 @@ export default {
         })
       }
     },
-    viewProject (project) {
+    viewProject (project: Project): void {
       this.viewingProject = project
     },
-    getProjectTags (project) {
+    getProjectTags (project: Project): Array<Project> {
       return [...project.platforms, ...project.frameworks, ...project.programing_languages, ...project.databases]
     }
   }
-}
+})
 </script>
 
 <style scoped lang="postcss">
@@ -203,12 +205,15 @@ export default {
   &__title {
     @apply font-heading mb-8;
   }
+
   &__description {
     @apply text-base leading-6 mb-0;
   }
+
   &__link {
     @apply font-heading text-sm leading-5 mt-10;
   }
+
   &__stack {
     @apply flex mt-10;
 

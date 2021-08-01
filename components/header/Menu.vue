@@ -34,8 +34,10 @@
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import Vue from 'vue'
+
+export default Vue.extend({
   data () {
     return {
       topBarActive: false,
@@ -50,14 +52,14 @@ export default {
     window.removeEventListener('scroll', this.toggleTopBar)
   },
   methods: {
-    toggleTopBar () {
+    toggleTopBar (): void {
       this.topBarActive = window.pageYOffset > 70
     },
-    toggleMobileMenu () {
+    toggleMobileMenu (): void {
       this.mobileMenuActive = !this.mobileMenuActive
     }
   }
-}
+})
 </script>
 
 <style lang="postcss">
