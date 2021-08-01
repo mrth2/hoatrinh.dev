@@ -4,7 +4,7 @@
       <div class="container">
         <div v-swiper="swiperOptions">
           <div class="swiper-wrapper">
-            <div v-for="testimonial in testimonials" :key="testimonial._id" class="swiper-slide">
+            <div v-for="testimonial in testimonials" :key="testimonial.id" class="swiper-slide">
               <div>
                 <div class="md:w-10/12 sm:w-10/12 w-10/12 mr-auto ml-auto">
                   <p class="slider-carousel__title">
@@ -32,35 +32,36 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from 'vue'
 import { mapState } from 'vuex'
 import { directive as swiper } from 'vue-awesome-swiper'
+import { Testimonial } from '@nuxt/types'
 
-export default {
+export default Vue.extend({
   directives: {
     swiper
   },
   data () {
     return {
       loaded: false,
-      testimonials: []
+      testimonials: [] as Testimonial[]
     }
   },
   async fetch () {
-    this.testimonials = await this.$strapi.find('testimonials')
+    this.testimonials = await this.$strapi.find<Testimonial[]>('testimonials')
     this.loaded = true
   },
   computed: {
     ...mapState('config', ['swiperOptions'])
   }
-}
-
+})
 </script>
 
 <style scoped lang="postcss">
 /* testimonials */
 .slider-carousel {
-  .swiper-container {
+  ::v-deep(.swiper-container) {
     position: relative;
   }
 

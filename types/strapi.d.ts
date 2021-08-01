@@ -79,4 +79,15 @@ declare module '@nuxt/types' {
     updatedAt: Date,
     published_at: Date
   }
+
+  interface Testimonial {
+    id: string,
+    name: string,
+    reviews: string,
+    link: string,
+    project: string,
+    createdAt: Date,
+    updatedAt: Date,
+    published_at: Date
+  }
 }
