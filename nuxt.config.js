@@ -53,7 +53,7 @@ export default {
       ssr: true
     },
     {
-      src: '@/plugins/dom-utils.js',
+      src: '@/plugins/dom-utils.ts',
       mode: 'client'
     }
   ],
@@ -67,7 +67,8 @@ export default {
     '@nuxtjs/eslint-module',
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
-    '@nuxtjs/svg'
+    '@nuxtjs/svg',
+    '@nuxt/typescript-build'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
