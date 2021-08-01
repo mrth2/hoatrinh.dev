@@ -8,8 +8,10 @@
   </ul>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import Vue from 'vue'
+
+export default Vue.extend({
   name: 'Tag',
   props: {
     list: {
@@ -26,7 +28,7 @@ export default {
       default: null
     }
   }
-}
+})
 </script>
 
 <style scoped>

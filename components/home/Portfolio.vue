@@ -61,7 +61,7 @@
     </section>
     <!-- Portfolio Modal -->
     <BaseModal
-      v-if="viewingProject"
+      v-if="viewingProject.id"
       :close-text="null"
       :action-text="null"
       @close="viewingProject = null"
@@ -115,7 +115,7 @@ export default Vue.extend({
       projects: [] as Project[],
       filteredProjects: [] as Project[],
       categories: [] as ProjectCategory[],
-      viewingProject: null as Project
+      viewingProject: {} as Project
     }
   },
   async fetch () {
@@ -136,10 +136,10 @@ export default Vue.extend({
     ...mapState('config', ['swiperOptions'])
   },
   methods: {
-    getProjectLink (link: string): URL {
+    getProjectLink (link: string): string {
       return new URL(link).hostname
     },
-    filterProjects (categoryId: string): Object<Project> {
+    filterProjects (categoryId: string): void {
       if (categoryId === 'all') {
         this.filteredProjects = this.projects
       } else {
@@ -151,7 +151,7 @@ export default Vue.extend({
     viewProject (project: Project): void {
       this.viewingProject = project
     },
-    getProjectTags (project: Project): Array<Project> {
+    getProjectTags (project: Project): Array<Object> {
       return [...project.platforms, ...project.frameworks, ...project.programing_languages, ...project.databases]
     }
   }
