@@ -77,12 +77,23 @@ export default {
     '@nuxtjs/pwa',
     '@nuxtjs/strapi',
     // cloudinary
-    '@nuxtjs/cloudinary'
+    '@nuxtjs/cloudinary',
+    // markdown
+    '@nuxtjs/markdownit'
   ],
+
+  // display rich text content with markdown
+  markdownit: {
+    runtime: true,
+    preset: 'default',
+    linkify: true,
+    breaks: true,
+    injected: true
+  },
 
   // Strapi API for nuxt
   strapi: {
-    entities: ['frameworks', 'cms', 'databases', 'platforms'],
+    entities: ['frameworks', 'cms', 'databases', 'platforms', 'home-page'],
     url: process.env.PRODUCTION === 'true' && process.env.HTD_API ? process.env.HTD_API : 'http://localhost:1337'
   },
 

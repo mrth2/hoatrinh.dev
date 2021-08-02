@@ -8,13 +8,9 @@ html {
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
-  font-size: 18px;
-  font-weight: 400;
+  @apply overflow-x-hidden font-body text-lg font-normal bg-white m-0;
   line-height: 30px;
   color: #555;
-  margin: 0;
-  background-color: #fff;
 }
 
 *, :after, :before {

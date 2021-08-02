@@ -90,4 +90,11 @@ declare module '@nuxt/types' {
     updatedAt: Date,
     published_at: Date
   }
+
+  interface HomePage {
+    meta_title: string,
+    meta_description: string,
+    introduction: string,
+    resume_summary: string
+  }
 }

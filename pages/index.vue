@@ -1,9 +1,9 @@
 <template>
   <div class="home">
-    <HomeHello />
+    <HomeHello :introduction="homepage.introduction" />
     <hr>
 
-    <HomeResume />
+    <HomeResume :resume-summary="homepage.resume_summary" />
 
     <HomePortfolio />
 
@@ -17,8 +17,29 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { HomePage } from '@nuxt/types'
 
 export default Vue.extend({
+  data () {
+    return {
+      homepage: {} as HomePage
+    }
+  },
+  async fetch () {
+    this.homepage = await this.$strapi.find('home-page')
+  },
+  head (): Object {
+    return {
+      title: this.homepage.meta_title,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.homepage.meta_description
+        }
+      ]
+    }
+  },
   beforeMount () {
     window.addEventListener('scroll', this.showSectionTitleOnScroll)
   },
@@ -63,7 +84,7 @@ export default Vue.extend({
 </script>
 
 <style scoped lang="postcss">
-.section {
+::v-deep(.section) {
   &__description {
     strong {
       @apply text-black;
@@ -71,18 +92,14 @@ export default Vue.extend({
   }
 }
 
-.review-bg {
+::v-deep(.review-bg) {
   background-image: url(~/assets/img/reviews-bg.jpg);
 }
 
 /* buttons */
-.site-btn {
+::v-deep(.site-btn) {
   @apply bg-green-500 h-14 rounded-lg text-sm leading-5 uppercase p-4 text-center inline-block font-semibold overflow-hidden;
   color: #fff;
   min-width: 170px;
-
-  &.site-btn--form {
-    @apply w-full border-none shadow-md relative;
-  }
 }
 </style>

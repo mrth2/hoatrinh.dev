@@ -5,13 +5,7 @@
         <h2 id="resume_header" class="section__title">
           Resume_
         </h2>
-        <p class="section__description">
-          I was born in Haiphong - a beautiful port city of Vietnam.
-          2008, I came to Hanoi, the uproarious capital of Vietnam, to start my university life.
-          Study Informatics in high school and
-          Computer Science at University makes me love programming and product development.
-          Graduated does not mean the learning curve stopped. On the contrary, I learn new things every day.
-        </p>
+        <p class="section__description" v-html="$md.render(resumeSummary)" />
       </div>
     </div>
     <div class="row">
@@ -185,8 +179,16 @@
   </section>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import Vue from 'vue'
+
+export default Vue.extend({
+  props: {
+    resumeSummary: {
+      type: String,
+      default: ''
+    }
+  },
   data () {
     return {
       progressUpdated: false
@@ -199,20 +201,20 @@ export default {
     this.showProgressOnScroll()
   },
   methods: {
-    showProgressOnScroll () {
-      const progressList = document.querySelector('.progress-list')
-      if (this.$isInViewport(progressList)) {
-        progressList.querySelectorAll('.progress-bar').forEach((bar) => {
+    showProgressOnScroll (): void {
+      const progressList = document.querySelector<HTMLElement>('.progress-list')
+      if (progressList && this.$isInViewport(progressList)) {
+        progressList.querySelectorAll<HTMLElement>('.progress-bar').forEach((bar) => {
           this.showProgressBar(bar)
         })
         this.progressUpdated = true
         window.removeEventListener('scroll', this.showProgressOnScroll)
       }
     },
-    showProgressBar (bar) {
-      const min = parseInt(bar.getAttribute('aria-valuemin'))
-      let now = parseInt(bar.getAttribute('aria-valuenow'))
-      const max = parseInt(bar.getAttribute('aria-valuemax'))
+    showProgressBar (bar: HTMLElement): void {
+      const min = parseInt(String(bar.getAttribute('aria-valuemin')))
+      let now = parseInt(String(bar.getAttribute('aria-valuenow')))
+      const max = parseInt(String(bar.getAttribute('aria-valuemax')))
       if (isNaN(min) || isNaN(max) || isNaN(now)) {
         return
       }
@@ -230,7 +232,7 @@ export default {
       }
     }
   }
-}
+})
 </script>
 
 <style scoped lang="postcss">

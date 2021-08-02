@@ -51,7 +51,7 @@
                 <span class="form-validation" />
                 <span class="form-invalid-icon"><i class="fa fa-close" aria-hidden="true" /></span>
               </div>
-              <button class="site-btn site-btn--form" type="submit" value="Send">
+              <button class="site-btn" type="submit" value="Send">
                 Send
               </button>
             </form>
