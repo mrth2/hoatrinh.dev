@@ -35,6 +35,9 @@ button {
 button:focus {
   outline: none;
 }
+button:disabled {
+  @apply cursor-not-allowed opacity-50;
+}
 
 p {
   @apply mt-0 mb-4;

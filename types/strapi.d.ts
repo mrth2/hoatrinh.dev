@@ -97,4 +97,10 @@ declare module '@nuxt/types' {
     introduction: string,
     resume_summary: string
   }
+
+  interface Contact {
+    name: string,
+    email: string,
+    message: string
+  }
 }

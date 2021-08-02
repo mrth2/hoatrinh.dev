@@ -32,14 +32,14 @@
             <p class="contacts__form-title">
               Or just write me a letter here_
             </p>
-            <form class="js-form">
+            <form ref="contactForm" class="js-form" @submit.prevent="sendContact">
               <div class="form-group">
                 <input class="form-field js-field-name" type="text" placeholder="Your name" required>
                 <span class="form-validation" />
-                <span class="form-invalid-icon"><i class="fa fa-close" /><i
-                  class="mdi mdi-close"
-                  aria-hidden="true"
-                /></span>
+                <span class="form-invalid-icon">
+                  <i class="fa fa-close" />
+                  <i class="mdi mdi-close" aria-hidden="true" />
+                </span>
               </div>
               <div class="form-group">
                 <input class="form-field js-field-email" type="email" placeholder="Your e-mail" required>
@@ -51,34 +51,70 @@
                 <span class="form-validation" />
                 <span class="form-invalid-icon"><i class="fa fa-close" aria-hidden="true" /></span>
               </div>
-              <button class="site-btn" type="submit" value="Send">
+              <button class="site-btn" type="submit" value="Send" :disabled="sending">
                 Send
+                <i v-show="sending" class="fa fa-spinner fa-pulse" aria-hidden="true" />
               </button>
+              <p v-if="error" class="text-xs mt-2 underline text-center">
+                <i class="fa fa-exclamation-circle" aria-hidden="true" />
+                {{ error }}
+              </p>
+              <p v-if="success" class="text-xs mt-2 text-center">
+                <i class="fa fa-check-circle" aria-hidden="true" />
+                {{ success }}
+              </p>
             </form>
           </div>
-          <div class="footer mt-4">
-            <p>© {{ new Date().getFullYear() }} From Hoa Trinh with ♥</p>
-          </div>
         </div>
+      </div>
+      <div class="footer mt-24 text-center">
+        <p>© {{ new Date().getFullYear() }} From Hoa Trinh with ♥</p>
       </div>
     </div>
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from 'vue'
+
 import { mapState, mapGetters } from 'vuex'
 
-export default {
+export default Vue.extend({
+  data () {
+    return {
+      sending: false,
+      error: false,
+      success: false
+    }
+  },
   computed: {
     ...mapState('personal', ['skype', 'email']),
     ...mapGetters('personal', ['getSkype', 'getEmail'])
+  },
+  methods: {
+    async sendContact (): void {
+      const formData = new FormData(this.$refs.contactForm)
+      const { name, email, message } = formData
+
+      this.error = false
+      this.sending = true
+      try {
+        await this.$sleep(2000)
+        await this.$strapi.create('contacts', { name, email, message })
+        this.success = 'Thank you for contacting me! I will reach out to you asap!'
+        formData.reset()
+      } catch (err) {
+        this.error = 'Can not submit your message. Please check your input and try again.'
+      }
+      this.sending = false
+    }
   }
-}
+})
 </script>
 
 <style scoped lang="postcss">
 #contact {
-  @apply text-white relative;
+  @apply text-white relative pb-4;
 }
 
 /* contacts */
