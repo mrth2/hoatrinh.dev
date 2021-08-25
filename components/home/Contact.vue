@@ -83,18 +83,24 @@ export default Vue.extend({
   data () {
     return {
       sending: false,
-      error: false,
-      success: false
+      error: false as string | boolean,
+      success: false as string | boolean
     }
   },
   computed: {
     ...mapState('personal', ['skype', 'email']),
-    ...mapGetters('personal', ['getSkype', 'getEmail'])
+    ...mapGetters('personal', ['getSkype', 'getEmail']),
+    contactForm (): HTMLFormElement {
+      return this.$refs.contactForm as HTMLFormElement
+    }
   },
   methods: {
-    async sendContact (): void {
-      const formData = new FormData(this.$refs.contactForm)
-      const { name, email, message } = formData
+    async sendContact (): Promise<void> {
+      const formData = new FormData(this.contactForm)
+
+      const name = formData.get('name') as string
+      const email = formData.get('email') as string
+      const message = formData.get('message') as string
 
       this.error = false
       this.sending = true
@@ -102,7 +108,7 @@ export default Vue.extend({
         await this.$sleep(2000)
         await this.$strapi.create('contacts', { name, email, message })
         this.success = 'Thank you for contacting me! I will reach out to you asap!'
-        formData.reset()
+        this.contactForm.reset()
       } catch (err) {
         this.error = 'Can not submit your message. Please check your input and try again.'
       }

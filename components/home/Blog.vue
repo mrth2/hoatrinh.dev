@@ -40,7 +40,7 @@ export default Vue.extend({
     }
   },
   async fetch () {
-    this.blogs = await this.$strapi.find<BlogPost[]>('blogs', { _limit: 3 })
+    this.blogs = await this.$strapi.find<BlogPost[]>('blogs', { _limit: 3, _sort: 'createdAt:DESC' })
     this.blogsLoaded = true
   },
   methods: {
