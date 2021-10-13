@@ -1,5 +1,8 @@
 <template>
-  <div class="background review-bg" :style="{backgroundImage: `url(${require('~/assets/img/footer-bg.jpeg?webp')})`}">
+  <div
+    class="background review-bg"
+    :style="{ backgroundImage: `url(${require('~/assets/img/footer-bg.jpeg?webp')})` }"
+  >
     <div id="contact" class="container section">
       <div class="row">
         <div class="md:w-full">
@@ -13,17 +16,23 @@
           <div class="contacts__list">
             <dl class="contact-list">
               <dt>Skype:</dt>
-              <dd><a :href="getSkype">{{ skype }}</a></dd>
+              <dd>
+                <a :href="getSkype">{{ skype }}</a>
+              </dd>
               <dt>Email:</dt>
-              <dd><a :href="getEmail">{{ email }}</a></dd>
+              <dd>
+                <a :href="getEmail">{{ email }}</a>
+              </dd>
             </dl>
           </div>
           <div class="contacts__social">
             <ul>
-              <li><a href="">Facebook</a></li>
-              <li><a href="">Linkedin</a></li>
-              <li><a href="">GitHub</a></li>
-              <li><a href="">Bitbucket</a></li>
+              <li>
+                <a :href="getFacebook">Facebook</a>
+              </li>
+              <li>
+                <a :href="getGithub">GitHub</a>
+              </li>
             </ul>
           </div>
         </div>
@@ -34,7 +43,12 @@
             </p>
             <form ref="contactForm" class="js-form" @submit.prevent="sendContact">
               <div class="form-group">
-                <input class="form-field js-field-name" type="text" placeholder="Your name" required>
+                <input
+                  class="form-field js-field-name"
+                  type="text"
+                  placeholder="Your name"
+                  required
+                >
                 <span class="form-validation" />
                 <span class="form-invalid-icon">
                   <i class="fa fa-close" />
@@ -42,14 +56,27 @@
                 </span>
               </div>
               <div class="form-group">
-                <input class="form-field js-field-email" type="email" placeholder="Your e-mail" required>
+                <input
+                  class="form-field js-field-email"
+                  type="email"
+                  placeholder="Your e-mail"
+                  required
+                >
                 <span class="form-validation" />
-                <span class="form-invalid-icon"><i class="fa fa-close" aria-hidden="true" /></span>
+                <span class="form-invalid-icon">
+                  <i class="fa fa-close" aria-hidden="true" />
+                </span>
               </div>
               <div class="form-group">
-                <textarea class="form-field js-field-message" placeholder="Type the message here" required />
+                <textarea
+                  class="form-field js-field-message"
+                  placeholder="Type the message here"
+                  required
+                />
                 <span class="form-validation" />
-                <span class="form-invalid-icon"><i class="fa fa-close" aria-hidden="true" /></span>
+                <span class="form-invalid-icon">
+                  <i class="fa fa-close" aria-hidden="true" />
+                </span>
               </div>
               <button class="site-btn" type="submit" value="Send" :disabled="sending">
                 Send
@@ -89,7 +116,7 @@ export default Vue.extend({
   },
   computed: {
     ...mapState('personal', ['skype', 'email']),
-    ...mapGetters('personal', ['getSkype', 'getEmail']),
+    ...mapGetters('personal', ['getSkype', 'getEmail', 'getFacebook', 'getGithub']),
     contactForm (): HTMLFormElement {
       return this.$refs.contactForm as HTMLFormElement
     }
@@ -178,15 +205,16 @@ export default Vue.extend({
       }
     }
 
-    input, textarea {
-      color: theme('colors.white');
+    input,
+    textarea {
+      color: theme("colors.white");
 
       &:invalid {
         outline: none;
       }
 
       &::placeholder {
-        color: theme('colors.white');
+        color: theme("colors.white");
       }
     }
     input {

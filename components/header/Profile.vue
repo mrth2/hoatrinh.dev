@@ -35,9 +35,6 @@
             <a :href="getSkype" target="_blank">
               <i class="fab fa-skype" />
             </a>
-            <a :href="getUpwork" target="_blank">
-              <img alt="upwork" class="upwork-icon" src="~assets/img/upwork.png">
-            </a>
           </p>
         </div>
       </div>
@@ -52,7 +49,7 @@ import { mapState, mapGetters } from 'vuex'
 export default {
   computed: {
     ...mapState('personal', ['age', 'email']),
-    ...mapGetters('personal', ['getFacebook', 'getGithub', 'getSkype', 'getUpwork'])
+    ...mapGetters('personal', ['getFacebook', 'getGithub', 'getSkype'])
   }
 }
 </script>

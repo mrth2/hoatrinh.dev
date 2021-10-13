@@ -1,6 +1,6 @@
 export default {
   env: {
-    strapiBaseUri: process.env.API_URL || 'http://localhost:1337'
+    strapiBaseUri: process.env.HTD_API || 'http://localhost:1337'
   },
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
@@ -94,7 +94,7 @@ export default {
   // Strapi API for nuxt
   strapi: {
     entities: ['frameworks', 'cms', 'databases', 'platforms', 'home-page'],
-    url: process.env.PRODUCTION === 'true' && process.env.HTD_API ? process.env.HTD_API : 'http://localhost:1337'
+    url: process.env.HTD_API || 'http://cms.hoatrinh.dev/'
   },
 
   // cloudinary config

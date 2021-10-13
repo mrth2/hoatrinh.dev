@@ -5,16 +5,19 @@
         <h2 id="hello_header" class="section__title">
           Hi_
         </h2>
-        <p class="section__description mb-8" v-html="$md.render(introduction)" />
-        <a :href="upworkProfile" class="section_btn site-btn mr-1">
+        <p
+          class="section__description mb-8"
+          v-html="$md.render(introduction)"
+        />
+        <a :href="contactLink" class="section_btn site-btn mr-1">
           <i class="fa fa-wordpress" />
           Optimize Wordpress
         </a>
-        <a :href="upworkProfile" class="section_btn site-btn mr-1">
+        <a :href="contactLink" class="section_btn site-btn mr-1">
           <i class="fab fa-laravel" />
           Backend Development
         </a>
-        <a :href="upworkProfile" class="section_btn site-btn">
+        <a :href="contactLink" class="section_btn site-btn">
           <i class="fab fa-vuejs" />
           Frontend Development
         </a>
@@ -33,7 +36,7 @@ export default {
   },
   data () {
     return {
-      upworkProfile: 'https://upwork.com/fl/hoatrinhhai'
+      contactLink: '/#contact'
     }
   }
 }
