@@ -53,8 +53,8 @@ function toggleMobileMenu() {
 }
 onBeforeMount(() => {
   window.addEventListener("scroll", toggleTopBar);
-  toggleTopBar();
 });
+onMounted(toggleTopBar);
 onBeforeUnmount(() => {
   window.removeEventListener("scroll", toggleTopBar);
 });
