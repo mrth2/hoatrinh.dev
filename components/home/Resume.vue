@@ -3,7 +3,7 @@
     <div class="row">
       <div class="md:w-10/12">
         <h2 id="resume_header" class="section__title">Resume_</h2>
-        <!-- <p class="section__description" v-html="$md.render(resumeSummary)" /> -->
+        <p ref="resumeSummary" class="section__description" />
       </div>
     </div>
     <div class="row">
@@ -201,14 +201,10 @@
 </template>
 
 <script setup lang="ts">
-withDefaults(
-  defineProps<{
-    resumeSummary: string;
-  }>(),
-  {
-    resumeSummary: "",
-  }
-);
+const props = defineProps<{
+  resumeSummary: string;
+}>();
+const resumeSummary = ref<HTMLElement>();
 
 const progressUpdated = ref(false);
 const { $isInViewport } = useNuxtApp();
@@ -258,6 +254,11 @@ onBeforeUnmount(() => {
 });
 onMounted(() => {
   showProgressOnScroll();
+  if (resumeSummary.value) {
+    resumeSummary.value.innerHTML = useNuxtApp().$md.render(
+      props.resumeSummary
+    );
+  }
 });
 </script>
 

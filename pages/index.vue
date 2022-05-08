@@ -18,7 +18,7 @@
 <script setup lang="ts">
 import { HomePage } from "@nuxt/types";
 
-const { data: homepage, pending } = useAsyncData("homepage", () =>
+const { data: homepage } = useAsyncData("homepage", () =>
   useStrapi3().find<HomePage>("home-page")
 );
 const meta_title = computed(() => homepage.value?.meta_title);
@@ -70,10 +70,13 @@ function showSectionTitleOnScroll() {
     });
 }
 onBeforeMount(() => {
-  window.addEventListener("scroll", showSectionTitleOnScroll);
+  // window.addEventListener("scroll", showSectionTitleOnScroll);
 });
 onMounted(() => {
-  setTimeout(showSectionTitleOnScroll, 100);
+  // setTimeout(showSectionTitleOnScroll, 100);
+});
+onBeforeUnmount(() => {
+  window.removeEventListener("scroll", showSectionTitleOnScroll);
 });
 </script>
 
