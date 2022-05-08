@@ -2,28 +2,32 @@
   <div v-if="loaded" id="testimonials" class="section">
     <div class="background relative slider-carousel review-bg">
       <div class="container">
-        <Swiper :options="swiperOptions">
-          <SwiperSlide
-            v-for="testimonial in testimonials"
-            :key="testimonial.id"
-            class="swiper-slide"
-          >
-            <div>
-              <div class="md:w-10/12 sm:w-10/12 w-10/12 mr-auto ml-auto">
-                <p class="slider-carousel__title">
-                  {{ testimonial.name }}
-                </p>
-                <p class="slider-carousel__caption">
-                  Project: {{ testimonial.project }}
-                </p>
-                <hr />
-                <p class="slider-carousel__description">
-                  {{ testimonial.reviews }}
-                </p>
+        <div ref="slider" class="swiper">
+          <div class="swiper-wrapper">
+            <div
+              class="swiper-slide"
+              v-for="testimonial in testimonials"
+              :key="testimonial.id"
+            >
+              <div>
+                <div class="md:w-10/12 sm:w-10/12 w-10/12 mr-auto ml-auto">
+                  <p class="slider-carousel__title">
+                    {{ testimonial.name }}
+                  </p>
+                  <p class="slider-carousel__caption">
+                    Project: {{ testimonial.project }}
+                  </p>
+                  <hr />
+                  <p class="slider-carousel__description">
+                    {{ testimonial.reviews }}
+                  </p>
+                </div>
               </div>
             </div>
-          </SwiperSlide>
-        </Swiper>
+          </div>
+          <div class="swiper-button-prev" @click="goPrev" />
+          <div class="swiper-button-next" @click="goNext" />
+        </div>
         <div class="slider-carousel__circle">
           <p><FaIcon icon="quote-right" aria-hidden="true" /></p>
         </div>
@@ -34,17 +38,27 @@
 
 <script setup lang="ts">
 import { Testimonial } from "@nuxt/types";
+import { Swiper, Autoplay } from "swiper";
 import { useConfigStore } from "~~/store/config";
-// Import Swiper Vue.js components
-import { Swiper, SwiperSlide } from "swiper/vue";
-// Import Swiper styles
-import "swiper/css";
+Swiper.use([Autoplay]);
 
-const { data: testimonials, pending: loaded } = useLazyAsyncData(
-  "testimonials",
-  () => useStrapi3().find<Testimonial[]>("testimonials")
+const { data: testimonials, pending } = useLazyAsyncData("testimonials", () =>
+  useStrapi3().find<Testimonial[]>("testimonials")
 );
+const loaded = computed(() => !pending.value);
+const slider = ref<HTMLElement>();
+
 const swiperOptions = computed(() => useConfigStore().swiperOptions);
+const swiper = ref<Swiper>();
+onMounted(() => {
+  swiper.value = new Swiper(slider.value, swiperOptions.value);
+});
+function goPrev() {
+  if (swiper.value) swiper.value.slidePrev();
+}
+function goNext() {
+  if (swiper.value) swiper.value.slideNext();
+}
 </script>
 
 <style scoped lang="postcss">

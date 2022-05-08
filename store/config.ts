@@ -1,20 +1,16 @@
 import { defineStore } from "pinia";
+import { SwiperOptions } from "swiper/types";
 
 export const useConfigStore = defineStore('config', {
   state: () => ({
     swiperOptions: {
+      slidesPerView: 1,
       autoplay: {
-        delay: 5000,
+        delay: 3000,
         disableOnInteraction: false
       },
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true
-      },
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev'
-      }
-    }
+      pagination: true,
+      navigation: true
+    } as SwiperOptions
   })
 })

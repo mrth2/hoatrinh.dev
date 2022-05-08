@@ -18,6 +18,12 @@
 <script setup lang="ts">
 import { HomePage } from "@nuxt/types";
 
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/autoplay";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+
 const { data: homepage } = useAsyncData("homepage", () =>
   useStrapi3().find<HomePage>("home-page")
 );
