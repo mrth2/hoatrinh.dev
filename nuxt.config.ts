@@ -5,7 +5,7 @@ export default defineNuxtConfig({
   env: {
     strapiBaseUri: process.env.HTD_API || 'http://localhost:1337'
   },
-  // ssr: false,
+  ssr: false,
   target: 'static',
   head: {
     title: 'Hi, I\'m Hoa - Yet another nerd developer',

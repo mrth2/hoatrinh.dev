@@ -32,7 +32,6 @@
             <Swiper
               v-if="project.images.length"
               :options="swiperOptions"
-              :modules="[Autoplay]"
               class="h-full"
             >
               <SwiperSlide
@@ -116,7 +115,6 @@
 import { Project, ProjectCategory } from "@nuxt/types";
 import { useConfigStore } from "~~/store/config";
 import { Swiper, SwiperSlide } from "swiper/vue";
-import { Autoplay } from "swiper";
 
 const { data: projects, pending } = useAsyncData("portfolio", () =>
   useStrapi3().find<Project[]>("projects")

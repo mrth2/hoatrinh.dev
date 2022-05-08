@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div v-if="homepage" class="home">
     <HomeHello :introduction="homepage.introduction" />
     <hr />
 
