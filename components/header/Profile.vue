@@ -7,11 +7,7 @@
     <div class="container">
       <div class="row personal-profile">
         <div class="md:m-w-4/12 personal-profile__avatar">
-          <img
-            class=""
-            src="~/assets/img/kyle-bw.png"
-            alt="avatar"
-          />
+          <img class="" src="~/assets/img/kyle-bw.png" alt="avatar" />
         </div>
         <div class="md:w-8/12 w-full relative px-3">
           <p class="personal-profile__name">Trinh Hai Hoa_</p>
@@ -34,13 +30,13 @@
           </div>
           <p class="personal-profile__social">
             <a :href="github" target="_blank">
-              <!-- <FaIcon icon="github" /> -->
+              <FaIcon :icon="['fab', 'github']" />
             </a>
             <a :href="facebook" target="_blank">
-              <!-- <FaIcon icon="facebook-square" /> -->
+              <FaIcon :icon="['fab', 'facebook-square']" />
             </a>
             <a :href="skype" target="_blank">
-              <!-- <FaIcon icon="skype" /> -->
+              <FaIcon :icon="['fab', 'skype']" />
             </a>
           </p>
         </div>

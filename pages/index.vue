@@ -90,7 +90,7 @@ onMounted(() => {
 
 /* buttons */
 ::v-deep(.site-btn) {
-  @apply bg-green-500 h-14 rounded-lg text-sm leading-5 uppercase p-4 text-center inline-block font-semibold overflow-hidden;
+  @apply bg-green-500 rounded-lg text-sm leading-5 uppercase px-4 py-3 text-center inline-block font-semibold overflow-hidden;
   color: #fff;
   min-width: 170px;
 }

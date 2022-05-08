@@ -55,7 +55,7 @@
                 />
                 <span class="form-validation" />
                 <span class="form-invalid-icon">
-                  <!-- <FaIcon icon="close" /> -->
+                  <FaIcon icon="close" />
                 </span>
               </div>
               <div class="form-group">
@@ -67,7 +67,7 @@
                 />
                 <span class="form-validation" />
                 <span class="form-invalid-icon">
-                  <!-- <FaIcon icon="close" /> -->
+                  <FaIcon icon="close" />
                 </span>
               </div>
               <div class="form-group">
@@ -78,7 +78,7 @@
                 />
                 <span class="form-validation" />
                 <span class="form-invalid-icon">
-                  <!-- <FaIcon icon="close" /> -->
+                  <FaIcon icon="close" />
                 </span>
               </div>
               <button
@@ -88,14 +88,14 @@
                 :disabled="sending"
               >
                 Send
-                <!-- <FaIcon v-show="sending" icon="spinner" pulse /> -->
+                <FaIcon v-show="sending" icon="spinner" pulse />
               </button>
               <p v-if="error" class="text-xs mt-2 underline text-center">
-                <!-- <FaIcon icon="exclamation-circle" aria-hidden="true" /> -->
+                <FaIcon icon="exclamation-circle" aria-hidden="true" />
                 {{ error }}
               </p>
               <p v-if="success" class="text-xs mt-2 text-center">
-                <!-- <FaIcon icon="check-circle" aria-hidden="true" /> -->
+                <FaIcon icon="check-circle" aria-hidden="true" />
                 {{ success }}
               </p>
             </form>

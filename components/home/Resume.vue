@@ -303,7 +303,10 @@ onMounted(showProgressOnScroll);
 
   &__title,
   p {
-    @apply text-sm leading-6 uppercase;
+    @apply text-base leading-6 uppercase;
+  }
+  &__title {
+    @apply text-lg;
   }
 
   &__title {
@@ -312,11 +315,17 @@ onMounted(showProgressOnScroll);
     letter-spacing: 5px;
   }
 
+  &__skill {
+    &-value {
+      @apply ml-2;
+    }
+  }
+
   .progress {
     @apply h-2 mb-10 flex overflow-hidden text-xs leading-4 text-center bg-gray-100 rounded;
 
     &-bar {
-      @apply bg-green-500 h-4 leading-4 text-white;
+      @apply bg-green-500 leading-4 text-white rounded-r;
       transition: width 0.6s ease;
     }
   }

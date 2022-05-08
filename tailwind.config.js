@@ -9,7 +9,8 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
-      body: ['Roboto', 'sans-serif'],
+      // body: ['Roboto', 'sans-serif'],
+      body: ['Roboto Mono', 'monospace', 'sans-serif'],
       heading: ['Roboto Mono', 'monospace', 'sans-serif'],
       secondary: ['Inconsolata', 'monospace', 'sans-serif']
     },

@@ -15,7 +15,7 @@
               class="menu__mobile-button"
               @click="toggleMobileMenu"
             >
-              <!-- <FaIcon :icon="['fas', 'bars']" size="xs" /> -->
+              <FaIcon icon="bars" size="xs" />
             </button>
           </div>
         </div>
@@ -30,7 +30,7 @@
     >
       <div class="container">
         <div class="mobile-menu__close" @click="toggleMobileMenu">
-          <!-- <FaIcon icon="times-circle-o" size="xs" /> -->
+          <FaIcon icon="times-circle" size="xs" />
         </div>
         <nav class="mobile-menu__wrapper">
           <HeaderMenuLink />

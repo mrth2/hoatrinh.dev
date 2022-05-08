@@ -60,7 +60,7 @@ useHead({
 }
 
 .site-btn {
-  @apply bg-green-600 text-white rounded-3xl leading-6 text-sm uppercase px-5 py-3 text-center inline-block font-semibold overflow-hidden;
+  @apply bg-green-600 text-white rounded-3xl leading-6 text-sm uppercase px-5 py-2 text-center inline-block font-semibold overflow-hidden;
   min-width: 170px;
 
   i {

@@ -25,7 +25,7 @@
           </SwiperSlide>
         </Swiper>
         <div class="slider-carousel__circle">
-          <!-- <p><FaIcon icon="quote-right" aria-hidden="true" /></p> -->
+          <p><FaIcon icon="quote-right" aria-hidden="true" /></p>
         </div>
       </div>
     </div>
