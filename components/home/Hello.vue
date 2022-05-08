@@ -10,15 +10,15 @@
         <div class="flex flex-row gap-2">
           <a :href="contactLink" class="section_btn site-btn">
             <FaIcon :icon="['fab', 'wordpress']" />
-            Optimize Wordpress
+            <span>Optimize Wordpress</span>
           </a>
           <a :href="contactLink" class="section_btn site-btn">
             <FaIcon :icon="['fab', 'laravel']" />
-            Backend Development
+            <span>Backend Development</span>
           </a>
           <a :href="contactLink" class="section_btn site-btn">
             <FaIcon :icon="['fab', 'vuejs']" />
-            Frontend Development
+            <span>Frontend Development</span>
           </a>
         </div>
       </div>
@@ -38,3 +38,9 @@ withDefaults(
 const contactLink = ref("/#contact");
 const { $md, $sleep } = useNuxtApp();
 </script>
+
+<style scoped lang="postcss">
+.section_btn.site-btn {
+  @apply flex flex-row items-center gap-2 !h-auto rounded-full py-2.5;
+}
+</style>
