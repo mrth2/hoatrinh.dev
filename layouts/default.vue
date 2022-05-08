@@ -10,10 +10,12 @@ import { useAppStore } from "~~/store/app";
 
 const appStore = useAppStore();
 const isModalOpen = computed(() => appStore.modalOpen);
-useHead({
-  bodyAttrs: {
-    class: isModalOpen.value ? "modal-open" : "",
-  },
+watch(isModalOpen, () => {
+  useHead({
+    bodyAttrs: {
+      class: isModalOpen.value ? "modal-open" : "",
+    },
+  });
 });
 </script>
 

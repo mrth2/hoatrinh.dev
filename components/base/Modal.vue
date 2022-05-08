@@ -67,26 +67,20 @@ withDefaults(
   }
 );
 const emit = defineEmits(["close", "hidden", "shown", "action"]);
-const showing = ref(false);
 
 const appStore = useAppStore();
 function show() {
   appStore.showModal();
-  showing.value = true;
   emit("shown", this);
 }
 function hide() {
   appStore.hideModal();
-  showing.value = false;
   emit("hidden", this);
 }
 function close() {
   hide();
   emit("close", this);
 }
-
-const attrs = useAttrs();
-watch(attrs, show);
 onMounted(show);
 </script>
 

@@ -167,6 +167,9 @@ function getProjectTags(project: Project): Array<Object> {
     ...project.databases,
   ];
 }
+onBeforeUnmount(() => {
+  viewingProject.value = null;
+});
 </script>
 
 <style scoped lang="postcss">
