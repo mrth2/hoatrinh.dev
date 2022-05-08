@@ -24,20 +24,24 @@ import "swiper/css/autoplay";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-const { data: homepage } = useAsyncData("homepage", () =>
+const { data: homepage, pending } = useAsyncData("homepage", () =>
   useStrapi3().find<HomePage>("home-page")
 );
 const meta_title = computed(() => homepage.value?.meta_title);
 const meta_description = computed(() => homepage.value?.meta_description);
-useHead({
-  title: meta_title.value,
-  meta: [
-    {
-      hid: "description",
-      name: "description",
-      content: meta_description.value,
-    },
-  ],
+watch(pending, () => {
+  if (!pending.value) {
+    useHead({
+      title: meta_title.value,
+      meta: [
+        {
+          hid: "description",
+          name: "description",
+          content: meta_description.value,
+        },
+      ],
+    });
+  }
 });
 const { $isInViewport } = useNuxtApp();
 function clearSectionTitle() {

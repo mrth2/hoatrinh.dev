@@ -8,6 +8,7 @@
 
 <script setup lang="ts">
 useHead({
+  title: "HoaTrinh.dev",
   link: [
     {
       rel: "icon",
