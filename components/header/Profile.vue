@@ -2,7 +2,7 @@
   <!--Header-->
   <header
     class="main-header"
-    :style="{ backgroundImage: `url(~/assets/img/family.jpeg)` }"
+    :style="{ backgroundImage: `url(${familyImage})` }"
   >
     <div class="container">
       <div class="row personal-profile">
@@ -48,6 +48,7 @@
 
 <script setup lang="ts">
 import { usePersonalStore } from "~~/store/personal";
+import familyImage from "~/assets/img/family.jpeg";
 
 const personalStore = usePersonalStore();
 const age = computed(() => personalStore.age);

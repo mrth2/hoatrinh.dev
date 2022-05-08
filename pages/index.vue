@@ -1,5 +1,5 @@
 <template>
-  <div v-if="homepage" class="home">
+  <div class="home">
     <HomeHello :introduction="homepage.introduction" />
     <hr />
 
@@ -18,16 +18,18 @@
 <script setup lang="ts">
 import { HomePage } from "@nuxt/types";
 
-const { data: homepage } = useAsyncData("homepage", () =>
+const { data: homepage, pending } = useAsyncData("homepage", () =>
   useStrapi3().find<HomePage>("home-page")
 );
+const meta_title = computed(() => homepage.value?.meta_title);
+const meta_description = computed(() => homepage.value?.meta_description);
 useHead({
-  title: homepage.value?.meta_title,
+  title: meta_title.value,
   meta: [
     {
       hid: "description",
       name: "description",
-      content: homepage.value?.meta_description,
+      content: meta_description.value,
     },
   ],
 });

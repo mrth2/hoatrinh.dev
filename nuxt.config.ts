@@ -5,7 +5,7 @@ export default defineNuxtConfig({
   env: {
     strapiBaseUri: process.env.HTD_API || 'http://localhost:1337'
   },
-  ssr: false,
+  // ssr: false,
   target: 'static',
   head: {
     title: 'Hi, I\'m Hoa - Yet another nerd developer',
@@ -22,11 +22,6 @@ export default defineNuxtConfig({
       }
     ],
     link: [
-      {
-        rel: 'icon',
-        type: 'image/png',
-        href: '/favicon.png'
-      },
       {
         rel: 'stylesheet',
         href: 'https://fonts.googleapis.com/css2?family=Roboto+Mono&family=Inconsolata&display=swap'

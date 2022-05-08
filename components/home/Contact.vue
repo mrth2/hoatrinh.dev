@@ -2,7 +2,7 @@
   <div
     class="background review-bg"
     :style="{
-      backgroundImage: `url(~/assets/img/footer-bg.jpeg)`,
+      backgroundImage: `url(${FooterBg})`,
     }"
   >
     <div id="contact" class="container section">
@@ -111,6 +111,7 @@
 
 <script setup lang="ts">
 import { usePersonalStore } from "~~/store/personal";
+import FooterBg from "~/assets/img/footer-bg.jpeg";
 
 const sending = ref(false);
 const error = ref<string | boolean>(false);
