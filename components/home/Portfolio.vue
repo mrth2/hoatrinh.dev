@@ -3,7 +3,7 @@
     <section id="portfolio" class="container section">
       <div class="row">
         <div class="md:w-full">
-          <h2 id="portfolio_header" class="section__title">My projects_</h2>
+          <h2 id="portfolio" class="section__title">My projects_</h2>
         </div>
       </div>
       <div class="row portfolio-menu">
@@ -80,7 +80,6 @@
         </p>
         <Swiper
           v-if="viewingProject.images.length"
-          :autoplay="true"
           :options="swiperOptions"
           class="h-full mb-8"
         >

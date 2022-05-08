@@ -75,14 +75,24 @@ function showSectionTitleOnScroll() {
       }
     });
 }
+function goToSection() {
+  const sectionHeader = document.getElementById(
+    `${route.hash.replace("#", "")}`
+  );
+  if (sectionHeader) {
+    sectionHeader.scrollIntoView(true);
+  }
+}
+const route = useRoute();
+watch(() => route.hash, goToSection);
 onBeforeMount(() => {
-  // window.addEventListener("scroll", showSectionTitleOnScroll);
+  window.addEventListener("scroll", showSectionTitleOnScroll);
+  window.addEventListener("hashchange", goToSection, false);
 });
-onMounted(() => {
-  // setTimeout(showSectionTitleOnScroll, 100);
-});
+onMounted(showSectionTitleOnScroll);
 onBeforeUnmount(() => {
   window.removeEventListener("scroll", showSectionTitleOnScroll);
+  window.removeEventListener("hashchange", goToSection);
 });
 </script>
 

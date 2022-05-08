@@ -8,7 +8,7 @@
     <div id="contact" class="container section">
       <div class="row">
         <div class="md:w-full">
-          <p id="contacts_header" class="section__title text-white">
+          <p id="contact" class="section__title text-white">
             Get in touch_
           </p>
         </div>

@@ -2,7 +2,7 @@
   <section id="blog" class="container section">
     <div class="row">
       <div class="md:w-full">
-        <h2 id="blog_header" class="section__title">Latest Posts_</h2>
+        <h2 id="blog" class="section__title">Latest Posts_</h2>
       </div>
     </div>
 
