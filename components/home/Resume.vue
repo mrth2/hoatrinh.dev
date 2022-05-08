@@ -215,7 +215,10 @@ const { $isInViewport } = useNuxtApp();
 
 function showProgressOnScroll() {
   const progressList = document.querySelector<HTMLElement>(".progress-list");
-  if (progressList && $isInViewport(progressList)) {
+  const progressListTitle = progressList.querySelector<HTMLElement>(
+    ".progress-list__title"
+  );
+  if (progressList && $isInViewport(progressListTitle)) {
     progressList
       .querySelectorAll<HTMLElement>(".progress-bar")
       .forEach((bar) => {
@@ -250,7 +253,12 @@ function showProgressBar(bar: HTMLElement) {
 onBeforeMount(() => {
   window.addEventListener("scroll", showProgressOnScroll);
 });
-onMounted(showProgressOnScroll);
+onBeforeUnmount(() => {
+  window.removeEventListener("scroll", showProgressOnScroll);
+});
+onMounted(() => {
+  showProgressOnScroll();
+});
 </script>
 
 <style scoped lang="postcss">
