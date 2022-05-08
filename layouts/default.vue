@@ -71,7 +71,7 @@ useHead({
 
 .portfolio-menu {
   nav {
-    @apply text-xs leading-5 font-heading uppercase font-bold mb-12 block;
+    @apply text-sm leading-5 font-heading uppercase font-bold mb-12 block;
 
     ul li {
       @apply inline-block;
