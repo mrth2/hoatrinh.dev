@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  -webkit-tap-highlight-color: transparent;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply overflow-x-hidden font-body text-lg font-normal bg-white m-0;
+  line-height: 30px;
+  color: #555;
+}
+
+*, :after, :before {
+  box-sizing: inherit;
+}
+
+.container {
+  @apply px-5 w-full mx-auto;
+}
+
+.container .row {
+  @apply flex flex-wrap mx-5;
+}
+
+button, input, optgroup, select, textarea {
+  font-family: sans-serif;
+  margin: 0;
+}
+button {
+  @apply normal-case p-0 m-0;
+}
+button:focus {
+  outline: none;
+}
+button:disabled {
+  @apply cursor-not-allowed opacity-50;
+}
+
+p {
+  @apply mt-0 mb-4;
+}
+
+a {
+  color: green;
+  @apply transition-all duration-300 relative no-underline cursor-pointer bg-transparent;
+}
+
+a:hover, a:active, a:focus {
+  @apply underline;
+}
