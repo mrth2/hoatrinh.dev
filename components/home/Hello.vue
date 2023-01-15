@@ -24,7 +24,7 @@
 </template>
 
 <script setup lang="ts">
-const contactLink = ref("/#contact");
+const contactLink = "/#contact";
 const introduction = await queryContent('/about/introduction').findOne();
 </script>
 
