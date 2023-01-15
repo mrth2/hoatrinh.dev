@@ -35,7 +35,6 @@ import { BlogPost } from "@nuxt/types";
 const blogs = await queryContent<BlogPost>("/blogs").limit(3).sort({
   createdAt: -1
 }).find();
-console.log(blogs)
 
 function parseCreatedAt(createdAt: number): string {
   const date = new Date(createdAt);

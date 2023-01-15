@@ -2,10 +2,7 @@
 export default defineNuxtConfig({
   runtimeConfig: {
     public: {
-      strapi: {
-        url: process.env.HTD_API || 'http://localhost:1337',
-        version: 'v3'
-      }
+      
     }
   },
   ssr: true,
@@ -40,7 +37,6 @@ export default defineNuxtConfig({
   modules: [
     '@pinia/nuxt',
     "@nuxt/content",
-    '@nuxtjs/strapi',
   ],
 
   vite: {
