@@ -43,7 +43,7 @@ import { useConfigStore } from "~~/store/config";
 Swiper.use([Autoplay]);
 
 const { data: testimonials, pending } = useLazyAsyncData("testimonials", () =>
-  useStrapi3().find<Testimonial[]>("testimonials")
+  useStrapi().find<Testimonial[]>("testimonials")
 );
 const loaded = computed(() => !pending.value);
 const slider = ref<HTMLElement>();

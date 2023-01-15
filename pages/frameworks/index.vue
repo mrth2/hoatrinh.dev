@@ -28,7 +28,7 @@
 import { CloudinaryMedia, Framework } from "@nuxt/types";
 
 const { data: frameworks, error } = useLazyAsyncData("frameworks", () =>
-  useStrapi3().find<Framework[]>("frameworks")
+  useStrapi().find<Framework[]>("frameworks")
 );
 function getThumbnail(thumbnail: CloudinaryMedia) {
   return thumbnail.url;

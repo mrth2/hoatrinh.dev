@@ -33,7 +33,7 @@
 import { BlogPost } from "@nuxt/types";
 
 const { data: blogs } = useLazyAsyncData("blog", () =>
-  useStrapi3().find<BlogPost[]>("blogs", {
+  useStrapi().find<BlogPost[]>("blogs", {
     _limit: 3,
     _sort: "createdAt:DESC",
   })

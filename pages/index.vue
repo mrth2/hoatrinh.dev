@@ -25,7 +25,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 const { data: homepage, pending } = useAsyncData("homepage", () =>
-  useStrapi3().find<HomePage>("home-page")
+  useStrapi().find<HomePage>("home-page")
 );
 const meta_title = computed(() => homepage.value?.meta_title);
 const meta_description = computed(() => homepage.value?.meta_description);

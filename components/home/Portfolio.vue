@@ -117,7 +117,7 @@ import { useConfigStore } from "~~/store/config";
 import { Swiper, SwiperSlide } from "swiper/vue";
 
 const { data: projects, pending } = useAsyncData("portfolio", () =>
-  useStrapi3().find<Project[]>("projects")
+  useStrapi().find<Project[]>("projects")
 );
 const loaded = computed(() => !pending.value);
 const categories = computed<ProjectCategory[]>(() => {

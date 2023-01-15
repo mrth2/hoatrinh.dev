@@ -140,7 +140,7 @@ async function sendContact() {
   sending.value = true;
   try {
     await $sleep(2000);
-    await useStrapi3().create("contacts", { name, email, message });
+    await useStrapi().create("contacts", { name, email, message });
     success.value =
       "Thank you for contacting me! I will reach out to you asap!";
     contactForm.value.reset();
