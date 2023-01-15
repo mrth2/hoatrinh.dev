@@ -114,10 +114,12 @@ onMounted(show);
     }
   }
   &__footer {
+    @apply mt-3;
+    
     button {
       @apply border py-2 px-10 text-base text-white rounded;
       &.action-btn {
-        @apply bg-green-500 border-green-500;
+        @apply bg-green-500 border-green-500 ml-3;
       }
       &.cancel-btn {
         @apply border-gray-500 text-gray-500;
