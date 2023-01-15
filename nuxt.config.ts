@@ -36,30 +36,7 @@ export default defineNuxtConfig({
     "~/assets/css/tailwind.css",
     '@fortawesome/fontawesome-svg-core/styles.css'
   ],
-  // build: {
-  //   postcss: {
-  //     postcssOptions: {
-  //       plugins: {
-  //         // tailwindcss: {},
-  //         // autoprefixer: {},
-  //         'postcss-import': {},
-  //         'tailwindcss/nesting': {},
-  //         tailwindcss: {},
-  //         autoprefixer: {},
-  //       },
-  //     },
-  //   },
-  // },
-  plugins: [
-    // {
-    //   src: '@/plugins/dom-utils.ts',
-    //   mode: 'client'
-    // },
-    // {
-    //   src: '@/plugins/markdownit.ts',
-    //   mode: 'client'
-    // }
-  ],
+  plugins: [],
   modules: [
     '@pinia/nuxt',
     "@nuxt/content",
