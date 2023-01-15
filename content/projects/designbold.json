@@ -1,0 +1,387 @@
+{
+  "cms": [],
+  "databases": [
+    {
+      "_id": "60a0f52f3a56551ea61532ff",
+      "published_at": "2021-05-16T10:34:26.695Z",
+      "createdAt": "2021-05-16T10:34:23.484Z",
+      "updatedAt": "2021-05-16T17:17:35.929Z",
+      "__v": 0,
+      "description": "MariaDB Server is one of the most popular open source relational databases. It’s made by the original developers of MySQL and guaranteed to stay open source. It is part of most cloud offerings and the default in most Linux distributions.",
+      "name": "MariaDB",
+      "thumbnail": {
+        "_id": "60a1536de04d752fc47ad1dc",
+        "name": "mariadb.png",
+        "alternativeText": "",
+        "caption": "",
+        "hash": "mariadb_00a665498a",
+        "ext": ".png",
+        "mime": "image/png",
+        "size": 7.69,
+        "width": 790,
+        "height": 197,
+        "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1621185379/mariadb_00a665498a.png",
+        "provider_metadata": {
+          "public_id": "mariadb_00a665498a",
+          "resource_type": "image"
+        },
+        "formats": {
+          "thumbnail": {
+            "name": "thumbnail_mariadb.png",
+            "hash": "thumbnail_mariadb_00a665498a",
+            "ext": ".png",
+            "mime": "image/png",
+            "width": 245,
+            "height": 61,
+            "size": 7.36,
+            "path": null,
+            "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1621185380/thumbnail_mariadb_00a665498a.png",
+            "provider_metadata": {
+              "public_id": "thumbnail_mariadb_00a665498a",
+              "resource_type": "image"
+            }
+          },
+          "medium": {
+            "name": "medium_mariadb.png",
+            "hash": "medium_mariadb_00a665498a",
+            "ext": ".png",
+            "mime": "image/png",
+            "width": 750,
+            "height": 187,
+            "size": 31.86,
+            "path": null,
+            "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1621185383/medium_mariadb_00a665498a.png",
+            "provider_metadata": {
+              "public_id": "medium_mariadb_00a665498a",
+              "resource_type": "image"
+            }
+          },
+          "small": {
+            "name": "small_mariadb.png",
+            "hash": "small_mariadb_00a665498a",
+            "ext": ".png",
+            "mime": "image/png",
+            "width": 500,
+            "height": 125,
+            "size": 18.69,
+            "path": null,
+            "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1621185385/small_mariadb_00a665498a.png",
+            "provider_metadata": {
+              "public_id": "small_mariadb_00a665498a",
+              "resource_type": "image"
+            }
+          }
+        },
+        "provider": "cloudinary",
+        "related": [
+          "60a0f52f3a56551ea61532ff"
+        ],
+        "createdAt": "2021-05-16T17:16:29.945Z",
+        "updatedAt": "2021-05-16T17:17:35.879Z",
+        "__v": 0,
+        "id": "60a1536de04d752fc47ad1dc"
+      },
+      "id": "60a0f52f3a56551ea61532ff"
+    }
+  ],
+  "programing_languages": [],
+  "platforms": [],
+  "frameworks": [
+    {
+      "_id": "60c62b89a2c8a00c70e7ed05",
+      "name": "BackboneJS",
+      "published_at": "2021-06-13T16:00:16.272Z",
+      "createdAt": "2021-06-13T16:00:09.881Z",
+      "updatedAt": "2021-06-13T16:00:16.431Z",
+      "__v": 0,
+      "id": "60c62b89a2c8a00c70e7ed05"
+    },
+    {
+      "_id": "60c62b9ea2c8a00c70e7ed06",
+      "name": "jQuery",
+      "published_at": "2021-06-13T16:00:32.993Z",
+      "createdAt": "2021-06-13T16:00:30.020Z",
+      "updatedAt": "2021-06-13T16:00:33.252Z",
+      "__v": 0,
+      "id": "60c62b9ea2c8a00c70e7ed06"
+    }
+  ],
+  "images": [
+    {
+      "_id": "60f43a3d240328343a6542aa",
+      "name": "z2623355048879_1ae5ecae09b215d7f4b17f56795b394d.jpg",
+      "alternativeText": "",
+      "caption": "",
+      "hash": "z2623355048879_1ae5ecae09b215d7f4b17f56795b394d_c00a108a65",
+      "ext": ".jpg",
+      "mime": "image/jpeg",
+      "size": 97.92,
+      "width": 1914,
+      "height": 968,
+      "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626618367/z2623355048879_1ae5ecae09b215d7f4b17f56795b394d_c00a108a65.jpg",
+      "provider_metadata": {
+        "public_id": "z2623355048879_1ae5ecae09b215d7f4b17f56795b394d_c00a108a65",
+        "resource_type": "image"
+      },
+      "formats": {
+        "thumbnail": {
+          "name": "thumbnail_z2623355048879_1ae5ecae09b215d7f4b17f56795b394d.jpg",
+          "hash": "thumbnail_z2623355048879_1ae5ecae09b215d7f4b17f56795b394d_c00a108a65",
+          "ext": ".jpg",
+          "mime": "image/jpeg",
+          "width": 245,
+          "height": 124,
+          "size": 4.76,
+          "path": null,
+          "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626618370/thumbnail_z2623355048879_1ae5ecae09b215d7f4b17f56795b394d_c00a108a65.jpg",
+          "provider_metadata": {
+            "public_id": "thumbnail_z2623355048879_1ae5ecae09b215d7f4b17f56795b394d_c00a108a65",
+            "resource_type": "image"
+          }
+        },
+        "large": {
+          "name": "large_z2623355048879_1ae5ecae09b215d7f4b17f56795b394d.jpg",
+          "hash": "large_z2623355048879_1ae5ecae09b215d7f4b17f56795b394d_c00a108a65",
+          "ext": ".jpg",
+          "mime": "image/jpeg",
+          "width": 1000,
+          "height": 506,
+          "size": 38.19,
+          "path": null,
+          "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626618400/large_z2623355048879_1ae5ecae09b215d7f4b17f56795b394d_c00a108a65.jpg",
+          "provider_metadata": {
+            "public_id": "large_z2623355048879_1ae5ecae09b215d7f4b17f56795b394d_c00a108a65",
+            "resource_type": "image"
+          }
+        },
+        "medium": {
+          "name": "medium_z2623355048879_1ae5ecae09b215d7f4b17f56795b394d.jpg",
+          "hash": "medium_z2623355048879_1ae5ecae09b215d7f4b17f56795b394d_c00a108a65",
+          "ext": ".jpg",
+          "mime": "image/jpeg",
+          "width": 750,
+          "height": 379,
+          "size": 23.81,
+          "path": null,
+          "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626618405/medium_z2623355048879_1ae5ecae09b215d7f4b17f56795b394d_c00a108a65.jpg",
+          "provider_metadata": {
+            "public_id": "medium_z2623355048879_1ae5ecae09b215d7f4b17f56795b394d_c00a108a65",
+            "resource_type": "image"
+          }
+        },
+        "small": {
+          "name": "small_z2623355048879_1ae5ecae09b215d7f4b17f56795b394d.jpg",
+          "hash": "small_z2623355048879_1ae5ecae09b215d7f4b17f56795b394d_c00a108a65",
+          "ext": ".jpg",
+          "mime": "image/jpeg",
+          "width": 500,
+          "height": 253,
+          "size": 13.34,
+          "path": null,
+          "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626618425/small_z2623355048879_1ae5ecae09b215d7f4b17f56795b394d_c00a108a65.jpg",
+          "provider_metadata": {
+            "public_id": "small_z2623355048879_1ae5ecae09b215d7f4b17f56795b394d_c00a108a65",
+            "resource_type": "image"
+          }
+        }
+      },
+      "provider": "cloudinary",
+      "related": [],
+      "createdAt": "2021-07-18T14:27:09.487Z",
+      "updatedAt": "2021-07-18T14:28:43.622Z",
+      "__v": 0,
+      "id": "60f43a3d240328343a6542aa"
+    },
+    {
+      "_id": "60f43a1b240328343a6542a9",
+      "name": "z2623356222381_7fefc5add62d3994ce538ca6ee2ba982.jpg",
+      "alternativeText": "",
+      "caption": "",
+      "hash": "z2623356222381_7fefc5add62d3994ce538ca6ee2ba982_5ba6e0f152",
+      "ext": ".jpg",
+      "mime": "image/jpeg",
+      "size": 162.24,
+      "width": 1910,
+      "height": 977,
+      "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626618360/z2623356222381_7fefc5add62d3994ce538ca6ee2ba982_5ba6e0f152.jpg",
+      "provider_metadata": {
+        "public_id": "z2623356222381_7fefc5add62d3994ce538ca6ee2ba982_5ba6e0f152",
+        "resource_type": "image"
+      },
+      "formats": {
+        "thumbnail": {
+          "name": "thumbnail_z2623356222381_7fefc5add62d3994ce538ca6ee2ba982.jpg",
+          "hash": "thumbnail_z2623356222381_7fefc5add62d3994ce538ca6ee2ba982_5ba6e0f152",
+          "ext": ".jpg",
+          "mime": "image/jpeg",
+          "width": 245,
+          "height": 125,
+          "size": 6.66,
+          "path": null,
+          "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626618366/thumbnail_z2623356222381_7fefc5add62d3994ce538ca6ee2ba982_5ba6e0f152.jpg",
+          "provider_metadata": {
+            "public_id": "thumbnail_z2623356222381_7fefc5add62d3994ce538ca6ee2ba982_5ba6e0f152",
+            "resource_type": "image"
+          }
+        },
+        "large": {
+          "name": "large_z2623356222381_7fefc5add62d3994ce538ca6ee2ba982.jpg",
+          "hash": "large_z2623356222381_7fefc5add62d3994ce538ca6ee2ba982_5ba6e0f152",
+          "ext": ".jpg",
+          "mime": "image/jpeg",
+          "width": 1000,
+          "height": 512,
+          "size": 61.15,
+          "path": null,
+          "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626618372/large_z2623356222381_7fefc5add62d3994ce538ca6ee2ba982_5ba6e0f152.jpg",
+          "provider_metadata": {
+            "public_id": "large_z2623356222381_7fefc5add62d3994ce538ca6ee2ba982_5ba6e0f152",
+            "resource_type": "image"
+          }
+        },
+        "medium": {
+          "name": "medium_z2623356222381_7fefc5add62d3994ce538ca6ee2ba982.jpg",
+          "hash": "medium_z2623356222381_7fefc5add62d3994ce538ca6ee2ba982_5ba6e0f152",
+          "ext": ".jpg",
+          "mime": "image/jpeg",
+          "width": 750,
+          "height": 384,
+          "size": 38.54,
+          "path": null,
+          "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626618378/medium_z2623356222381_7fefc5add62d3994ce538ca6ee2ba982_5ba6e0f152.jpg",
+          "provider_metadata": {
+            "public_id": "medium_z2623356222381_7fefc5add62d3994ce538ca6ee2ba982_5ba6e0f152",
+            "resource_type": "image"
+          }
+        },
+        "small": {
+          "name": "small_z2623356222381_7fefc5add62d3994ce538ca6ee2ba982.jpg",
+          "hash": "small_z2623356222381_7fefc5add62d3994ce538ca6ee2ba982_5ba6e0f152",
+          "ext": ".jpg",
+          "mime": "image/jpeg",
+          "width": 500,
+          "height": 256,
+          "size": 20.57,
+          "path": null,
+          "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626618392/small_z2623356222381_7fefc5add62d3994ce538ca6ee2ba982_5ba6e0f152.jpg",
+          "provider_metadata": {
+            "public_id": "small_z2623356222381_7fefc5add62d3994ce538ca6ee2ba982_5ba6e0f152",
+            "resource_type": "image"
+          }
+        }
+      },
+      "provider": "cloudinary",
+      "related": [],
+      "createdAt": "2021-07-18T14:26:35.960Z",
+      "updatedAt": "2021-07-18T14:28:43.622Z",
+      "__v": 0,
+      "id": "60f43a1b240328343a6542a9"
+    },
+    {
+      "_id": "60f43a44240328343a6542ab",
+      "name": "z2623357710740_b2d3150a04e89bdd3b2f441579a50a86.jpg",
+      "alternativeText": "",
+      "caption": "",
+      "hash": "z2623357710740_b2d3150a04e89bdd3b2f441579a50a86_2dda84e2d3",
+      "ext": ".jpg",
+      "mime": "image/jpeg",
+      "size": 127.92,
+      "width": 1915,
+      "height": 976,
+      "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626618400/z2623357710740_b2d3150a04e89bdd3b2f441579a50a86_2dda84e2d3.jpg",
+      "provider_metadata": {
+        "public_id": "z2623357710740_b2d3150a04e89bdd3b2f441579a50a86_2dda84e2d3",
+        "resource_type": "image"
+      },
+      "formats": {
+        "thumbnail": {
+          "name": "thumbnail_z2623357710740_b2d3150a04e89bdd3b2f441579a50a86.jpg",
+          "hash": "thumbnail_z2623357710740_b2d3150a04e89bdd3b2f441579a50a86_2dda84e2d3",
+          "ext": ".jpg",
+          "mime": "image/jpeg",
+          "width": 245,
+          "height": 125,
+          "size": 5.38,
+          "path": null,
+          "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626618420/thumbnail_z2623357710740_b2d3150a04e89bdd3b2f441579a50a86_2dda84e2d3.jpg",
+          "provider_metadata": {
+            "public_id": "thumbnail_z2623357710740_b2d3150a04e89bdd3b2f441579a50a86_2dda84e2d3",
+            "resource_type": "image"
+          }
+        },
+        "large": {
+          "name": "large_z2623357710740_b2d3150a04e89bdd3b2f441579a50a86.jpg",
+          "hash": "large_z2623357710740_b2d3150a04e89bdd3b2f441579a50a86_2dda84e2d3",
+          "ext": ".jpg",
+          "mime": "image/jpeg",
+          "width": 1000,
+          "height": 510,
+          "size": 47.13,
+          "path": null,
+          "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626618427/large_z2623357710740_b2d3150a04e89bdd3b2f441579a50a86_2dda84e2d3.jpg",
+          "provider_metadata": {
+            "public_id": "large_z2623357710740_b2d3150a04e89bdd3b2f441579a50a86_2dda84e2d3",
+            "resource_type": "image"
+          }
+        },
+        "medium": {
+          "name": "medium_z2623357710740_b2d3150a04e89bdd3b2f441579a50a86.jpg",
+          "hash": "medium_z2623357710740_b2d3150a04e89bdd3b2f441579a50a86_2dda84e2d3",
+          "ext": ".jpg",
+          "mime": "image/jpeg",
+          "width": 750,
+          "height": 382,
+          "size": 29.6,
+          "path": null,
+          "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626618430/medium_z2623357710740_b2d3150a04e89bdd3b2f441579a50a86_2dda84e2d3.jpg",
+          "provider_metadata": {
+            "public_id": "medium_z2623357710740_b2d3150a04e89bdd3b2f441579a50a86_2dda84e2d3",
+            "resource_type": "image"
+          }
+        },
+        "small": {
+          "name": "small_z2623357710740_b2d3150a04e89bdd3b2f441579a50a86.jpg",
+          "hash": "small_z2623357710740_b2d3150a04e89bdd3b2f441579a50a86_2dda84e2d3",
+          "ext": ".jpg",
+          "mime": "image/jpeg",
+          "width": 500,
+          "height": 255,
+          "size": 16.13,
+          "path": null,
+          "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626618432/small_z2623357710740_b2d3150a04e89bdd3b2f441579a50a86_2dda84e2d3.jpg",
+          "provider_metadata": {
+            "public_id": "small_z2623357710740_b2d3150a04e89bdd3b2f441579a50a86_2dda84e2d3",
+            "resource_type": "image"
+          }
+        }
+      },
+      "provider": "cloudinary",
+      "related": [],
+      "createdAt": "2021-07-18T14:27:16.584Z",
+      "updatedAt": "2021-07-18T14:28:43.622Z",
+      "__v": 0,
+      "id": "60f43a44240328343a6542ab"
+    }
+  ],
+  "videos": [],
+  "project_categories": [
+    {
+      "_id": "60f4f749ab8b353bc26f6575",
+      "name": "SaaS",
+      "published_at": "2021-07-19T03:53:48.321Z",
+      "createdAt": "2021-07-19T03:53:45.896Z",
+      "updatedAt": "2021-07-19T03:53:48.485Z",
+      "__v": 0,
+      "id": "60f4f749ab8b353bc26f6575"
+    }
+  ],
+  "_id": "60c62a37a2c8a00c70e7ed04",
+  "name": "DesignBold",
+  "description": "DesignBold has the mission to simplify graphic design for everyone. We help people with no or little design skills to easy create any beautiful content from A4, poster, magazine to social media posts.",
+  "link": "https://www.designbold.com/",
+  "published_at": "2021-06-13T15:54:38.646Z",
+  "createdAt": "2021-06-13T15:54:31.859Z",
+  "updatedAt": "2021-07-19T03:54:46.301Z",
+  "__v": 0,
+  "id": "60c62a37a2c8a00c70e7ed04"
+}

@@ -1,0 +1,65 @@
+{
+  "_id": "612626ad3f35d40015436dba",
+  "title": "How to prevent text selection on double click but not click and drag?",
+  "content": "Hi, today I wanna share a quick solution to help you guys prevent text selection.\n\n## The CSS solution\n\nWe all know CSS has the solution to prevent text selection completely:\n```\n  -webkit-user-select: none;  /* Chrome all / Safari all */\n  -moz-user-select: none;     /* Firefox all */\n  -ms-user-select: none;      /* IE 10+ */\n     user-select: none;          /* Likely future */\n```\n\nBut if we want to allow user to select text with click and drag action, CSS can't help...\n\n## The Javascript Solution\nThanks for reading up here. Take your gift :D\n\n```\n  document.addEventListener( 'mousedown',  (event) => {\n          // event.detail represent the current of click counts, read more here: [https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/detail](link)\n          // by prevent default, we block user select text by double click on texts\n          if (event.detail > 1) {\n              event.preventDefault()\n          }\n      }, \n      false\n  )\n```\n\nBye then ;)",
+  "published_at": "2021-08-25T11:17:11.267Z",
+  "createdAt": "2021-08-25T11:17:01.062Z",
+  "updatedAt": "2021-08-29T12:08:12.199Z",
+  "__v": 0,
+  "thumbnail": {
+    "_id": "61262e0c313e75d1c184fd45",
+    "name": "man-holding-white-screen-digital-tablet.jpg",
+    "alternativeText": "",
+    "caption": "",
+    "hash": "man_holding_white_screen_digital_tablet_1a4992a196",
+    "ext": ".jpg",
+    "mime": "image/jpeg",
+    "size": 27.15,
+    "width": 667,
+    "height": 667,
+    "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1629892101/man_holding_white_screen_digital_tablet_1a4992a196.jpg",
+    "provider_metadata": {
+      "public_id": "man_holding_white_screen_digital_tablet_1a4992a196",
+      "resource_type": "image"
+    },
+    "formats": {
+      "thumbnail": {
+        "name": "thumbnail_man-holding-white-screen-digital-tablet.jpg",
+        "hash": "thumbnail_man_holding_white_screen_digital_tablet_1a4992a196",
+        "ext": ".jpg",
+        "mime": "image/jpeg",
+        "width": 156,
+        "height": 156,
+        "size": 4.27,
+        "path": null,
+        "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1629892103/thumbnail_man_holding_white_screen_digital_tablet_1a4992a196.jpg",
+        "provider_metadata": {
+          "public_id": "thumbnail_man_holding_white_screen_digital_tablet_1a4992a196",
+          "resource_type": "image"
+        }
+      },
+      "small": {
+        "name": "small_man-holding-white-screen-digital-tablet.jpg",
+        "hash": "small_man_holding_white_screen_digital_tablet_1a4992a196",
+        "ext": ".jpg",
+        "mime": "image/jpeg",
+        "width": 500,
+        "height": 500,
+        "size": 18.78,
+        "path": null,
+        "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1629892105/small_man_holding_white_screen_digital_tablet_1a4992a196.jpg",
+        "provider_metadata": {
+          "public_id": "small_man_holding_white_screen_digital_tablet_1a4992a196",
+          "resource_type": "image"
+        }
+      }
+    },
+    "provider": "cloudinary",
+    "related": ["612626ad3f35d40015436dba"],
+    "createdAt": "2021-08-25T11:48:28.922Z",
+    "updatedAt": "2021-08-25T11:48:33.320Z",
+    "__v": 0,
+    "id": "61262e0c313e75d1c184fd45"
+  },
+  "id": "612626ad3f35d40015436dba"
+}

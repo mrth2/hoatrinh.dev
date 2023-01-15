@@ -1,0 +1,700 @@
+{
+  "cms": [],
+  "databases": [
+    {
+      "_id": "60a0ee823a56551ea61532fc",
+      "published_at": "2021-05-16T10:05:56.715Z",
+      "createdAt": "2021-05-16T10:05:54.390Z",
+      "updatedAt": "2021-05-17T04:55:45.075Z",
+      "__v": 0,
+      "description": "Accelerate development, address diverse data sets, and adapt quickly to change with a proven application data platform built around the database most wanted by developers 4 years running.",
+      "name": "MongoDB",
+      "thumbnail": {
+        "_id": "60a15376e04d752fc47ad1e2",
+        "name": "mongodb.png",
+        "alternativeText": "",
+        "caption": "",
+        "hash": "mongodb_22616d8663",
+        "ext": ".png",
+        "mime": "image/png",
+        "size": 41.64,
+        "width": 2226,
+        "height": 601,
+        "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1621185385/mongodb_22616d8663.png",
+        "provider_metadata": {
+          "public_id": "mongodb_22616d8663",
+          "resource_type": "image"
+        },
+        "formats": {
+          "thumbnail": {
+            "name": "thumbnail_mongodb.png",
+            "hash": "thumbnail_mongodb_22616d8663",
+            "ext": ".png",
+            "mime": "image/png",
+            "width": 245,
+            "height": 66,
+            "size": 9.82,
+            "path": null,
+            "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1621185387/thumbnail_mongodb_22616d8663.png",
+            "provider_metadata": {
+              "public_id": "thumbnail_mongodb_22616d8663",
+              "resource_type": "image"
+            }
+          },
+          "large": {
+            "name": "large_mongodb.png",
+            "hash": "large_mongodb_22616d8663",
+            "ext": ".png",
+            "mime": "image/png",
+            "width": 1000,
+            "height": 270,
+            "size": 53.54,
+            "path": null,
+            "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1621185390/large_mongodb_22616d8663.png",
+            "provider_metadata": {
+              "public_id": "large_mongodb_22616d8663",
+              "resource_type": "image"
+            }
+          },
+          "medium": {
+            "name": "medium_mongodb.png",
+            "hash": "medium_mongodb_22616d8663",
+            "ext": ".png",
+            "mime": "image/png",
+            "width": 750,
+            "height": 202,
+            "size": 38.48,
+            "path": null,
+            "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1621185392/medium_mongodb_22616d8663.png",
+            "provider_metadata": {
+              "public_id": "medium_mongodb_22616d8663",
+              "resource_type": "image"
+            }
+          },
+          "small": {
+            "name": "small_mongodb.png",
+            "hash": "small_mongodb_22616d8663",
+            "ext": ".png",
+            "mime": "image/png",
+            "width": 500,
+            "height": 135,
+            "size": 24.31,
+            "path": null,
+            "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1621185394/small_mongodb_22616d8663.png",
+            "provider_metadata": {
+              "public_id": "small_mongodb_22616d8663",
+              "resource_type": "image"
+            }
+          }
+        },
+        "provider": "cloudinary",
+        "related": ["60a0ee823a56551ea61532fc"],
+        "createdAt": "2021-05-16T17:16:38.464Z",
+        "updatedAt": "2021-05-16T17:17:44.183Z",
+        "__v": 0,
+        "id": "60a15376e04d752fc47ad1e2"
+      },
+      "slogan": "The application data platform",
+      "id": "60a0ee823a56551ea61532fc"
+    }
+  ],
+  "programing_languages": [
+    {
+      "frameworks": ["60a0f74ee9bb211f6e6b6639", "60a0ee123a56551ea61532f6"],
+      "cms": [],
+      "_id": "60f3f9e10aa4a02fe4217d6c",
+      "name": "Javascript",
+      "published_at": "2021-07-18T09:52:36.160Z",
+      "createdAt": "2021-07-18T09:52:33.529Z",
+      "updatedAt": "2021-07-18T09:52:36.367Z",
+      "__v": 0,
+      "id": "60f3f9e10aa4a02fe4217d6c"
+    },
+    {
+      "frameworks": [],
+      "cms": [],
+      "_id": "60f3fa8d0aa4a02fe4217d6d",
+      "name": "CSS",
+      "published_at": "2021-07-18T09:55:27.656Z",
+      "createdAt": "2021-07-18T09:55:25.036Z",
+      "updatedAt": "2021-07-18T09:55:27.794Z",
+      "__v": 0,
+      "id": "60f3fa8d0aa4a02fe4217d6d"
+    },
+    {
+      "frameworks": [],
+      "cms": [],
+      "_id": "60f3fa990aa4a02fe4217d6e",
+      "name": "HTML5",
+      "published_at": "2021-07-18T09:55:39.981Z",
+      "createdAt": "2021-07-18T09:55:37.527Z",
+      "updatedAt": "2021-07-18T09:55:40.139Z",
+      "__v": 0,
+      "id": "60f3fa990aa4a02fe4217d6e"
+    }
+  ],
+  "platforms": [
+    {
+      "_id": "60f3fbe90aa4a02fe4217d73",
+      "name": "NodeJS",
+      "description": "Node. js is a platform built on Chrome's JavaScript runtime for easily building fast and scalable network applications. Node. js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient, perfect for data-intensive real-time applications that run across distributed devices.",
+      "slogan": "Node.js® is a JavaScript runtime built on Chrome's V8 JavaScript engine.",
+      "published_at": "2021-07-18T10:01:15.938Z",
+      "createdAt": "2021-07-18T10:01:13.169Z",
+      "updatedAt": "2021-07-18T10:01:16.152Z",
+      "__v": 0,
+      "thumbnail": {
+        "_id": "60f3fbe20aa4a02fe4217d72",
+        "name": "nodejs.png",
+        "alternativeText": "",
+        "caption": "",
+        "hash": "nodejs_59b4e3694a",
+        "ext": ".png",
+        "mime": "image/png",
+        "size": 23.29,
+        "width": 880,
+        "height": 389,
+        "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626602457/nodejs_59b4e3694a.png",
+        "provider_metadata": {
+          "public_id": "nodejs_59b4e3694a",
+          "resource_type": "image"
+        },
+        "formats": {
+          "thumbnail": {
+            "name": "thumbnail_nodejs.png",
+            "hash": "thumbnail_nodejs_59b4e3694a",
+            "ext": ".png",
+            "mime": "image/png",
+            "width": 245,
+            "height": 108,
+            "size": 14.75,
+            "path": null,
+            "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626602458/thumbnail_nodejs_59b4e3694a.png",
+            "provider_metadata": {
+              "public_id": "thumbnail_nodejs_59b4e3694a",
+              "resource_type": "image"
+            }
+          },
+          "medium": {
+            "name": "medium_nodejs.png",
+            "hash": "medium_nodejs_59b4e3694a",
+            "ext": ".png",
+            "mime": "image/png",
+            "width": 750,
+            "height": 332,
+            "size": 49.65,
+            "path": null,
+            "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626602461/medium_nodejs_59b4e3694a.png",
+            "provider_metadata": {
+              "public_id": "medium_nodejs_59b4e3694a",
+              "resource_type": "image"
+            }
+          },
+          "small": {
+            "name": "small_nodejs.png",
+            "hash": "small_nodejs_59b4e3694a",
+            "ext": ".png",
+            "mime": "image/png",
+            "width": 500,
+            "height": 221,
+            "size": 28.96,
+            "path": null,
+            "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626602463/small_nodejs_59b4e3694a.png",
+            "provider_metadata": {
+              "public_id": "small_nodejs_59b4e3694a",
+              "resource_type": "image"
+            }
+          }
+        },
+        "provider": "cloudinary",
+        "related": ["60f3fbe90aa4a02fe4217d73"],
+        "createdAt": "2021-07-18T10:01:06.840Z",
+        "updatedAt": "2021-07-18T10:01:13.279Z",
+        "__v": 0,
+        "id": "60f3fbe20aa4a02fe4217d72"
+      },
+      "id": "60f3fbe90aa4a02fe4217d73"
+    }
+  ],
+  "frameworks": [
+    {
+      "_id": "60a0f74ee9bb211f6e6b6639",
+      "published_at": "2021-05-16T10:43:29.003Z",
+      "createdAt": "2021-05-16T10:43:26.316Z",
+      "updatedAt": "2021-05-17T04:56:11.420Z",
+      "__v": 0,
+      "description": "Vue is perfectly capable of powering sophisticated Single-Page Applications when used in combination with modern tooling and supporting libraries.\n",
+      "name": "VueJS",
+      "thumbnail": {
+        "_id": "60a15376e04d752fc47ad1e1",
+        "name": "vuejs.png",
+        "alternativeText": "",
+        "caption": "",
+        "hash": "vuejs_86ac0d70c8",
+        "ext": ".png",
+        "mime": "image/png",
+        "size": 58.34,
+        "width": 1280,
+        "height": 612,
+        "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1621185385/vuejs_86ac0d70c8.png",
+        "provider_metadata": {
+          "public_id": "vuejs_86ac0d70c8",
+          "resource_type": "image"
+        },
+        "formats": {
+          "thumbnail": {
+            "name": "thumbnail_vuejs.png",
+            "hash": "thumbnail_vuejs_86ac0d70c8",
+            "ext": ".png",
+            "mime": "image/png",
+            "width": 245,
+            "height": 117,
+            "size": 13.23,
+            "path": null,
+            "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1621185387/thumbnail_vuejs_86ac0d70c8.png",
+            "provider_metadata": {
+              "public_id": "thumbnail_vuejs_86ac0d70c8",
+              "resource_type": "image"
+            }
+          },
+          "large": {
+            "name": "large_vuejs.png",
+            "hash": "large_vuejs_86ac0d70c8",
+            "ext": ".png",
+            "mime": "image/png",
+            "width": 1000,
+            "height": 478,
+            "size": 91.01,
+            "path": null,
+            "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1621185390/large_vuejs_86ac0d70c8.png",
+            "provider_metadata": {
+              "public_id": "large_vuejs_86ac0d70c8",
+              "resource_type": "image"
+            }
+          },
+          "medium": {
+            "name": "medium_vuejs.png",
+            "hash": "medium_vuejs_86ac0d70c8",
+            "ext": ".png",
+            "mime": "image/png",
+            "width": 750,
+            "height": 359,
+            "size": 62.63,
+            "path": null,
+            "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1621185392/medium_vuejs_86ac0d70c8.png",
+            "provider_metadata": {
+              "public_id": "medium_vuejs_86ac0d70c8",
+              "resource_type": "image"
+            }
+          },
+          "small": {
+            "name": "small_vuejs.png",
+            "hash": "small_vuejs_86ac0d70c8",
+            "ext": ".png",
+            "mime": "image/png",
+            "width": 500,
+            "height": 239,
+            "size": 36.45,
+            "path": null,
+            "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1621185394/small_vuejs_86ac0d70c8.png",
+            "provider_metadata": {
+              "public_id": "small_vuejs_86ac0d70c8",
+              "resource_type": "image"
+            }
+          }
+        },
+        "provider": "cloudinary",
+        "related": ["60a0f74ee9bb211f6e6b6639"],
+        "createdAt": "2021-05-16T17:16:38.367Z",
+        "updatedAt": "2021-05-16T17:18:20.326Z",
+        "__v": 0,
+        "id": "60a15376e04d752fc47ad1e1"
+      },
+      "slogan": "The Progressive JavaScript Framework",
+      "id": "60a0f74ee9bb211f6e6b6639"
+    },
+    {
+      "_id": "60f3fb750aa4a02fe4217d70",
+      "name": "ExpressJS",
+      "description": "Express.js, or simply Express, is a back end web application framework for Node.js, released as free and open-source software under the MIT License. It is designed for building web applications and APIs. It has been called the de facto standard server framework for Node.js",
+      "slogan": "Express is a minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications",
+      "published_at": "2021-07-18T09:59:21.089Z",
+      "createdAt": "2021-07-18T09:59:17.246Z",
+      "updatedAt": "2021-07-18T09:59:21.325Z",
+      "__v": 0,
+      "thumbnail": {
+        "_id": "60f3fb090aa4a02fe4217d6f",
+        "name": "ExpressJS.png",
+        "alternativeText": "",
+        "caption": "",
+        "hash": "Express_JS_82c7b09876",
+        "ext": ".png",
+        "mime": "image/png",
+        "size": 152.83,
+        "width": 1464,
+        "height": 400,
+        "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626602237/Express_JS_82c7b09876.png",
+        "provider_metadata": {
+          "public_id": "Express_JS_82c7b09876",
+          "resource_type": "image"
+        },
+        "formats": {
+          "thumbnail": {
+            "name": "thumbnail_ExpressJS.png",
+            "hash": "thumbnail_Express_JS_82c7b09876",
+            "ext": ".png",
+            "mime": "image/png",
+            "width": 245,
+            "height": 67,
+            "size": 15.49,
+            "path": null,
+            "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626602239/thumbnail_Express_JS_82c7b09876.png",
+            "provider_metadata": {
+              "public_id": "thumbnail_Express_JS_82c7b09876",
+              "resource_type": "image"
+            }
+          },
+          "large": {
+            "name": "large_ExpressJS.png",
+            "hash": "large_Express_JS_82c7b09876",
+            "ext": ".png",
+            "mime": "image/png",
+            "width": 1000,
+            "height": 273,
+            "size": 119.01,
+            "path": null,
+            "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626602241/large_Express_JS_82c7b09876.png",
+            "provider_metadata": {
+              "public_id": "large_Express_JS_82c7b09876",
+              "resource_type": "image"
+            }
+          },
+          "medium": {
+            "name": "medium_ExpressJS.png",
+            "hash": "medium_Express_JS_82c7b09876",
+            "ext": ".png",
+            "mime": "image/png",
+            "width": 750,
+            "height": 205,
+            "size": 75.24,
+            "path": null,
+            "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626602243/medium_Express_JS_82c7b09876.png",
+            "provider_metadata": {
+              "public_id": "medium_Express_JS_82c7b09876",
+              "resource_type": "image"
+            }
+          },
+          "small": {
+            "name": "small_ExpressJS.png",
+            "hash": "small_Express_JS_82c7b09876",
+            "ext": ".png",
+            "mime": "image/png",
+            "width": 500,
+            "height": 137,
+            "size": 40.76,
+            "path": null,
+            "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626602245/small_Express_JS_82c7b09876.png",
+            "provider_metadata": {
+              "public_id": "small_Express_JS_82c7b09876",
+              "resource_type": "image"
+            }
+          }
+        },
+        "provider": "cloudinary",
+        "related": ["60f3fb750aa4a02fe4217d70"],
+        "createdAt": "2021-07-18T09:57:29.306Z",
+        "updatedAt": "2021-07-18T09:59:17.387Z",
+        "__v": 0,
+        "id": "60f3fb090aa4a02fe4217d6f"
+      },
+      "id": "60f3fb750aa4a02fe4217d70"
+    }
+  ],
+  "images": [
+    {
+      "_id": "60f4fca9ab8b353bc26f6578",
+      "name": "kingpin.jpg",
+      "alternativeText": "",
+      "caption": "",
+      "hash": "kingpin_88154082a4",
+      "ext": ".jpg",
+      "mime": "image/jpeg",
+      "size": 112.03,
+      "width": 1903,
+      "height": 928,
+      "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626668189/kingpin_88154082a4.jpg",
+      "provider_metadata": {
+        "public_id": "kingpin_88154082a4",
+        "resource_type": "image"
+      },
+      "formats": {
+        "thumbnail": {
+          "name": "thumbnail_kingpin.jpg",
+          "hash": "thumbnail_kingpin_88154082a4",
+          "ext": ".jpg",
+          "mime": "image/jpeg",
+          "width": 245,
+          "height": 119,
+          "size": 6.45,
+          "path": null,
+          "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626668191/thumbnail_kingpin_88154082a4.jpg",
+          "provider_metadata": {
+            "public_id": "thumbnail_kingpin_88154082a4",
+            "resource_type": "image"
+          }
+        },
+        "large": {
+          "name": "large_kingpin.jpg",
+          "hash": "large_kingpin_88154082a4",
+          "ext": ".jpg",
+          "mime": "image/jpeg",
+          "width": 1000,
+          "height": 488,
+          "size": 46.52,
+          "path": null,
+          "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626668193/large_kingpin_88154082a4.jpg",
+          "provider_metadata": {
+            "public_id": "large_kingpin_88154082a4",
+            "resource_type": "image"
+          }
+        },
+        "medium": {
+          "name": "medium_kingpin.jpg",
+          "hash": "medium_kingpin_88154082a4",
+          "ext": ".jpg",
+          "mime": "image/jpeg",
+          "width": 750,
+          "height": 366,
+          "size": 30.79,
+          "path": null,
+          "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626668195/medium_kingpin_88154082a4.jpg",
+          "provider_metadata": {
+            "public_id": "medium_kingpin_88154082a4",
+            "resource_type": "image"
+          }
+        },
+        "small": {
+          "name": "small_kingpin.jpg",
+          "hash": "small_kingpin_88154082a4",
+          "ext": ".jpg",
+          "mime": "image/jpeg",
+          "width": 500,
+          "height": 244,
+          "size": 17.39,
+          "path": null,
+          "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626668197/small_kingpin_88154082a4.jpg",
+          "provider_metadata": {
+            "public_id": "small_kingpin_88154082a4",
+            "resource_type": "image"
+          }
+        }
+      },
+      "provider": "cloudinary",
+      "related": [],
+      "createdAt": "2021-07-19T04:16:41.974Z",
+      "updatedAt": "2021-07-20T15:01:28.193Z",
+      "__v": 0,
+      "id": "60f4fca9ab8b353bc26f6578"
+    },
+    {
+      "_id": "60f4fca9ab8b353bc26f6577",
+      "name": "kingpin2.jpg",
+      "alternativeText": "",
+      "caption": "",
+      "hash": "kingpin2_f71d6343c6",
+      "ext": ".jpg",
+      "mime": "image/jpeg",
+      "size": 99.17,
+      "width": 1893,
+      "height": 924,
+      "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626668189/kingpin2_f71d6343c6.jpg",
+      "provider_metadata": {
+        "public_id": "kingpin2_f71d6343c6",
+        "resource_type": "image"
+      },
+      "formats": {
+        "thumbnail": {
+          "name": "thumbnail_kingpin2.jpg",
+          "hash": "thumbnail_kingpin2_f71d6343c6",
+          "ext": ".jpg",
+          "mime": "image/jpeg",
+          "width": 245,
+          "height": 120,
+          "size": 4.63,
+          "path": null,
+          "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626668190/thumbnail_kingpin2_f71d6343c6.jpg",
+          "provider_metadata": {
+            "public_id": "thumbnail_kingpin2_f71d6343c6",
+            "resource_type": "image"
+          }
+        },
+        "large": {
+          "name": "large_kingpin2.jpg",
+          "hash": "large_kingpin2_f71d6343c6",
+          "ext": ".jpg",
+          "mime": "image/jpeg",
+          "width": 1000,
+          "height": 488,
+          "size": 38.5,
+          "path": null,
+          "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626668192/large_kingpin2_f71d6343c6.jpg",
+          "provider_metadata": {
+            "public_id": "large_kingpin2_f71d6343c6",
+            "resource_type": "image"
+          }
+        },
+        "medium": {
+          "name": "medium_kingpin2.jpg",
+          "hash": "medium_kingpin2_f71d6343c6",
+          "ext": ".jpg",
+          "mime": "image/jpeg",
+          "width": 750,
+          "height": 366,
+          "size": 24.46,
+          "path": null,
+          "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626668195/medium_kingpin2_f71d6343c6.jpg",
+          "provider_metadata": {
+            "public_id": "medium_kingpin2_f71d6343c6",
+            "resource_type": "image"
+          }
+        },
+        "small": {
+          "name": "small_kingpin2.jpg",
+          "hash": "small_kingpin2_f71d6343c6",
+          "ext": ".jpg",
+          "mime": "image/jpeg",
+          "width": 500,
+          "height": 244,
+          "size": 13.28,
+          "path": null,
+          "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626668197/small_kingpin2_f71d6343c6.jpg",
+          "provider_metadata": {
+            "public_id": "small_kingpin2_f71d6343c6",
+            "resource_type": "image"
+          }
+        }
+      },
+      "provider": "cloudinary",
+      "related": [],
+      "createdAt": "2021-07-19T04:16:41.947Z",
+      "updatedAt": "2021-07-20T15:01:28.193Z",
+      "__v": 0,
+      "id": "60f4fca9ab8b353bc26f6577"
+    },
+    {
+      "_id": "60f4fcaaab8b353bc26f6579",
+      "name": "kingpin3.jpg",
+      "alternativeText": "",
+      "caption": "",
+      "hash": "kingpin3_2a3066269e",
+      "ext": ".jpg",
+      "mime": "image/jpeg",
+      "size": 162.18,
+      "width": 1884,
+      "height": 929,
+      "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626668189/kingpin3_2a3066269e.jpg",
+      "provider_metadata": {
+        "public_id": "kingpin3_2a3066269e",
+        "resource_type": "image"
+      },
+      "formats": {
+        "thumbnail": {
+          "name": "thumbnail_kingpin3.jpg",
+          "hash": "thumbnail_kingpin3_2a3066269e",
+          "ext": ".jpg",
+          "mime": "image/jpeg",
+          "width": 245,
+          "height": 121,
+          "size": 7.15,
+          "path": null,
+          "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626668191/thumbnail_kingpin3_2a3066269e.jpg",
+          "provider_metadata": {
+            "public_id": "thumbnail_kingpin3_2a3066269e",
+            "resource_type": "image"
+          }
+        },
+        "large": {
+          "name": "large_kingpin3.jpg",
+          "hash": "large_kingpin3_2a3066269e",
+          "ext": ".jpg",
+          "mime": "image/jpeg",
+          "width": 1000,
+          "height": 493,
+          "size": 64.58,
+          "path": null,
+          "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626668193/large_kingpin3_2a3066269e.jpg",
+          "provider_metadata": {
+            "public_id": "large_kingpin3_2a3066269e",
+            "resource_type": "image"
+          }
+        },
+        "medium": {
+          "name": "medium_kingpin3.jpg",
+          "hash": "medium_kingpin3_2a3066269e",
+          "ext": ".jpg",
+          "mime": "image/jpeg",
+          "width": 750,
+          "height": 370,
+          "size": 41.08,
+          "path": null,
+          "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626668195/medium_kingpin3_2a3066269e.jpg",
+          "provider_metadata": {
+            "public_id": "medium_kingpin3_2a3066269e",
+            "resource_type": "image"
+          }
+        },
+        "small": {
+          "name": "small_kingpin3.jpg",
+          "hash": "small_kingpin3_2a3066269e",
+          "ext": ".jpg",
+          "mime": "image/jpeg",
+          "width": 500,
+          "height": 247,
+          "size": 22.45,
+          "path": null,
+          "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626668197/small_kingpin3_2a3066269e.jpg",
+          "provider_metadata": {
+            "public_id": "small_kingpin3_2a3066269e",
+            "resource_type": "image"
+          }
+        }
+      },
+      "provider": "cloudinary",
+      "related": [],
+      "createdAt": "2021-07-19T04:16:42.292Z",
+      "updatedAt": "2021-07-20T15:01:28.193Z",
+      "__v": 0,
+      "id": "60f4fcaaab8b353bc26f6579"
+    }
+  ],
+  "videos": [],
+  "project_categories": [
+    {
+      "_id": "60f4f76fab8b353bc26f6576",
+      "name": "eCommerce Store",
+      "published_at": "2021-07-19T03:54:26.136Z",
+      "createdAt": "2021-07-19T03:54:23.446Z",
+      "updatedAt": "2021-07-19T03:54:26.272Z",
+      "__v": 0,
+      "id": "60f4f76fab8b353bc26f6576"
+    },
+    {
+      "_id": "60f4f749ab8b353bc26f6575",
+      "name": "SaaS",
+      "published_at": "2021-07-19T03:53:48.321Z",
+      "createdAt": "2021-07-19T03:53:45.896Z",
+      "updatedAt": "2021-07-19T03:53:48.485Z",
+      "__v": 0,
+      "id": "60f4f749ab8b353bc26f6575"
+    }
+  ],
+  "_id": "60f4fcf6ab8b353bc26f657a",
+  "name": "KingPin",
+  "link": "https://kingpin.global/",
+  "description": "Kingpin is on a mission to bridge the gap between international brands and retailers across emerging markets.\n\nWe partner with the most sought after international brands, both established and up-and-coming, and fast track their growth across emerging markets.\n\nWe empower our network of retail partners by providing a one click access to a global supplier base with the perks of hassle-free payment terms and managed logistics.\n\nWe’re building a future that fosters integrity, transparency and collaboration. That future is Kingpin.",
+  "published_at": "2021-07-19T04:18:02.809Z",
+  "createdAt": "2021-07-19T04:17:58.573Z",
+  "updatedAt": "2021-07-19T04:18:03.094Z",
+  "__v": 0,
+  "id": "60f4fcf6ab8b353bc26f657a"
+}
