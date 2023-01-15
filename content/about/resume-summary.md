@@ -1,0 +1,1 @@
+I was born in Haiphong - a beautiful port city of Vietnam. 2008, I came to Hanoi, the uproarious capital of Vietnam, to start my university life. Study Informatics in high school and Computer Science at University makes me love programming and product development. Graduated does not mean the learning curve stopped. On the contrary, I learn new things every day.

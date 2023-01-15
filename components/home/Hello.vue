@@ -3,7 +3,7 @@
     <div class="row">
       <div class="max-w-10/12 md:max-w-full">
         <h2 id="hello" class="section__title">Hi_</h2>
-        <p class="section__description mb-8" v-html="introduction" />
+        <ContentRendererMarkdown :value="introduction" />
         <div class="flex flex-row gap-2">
           <a :href="contactLink" class="section_btn site-btn">
             <FaIcon :icon="['fab', 'wordpress']" />
@@ -24,10 +24,8 @@
 </template>
 
 <script setup lang="ts">
-defineProps<{
-  introduction: string;
-}>();
 const contactLink = ref("/#contact");
+const introduction = await queryContent('/about/introduction').findOne();
 </script>
 
 <style scoped lang="postcss">

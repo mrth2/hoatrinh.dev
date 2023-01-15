@@ -1,9 +1,8 @@
 <template>
   <div class="home">
-    <HomeHello :introduction="introduction" />
-    <hr />
+    <HomeHello />
 
-    <HomeResume :resume-summary="resume_summary" />
+    <HomeResume />
 
     <HomePortfolio />
 
@@ -24,16 +23,10 @@ import "swiper/css/autoplay";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-
-async function fetchAbout() {
-  return await queryContent<About>('/about').findOne();
-}
 async function fetchSEO() {
   return await queryContent<SEO>('/seo/home').findOne();
 }
-const data = await Promise.all([fetchAbout(), fetchSEO()]);
-const [about, homeSEO] = data;
-const { introduction, resume_summary } = about;
+const homeSEO = await fetchSEO()
 const { meta_title, meta_description } = homeSEO;
 
 useHead({

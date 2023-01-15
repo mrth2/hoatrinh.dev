@@ -3,7 +3,7 @@
     <div class="row">
       <div class="md:w-10/12">
         <h2 id="resume" class="section__title">Resume_</h2>
-        <p ref="resumeSummary" class="section__description" />
+        <ContentRendererMarkdown class="section__description" :value="resumeSummary" />
       </div>
     </div>
     <div class="row">
@@ -201,20 +201,18 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{
-  resumeSummary: string;
-}>();
-const resumeSummary = ref<HTMLElement>();
+const resumeSummary = await queryContent('/about/resume-summary').findOne();
 
 const progressUpdated = ref(false);
 const { $isInViewport } = useNuxtApp();
 
 function showProgressOnScroll() {
   const progressList = document.querySelector<HTMLElement>(".progress-list");
+  if (!progressList) return;
   const progressListTitle = progressList.querySelector<HTMLElement>(
     ".progress-list__title"
   );
-  if (progressList && $isInViewport(progressListTitle)) {
+  if (progressListTitle && $isInViewport(progressListTitle)) {
     progressList
       .querySelectorAll<HTMLElement>(".progress-bar")
       .forEach((bar) => {
@@ -254,11 +252,6 @@ onBeforeUnmount(() => {
 });
 onMounted(() => {
   showProgressOnScroll();
-  if (resumeSummary.value) {
-    resumeSummary.value.innerHTML = useNuxtApp().$md.render(
-      props.resumeSummary
-    );
-  }
 });
 </script>
 

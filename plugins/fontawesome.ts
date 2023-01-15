@@ -10,5 +10,5 @@ library.add(faWordpress, faGithub, faFacebookSquare, faSkype, faLaravel, faVuejs
 library.add(faBars, faClose, faSpinner, faExclamationCircle, faCheckCircle, faQuoteRight, faTimesCircle);
 
 export default defineNuxtPlugin(nuxtApp => {
-  nuxtApp.vueApp.component('FaIcon', FontAwesomeIcon, {});
+  nuxtApp.vueApp.component('FaIcon', FontAwesomeIcon);
 });
