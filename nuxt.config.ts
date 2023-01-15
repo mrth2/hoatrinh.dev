@@ -56,16 +56,15 @@ export default defineNuxtConfig({
     //   mode: 'client'
     // }
   ],
-  modules: [],
+  modules: [
+    '@nuxtjs/strapi',
+    '@pinia/nuxt',
+    "@nuxt/content",
+  ],
   loading: {
     color: 'green',
     height: '2px'
   },
-
-  buildModules: [
-    '@nuxtjs/strapi',
-    '@pinia/nuxt'
-  ],
   strapi: {
     url: process.env.HTD_API || 'http://localhost:1337',
     // prefix: '/api',
