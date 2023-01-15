@@ -18,27 +18,13 @@
           </nav>
         </div>
       </div>
-      <div v-if="loaded" class="portfolio-cards">
-        <div
-          v-for="project in filteredProjects"
-          :key="project.id"
-          class="row project-card"
-          data-toggle="modal"
-          data-target="#portfolioModal"
-          data-portfolio-tag="web-sites"
-          @click="viewProject(project)"
-        >
+      <div class="portfolio-cards">
+        <div v-for="project in filteredProjects" :key="project.id" class="row project-card" data-toggle="modal"
+          data-target="#portfolioModal" data-portfolio-tag="web-sites" @click="viewProject(project)">
           <div class="w-full md:w-6/12 lg:w-5/12 project-card__img">
-            <Swiper
-              v-if="project.images.length"
-              :options="swiperOptions"
-              class="h-full"
-            >
-              <SwiperSlide
-                v-for="(image, key) in project.images"
-                :key="`${project.id}-image-${key}`"
-                class="swiper-slide"
-              >
+            <Swiper v-if="project.images.length" :options="swiperOptions" class="h-full">
+              <SwiperSlide v-for="(image, key) in project.images" :key="`${project.id}-image-${key}`"
+                class="swiper-slide">
                 <img :src="image.url" alt="project-img" />
               </SwiperSlide>
             </Swiper>
@@ -51,41 +37,20 @@
               {{ project.description }}
             </p>
             <p class="project-card__stack">Used stack:</p>
-            <BaseTag
-              :list="getProjectTags(project)"
-              id-key="id"
-              content-key="name"
-            />
-            <a
-              :href="project.link"
-              target="_blank"
-              class="project-card__link"
-              >{{ getProjectLink(project.link) }}</a
-            >
+            <BaseTag :list="getProjectTags(project)" id-key="id" content-key="name" />
+            <a :href="project.link" target="_blank" class="project-card__link">{{ getProjectLink(project.link) }}</a>
           </div>
         </div>
       </div>
     </section>
     <!-- Portfolio Modal -->
-    <BaseModal
-      v-if="viewingProject"
-      :close-text="null"
-      :action-text="null"
-      @close="viewingProject = null"
-    >
+    <BaseModal v-if="viewingProject" @close="viewingProject = undefined">
       <template #body>
         <p class="portfolio-modal__title">
           {{ viewingProject.name }}
         </p>
-        <Swiper
-          v-if="viewingProject.images.length"
-          :options="swiperOptions"
-          class="h-full mb-8"
-        >
-          <SwiperSlide
-            v-for="(image, key) in viewingProject.images"
-            :key="`${viewingProject.id}-image-${key}`"
-          >
+        <Swiper v-if="viewingProject.images.length" :options="swiperOptions" class="h-full mb-8">
+          <SwiperSlide v-for="(image, key) in viewingProject.images" :key="`${viewingProject.id}-image-${key}`">
             <img :src="image.url" alt="project-img" />
           </SwiperSlide>
         </Swiper>
@@ -99,11 +64,7 @@
         </div>
         <div class="portfolio-modal__stack">
           <p class="portfolio-modal__stack-title">Using stack:</p>
-          <BaseTag
-            :list="getProjectTags(viewingProject)"
-            id-key="id"
-            content-key="name"
-          />
+          <BaseTag :list="getProjectTags(viewingProject)" id-key="id" content-key="name" />
         </div>
       </template>
     </BaseModal>
@@ -116,14 +77,14 @@ import { Project, ProjectCategory } from "@nuxt/types";
 import { useConfigStore } from "~~/store/config";
 import { Swiper, SwiperSlide } from "swiper/vue";
 
-const { data: projects, pending } = useAsyncData("portfolio", () =>
-  useStrapi().find<Project[]>("projects")
-);
-const loaded = computed(() => !pending.value);
+async function fetchProjects() {
+  return await queryContent<Project>('/projects').find();
+}
+const projects = await fetchProjects();
+
 const categories = computed<ProjectCategory[]>(() => {
-  if (!loaded.value) return [];
   let _categories: ProjectCategory[] = [];
-  projects.value.forEach((project) => {
+  projects.forEach((project) => {
     _categories = [...project.project_categories];
   });
   return _categories
@@ -146,11 +107,11 @@ function filterProjects(_categoryId: string): void {
 }
 const filteredProjects = computed(() => {
   if (categoryId.value === "all") {
-    return projects.value;
+    return projects;
   } else {
-    return projects.value.filter((project) =>
+    return projects.filter((project) =>
       project.project_categories.find(
-        (category) => category.id === categoryId.value
+        (category: any) => category.id === categoryId.value
       )
     );
   }
@@ -168,7 +129,7 @@ function getProjectTags(project: Project): Array<Object> {
   ];
 }
 onBeforeUnmount(() => {
-  viewingProject.value = null;
+  viewingProject.value = undefined;
 });
 </script>
 

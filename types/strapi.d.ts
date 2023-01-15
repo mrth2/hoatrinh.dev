@@ -1,3 +1,5 @@
+import type { ParsedContent } from "@nuxt/content/dist/runtime/types";
+
 declare module '@nuxt/types' {
   interface BlogPost {
     _id: string
@@ -66,7 +68,7 @@ declare module '@nuxt/types' {
     published_at: number
   }
 
-  interface Project {
+  interface Project extends ParsedContent {
     id: string,
     name: string,
     description: string,

@@ -3,7 +3,8 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       strapi: {
-        url: process.env.HTD_API || 'http://localhost:1337'
+        url: process.env.HTD_API || 'http://localhost:1337',
+        version: 'v3'
       }
     }
   },
@@ -64,7 +65,6 @@ export default defineNuxtConfig({
     "@nuxt/content",
     '@nuxtjs/strapi',
   ],
-  // buildModules: [],
 
   vite: {
     optimizeDeps: {
@@ -72,10 +72,7 @@ export default defineNuxtConfig({
       include: ['@fortawesome/fontawesome-svg-core']
     }
   },
-  // serverMiddleware: [],
-  content: {
-    
-  },
+  content: { },
   postcss: {
     plugins: {
       'postcss-import': {},
