@@ -1,9 +1,9 @@
 <template>
-  <div v-if="homepage" class="home">
-    <HomeHello :introduction="homepage.introduction" />
+  <div class="home">
+    <HomeHello :introduction="introduction" />
     <hr />
 
-    <HomeResume :resume-summary="homepage.resume_summary" />
+    <HomeResume :resume-summary="resume_summary" />
 
     <HomePortfolio />
 
@@ -16,7 +16,7 @@
 </template>
 
 <script setup lang="ts">
-import { HomePage } from "@nuxt/types";
+import { About, SEO } from "@nuxt/types";
 
 // Import Swiper styles
 import "swiper/css";
@@ -24,31 +24,29 @@ import "swiper/css/autoplay";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-const { data: homepage, pending } = useAsyncData("homepage", () =>
-  useStrapi3().find<HomePage>("home-page")
-);
-const meta_title = computed(() => homepage.value?.meta_title);
-const meta_description = computed(() => homepage.value?.meta_description);
-watch(pending, () => {
-  if (!pending.value) {
-    useHead({
-      title: meta_title.value,
-      meta: [
-        {
-          hid: "description",
-          name: "description",
-          content: meta_description.value,
-        },
-      ],
-    });
-  }
+
+async function fetchAbout() {
+  return await queryContent<About>('/about').findOne();
+}
+async function fetchSEO() {
+  return await queryContent<SEO>('/seo/home').findOne();
+}
+const data = await Promise.all([fetchAbout(), fetchSEO()]);
+const [about, homeSEO] = data;
+const { introduction, resume_summary } = about;
+const { meta_title, meta_description } = homeSEO;
+
+useHead({
+  title: meta_title,
+  meta: [
+    {
+      hid: "description",
+      name: "description",
+      content: meta_description,
+    },
+  ],
 });
 const { $isInViewport } = useNuxtApp();
-function clearSectionTitle() {
-  document.querySelectorAll<HTMLElement>(".section__title").forEach((title) => {
-    title.style.color = "transparent";
-  });
-}
 function typeWriter(textElement: HTMLElement, text: string, currentAt: number) {
   if (currentAt < text.length) {
     textElement.innerHTML += text.charAt(currentAt);
@@ -84,7 +82,10 @@ function goToSection() {
     `${route.hash.replace("#", "")}`
   );
   if (sectionHeader) {
-    sectionHeader.scrollIntoView(true);
+    sectionHeader.scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+    });
   }
 }
 const route = useRoute();

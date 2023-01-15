@@ -1,0 +1,410 @@
+{
+  "cms": [],
+  "databases": [
+    {
+      "_id": "60f4fd40ab8b353bc26f657f",
+      "name": "Neo4J",
+      "description": "Neo4j gives developers and data scientists the most trusted and advanced tools to quickly build today’s intelligent applications and machine learning workflows. Available as a fully managed cloud service or self-hosted.",
+      "slogan": "The Fastest Path to Graph",
+      "published_at": "2021-07-19T04:19:16.579Z",
+      "createdAt": "2021-07-19T04:19:12.840Z",
+      "updatedAt": "2021-07-19T04:19:16.896Z",
+      "__v": 0,
+      "thumbnail": {
+        "_id": "60f4fd23ab8b353bc26f657e",
+        "name": "neo4j.png",
+        "alternativeText": "",
+        "caption": "",
+        "hash": "neo4j_6e6e2606a1",
+        "ext": ".png",
+        "mime": "image/png",
+        "size": 12.97,
+        "width": 834,
+        "height": 313,
+        "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626668312/neo4j_6e6e2606a1.png",
+        "provider_metadata": {
+          "public_id": "neo4j_6e6e2606a1",
+          "resource_type": "image"
+        },
+        "formats": {
+          "thumbnail": {
+            "name": "thumbnail_neo4j.png",
+            "hash": "thumbnail_neo4j_6e6e2606a1",
+            "ext": ".png",
+            "mime": "image/png",
+            "width": 245,
+            "height": 92,
+            "size": 7.07,
+            "path": null,
+            "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626668313/thumbnail_neo4j_6e6e2606a1.png",
+            "provider_metadata": {
+              "public_id": "thumbnail_neo4j_6e6e2606a1",
+              "resource_type": "image"
+            }
+          },
+          "medium": {
+            "name": "medium_neo4j.png",
+            "hash": "medium_neo4j_6e6e2606a1",
+            "ext": ".png",
+            "mime": "image/png",
+            "width": 750,
+            "height": 281,
+            "size": 25.37,
+            "path": null,
+            "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626668316/medium_neo4j_6e6e2606a1.png",
+            "provider_metadata": {
+              "public_id": "medium_neo4j_6e6e2606a1",
+              "resource_type": "image"
+            }
+          },
+          "small": {
+            "name": "small_neo4j.png",
+            "hash": "small_neo4j_6e6e2606a1",
+            "ext": ".png",
+            "mime": "image/png",
+            "width": 500,
+            "height": 188,
+            "size": 15.76,
+            "path": null,
+            "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626668318/small_neo4j_6e6e2606a1.png",
+            "provider_metadata": {
+              "public_id": "small_neo4j_6e6e2606a1",
+              "resource_type": "image"
+            }
+          }
+        },
+        "provider": "cloudinary",
+        "related": ["60f4fd40ab8b353bc26f657f"],
+        "createdAt": "2021-07-19T04:18:43.114Z",
+        "updatedAt": "2021-07-19T04:19:13.048Z",
+        "__v": 0,
+        "id": "60f4fd23ab8b353bc26f657e"
+      },
+      "id": "60f4fd40ab8b353bc26f657f"
+    }
+  ],
+  "programing_languages": [
+    {
+      "frameworks": ["60a0f74ee9bb211f6e6b6639", "60a0ee123a56551ea61532f6"],
+      "cms": [],
+      "_id": "60f3f9e10aa4a02fe4217d6c",
+      "name": "Javascript",
+      "published_at": "2021-07-18T09:52:36.160Z",
+      "createdAt": "2021-07-18T09:52:33.529Z",
+      "updatedAt": "2021-07-18T09:52:36.367Z",
+      "__v": 0,
+      "id": "60f3f9e10aa4a02fe4217d6c"
+    },
+    {
+      "frameworks": [],
+      "cms": [],
+      "_id": "60f3fa8d0aa4a02fe4217d6d",
+      "name": "CSS",
+      "published_at": "2021-07-18T09:55:27.656Z",
+      "createdAt": "2021-07-18T09:55:25.036Z",
+      "updatedAt": "2021-07-18T09:55:27.794Z",
+      "__v": 0,
+      "id": "60f3fa8d0aa4a02fe4217d6d"
+    },
+    {
+      "frameworks": [],
+      "cms": [],
+      "_id": "60f3fa990aa4a02fe4217d6e",
+      "name": "HTML5",
+      "published_at": "2021-07-18T09:55:39.981Z",
+      "createdAt": "2021-07-18T09:55:37.527Z",
+      "updatedAt": "2021-07-18T09:55:40.139Z",
+      "__v": 0,
+      "id": "60f3fa990aa4a02fe4217d6e"
+    }
+  ],
+  "platforms": [
+    {
+      "_id": "60f3fbe90aa4a02fe4217d73",
+      "name": "NodeJS",
+      "description": "Node. js is a platform built on Chrome's JavaScript runtime for easily building fast and scalable network applications. Node. js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient, perfect for data-intensive real-time applications that run across distributed devices.",
+      "slogan": "Node.js® is a JavaScript runtime built on Chrome's V8 JavaScript engine.",
+      "published_at": "2021-07-18T10:01:15.938Z",
+      "createdAt": "2021-07-18T10:01:13.169Z",
+      "updatedAt": "2021-07-18T10:01:16.152Z",
+      "__v": 0,
+      "thumbnail": {
+        "_id": "60f3fbe20aa4a02fe4217d72",
+        "name": "nodejs.png",
+        "alternativeText": "",
+        "caption": "",
+        "hash": "nodejs_59b4e3694a",
+        "ext": ".png",
+        "mime": "image/png",
+        "size": 23.29,
+        "width": 880,
+        "height": 389,
+        "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626602457/nodejs_59b4e3694a.png",
+        "provider_metadata": {
+          "public_id": "nodejs_59b4e3694a",
+          "resource_type": "image"
+        },
+        "formats": {
+          "thumbnail": {
+            "name": "thumbnail_nodejs.png",
+            "hash": "thumbnail_nodejs_59b4e3694a",
+            "ext": ".png",
+            "mime": "image/png",
+            "width": 245,
+            "height": 108,
+            "size": 14.75,
+            "path": null,
+            "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626602458/thumbnail_nodejs_59b4e3694a.png",
+            "provider_metadata": {
+              "public_id": "thumbnail_nodejs_59b4e3694a",
+              "resource_type": "image"
+            }
+          },
+          "medium": {
+            "name": "medium_nodejs.png",
+            "hash": "medium_nodejs_59b4e3694a",
+            "ext": ".png",
+            "mime": "image/png",
+            "width": 750,
+            "height": 332,
+            "size": 49.65,
+            "path": null,
+            "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626602461/medium_nodejs_59b4e3694a.png",
+            "provider_metadata": {
+              "public_id": "medium_nodejs_59b4e3694a",
+              "resource_type": "image"
+            }
+          },
+          "small": {
+            "name": "small_nodejs.png",
+            "hash": "small_nodejs_59b4e3694a",
+            "ext": ".png",
+            "mime": "image/png",
+            "width": 500,
+            "height": 221,
+            "size": 28.96,
+            "path": null,
+            "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626602463/small_nodejs_59b4e3694a.png",
+            "provider_metadata": {
+              "public_id": "small_nodejs_59b4e3694a",
+              "resource_type": "image"
+            }
+          }
+        },
+        "provider": "cloudinary",
+        "related": ["60f3fbe90aa4a02fe4217d73"],
+        "createdAt": "2021-07-18T10:01:06.840Z",
+        "updatedAt": "2021-07-18T10:01:13.279Z",
+        "__v": 0,
+        "id": "60f3fbe20aa4a02fe4217d72"
+      },
+      "id": "60f3fbe90aa4a02fe4217d73"
+    }
+  ],
+  "frameworks": [
+    {
+      "_id": "60a0f74ee9bb211f6e6b6639",
+      "published_at": "2021-05-16T10:43:29.003Z",
+      "createdAt": "2021-05-16T10:43:26.316Z",
+      "updatedAt": "2021-05-17T04:56:11.420Z",
+      "__v": 0,
+      "description": "Vue is perfectly capable of powering sophisticated Single-Page Applications when used in combination with modern tooling and supporting libraries.\n",
+      "name": "VueJS",
+      "thumbnail": {
+        "_id": "60a15376e04d752fc47ad1e1",
+        "name": "vuejs.png",
+        "alternativeText": "",
+        "caption": "",
+        "hash": "vuejs_86ac0d70c8",
+        "ext": ".png",
+        "mime": "image/png",
+        "size": 58.34,
+        "width": 1280,
+        "height": 612,
+        "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1621185385/vuejs_86ac0d70c8.png",
+        "provider_metadata": {
+          "public_id": "vuejs_86ac0d70c8",
+          "resource_type": "image"
+        },
+        "formats": {
+          "thumbnail": {
+            "name": "thumbnail_vuejs.png",
+            "hash": "thumbnail_vuejs_86ac0d70c8",
+            "ext": ".png",
+            "mime": "image/png",
+            "width": 245,
+            "height": 117,
+            "size": 13.23,
+            "path": null,
+            "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1621185387/thumbnail_vuejs_86ac0d70c8.png",
+            "provider_metadata": {
+              "public_id": "thumbnail_vuejs_86ac0d70c8",
+              "resource_type": "image"
+            }
+          },
+          "large": {
+            "name": "large_vuejs.png",
+            "hash": "large_vuejs_86ac0d70c8",
+            "ext": ".png",
+            "mime": "image/png",
+            "width": 1000,
+            "height": 478,
+            "size": 91.01,
+            "path": null,
+            "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1621185390/large_vuejs_86ac0d70c8.png",
+            "provider_metadata": {
+              "public_id": "large_vuejs_86ac0d70c8",
+              "resource_type": "image"
+            }
+          },
+          "medium": {
+            "name": "medium_vuejs.png",
+            "hash": "medium_vuejs_86ac0d70c8",
+            "ext": ".png",
+            "mime": "image/png",
+            "width": 750,
+            "height": 359,
+            "size": 62.63,
+            "path": null,
+            "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1621185392/medium_vuejs_86ac0d70c8.png",
+            "provider_metadata": {
+              "public_id": "medium_vuejs_86ac0d70c8",
+              "resource_type": "image"
+            }
+          },
+          "small": {
+            "name": "small_vuejs.png",
+            "hash": "small_vuejs_86ac0d70c8",
+            "ext": ".png",
+            "mime": "image/png",
+            "width": 500,
+            "height": 239,
+            "size": 36.45,
+            "path": null,
+            "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1621185394/small_vuejs_86ac0d70c8.png",
+            "provider_metadata": {
+              "public_id": "small_vuejs_86ac0d70c8",
+              "resource_type": "image"
+            }
+          }
+        },
+        "provider": "cloudinary",
+        "related": ["60a0f74ee9bb211f6e6b6639"],
+        "createdAt": "2021-05-16T17:16:38.367Z",
+        "updatedAt": "2021-05-16T17:18:20.326Z",
+        "__v": 0,
+        "id": "60a15376e04d752fc47ad1e1"
+      },
+      "slogan": "The Progressive JavaScript Framework",
+      "id": "60a0f74ee9bb211f6e6b6639"
+    }
+  ],
+  "images": [
+    {
+      "_id": "60f4f25b91d9ba3acfa7d4a7",
+      "name": "z2624184464290_b8d135ba9d7d59759d85b1603acd3bd2.jpg",
+      "alternativeText": "",
+      "caption": "",
+      "hash": "z2624184464290_b8d135ba9d7d59759d85b1603acd3bd2_1073c8e85c",
+      "ext": ".jpg",
+      "mime": "image/jpeg",
+      "size": 101.91,
+      "width": 1917,
+      "height": 945,
+      "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626665551/z2624184464290_b8d135ba9d7d59759d85b1603acd3bd2_1073c8e85c.jpg",
+      "provider_metadata": {
+        "public_id": "z2624184464290_b8d135ba9d7d59759d85b1603acd3bd2_1073c8e85c",
+        "resource_type": "image"
+      },
+      "formats": {
+        "thumbnail": {
+          "name": "thumbnail_z2624184464290_b8d135ba9d7d59759d85b1603acd3bd2.jpg",
+          "hash": "thumbnail_z2624184464290_b8d135ba9d7d59759d85b1603acd3bd2_1073c8e85c",
+          "ext": ".jpg",
+          "mime": "image/jpeg",
+          "width": 245,
+          "height": 121,
+          "size": 3.41,
+          "path": null,
+          "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626665552/thumbnail_z2624184464290_b8d135ba9d7d59759d85b1603acd3bd2_1073c8e85c.jpg",
+          "provider_metadata": {
+            "public_id": "thumbnail_z2624184464290_b8d135ba9d7d59759d85b1603acd3bd2_1073c8e85c",
+            "resource_type": "image"
+          }
+        },
+        "large": {
+          "name": "large_z2624184464290_b8d135ba9d7d59759d85b1603acd3bd2.jpg",
+          "hash": "large_z2624184464290_b8d135ba9d7d59759d85b1603acd3bd2_1073c8e85c",
+          "ext": ".jpg",
+          "mime": "image/jpeg",
+          "width": 1000,
+          "height": 493,
+          "size": 35.97,
+          "path": null,
+          "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626665555/large_z2624184464290_b8d135ba9d7d59759d85b1603acd3bd2_1073c8e85c.jpg",
+          "provider_metadata": {
+            "public_id": "large_z2624184464290_b8d135ba9d7d59759d85b1603acd3bd2_1073c8e85c",
+            "resource_type": "image"
+          }
+        },
+        "medium": {
+          "name": "medium_z2624184464290_b8d135ba9d7d59759d85b1603acd3bd2.jpg",
+          "hash": "medium_z2624184464290_b8d135ba9d7d59759d85b1603acd3bd2_1073c8e85c",
+          "ext": ".jpg",
+          "mime": "image/jpeg",
+          "width": 750,
+          "height": 370,
+          "size": 20.68,
+          "path": null,
+          "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626665557/medium_z2624184464290_b8d135ba9d7d59759d85b1603acd3bd2_1073c8e85c.jpg",
+          "provider_metadata": {
+            "public_id": "medium_z2624184464290_b8d135ba9d7d59759d85b1603acd3bd2_1073c8e85c",
+            "resource_type": "image"
+          }
+        },
+        "small": {
+          "name": "small_z2624184464290_b8d135ba9d7d59759d85b1603acd3bd2.jpg",
+          "hash": "small_z2624184464290_b8d135ba9d7d59759d85b1603acd3bd2_1073c8e85c",
+          "ext": ".jpg",
+          "mime": "image/jpeg",
+          "width": 500,
+          "height": 246,
+          "size": 10.39,
+          "path": null,
+          "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626665559/small_z2624184464290_b8d135ba9d7d59759d85b1603acd3bd2_1073c8e85c.jpg",
+          "provider_metadata": {
+            "public_id": "small_z2624184464290_b8d135ba9d7d59759d85b1603acd3bd2_1073c8e85c",
+            "resource_type": "image"
+          }
+        }
+      },
+      "provider": "cloudinary",
+      "related": [],
+      "createdAt": "2021-07-19T03:32:43.986Z",
+      "updatedAt": "2021-07-19T03:37:15.374Z",
+      "__v": 0,
+      "id": "60f4f25b91d9ba3acfa7d4a7"
+    }
+  ],
+  "videos": [],
+  "project_categories": [
+    {
+      "_id": "60f4f749ab8b353bc26f6575",
+      "name": "SaaS",
+      "published_at": "2021-07-19T03:53:48.321Z",
+      "createdAt": "2021-07-19T03:53:45.896Z",
+      "updatedAt": "2021-07-19T03:53:48.485Z",
+      "__v": 0,
+      "id": "60f4f749ab8b353bc26f6575"
+    }
+  ],
+  "_id": "60f4f30f91d9ba3acfa7d4a8",
+  "name": "StoryRoom",
+  "description": "Revolutionize Corporate Communication with Artificial Intelligence\n\n- Improve Key Executives positioning amongst their Peers\n- Use AI to define optimal Content Strategies for Brands and Products\n- AI-driven Content Creation, Headlines and Content Briefs",
+  "link": "https://storyroom.ai/",
+  "published_at": "2021-07-19T03:55:01.461Z",
+  "createdAt": "2021-07-19T03:35:43.917Z",
+  "updatedAt": "2021-07-19T04:19:34.867Z",
+  "__v": 0,
+  "id": "60f4f30f91d9ba3acfa7d4a8"
+}

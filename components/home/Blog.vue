@@ -8,7 +8,7 @@
 
     <div class="row post-cards">
       <div v-for="blog in blogs" :key="blog._id" class="post-cards__col">
-        <a href="#">
+        <a v-if="blog" href="#">
           <div class="post-cards__card">
             <div class="post-cards__img">
               <img :src="blog.thumbnail.url" alt="blog_img" />
@@ -32,12 +32,9 @@
 <script setup lang="ts">
 import { BlogPost } from "@nuxt/types";
 
-const { data: blogs } = useLazyAsyncData("blog", () =>
-  useStrapi3().find<BlogPost[]>("blogs", {
-    _limit: 3,
-    _sort: "createdAt:DESC",
-  })
-);
+const blogs = await queryContent<BlogPost>("/blogs").limit(3).sort({
+  createdAt: -1
+}).find();
 
 function parseCreatedAt(createdAt: number): string {
   const date = new Date(createdAt);

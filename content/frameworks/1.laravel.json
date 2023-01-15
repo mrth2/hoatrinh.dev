@@ -1,0 +1,34 @@
+{
+  "_id": "60a0ec553a56551ea61532f0",
+  "published_at": "2021-05-16T09:56:40.635Z",
+  "createdAt": "2021-05-16T09:56:37.840Z",
+  "updatedAt": "2021-05-17T04:56:01.847Z",
+  "__v": 0,
+  "description": "Laravel is a web application framework with expressive, elegant syntax. We’ve already laid the foundation — freeing you to create without sweating the small things.",
+  "name": "Laravel",
+  "thumbnail": {
+    "_id": "60a1534be04d752fc47ad1d8",
+    "name": "laravel.svg",
+    "alternativeText": "",
+    "caption": "",
+    "hash": "laravel_c89c033a01",
+    "ext": ".svg",
+    "mime": "image/svg+xml",
+    "size": 2.39,
+    "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1621185349/laravel_c89c033a01.svg",
+    "provider_metadata": {
+      "public_id": "laravel_c89c033a01",
+      "resource_type": "image"
+    },
+    "provider": "cloudinary",
+    "width": 114,
+    "height": 29,
+    "related": ["60a0ec553a56551ea61532f0"],
+    "createdAt": "2021-05-16T17:15:55.240Z",
+    "updatedAt": "2021-05-16T17:18:02.907Z",
+    "__v": 0,
+    "id": "60a1534be04d752fc47ad1d8"
+  },
+  "slogan": "The PHP Framework for Web Artisans",
+  "id": "60a0ec553a56551ea61532f0"
+}

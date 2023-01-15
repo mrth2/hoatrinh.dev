@@ -71,15 +71,15 @@ const emit = defineEmits(["close", "hidden", "shown", "action"]);
 const appStore = useAppStore();
 function show() {
   appStore.showModal();
-  emit("shown", this);
+  emit("shown");
 }
 function hide() {
   appStore.hideModal();
-  emit("hidden", this);
+  emit("hidden");
 }
 function close() {
   hide();
-  emit("close", this);
+  emit("close");
 }
 onMounted(show);
 </script>

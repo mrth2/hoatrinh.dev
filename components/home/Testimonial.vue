@@ -1,14 +1,10 @@
 <template>
-  <div v-if="loaded" id="testimonials" class="section">
+  <div id="testimonials" class="section">
     <div class="background relative slider-carousel review-bg">
       <div class="container">
         <div ref="slider" class="swiper">
           <div class="swiper-wrapper">
-            <div
-              class="swiper-slide"
-              v-for="testimonial in testimonials"
-              :key="testimonial.id"
-            >
+            <div class="swiper-slide" v-for="testimonial in testimonials" :key="testimonial.id">
               <div>
                 <div class="md:w-10/12 sm:w-10/12 w-10/12 mr-auto ml-auto">
                   <p class="slider-carousel__title">
@@ -29,7 +25,9 @@
           <div class="swiper-button-next" @click="goNext" />
         </div>
         <div class="slider-carousel__circle">
-          <p><FaIcon icon="quote-right" aria-hidden="true" /></p>
+          <p>
+            <FaIcon icon="quote-right" aria-hidden="true" />
+          </p>
         </div>
       </div>
     </div>
@@ -42,16 +40,14 @@ import { Swiper, Autoplay } from "swiper";
 import { useConfigStore } from "~~/store/config";
 Swiper.use([Autoplay]);
 
-const { data: testimonials, pending } = useLazyAsyncData("testimonials", () =>
-  useStrapi3().find<Testimonial[]>("testimonials")
-);
-const loaded = computed(() => !pending.value);
+const testimonials = await queryContent<Testimonial>("/testimonials").find();
 const slider = ref<HTMLElement>();
 
 const swiperOptions = computed(() => useConfigStore().swiperOptions);
 const swiper = ref<Swiper>();
 onMounted(() => {
-  swiper.value = new Swiper(slider.value, swiperOptions.value);
+  if (slider.value)
+    swiper.value = new Swiper(slider.value, swiperOptions.value);
 });
 function goPrev() {
   if (swiper.value) swiper.value.slidePrev();

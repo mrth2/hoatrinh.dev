@@ -1,0 +1,34 @@
+{
+  "_id": "60a0ee123a56551ea61532f6",
+  "published_at": "2021-05-16T10:04:05.068Z",
+  "createdAt": "2021-05-16T10:04:02.539Z",
+  "updatedAt": "2021-05-17T04:56:22.274Z",
+  "__v": 0,
+  "description": "Build your next Vue.js application with confidence using NuxtJS. An open source framework making web development simple and powerful.",
+  "name": "NuxtJS",
+  "thumbnail": {
+    "_id": "60a1e6b043dc9d042730492b",
+    "name": "nuxtjs-typo.svg",
+    "alternativeText": "",
+    "caption": "",
+    "hash": "nuxtjs_typo_e0c7840086",
+    "ext": ".svg",
+    "mime": "image/svg+xml",
+    "size": 2.48,
+    "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1621223087/nuxtjs_typo_e0c7840086.svg",
+    "provider_metadata": {
+      "public_id": "nuxtjs_typo_e0c7840086",
+      "resource_type": "image"
+    },
+    "provider": "cloudinary",
+    "width": 556,
+    "height": 98,
+    "related": ["60a0ee123a56551ea61532f6"],
+    "createdAt": "2021-05-17T03:44:48.497Z",
+    "updatedAt": "2021-05-17T03:45:02.961Z",
+    "__v": 0,
+    "id": "60a1e6b043dc9d042730492b"
+  },
+  "slogan": "The Intuitive Vue Framework",
+  "id": "60a0ee123a56551ea61532f6"
+}

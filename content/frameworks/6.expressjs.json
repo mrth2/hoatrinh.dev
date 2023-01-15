@@ -1,0 +1,96 @@
+{
+  "_id": "60f3fb750aa4a02fe4217d70",
+  "name": "ExpressJS",
+  "description": "Express.js, or simply Express, is a back end web application framework for Node.js, released as free and open-source software under the MIT License. It is designed for building web applications and APIs. It has been called the de facto standard server framework for Node.js",
+  "slogan": "Express is a minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications",
+  "published_at": "2021-07-18T09:59:21.089Z",
+  "createdAt": "2021-07-18T09:59:17.246Z",
+  "updatedAt": "2021-07-18T09:59:21.325Z",
+  "__v": 0,
+  "thumbnail": {
+    "_id": "60f3fb090aa4a02fe4217d6f",
+    "name": "ExpressJS.png",
+    "alternativeText": "",
+    "caption": "",
+    "hash": "Express_JS_82c7b09876",
+    "ext": ".png",
+    "mime": "image/png",
+    "size": 152.83,
+    "width": 1464,
+    "height": 400,
+    "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626602237/Express_JS_82c7b09876.png",
+    "provider_metadata": {
+      "public_id": "Express_JS_82c7b09876",
+      "resource_type": "image"
+    },
+    "formats": {
+      "thumbnail": {
+        "name": "thumbnail_ExpressJS.png",
+        "hash": "thumbnail_Express_JS_82c7b09876",
+        "ext": ".png",
+        "mime": "image/png",
+        "width": 245,
+        "height": 67,
+        "size": 15.49,
+        "path": null,
+        "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626602239/thumbnail_Express_JS_82c7b09876.png",
+        "provider_metadata": {
+          "public_id": "thumbnail_Express_JS_82c7b09876",
+          "resource_type": "image"
+        }
+      },
+      "large": {
+        "name": "large_ExpressJS.png",
+        "hash": "large_Express_JS_82c7b09876",
+        "ext": ".png",
+        "mime": "image/png",
+        "width": 1000,
+        "height": 273,
+        "size": 119.01,
+        "path": null,
+        "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626602241/large_Express_JS_82c7b09876.png",
+        "provider_metadata": {
+          "public_id": "large_Express_JS_82c7b09876",
+          "resource_type": "image"
+        }
+      },
+      "medium": {
+        "name": "medium_ExpressJS.png",
+        "hash": "medium_Express_JS_82c7b09876",
+        "ext": ".png",
+        "mime": "image/png",
+        "width": 750,
+        "height": 205,
+        "size": 75.24,
+        "path": null,
+        "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626602243/medium_Express_JS_82c7b09876.png",
+        "provider_metadata": {
+          "public_id": "medium_Express_JS_82c7b09876",
+          "resource_type": "image"
+        }
+      },
+      "small": {
+        "name": "small_ExpressJS.png",
+        "hash": "small_Express_JS_82c7b09876",
+        "ext": ".png",
+        "mime": "image/png",
+        "width": 500,
+        "height": 137,
+        "size": 40.76,
+        "path": null,
+        "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626602245/small_Express_JS_82c7b09876.png",
+        "provider_metadata": {
+          "public_id": "small_Express_JS_82c7b09876",
+          "resource_type": "image"
+        }
+      }
+    },
+    "provider": "cloudinary",
+    "related": ["60f3fb750aa4a02fe4217d70"],
+    "createdAt": "2021-07-18T09:57:29.306Z",
+    "updatedAt": "2021-07-18T09:59:17.387Z",
+    "__v": 0,
+    "id": "60f3fb090aa4a02fe4217d6f"
+  },
+  "id": "60f3fb750aa4a02fe4217d70"
+}

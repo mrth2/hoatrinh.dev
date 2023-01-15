@@ -3,12 +3,12 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faWordpress, faGithub, faFacebookSquare, faSkype, faLaravel, faVuejs } from '@fortawesome/free-brands-svg-icons';
 import { faBars, faClose, faSpinner, faExclamationCircle, faCheckCircle, faQuoteRight, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 
-export default defineNuxtPlugin(nuxtApp => {
-  config.autoAddCss = false;
-  // brand icons
-  library.add(faWordpress, faGithub, faFacebookSquare, faSkype, faLaravel, faVuejs);
-  // solid icons
-  library.add(faBars, faClose, faSpinner, faExclamationCircle, faCheckCircle, faQuoteRight, faTimesCircle);
+config.autoAddCss = false;
+// brand icons
+library.add(faWordpress, faGithub, faFacebookSquare, faSkype, faLaravel, faVuejs);
+// solid icons
+library.add(faBars, faClose, faSpinner, faExclamationCircle, faCheckCircle, faQuoteRight, faTimesCircle);
 
-  nuxtApp.vueApp.component('FaIcon', FontAwesomeIcon);
+export default defineNuxtPlugin(nuxtApp => {
+  nuxtApp.vueApp.component('FaIcon', FontAwesomeIcon, {});
 });

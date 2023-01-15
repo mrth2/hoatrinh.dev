@@ -1,0 +1,96 @@
+{
+  "_id": "60a0f74ee9bb211f6e6b6639",
+  "published_at": "2021-05-16T10:43:29.003Z",
+  "createdAt": "2021-05-16T10:43:26.316Z",
+  "updatedAt": "2021-05-17T04:56:11.420Z",
+  "__v": 0,
+  "description": "Vue is perfectly capable of powering sophisticated Single-Page Applications when used in combination with modern tooling and supporting libraries.\n",
+  "name": "VueJS",
+  "thumbnail": {
+    "_id": "60a15376e04d752fc47ad1e1",
+    "name": "vuejs.png",
+    "alternativeText": "",
+    "caption": "",
+    "hash": "vuejs_86ac0d70c8",
+    "ext": ".png",
+    "mime": "image/png",
+    "size": 58.34,
+    "width": 1280,
+    "height": 612,
+    "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1621185385/vuejs_86ac0d70c8.png",
+    "provider_metadata": {
+      "public_id": "vuejs_86ac0d70c8",
+      "resource_type": "image"
+    },
+    "formats": {
+      "thumbnail": {
+        "name": "thumbnail_vuejs.png",
+        "hash": "thumbnail_vuejs_86ac0d70c8",
+        "ext": ".png",
+        "mime": "image/png",
+        "width": 245,
+        "height": 117,
+        "size": 13.23,
+        "path": null,
+        "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1621185387/thumbnail_vuejs_86ac0d70c8.png",
+        "provider_metadata": {
+          "public_id": "thumbnail_vuejs_86ac0d70c8",
+          "resource_type": "image"
+        }
+      },
+      "large": {
+        "name": "large_vuejs.png",
+        "hash": "large_vuejs_86ac0d70c8",
+        "ext": ".png",
+        "mime": "image/png",
+        "width": 1000,
+        "height": 478,
+        "size": 91.01,
+        "path": null,
+        "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1621185390/large_vuejs_86ac0d70c8.png",
+        "provider_metadata": {
+          "public_id": "large_vuejs_86ac0d70c8",
+          "resource_type": "image"
+        }
+      },
+      "medium": {
+        "name": "medium_vuejs.png",
+        "hash": "medium_vuejs_86ac0d70c8",
+        "ext": ".png",
+        "mime": "image/png",
+        "width": 750,
+        "height": 359,
+        "size": 62.63,
+        "path": null,
+        "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1621185392/medium_vuejs_86ac0d70c8.png",
+        "provider_metadata": {
+          "public_id": "medium_vuejs_86ac0d70c8",
+          "resource_type": "image"
+        }
+      },
+      "small": {
+        "name": "small_vuejs.png",
+        "hash": "small_vuejs_86ac0d70c8",
+        "ext": ".png",
+        "mime": "image/png",
+        "width": 500,
+        "height": 239,
+        "size": 36.45,
+        "path": null,
+        "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1621185394/small_vuejs_86ac0d70c8.png",
+        "provider_metadata": {
+          "public_id": "small_vuejs_86ac0d70c8",
+          "resource_type": "image"
+        }
+      }
+    },
+    "provider": "cloudinary",
+    "related": ["60a0f74ee9bb211f6e6b6639"],
+    "createdAt": "2021-05-16T17:16:38.367Z",
+    "updatedAt": "2021-05-16T17:18:20.326Z",
+    "__v": 0,
+    "id": "60a15376e04d752fc47ad1e1"
+  },
+  "slogan": "The Progressive JavaScript Framework",
+  "id": "60a0f74ee9bb211f6e6b6639"
+}
