@@ -1,3 +1,4 @@
+import { defineNuxtPlugin } from '#app'
 import { library, config } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faWordpress, faGithub, faFacebookSquare, faSkype, faLaravel, faVuejs } from '@fortawesome/free-brands-svg-icons';

@@ -19,12 +19,26 @@
         </div>
       </div>
       <div class="portfolio-cards">
-        <div v-for="project in filteredProjects" :key="project.id" class="row project-card" data-toggle="modal"
-          data-target="#portfolioModal" data-portfolio-tag="web-sites" @click="viewProject(project)">
+        <div
+          v-for="project in filteredProjects"
+          :key="project.id"
+          class="row project-card"
+          data-toggle="modal"
+          data-target="#portfolioModal"
+          data-portfolio-tag="web-sites"
+          @click="viewProject(project)"
+        >
           <div class="w-full md:w-6/12 lg:w-5/12 project-card__img">
-            <Swiper v-if="project.images.length" :options="swiperOptions" class="h-full">
-              <SwiperSlide v-for="(image, key) in project.images" :key="`${project.id}-image-${key}`"
-                class="swiper-slide">
+            <Swiper
+              v-if="project.images.length"
+              :options="swiperOptions"
+              class="h-full"
+            >
+              <SwiperSlide
+                v-for="(image, key) in project.images"
+                :key="`${project.id}-image-${key}`"
+                class="swiper-slide"
+              >
                 <img :src="image.url" alt="project-img" />
               </SwiperSlide>
             </Swiper>
@@ -37,8 +51,17 @@
               {{ project.description }}
             </p>
             <p class="project-card__stack">Used stack:</p>
-            <BaseTag :list="getProjectTags(project)" id-key="id" content-key="name" />
-            <a :href="project.link" target="_blank" class="project-card__link">{{ getProjectLink(project.link) }}</a>
+            <BaseTag
+              :list="getProjectTags(project)"
+              id-key="id"
+              content-key="name"
+            />
+            <a
+              :href="project.link"
+              target="_blank"
+              class="project-card__link"
+              >{{ getProjectLink(project.link) }}</a
+            >
           </div>
         </div>
       </div>
@@ -49,8 +72,15 @@
         <p class="portfolio-modal__title">
           {{ viewingProject.name }}
         </p>
-        <Swiper v-if="viewingProject.images.length" :options="swiperOptions" class="h-full mb-8">
-          <SwiperSlide v-for="(image, key) in viewingProject.images" :key="`${viewingProject.id}-image-${key}`">
+        <Swiper
+          v-if="viewingProject.images.length"
+          :options="swiperOptions"
+          class="h-full mb-8"
+        >
+          <SwiperSlide
+            v-for="(image, key) in viewingProject.images"
+            :key="`${viewingProject.id}-image-${key}`"
+          >
             <img :src="image.url" alt="project-img" />
           </SwiperSlide>
         </Swiper>
@@ -64,7 +94,11 @@
         </div>
         <div class="portfolio-modal__stack">
           <p class="portfolio-modal__stack-title">Using stack:</p>
-          <BaseTag :list="getProjectTags(viewingProject)" id-key="id" content-key="name" />
+          <BaseTag
+            :list="getProjectTags(viewingProject)"
+            id-key="id"
+            content-key="name"
+          />
         </div>
       </template>
     </BaseModal>
@@ -73,12 +107,13 @@
 </template>
 
 <script setup lang="ts">
-import { Project, ProjectCategory } from "@nuxt/types";
+import type { Project, ProjectCategory } from "@nuxt/types";
+// import BaseModal from "@/components/base/Modal.vue";
 import { useConfigStore } from "~~/store/config";
 import { Swiper, SwiperSlide } from "swiper/vue";
 
 async function fetchProjects() {
-  return await queryContent<Project>('/projects').find();
+  return await queryContent<Project>("/projects").find();
 }
 const projects = await fetchProjects();
 
