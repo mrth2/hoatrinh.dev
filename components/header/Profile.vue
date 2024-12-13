@@ -53,9 +53,9 @@ import familyImage from "~/assets/img/family.jpeg";
 const personalStore = usePersonalStore();
 const age = computed(() => personalStore.age);
 const email = computed(() => personalStore.email);
-const facebook = computed(() => personalStore.facebook);
-const github = computed(() => personalStore.github);
-const skype = computed(() => personalStore.skype);
+const facebook = computed(() => personalStore.getFacebook);
+const github = computed(() => personalStore.getGithub);
+const skype = computed(() => personalStore.getSkype);
 </script>
 
 <style scoped lang="postcss">

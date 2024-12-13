@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import { About, SEO } from "@nuxt/types";
+import type { About, SEO } from "@nuxt/types";
 
 // Import Swiper styles
 import "swiper/css";
@@ -24,9 +24,9 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 async function fetchSEO() {
-  return await queryContent<SEO>('/seo/home').findOne();
+  return await queryContent<SEO>("/seo/home").findOne();
 }
-const homeSEO = await fetchSEO()
+const homeSEO = await fetchSEO();
 const { meta_title, meta_description } = homeSEO;
 
 useHead({

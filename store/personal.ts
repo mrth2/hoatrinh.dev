@@ -3,7 +3,7 @@ import { defineStore } from "pinia";
 export const usePersonalStore = defineStore('personal', {
   state: () => ({
     age: new Date().getFullYear() - 1990,
-    email: 'hi@hoatrinh.dev',
+    email: 'hoatrinhdev@gmail.com',
     github: 'mrth2',
     skype: 'trinh.hai.hoa',
     facebook: 'trinhhaihoa',
