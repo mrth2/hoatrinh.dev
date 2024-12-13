@@ -52,7 +52,7 @@ import { useAppStore } from "~~/store/app";
 
 withDefaults(
   defineProps<{
-    type: "general" | "confirm";
+    type?: "general" | "confirm";
     title?: string;
     description?: string;
     closeText?: string;
