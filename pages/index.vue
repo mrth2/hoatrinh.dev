@@ -70,32 +70,20 @@ function showSectionTitleOnScroll() {
       }
     });
 }
-function goToSection() {
-  const sectionHeader = document.getElementById(
-    `${route.hash.replace("#", "")}`
-  );
-  if (sectionHeader) {
-    sectionHeader.scrollIntoView({
-      behavior: "smooth",
-      block: "center",
-    });
-  }
-}
-const route = useRoute();
-watch(() => route.hash, goToSection);
 onBeforeMount(() => {
   window.addEventListener("scroll", showSectionTitleOnScroll);
-  window.addEventListener("hashchange", goToSection, false);
 });
-onMounted(showSectionTitleOnScroll);
+// onMounted(showSectionTitleOnScroll);
 onBeforeUnmount(() => {
   window.removeEventListener("scroll", showSectionTitleOnScroll);
-  window.removeEventListener("hashchange", goToSection);
 });
 </script>
 
 <style scoped lang="postcss">
 ::v-deep(.section) {
+  &[id] {
+    scroll-margin-top: 50px;
+  }
   &__description {
     strong {
       @apply text-black;
