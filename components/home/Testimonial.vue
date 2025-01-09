@@ -2,32 +2,38 @@
   <div id="testimonials" class="section">
     <div class="background relative slider-carousel review-bg">
       <div class="container">
-        <div ref="slider" class="swiper">
-          <div class="swiper-wrapper">
-            <div
-              class="swiper-slide"
-              v-for="testimonial in testimonials"
-              :key="testimonial.id"
-            >
-              <div>
-                <div class="md:w-10/12 sm:w-10/12 w-10/12 mr-auto ml-auto">
-                  <p class="slider-carousel__title">
-                    {{ testimonial.name }}
-                  </p>
-                  <p class="slider-carousel__caption">
-                    Project: {{ testimonial.project }}
-                  </p>
-                  <hr />
-                  <p class="slider-carousel__description">
-                    {{ testimonial.reviews }}
-                  </p>
-                </div>
+        <Swiper
+          :modules="[Controller, Autoplay, Navigation]"
+          :options="swiperOptions"
+          :autoplay="swiperOptions.autoplay"
+          :navigation="{
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          }"
+        >
+          <SwiperSlide
+            v-for="testimonial in testimonials"
+            :key="testimonial.id"
+          >
+            <div>
+              <div class="md:w-10/12 sm:w-10/12 w-10/12 mr-auto ml-auto">
+                <p class="slider-carousel__title">
+                  {{ testimonial.name }}
+                </p>
+                <p class="slider-carousel__caption">
+                  Project: {{ testimonial.project }}
+                </p>
+                <hr />
+                <p class="slider-carousel__description">
+                  {{ testimonial.reviews }}
+                </p>
               </div>
             </div>
-          </div>
-          <div class="swiper-button-prev" @click="goPrev" />
-          <div class="swiper-button-next" @click="goNext" />
-        </div>
+          </SwiperSlide>
+
+          <div class="swiper-button-prev" />
+          <div class="swiper-button-next" />
+        </Swiper>
         <div class="slider-carousel__circle">
           <p>
             <FontAwesomeIcon :icon="faQuoteRight" />
@@ -41,27 +47,13 @@
 <script setup lang="ts">
 import { faQuoteRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import type { Testimonial } from "@nuxt/types";
-import { Swiper } from "swiper";
-import { Autoplay } from "swiper/modules";
+import { Swiper, SwiperSlide, useSwiper } from "swiper/vue";
+import { Autoplay, Navigation, Controller } from "swiper/modules";
 import { useConfigStore } from "~~/store/config";
-Swiper.use([Autoplay]);
+import type { Testimonial } from "@nuxt/types";
 
 const testimonials = await queryContent<Testimonial>("/testimonials").find();
-const slider = ref<HTMLElement>();
-
 const swiperOptions = computed(() => useConfigStore().swiperOptions);
-const swiper = ref<Swiper>();
-onMounted(() => {
-  if (slider.value)
-    swiper.value = new Swiper(slider.value, swiperOptions.value);
-});
-function goPrev() {
-  if (swiper.value) swiper.value.slidePrev();
-}
-function goNext() {
-  if (swiper.value) swiper.value.slideNext();
-}
 </script>
 
 <style scoped lang="postcss">
@@ -92,6 +84,18 @@ function goNext() {
   .swiper-button-next {
     --swiper-theme-color: #ffffff;
     --swiper-navigation-size: 20px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+  }
+
+  .swiper-button-prev {
+    left: 20px;
+  }
+
+  .swiper-button-next {
+    right: 20px;
   }
 
   &__circle {

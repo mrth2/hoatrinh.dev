@@ -44,7 +44,7 @@ watch(isModalOpen, () => {
   &:before {
     background: linear-gradient(
       54deg,
-      rgb(20 158 24 / 95%) 34%,
+      rgb(2 77 4 / 95%) 34%,
       rgb(59 130 246 / 50%)
     );
     @apply h-full inset-0 absolute;
