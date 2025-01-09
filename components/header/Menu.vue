@@ -45,9 +45,9 @@
 const topBarActive = ref(false);
 const mobileMenuActive = ref(false);
 
-function toggleTopBar() {
-  topBarActive.value = window.pageYOffset > 70;
-}
+const toggleTopBar = useDebounce(() => {
+  topBarActive.value = window.scrollY > 70;
+}, 100);
 function toggleMobileMenu() {
   mobileMenuActive.value = !mobileMenuActive.value;
 }

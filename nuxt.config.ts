@@ -33,7 +33,7 @@ export default defineNuxtConfig({
     "@fortawesome/fontawesome-svg-core/styles.css",
   ],
   plugins: [],
-  modules: ["@pinia/nuxt", "@nuxt/content"],
+  modules: ["@pinia/nuxt", "@nuxt/content", "nuxt-lodash"],
 
   vite: {
     optimizeDeps: {

@@ -3,7 +3,10 @@
     <div class="row">
       <div class="md:w-10/12">
         <h2 id="resume" class="section__title">Resume_</h2>
-        <ContentRendererMarkdown class="section__description" :value="resumeSummary" />
+        <ContentRendererMarkdown
+          class="section__description"
+          :value="resumeSummary"
+        />
       </div>
     </div>
     <div class="row">
@@ -201,12 +204,12 @@
 </template>
 
 <script setup lang="ts">
-const resumeSummary = await queryContent('/about/resume-summary').findOne();
+const resumeSummary = await queryContent("/about/resume-summary").findOne();
 
 const progressUpdated = ref(false);
 const { $isInViewport } = useNuxtApp();
 
-function showProgressOnScroll() {
+const showProgressOnScroll = useDebounce(() => {
   const progressList = document.querySelector<HTMLElement>(".progress-list");
   if (!progressList) return;
   const progressListTitle = progressList.querySelector<HTMLElement>(
@@ -221,7 +224,7 @@ function showProgressOnScroll() {
     progressUpdated.value = true;
     window.removeEventListener("scroll", showProgressOnScroll);
   }
-}
+}, 100);
 
 function showProgressBar(bar: HTMLElement) {
   const min = parseInt(String(bar.getAttribute("aria-valuemin")));

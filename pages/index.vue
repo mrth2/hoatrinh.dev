@@ -52,7 +52,7 @@ function typeWriter(textElement: HTMLElement, text: string, currentAt: number) {
     textElement.classList.add("typed");
   }
 }
-function showSectionTitleOnScroll() {
+const showSectionTitleOnScroll = useDebounce(() => {
   document
     .querySelectorAll<HTMLElement>(".section__title:not(.typed)")
     .forEach((title) => {
@@ -69,7 +69,7 @@ function showSectionTitleOnScroll() {
         typeWriter(title, text, 0);
       }
     });
-}
+}, 150);
 onBeforeMount(() => {
   window.addEventListener("scroll", showSectionTitleOnScroll);
 });
