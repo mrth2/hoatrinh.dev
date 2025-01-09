@@ -8,9 +8,7 @@
     <div id="contact" class="container section">
       <div class="row">
         <div class="md:w-full">
-          <p id="contact" class="section__title text-white">
-            Get in touch_
-          </p>
+          <p id="contact" class="section__title text-white">Get in touch_</p>
         </div>
       </div>
       <div class="row contacts">
@@ -55,7 +53,7 @@
                 />
                 <span class="form-validation" />
                 <span class="form-invalid-icon">
-                  <FaIcon icon="close" />
+                  <FontAwesomeIcon :icon="faClose" />
                 </span>
               </div>
               <div class="form-group">
@@ -67,7 +65,7 @@
                 />
                 <span class="form-validation" />
                 <span class="form-invalid-icon">
-                  <FaIcon icon="close" />
+                  <FontAwesomeIcon :icon="faClose" />
                 </span>
               </div>
               <div class="form-group">
@@ -78,7 +76,7 @@
                 />
                 <span class="form-validation" />
                 <span class="form-invalid-icon">
-                  <FaIcon icon="close" />
+                  <FontAwesomeIcon :icon="faClose" />
                 </span>
               </div>
               <button
@@ -88,14 +86,18 @@
                 :disabled="sending"
               >
                 Send
-                <FaIcon v-show="sending" icon="spinner" pulse />
+                <FontAwesomeIcon
+                  v-show="sending"
+                  :icon="faSpinner"
+                  class="animate-spin"
+                />
               </button>
               <p v-if="error" class="text-xs mt-2 underline text-center">
-                <FaIcon icon="exclamation-circle" aria-hidden="true" />
+                <FontAwesomeIcon :icon="faExclamationCircle" />
                 {{ error }}
               </p>
               <p v-if="success" class="text-xs mt-2 text-center">
-                <FaIcon icon="check-circle" aria-hidden="true" />
+                <FontAwesomeIcon :icon="faCheckCircle" />
                 {{ success }}
               </p>
             </form>
@@ -112,6 +114,13 @@
 <script setup lang="ts">
 import { usePersonalStore } from "~~/store/personal";
 import FooterBg from "~/assets/img/footer-bg.jpeg";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import {
+  faCheckCircle,
+  faClose,
+  faExclamationCircle,
+  faSpinner,
+} from "@fortawesome/free-solid-svg-icons";
 
 const sending = ref(false);
 const error = ref<string | boolean>(false);

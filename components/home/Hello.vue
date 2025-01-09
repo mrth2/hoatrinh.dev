@@ -6,15 +6,15 @@
         <ContentRendererMarkdown :value="introduction" />
         <div class="flex flex-row gap-2">
           <a :href="contactLink" class="section_btn site-btn">
-            <FaIcon :icon="['fab', 'wordpress']" />
+            <FontAwesomeIcon :icon="faWordpress" />
             <span>Optimize Wordpress</span>
           </a>
           <a :href="contactLink" class="section_btn site-btn">
-            <FaIcon :icon="['fab', 'laravel']" />
+            <FontAwesomeIcon :icon="faLaravel" />
             <span>Backend Development</span>
           </a>
           <a :href="contactLink" class="section_btn site-btn">
-            <FaIcon :icon="['fab', 'vuejs']" />
+            <FontAwesomeIcon :icon="faVuejs" />
             <span>Frontend Development</span>
           </a>
         </div>
@@ -24,8 +24,15 @@
 </template>
 
 <script setup lang="ts">
+import {
+  faLaravel,
+  faVuejs,
+  faWordpress,
+} from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+
 const contactLink = "/#contact";
-const introduction = await queryContent('/about/introduction').findOne();
+const introduction = await queryContent("/about/introduction").findOne();
 </script>
 
 <style scoped lang="postcss">

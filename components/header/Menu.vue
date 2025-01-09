@@ -15,7 +15,7 @@
               class="menu__mobile-button"
               @click="toggleMobileMenu"
             >
-              <FaIcon icon="bars" size="xs" />
+              <FontAwesomeIcon :icon="faBars" size="xs" />
             </button>
           </div>
         </div>
@@ -30,7 +30,7 @@
     >
       <div class="container">
         <div class="mobile-menu__close" @click="toggleMobileMenu">
-          <FaIcon icon="times-circle" size="xs" />
+          <FontAwesomeIcon :icon="faTimesCircle" size="xs" />
         </div>
         <nav class="mobile-menu__wrapper">
           <HeaderMenuLink />
@@ -42,6 +42,9 @@
 </template>
 
 <script setup lang="ts">
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { faBars, faTimesCircle } from "@fortawesome/free-solid-svg-icons";
+
 const topBarActive = ref(false);
 const mobileMenuActive = ref(false);
 

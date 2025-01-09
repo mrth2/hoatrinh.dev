@@ -30,13 +30,13 @@
           </div>
           <p class="personal-profile__social">
             <a :href="github" target="_blank">
-              <FaIcon :icon="['fab', 'github']" />
+              <FontAwesomeIcon :icon="faGithub" />
             </a>
             <a :href="facebook" target="_blank">
-              <FaIcon :icon="['fab', 'facebook-square']" />
+              <FontAwesomeIcon :icon="faFacebookSquare" />
             </a>
             <a :href="skype" target="_blank">
-              <FaIcon :icon="['fab', 'skype']" />
+              <FontAwesomeIcon :icon="faSkype" />
             </a>
           </p>
         </div>
@@ -47,8 +47,14 @@
 </template>
 
 <script setup lang="ts">
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import { faFacebookSquare } from "@fortawesome/free-brands-svg-icons";
+import { faSkype } from "@fortawesome/free-brands-svg-icons";
+
 import { usePersonalStore } from "~~/store/personal";
 import familyImage from "~/assets/img/family.jpeg";
+import type fontawesome from "~/plugins/fontawesome";
 
 const personalStore = usePersonalStore();
 const age = computed(() => personalStore.age);

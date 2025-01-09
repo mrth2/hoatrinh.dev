@@ -4,7 +4,11 @@
       <div class="container">
         <div ref="slider" class="swiper">
           <div class="swiper-wrapper">
-            <div class="swiper-slide" v-for="testimonial in testimonials" :key="testimonial.id">
+            <div
+              class="swiper-slide"
+              v-for="testimonial in testimonials"
+              :key="testimonial.id"
+            >
               <div>
                 <div class="md:w-10/12 sm:w-10/12 w-10/12 mr-auto ml-auto">
                   <p class="slider-carousel__title">
@@ -26,7 +30,7 @@
         </div>
         <div class="slider-carousel__circle">
           <p>
-            <FaIcon icon="quote-right" aria-hidden="true" />
+            <FontAwesomeIcon :icon="faQuoteRight" />
           </p>
         </div>
       </div>
@@ -35,8 +39,11 @@
 </template>
 
 <script setup lang="ts">
-import { Testimonial } from "@nuxt/types";
-import { Swiper, Autoplay } from "swiper";
+import { faQuoteRight } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import type { Testimonial } from "@nuxt/types";
+import { Swiper } from "swiper";
+import { Autoplay } from "swiper/modules";
 import { useConfigStore } from "~~/store/config";
 Swiper.use([Autoplay]);
 
