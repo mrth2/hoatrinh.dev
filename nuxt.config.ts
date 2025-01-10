@@ -3,7 +3,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {},
   },
-  ssr: true,
+  ssr: false,
   app: {
     head: {
       title: "Hi, I'm Hoa - Yet another nerd developer",
