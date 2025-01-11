@@ -30,7 +30,7 @@
 </template>
 
 <script setup lang="ts">
-import { BlogPost } from "@nuxt/types";
+import type { BlogPost } from "@nuxt/types";
 
 const blogs = await queryContent<BlogPost>("/blogs").limit(3).sort({
   createdAt: -1
