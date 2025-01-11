@@ -29,41 +29,68 @@
       </div>
     </div>
     <div class="row">
-      <div class="md:w-8/12 section__resume resume-list">
-        <h3 class="resume-list_title">employment</h3>
+      <div class="md:w-9/12 section__resume resume-list">
+        <h3 class="resume-list_title">Employment</h3>
         <div class="resume-list__block">
           <p class="resume-list__block-title">Upwork Freelancer</p>
           <p class="resume-list__block-date">2020 - now</p>
           <p>
-            Senior Full Stack Developer. Specialized with VueJS & Laravel/NodeJS
-            Stack
+            <strong>Senior Full Stack Developer</strong><br />
+            - Specialized with MEVN Stack, plus Laravel.<br />
+            - SaaS Platform Development.<br />
+            - Wordpress & Shopfiy Site Speed Optimization.
+          </p>
+        </div>
+        <div class="resume-list__block">
+          <p class="resume-list__block-title">InferenceCloud</p>
+          <p class="resume-list__block-date">2023 - 2025</p>
+          <p>
+            <strong>Senior Frontend Developer</strong><br />
+            - Focus on TypeScript, Vue.js, Nuxt.js, Tailwind CSS, and D3.js.<br />
+            - Developed a comprehensive AI generative product ecosystem for a
+            SaaS platform.<br />
+            - Implemented end-to-end testing and a CI/CD pipeline.
+          </p>
+        </div>
+        <div class="resume-list__block">
+          <p class="resume-list__block-title">StoryRoom</p>
+          <p class="resume-list__block-date">2021 - 2023</p>
+          <p>
+            <strong>Senior Frontend Developer</strong><br />
+            - Focus on Vue.js, Nuxt.js, Tailwind CSS, and D3.js. <br />
+            - Produce visualizations and data-driven charts for the product.
+            <br />
+            - Develop and maintain the admin dashboard and user interface.
           </p>
         </div>
         <div class="resume-list__block">
           <p class="resume-list__block-title">DesignBold</p>
           <p class="resume-list__block-date">2020 - 2021</p>
           <p>
-            <b>Team Leader</b><br />
-            - maintain application performance and release roadmap.
+            <strong>Development Team Leader</strong><br />
+            - Maintain application performance and the release roadmap. <br />
+            - Ensure thorough product testing. <br />
+            - Analyze customer behavior and engagement metrics.
           </p>
         </div>
         <div class="resume-list__block">
           <p class="resume-list__block-title">DesignBold</p>
           <p class="resume-list__block-date">2016 - 2019</p>
           <p>
-            <b>Full Stack Developer</b><br />
-            - manage backend services, Restful API, and system management to
-            serve 500K monthly users.<br />
-            - develop useful frontend features with UX in mind.
+            <strong>Full Stack Developer</strong><br />
+            - Develop a user-friendly drag-and-drop platform that allows
+            non-technical users to create online graphics easily. <br />
+            - Optimize backend services, RESTful APIs, and system management to
+            efficiently accommodate 500,000 monthly users.
           </p>
         </div>
         <div class="resume-list__block">
           <p class="resume-list__block-title">NETLINK</p>
           <p class="resume-list__block-date">2012 - 2016</p>
           <p>
-            <b>Backend Developer</b><br />
-            - Develop SEO optimized online magazine and newspaper. <br />
-            - Build crawler for big text & video processing.
+            <strong>Backend Developer</strong><br />
+            - Develop an SEO-optimized online magazine and newspaper. <br />
+            - Build a crawler for processing large text and video.
           </p>
         </div>
       </div>
@@ -75,124 +102,21 @@
       <div class="md:w-full">
         <h3 class="progress-list__title">programming skills</h3>
       </div>
-      <div class="md:w-5/12 mr-auto">
-        <div class="progress-list__skill">
+      <div class="w-full lg:w-9/12 grid md:grid-cols-2 gap-x-10">
+        <div
+          v-for="item in skillList"
+          :key="item.label"
+          class="progress-list__skill"
+        >
           <p>
-            <span class="progress-list__skill-title">VueJS</span>
-            <span class="progress-list__skill-value">80%</span>
+            <span class="progress-list__skill-title">{{ item.label }}</span>
+            <span class="progress-list__skill-value">{{ item.progress }}%</span>
           </p>
           <div class="progress">
             <div
               class="progress-bar"
               role="progressbar"
-              aria-valuenow="80"
-              aria-valuemin="0"
-              aria-valuemax="100"
-            />
-          </div>
-        </div>
-        <div class="progress-list__skill">
-          <p>
-            <span class="progress-list__skill-title">NuxtJS</span>
-            <span class="progress-list__skill-value">75%</span>
-          </p>
-          <div class="progress">
-            <div
-              class="progress-bar"
-              role="progressbar"
-              aria-valuenow="75"
-              aria-valuemin="0"
-              aria-valuemax="100"
-            />
-          </div>
-        </div>
-        <div class="progress-list__skill">
-          <p>
-            <span class="progress-list__skill-title">Laravel</span>
-            <span class="progress-list__skill-value">80%</span>
-          </p>
-          <div class="progress">
-            <div
-              class="progress-bar"
-              role="progressbar"
-              aria-valuenow="80"
-              aria-valuemin="0"
-              aria-valuemax="100"
-            />
-          </div>
-        </div>
-        <div class="progress-list__skill">
-          <p>
-            <span class="progress-list__skill-title">ExpressJS</span>
-            <span class="progress-list__skill-value">60%</span>
-          </p>
-          <div class="progress">
-            <div
-              class="progress-bar"
-              role="progressbar"
-              aria-valuenow="60"
-              aria-valuemin="0"
-              aria-valuemax="100"
-            />
-          </div>
-        </div>
-      </div>
-      <div class="md:w-5/12 mr-auto">
-        <div class="progress-list__skill">
-          <p>
-            <span class="progress-list__skill-title">Javascript</span>
-            <span class="progress-list__skill-value">90%</span>
-          </p>
-          <div class="progress">
-            <div
-              class="progress-bar"
-              role="progressbar"
-              aria-valuenow="90"
-              aria-valuemin="0"
-              aria-valuemax="100"
-            />
-          </div>
-        </div>
-        <div class="progress-list__skill">
-          <p>
-            <span class="progress-list__skill-title">PHP</span>
-            <span class="progress-list__skill-value">85%</span>
-          </p>
-          <div class="progress">
-            <div
-              class="progress-bar"
-              role="progressbar"
-              aria-valuenow="85"
-              aria-valuemin="0"
-              aria-valuemax="100"
-            />
-          </div>
-        </div>
-        <div class="progress-list__skill">
-          <p>
-            <span class="progress-list__skill-title">CSS3</span>
-            <span class="progress-list__skill-value">75%</span>
-          </p>
-          <div class="progress">
-            <div
-              class="progress-bar"
-              role="progressbar"
-              aria-valuenow="75"
-              aria-valuemin="0"
-              aria-valuemax="100"
-            />
-          </div>
-        </div>
-        <div class="progress-list__skill">
-          <p>
-            <span class="progress-list__skill-title">HTML5</span>
-            <span class="progress-list__skill-value">90%</span>
-          </p>
-          <div class="progress">
-            <div
-              class="progress-bar"
-              role="progressbar"
-              aria-valuenow="80"
+              :aria-valuenow="item.progress"
               aria-valuemin="0"
               aria-valuemax="100"
             />
@@ -208,6 +132,25 @@ const resumeSummary = await queryContent("/about/resume-summary").findOne();
 
 const progressUpdated = ref(false);
 const { $isInViewport } = useNuxtApp();
+
+type TSkillProgress = {
+  label: string;
+  progress: number;
+};
+const skillList: TSkillProgress[] = [
+  { label: "VueJS", progress: 95 },
+  { label: "NuxtJS", progress: 90 },
+  { label: "ReactJS", progress: 75 },
+  { label: "NextJS", progress: 60 },
+  { label: "TypeScript", progress: 90 },
+  { label: "NodeJS", progress: 60 },
+  { label: "Tailwind CSS", progress: 90 },
+  { label: "Laravel", progress: 80 },
+  { label: "Javascript", progress: 90 },
+  { label: "PHP", progress: 85 },
+  { label: "CSS3", progress: 80 },
+  { label: "HTML5", progress: 90 },
+];
 
 const showProgressOnScroll = useDebounce(() => {
   const progressList = document.querySelector<HTMLElement>(".progress-list");

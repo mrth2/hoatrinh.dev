@@ -6,16 +6,16 @@
         <ContentRendererMarkdown :value="introduction" />
         <div class="flex flex-row gap-2">
           <a :href="contactLink" class="section_btn site-btn">
-            <FontAwesomeIcon :icon="faWordpress" />
-            <span>Optimize Wordpress</span>
+            <FontAwesomeIcon :icon="faVuejs" />
+            <span>Frontend Development</span>
           </a>
           <a :href="contactLink" class="section_btn site-btn">
             <FontAwesomeIcon :icon="faLaravel" />
             <span>Backend Development</span>
           </a>
           <a :href="contactLink" class="section_btn site-btn">
-            <FontAwesomeIcon :icon="faVuejs" />
-            <span>Frontend Development</span>
+            <FontAwesomeIcon :icon="faWordpress" />
+            <span>Optimize Wordpress</span>
           </a>
         </div>
       </div>
