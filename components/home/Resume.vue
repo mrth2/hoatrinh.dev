@@ -12,19 +12,16 @@
     <div class="row">
       <div class="md:w-8/12 section__resume resume-list">
         <h3 class="resume-list_title">education</h3>
-        <div class="resume-list__block">
+        <div
+          v-for="item in educationList"
+          :key="item.title"
+          class="resume-list__block"
+        >
           <p class="resume-list__block-title">
-            University of Engineering and Technology
+            {{ item.title }}
           </p>
-          <p class="resume-list__block-date">2008 - 2012</p>
-          <p>Bachelor of Computer Science</p>
-        </div>
-        <div class="resume-list__block">
-          <p class="resume-list__block-title">
-            Informatica Class - Tran Phu Gifted High School
-          </p>
-          <p class="resume-list__block-date">2005 - 2008</p>
-          <p>Distinction Grade</p>
+          <p class="resume-list__block-date">{{ item.date }}</p>
+          <p class="text-base">{{ item.description }}</p>
         </div>
       </div>
     </div>
@@ -129,6 +126,24 @@
 
 <script setup lang="ts">
 const resumeSummary = await queryContent("/about/resume-summary").findOne();
+
+type TEducation = {
+  title: string;
+  date: string;
+  description: string;
+};
+const educationList: TEducation[] = [
+  {
+    title: "University of Engineering and Technology",
+    date: "2008 - 2012",
+    description: "Bachelor of Computer Science",
+  },
+  {
+    title: "Informatica Class - Tran Phu Gifted High School",
+    date: "2005 - 2008",
+    description: "Distinction Grade",
+  },
+];
 
 const progressUpdated = ref(false);
 const { $isInViewport } = useNuxtApp();
