@@ -20,22 +20,9 @@ watch(isModalOpen, () => {
 </script>
 
 <style lang="postcss">
-@screen sm {
-  .container {
-    max-width: 540px;
-  }
+.container {
+  @apply max-w-[540px] sm:max-w-[720px] md:max-w-[960px] lg:max-w-[1140px] mx-auto px-4;
 }
-@screen md {
-  .container {
-    max-width: 720px;
-  }
-}
-@screen lg {
-  .container {
-    max-width: 1140px;
-  }
-}
-
 .background {
   @apply bg-green-50 h-full bg-no-repeat bg-cover relative;
   background-position: 50%;
@@ -54,7 +41,7 @@ watch(isModalOpen, () => {
 }
 
 .section {
-  @apply py-14;
+  @apply py-8 md:py-14;
 
   &__title {
     @apply mb-9 text-4xl leading-10 font-heading font-medium;
