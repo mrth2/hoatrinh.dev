@@ -10,16 +10,18 @@
           <img class="" src="~/assets/img/kyle-bw.png" alt="avatar" />
         </div>
         <div class="md:w-8/12 w-full relative px-3">
-          <p class="personal-profile__name">Trinh Hai Hoa_</p>
-          <p class="personal-profile__work">
-            WordPress Speed Expert, Full Stack Developer
+          <p class="personal-profile__name">Hoa Trinh Hai</p>
+          <p class="personal-profile__work section__title">
+            Senior Frontend Engineer, WordPress Speed Expert_
           </p>
           <div class="personal-profile__contacts">
             <dl class="contact-list contact-list__opacity-titles">
               <dt>A.k.a:</dt>
               <dd>Kyle</dd>
               <dt>Age:</dt>
-              <dd>{{ age }}</dd>
+              <dd>{{ age }} years old</dd>
+              <dt>YOE:</dt>
+              <dd>{{ yoe }}+ years</dd>
               <dt>Email:</dt>
               <dd>
                 <a :href="`mailto:${email}`">{{ email }}</a>
@@ -54,10 +56,10 @@ import { faSkype } from "@fortawesome/free-brands-svg-icons";
 
 import { usePersonalStore } from "~~/store/personal";
 import familyImage from "~/assets/img/family.jpeg";
-import type fontawesome from "~/plugins/fontawesome";
 
 const personalStore = usePersonalStore();
 const age = computed(() => personalStore.age);
+const yoe = computed(() => personalStore.age - 22);
 const email = computed(() => personalStore.email);
 const facebook = computed(() => personalStore.getFacebook);
 const github = computed(() => personalStore.getGithub);
