@@ -28,67 +28,19 @@
     <div class="row">
       <div class="md:w-9/12 section__resume resume-list">
         <h3 class="resume-list_title">Employment</h3>
-        <div class="resume-list__block">
-          <p class="resume-list__block-title">Upwork Freelancer</p>
-          <p class="resume-list__block-date">2020 - now</p>
+        <div
+          v-for="item in employmentList"
+          :key="item.title"
+          class="resume-list__block"
+        >
+          <p class="resume-list__block-title">{{ item.title }}</p>
+          <p class="resume-list__block-date">{{ item.date }}</p>
           <p>
-            <strong>Senior Full Stack Developer</strong><br />
-            - Specialized with MEVN Stack, plus Laravel.<br />
-            - SaaS Platform Development.<br />
-            - Wordpress & Shopfiy Site Speed Optimization.
+            <strong>{{ item.role }}</strong>
           </p>
-        </div>
-        <div class="resume-list__block">
-          <p class="resume-list__block-title">InferenceCloud</p>
-          <p class="resume-list__block-date">2023 - 2025</p>
-          <p>
-            <strong>Senior Frontend Developer</strong><br />
-            - Focus on TypeScript, Vue.js, Nuxt.js, Tailwind CSS, and D3.js.<br />
-            - Developed a comprehensive AI generative product ecosystem for a
-            SaaS platform.<br />
-            - Implemented end-to-end testing and a CI/CD pipeline.
-          </p>
-        </div>
-        <div class="resume-list__block">
-          <p class="resume-list__block-title">StoryRoom</p>
-          <p class="resume-list__block-date">2021 - 2023</p>
-          <p>
-            <strong>Senior Frontend Developer</strong><br />
-            - Focus on Vue.js, Nuxt.js, Tailwind CSS, and D3.js. <br />
-            - Produce visualizations and data-driven charts for the product.
-            <br />
-            - Develop and maintain the admin dashboard and user interface.
-          </p>
-        </div>
-        <div class="resume-list__block">
-          <p class="resume-list__block-title">DesignBold</p>
-          <p class="resume-list__block-date">2020 - 2021</p>
-          <p>
-            <strong>Development Team Leader</strong><br />
-            - Maintain application performance and the release roadmap. <br />
-            - Ensure thorough product testing. <br />
-            - Analyze customer behavior and engagement metrics.
-          </p>
-        </div>
-        <div class="resume-list__block">
-          <p class="resume-list__block-title">DesignBold</p>
-          <p class="resume-list__block-date">2016 - 2019</p>
-          <p>
-            <strong>Full Stack Developer</strong><br />
-            - Develop a user-friendly drag-and-drop platform that allows
-            non-technical users to create online graphics easily. <br />
-            - Optimize backend services, RESTful APIs, and system management to
-            efficiently accommodate 500,000 monthly users.
-          </p>
-        </div>
-        <div class="resume-list__block">
-          <p class="resume-list__block-title">NETLINK</p>
-          <p class="resume-list__block-date">2012 - 2016</p>
-          <p>
-            <strong>Backend Developer</strong><br />
-            - Develop an SEO-optimized online magazine and newspaper. <br />
-            - Build a crawler for processing large text and video.
-          </p>
+          <ul class="text-base">
+            <li v-for="task in item.tasks" :key="task">- {{ task }}</li>
+          </ul>
         </div>
       </div>
     </div>
@@ -142,6 +94,73 @@ const educationList: TEducation[] = [
     title: "Informatica Class - Tran Phu Gifted High School",
     date: "2005 - 2008",
     description: "Distinction Grade",
+  },
+];
+
+type TEmployment = {
+  title: string;
+  date: string;
+  role: string;
+  tasks: string[];
+};
+const employmentList: TEmployment[] = [
+  {
+    title: "Upwork Freelancer",
+    date: "2020 - now",
+    role: "Senior Full Stack Developer",
+    tasks: [
+      "Specialized with MEVN Stack, plus Laravel.",
+      "SaaS Platform Development.",
+      "Wordpress & Shopfiy Site Speed Optimization.",
+    ],
+  },
+  {
+    title: "InferenceCloud",
+    date: "2023 - 2025",
+    role: "Senior Frontend Engineer",
+    tasks: [
+      "Focus on TypeScript, Vue.js, Nuxt.js, Tailwind CSS, and D3.js.",
+      "Developed a comprehensive AI generative product ecosystem for a SaaS platform.",
+      "Implemented end-to-end testing and a CI/CD pipeline.",
+    ],
+  },
+  {
+    title: "StoryRoom",
+    date: "2021 - 2023",
+    role: "Senior Frontend Developer",
+    tasks: [
+      "Focus on Vue.js, Nuxt.js, Tailwind CSS, and D3.js.",
+      "Produce visualizations and data-driven charts for the product.",
+      "Develop and maintain the admin dashboard and user interface.",
+    ],
+  },
+  {
+    title: "DesignBold",
+    date: "2020 - 2021",
+    role: "Development Team Leader",
+    tasks: [
+      "Maintain application performance and the release roadmap.",
+      "Ensure thorough product testing.",
+      "Analyze customer behavior and engagement metrics.",
+    ],
+  },
+  {
+    title: "DesignBold",
+    date: "2016 - 2019",
+    role: "Full Stack Developer",
+    tasks: [
+      "Develop a user-friendly drag-and-drop platform that allows non-technical users to create online graphics easily.",
+      "Optimize backend services, RESTful APIs, and system management to efficiently accommodate 500,000 monthly users.",
+    ],
+  },
+  {
+    title: "NETLINK",
+    date: "2012 - 2016",
+    role: "Backend Developer",
+    tasks: [
+      "Develop an SEO-optimized online magazine and newspaper.",
+      "Build a crawler for processing large text and video.",
+    ],
   },
 ];
 
