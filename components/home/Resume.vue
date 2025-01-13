@@ -1,7 +1,7 @@
 <template>
   <section id="resume" class="container section">
     <div class="row">
-      <div class="md:w-10/12">
+      <div class="w-full md:w-10/12">
         <h2 id="resume" class="section__title">Resume_</h2>
         <ContentRendererMarkdown
           class="section__description"
@@ -10,7 +10,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="md:w-8/12 section__resume resume-list">
+      <div class="w-full md:w-8/12 section__resume resume-list">
         <h3 class="resume-list_title">education</h3>
         <div
           v-for="item in educationList"

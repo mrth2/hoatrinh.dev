@@ -1,10 +1,10 @@
 <template>
   <section id="hello" class="container section">
     <div class="row">
-      <div class="max-w-10/12 md:max-w-full">
+      <div class="w-full max-w-10/12 md:max-w-full">
         <h2 id="hello" class="section__title">Hi_</h2>
         <ContentRendererMarkdown :value="introduction" />
-        <div class="flex flex-row gap-2">
+        <div class="flex flex-row flex-wrap gap-2">
           <a
             :href="contactLink"
             class="section_btn site-btn"
