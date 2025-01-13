@@ -13,12 +13,6 @@ export default defineNuxtConfig({
           name: "viewport",
           content: "width=device-width, initial-scale=1",
         },
-        {
-          hid: "description",
-          name: "description",
-          content:
-            "Welcome to my service world. Checkout what I can do for you and be my client today!",
-        },
       ],
       link: [
         {

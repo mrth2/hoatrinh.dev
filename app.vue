@@ -16,5 +16,12 @@ useHead({
       href: "/favicon.png",
     },
   ],
+  meta: [
+    {
+      name: "description",
+      content:
+        "Welcome to my service world. Checkout what I can do for you and be my client today!",
+    },
+  ],
 });
 </script>
