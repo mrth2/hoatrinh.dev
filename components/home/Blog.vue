@@ -8,7 +8,7 @@
 
     <div class="row post-cards">
       <div v-for="blog in blogs" :key="blog._id" class="post-cards__col">
-        <a v-if="blog" href="#">
+        <a v-if="blog" href="#" :aria-label="`Read more about ${blog.title}`">
           <div class="post-cards__card">
             <div class="post-cards__img">
               <img :src="blog.thumbnail.url" alt="blog_img" />
@@ -32,9 +32,12 @@
 <script setup lang="ts">
 import type { BlogPost } from "@nuxt/types";
 
-const blogs = await queryContent<BlogPost>("/blogs").limit(3).sort({
-  createdAt: -1
-}).find();
+const blogs = await queryContent<BlogPost>("/blogs")
+  .limit(3)
+  .sort({
+    createdAt: -1,
+  })
+  .find();
 
 function parseCreatedAt(createdAt: number): string {
   const date = new Date(createdAt);

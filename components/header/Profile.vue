@@ -24,20 +24,26 @@
               <dd>{{ yoe }}+ years</dd>
               <dt>Email:</dt>
               <dd>
-                <a :href="`mailto:${email}`">{{ email }}</a>
+                <a :href="`mailto:${email}`" aria-label="contact me via email">
+                  {{ email }}
+                </a>
               </dd>
               <dt>Live:</dt>
               <dd>Hanoi, Vietnam</dd>
             </dl>
           </div>
           <p class="personal-profile__social">
-            <a :href="github" target="_blank">
+            <a :href="github" target="_blank" aria-label="view GitHub profile">
               <FontAwesomeIcon :icon="faGithub" />
             </a>
-            <a :href="facebook" target="_blank">
+            <a
+              :href="facebook"
+              target="_blank"
+              aria-label="view Facebook profile"
+            >
               <FontAwesomeIcon :icon="faFacebookSquare" />
             </a>
-            <a :href="skype" target="_blank">
+            <a :href="skype" target="_blank" aria-label="chat via Skype">
               <FontAwesomeIcon :icon="faSkype" />
             </a>
           </p>

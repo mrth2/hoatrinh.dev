@@ -10,9 +10,21 @@
         <div class="md:w-full">
           <nav>
             <ul>
-              <li><a @click="filterProjects('all')">all</a></li>
+              <li>
+                <a
+                  href="#"
+                  aria-label="Show all projects"
+                  @click="filterProjects('all')"
+                >
+                  all
+                </a>
+              </li>
               <li v-for="category in categories" :key="category.id">
-                <a @click="filterProjects(category.name)">
+                <a
+                  href="#"
+                  :aria-label="`Show ${category.name} projects`"
+                  @click="filterProjects(category.name)"
+                >
                   {{ category.name }}
                 </a>
               </li>
@@ -62,9 +74,11 @@
             <a
               :href="project.link"
               target="_blank"
+              aria-label="view project"
               class="project-card__link"
-              >{{ getProjectLink(project.link) }}</a
             >
+              {{ getProjectLink(project.link) }}
+            </a>
           </div>
         </div>
       </div>
@@ -91,9 +105,13 @@
           {{ viewingProject.description }}
         </p>
         <div class="portfolio-modal__link">
-          <a :href="viewingProject.link" target="_blank">{{
-            getProjectLink(viewingProject.link)
-          }}</a>
+          <a
+            :href="viewingProject.link"
+            target="_blank"
+            aria-label="view project"
+          >
+            {{ getProjectLink(viewingProject.link) }}
+          </a>
         </div>
         <div class="portfolio-modal__stack">
           <p class="portfolio-modal__stack-title">Using stack:</p>

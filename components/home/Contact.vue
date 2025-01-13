@@ -17,21 +17,27 @@
             <dl class="contact-list">
               <dt>Skype:</dt>
               <dd>
-                <a :href="getSkype">{{ skype }}</a>
+                <a :href="getSkype" aria-label="view Skype profile">
+                  {{ skype }}
+                </a>
               </dd>
               <dt>Email:</dt>
               <dd>
-                <a :href="getEmail">{{ email }}</a>
+                <a :href="getEmail" aria-label="contact via Email">
+                  {{ email }}
+                </a>
               </dd>
             </dl>
           </div>
           <div class="contacts__social">
             <ul>
               <li>
-                <a :href="getFacebook">Facebook</a>
+                <a :href="getFacebook" aria-label="view Facebook profile">
+                  Facebook
+                </a>
               </li>
               <li>
-                <a :href="getGithub">GitHub</a>
+                <a :href="getGithub" aria-label="view GitHub profile">GitHub</a>
               </li>
             </ul>
           </div>

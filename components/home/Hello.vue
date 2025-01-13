@@ -5,15 +5,27 @@
         <h2 id="hello" class="section__title">Hi_</h2>
         <ContentRendererMarkdown :value="introduction" />
         <div class="flex flex-row gap-2">
-          <a :href="contactLink" class="section_btn site-btn">
+          <a
+            :href="contactLink"
+            class="section_btn site-btn"
+            aria-label="Hire me as a Frontend Developer"
+          >
             <FontAwesomeIcon :icon="faVuejs" />
             <span>Frontend Development</span>
           </a>
-          <a :href="contactLink" class="section_btn site-btn">
+          <a
+            :href="contactLink"
+            class="section_btn site-btn"
+            aria-label="Hire me as a Backend Developer"
+          >
             <FontAwesomeIcon :icon="faLaravel" />
             <span>Backend Development</span>
           </a>
-          <a :href="contactLink" class="section_btn site-btn">
+          <a
+            :href="contactLink"
+            class="section_btn site-btn"
+            aria-label="Hire me as a Wordpress Developer"
+          >
             <FontAwesomeIcon :icon="faWordpress" />
             <span>Optimize Wordpress</span>
           </a>
