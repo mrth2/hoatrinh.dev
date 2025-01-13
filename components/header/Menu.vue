@@ -13,6 +13,8 @@
             <button
               type="button"
               class="menu__mobile-button"
+              aria-label="Toggle mobile menu"
+              aria-labelledby="mobile-menu"
               @click="toggleMobileMenu"
             >
               <FontAwesomeIcon :icon="faBars" size="xs" />
@@ -25,6 +27,7 @@
 
     <!-- Mobile menu -->
     <div
+      id="mobile-menu"
       class="mobile-menu lg:hidden"
       :class="{ active: mobileMenuActive, 'mobile-menu--active': topBarActive }"
     >
