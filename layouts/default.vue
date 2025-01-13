@@ -59,11 +59,14 @@ watch(isModalOpen, () => {
   nav {
     @apply text-sm leading-5 font-heading uppercase font-bold mb-12 block;
 
-    ul li {
-      @apply inline-block;
+    ul {
+      @apply flex flex-wrap gap-5;
+      li {
+        @apply inline-block;
 
-      a {
-        @apply pr-20 text-neutral-600;
+        a {
+          @apply text-neutral-600;
+        }
       }
     }
   }
