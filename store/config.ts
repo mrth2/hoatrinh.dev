@@ -12,6 +12,6 @@ export const useConfigStore = defineStore("config", {
       },
       pagination: true,
       navigation: true,
-    } as SwiperOptions,
+    } as Partial<SwiperOptions>,
   }),
 });

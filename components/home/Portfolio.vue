@@ -31,7 +31,8 @@
           <div class="w-full md:w-6/12 lg:w-5/12 project-card__img">
             <Swiper
               v-if="project.images.length"
-              :options="swiperOptions"
+              :autoplay="swiperOptions.autoplay"
+              :loop="true"
               class="h-full"
             >
               <SwiperSlide

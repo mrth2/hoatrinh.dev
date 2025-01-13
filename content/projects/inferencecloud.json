@@ -1,0 +1,454 @@
+{
+  "cms": [],
+  "databases": [
+    {
+      "_id": "60a0ee823a56551ea61532fc",
+      "published_at": "2021-05-16T10:05:56.715Z",
+      "createdAt": "2021-05-16T10:05:54.390Z",
+      "updatedAt": "2021-05-17T04:55:45.075Z",
+      "__v": 0,
+      "description": "Abstract painting with vibrant pink and red tones dominating the composition. Soft streaks of yellow. Safety & Alignment.",
+      "name": "OpenAI",
+      "slogan": "Artificial intelligence company",
+      "id": "60a0ee823a56551ea61532fc"
+    }
+  ],
+  "programing_languages": [
+    {
+      "frameworks": ["60a0f74ee9bb211f6e6b6639", "60a0ee123a56551ea61532f6"],
+      "cms": [],
+      "_id": "60f3f9e10aa4a02fe4217d6c",
+      "name": "Javascript",
+      "published_at": "2021-07-18T09:52:36.160Z",
+      "createdAt": "2021-07-18T09:52:33.529Z",
+      "updatedAt": "2021-07-18T09:52:36.367Z",
+      "__v": 0,
+      "id": "60f3f9e10aa4a02fe4217d6c"
+    },
+    {
+      "frameworks": [],
+      "cms": [],
+      "_id": "60f3fa8d0aa4a02fe4217d6d",
+      "name": "CSS",
+      "published_at": "2021-07-18T09:55:27.656Z",
+      "createdAt": "2021-07-18T09:55:25.036Z",
+      "updatedAt": "2021-07-18T09:55:27.794Z",
+      "__v": 0,
+      "id": "60f3fa8d0aa4a02fe4217d6d"
+    },
+    {
+      "frameworks": [],
+      "cms": [],
+      "_id": "60f3fa990aa4a02fe4217d6e",
+      "name": "HTML5",
+      "published_at": "2021-07-18T09:55:39.981Z",
+      "createdAt": "2021-07-18T09:55:37.527Z",
+      "updatedAt": "2021-07-18T09:55:40.139Z",
+      "__v": 0,
+      "id": "60f3fa990aa4a02fe4217d6e"
+    }
+  ],
+  "platforms": [
+    {
+      "_id": "60f3fbe90aa4a02fe4217d73",
+      "name": "NodeJS",
+      "description": "Node. js is a platform built on Chrome's JavaScript runtime for easily building fast and scalable network applications. Node. js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient, perfect for data-intensive real-time applications that run across distributed devices.",
+      "slogan": "Node.js® is a JavaScript runtime built on Chrome's V8 JavaScript engine.",
+      "published_at": "2021-07-18T10:01:15.938Z",
+      "createdAt": "2021-07-18T10:01:13.169Z",
+      "updatedAt": "2021-07-18T10:01:16.152Z",
+      "__v": 0,
+      "thumbnail": {
+        "_id": "60f3fbe20aa4a02fe4217d72",
+        "name": "nodejs.png",
+        "alternativeText": "",
+        "caption": "",
+        "hash": "nodejs_59b4e3694a",
+        "ext": ".png",
+        "mime": "image/png",
+        "size": 23.29,
+        "width": 880,
+        "height": 389,
+        "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626602457/nodejs_59b4e3694a.png",
+        "provider_metadata": {
+          "public_id": "nodejs_59b4e3694a",
+          "resource_type": "image"
+        },
+        "formats": {
+          "thumbnail": {
+            "name": "thumbnail_nodejs.png",
+            "hash": "thumbnail_nodejs_59b4e3694a",
+            "ext": ".png",
+            "mime": "image/png",
+            "width": 245,
+            "height": 108,
+            "size": 14.75,
+            "path": null,
+            "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626602458/thumbnail_nodejs_59b4e3694a.png",
+            "provider_metadata": {
+              "public_id": "thumbnail_nodejs_59b4e3694a",
+              "resource_type": "image"
+            }
+          },
+          "medium": {
+            "name": "medium_nodejs.png",
+            "hash": "medium_nodejs_59b4e3694a",
+            "ext": ".png",
+            "mime": "image/png",
+            "width": 750,
+            "height": 332,
+            "size": 49.65,
+            "path": null,
+            "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626602461/medium_nodejs_59b4e3694a.png",
+            "provider_metadata": {
+              "public_id": "medium_nodejs_59b4e3694a",
+              "resource_type": "image"
+            }
+          },
+          "small": {
+            "name": "small_nodejs.png",
+            "hash": "small_nodejs_59b4e3694a",
+            "ext": ".png",
+            "mime": "image/png",
+            "width": 500,
+            "height": 221,
+            "size": 28.96,
+            "path": null,
+            "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626602463/small_nodejs_59b4e3694a.png",
+            "provider_metadata": {
+              "public_id": "small_nodejs_59b4e3694a",
+              "resource_type": "image"
+            }
+          }
+        },
+        "provider": "cloudinary",
+        "related": ["60f3fbe90aa4a02fe4217d73"],
+        "createdAt": "2021-07-18T10:01:06.840Z",
+        "updatedAt": "2021-07-18T10:01:13.279Z",
+        "__v": 0,
+        "id": "60f3fbe20aa4a02fe4217d72"
+      },
+      "id": "60f3fbe90aa4a02fe4217d73"
+    }
+  ],
+  "frameworks": [
+    {
+      "_id": "60a0f74ee9bb211f6e6b6639",
+      "published_at": "2021-05-16T10:43:29.003Z",
+      "createdAt": "2021-05-16T10:43:26.316Z",
+      "updatedAt": "2021-05-17T04:56:11.420Z",
+      "__v": 0,
+      "description": "Vue is perfectly capable of powering sophisticated Single-Page Applications when used in combination with modern tooling and supporting libraries.\n",
+      "name": "VueJS",
+      "thumbnail": {
+        "_id": "60a15376e04d752fc47ad1e1",
+        "name": "vuejs.png",
+        "alternativeText": "",
+        "caption": "",
+        "hash": "vuejs_86ac0d70c8",
+        "ext": ".png",
+        "mime": "image/png",
+        "size": 58.34,
+        "width": 1280,
+        "height": 612,
+        "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1621185385/vuejs_86ac0d70c8.png",
+        "provider_metadata": {
+          "public_id": "vuejs_86ac0d70c8",
+          "resource_type": "image"
+        },
+        "formats": {
+          "thumbnail": {
+            "name": "thumbnail_vuejs.png",
+            "hash": "thumbnail_vuejs_86ac0d70c8",
+            "ext": ".png",
+            "mime": "image/png",
+            "width": 245,
+            "height": 117,
+            "size": 13.23,
+            "path": null,
+            "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1621185387/thumbnail_vuejs_86ac0d70c8.png",
+            "provider_metadata": {
+              "public_id": "thumbnail_vuejs_86ac0d70c8",
+              "resource_type": "image"
+            }
+          },
+          "large": {
+            "name": "large_vuejs.png",
+            "hash": "large_vuejs_86ac0d70c8",
+            "ext": ".png",
+            "mime": "image/png",
+            "width": 1000,
+            "height": 478,
+            "size": 91.01,
+            "path": null,
+            "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1621185390/large_vuejs_86ac0d70c8.png",
+            "provider_metadata": {
+              "public_id": "large_vuejs_86ac0d70c8",
+              "resource_type": "image"
+            }
+          },
+          "medium": {
+            "name": "medium_vuejs.png",
+            "hash": "medium_vuejs_86ac0d70c8",
+            "ext": ".png",
+            "mime": "image/png",
+            "width": 750,
+            "height": 359,
+            "size": 62.63,
+            "path": null,
+            "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1621185392/medium_vuejs_86ac0d70c8.png",
+            "provider_metadata": {
+              "public_id": "medium_vuejs_86ac0d70c8",
+              "resource_type": "image"
+            }
+          },
+          "small": {
+            "name": "small_vuejs.png",
+            "hash": "small_vuejs_86ac0d70c8",
+            "ext": ".png",
+            "mime": "image/png",
+            "width": 500,
+            "height": 239,
+            "size": 36.45,
+            "path": null,
+            "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1621185394/small_vuejs_86ac0d70c8.png",
+            "provider_metadata": {
+              "public_id": "small_vuejs_86ac0d70c8",
+              "resource_type": "image"
+            }
+          }
+        },
+        "provider": "cloudinary",
+        "related": ["60a0f74ee9bb211f6e6b6639"],
+        "createdAt": "2021-05-16T17:16:38.367Z",
+        "updatedAt": "2021-05-16T17:18:20.326Z",
+        "__v": 0,
+        "id": "60a15376e04d752fc47ad1e1"
+      },
+      "slogan": "The Progressive JavaScript Framework",
+      "id": "60a0f74ee9bb211f6e6b6639"
+    },
+    {
+      "_id": "60a0f74ee9bb211f6e6b6639",
+      "published_at": "2021-05-16T10:43:29.003Z",
+      "createdAt": "2021-05-16T10:43:26.316Z",
+      "updatedAt": "2021-05-17T04:56:11.420Z",
+      "__v": 0,
+      "description": "Tailwind CSS is a utility-first CSS framework for rapidly building modern websites without ever leaving your HTML.",
+      "name": "TailwindCSS",
+      "id": "60a0f74ee9bb211f6e6b6639"
+    },
+    {
+      "_id": "60a0f74ee9bb211f6e6b6639",
+      "published_at": "2021-05-16T10:43:29.003Z",
+      "createdAt": "2021-05-16T10:43:26.316Z",
+      "updatedAt": "2021-05-17T04:56:11.420Z",
+      "__v": 0,
+      "description": "Cypress is a JavaScript testing framework that has been embraced by front end developers for its speed, interactivity, and reliability.",
+      "name": "Cypress",
+      "id": "60a0f74ee9bb211f6e6b6639"
+    }
+  ],
+  "images": [
+    {
+      "_id": "60f4fca9ab8b353bc26f6578",
+      "name": "inferencecloud.jpg",
+      "alternativeText": "",
+      "caption": "",
+      "hash": "inferencecloud_88154082a4",
+      "ext": ".jpg",
+      "mime": "image/jpeg",
+      "size": 112.03,
+      "width": 1903,
+      "height": 928,
+      "url": "https://i.imgur.com/hiIJbIU.png",
+      "provider_metadata": {
+        "public_id": "inferencecloud_88154082a4",
+        "resource_type": "image"
+      },
+      "formats": {
+        "thumbnail": {
+          "name": "thumbnail_inferencecloud.jpg",
+          "hash": "thumbnail_inferencecloud_88154082a4",
+          "ext": ".jpg",
+          "mime": "image/jpeg",
+          "width": 245,
+          "height": 119,
+          "size": 6.45,
+          "path": null,
+          "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626668191/thumbnail_inferencecloud_88154082a4.jpg",
+          "provider_metadata": {
+            "public_id": "thumbnail_inferencecloud_88154082a4",
+            "resource_type": "image"
+          }
+        },
+        "large": {
+          "name": "large_inferencecloud.jpg",
+          "hash": "large_inferencecloud_88154082a4",
+          "ext": ".jpg",
+          "mime": "image/jpeg",
+          "width": 1000,
+          "height": 488,
+          "size": 46.52,
+          "path": null,
+          "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626668193/large_inferencecloud_88154082a4.jpg",
+          "provider_metadata": {
+            "public_id": "large_inferencecloud_88154082a4",
+            "resource_type": "image"
+          }
+        },
+        "medium": {
+          "name": "medium_inferencecloud.jpg",
+          "hash": "medium_inferencecloud_88154082a4",
+          "ext": ".jpg",
+          "mime": "image/jpeg",
+          "width": 750,
+          "height": 366,
+          "size": 30.79,
+          "path": null,
+          "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626668195/medium_inferencecloud_88154082a4.jpg",
+          "provider_metadata": {
+            "public_id": "medium_inferencecloud_88154082a4",
+            "resource_type": "image"
+          }
+        },
+        "small": {
+          "name": "small_inferencecloud.jpg",
+          "hash": "small_inferencecloud_88154082a4",
+          "ext": ".jpg",
+          "mime": "image/jpeg",
+          "width": 500,
+          "height": 244,
+          "size": 17.39,
+          "path": null,
+          "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626668197/small_inferencecloud_88154082a4.jpg",
+          "provider_metadata": {
+            "public_id": "small_inferencecloud_88154082a4",
+            "resource_type": "image"
+          }
+        }
+      },
+      "provider": "cloudinary",
+      "related": [],
+      "createdAt": "2021-07-19T04:16:41.974Z",
+      "updatedAt": "2021-07-20T15:01:28.193Z",
+      "__v": 0,
+      "id": "60f4fca9ab8b353bc26f6578"
+    },
+    {
+      "_id": "60f4fca9ab8b353bc26f6577",
+      "name": "inferencecloud2.jpg",
+      "alternativeText": "",
+      "caption": "",
+      "hash": "inferencecloud2_f71d6343c6",
+      "ext": ".jpg",
+      "mime": "image/jpeg",
+      "size": 99.17,
+      "width": 1893,
+      "height": 924,
+      "url": "https://i.imgur.com/LJP0Crc.png",
+      "provider_metadata": {
+        "public_id": "inferencecloud2_f71d6343c6",
+        "resource_type": "image"
+      },
+      "formats": {
+        "thumbnail": {
+          "name": "thumbnail_inferencecloud2.jpg",
+          "hash": "thumbnail_inferencecloud2_f71d6343c6",
+          "ext": ".jpg",
+          "mime": "image/jpeg",
+          "width": 245,
+          "height": 120,
+          "size": 4.63,
+          "path": null,
+          "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626668190/thumbnail_inferencecloud2_f71d6343c6.jpg",
+          "provider_metadata": {
+            "public_id": "thumbnail_inferencecloud2_f71d6343c6",
+            "resource_type": "image"
+          }
+        },
+        "large": {
+          "name": "large_inferencecloud2.jpg",
+          "hash": "large_inferencecloud2_f71d6343c6",
+          "ext": ".jpg",
+          "mime": "image/jpeg",
+          "width": 1000,
+          "height": 488,
+          "size": 38.5,
+          "path": null,
+          "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626668192/large_inferencecloud2_f71d6343c6.jpg",
+          "provider_metadata": {
+            "public_id": "large_inferencecloud2_f71d6343c6",
+            "resource_type": "image"
+          }
+        },
+        "medium": {
+          "name": "medium_inferencecloud2.jpg",
+          "hash": "medium_inferencecloud2_f71d6343c6",
+          "ext": ".jpg",
+          "mime": "image/jpeg",
+          "width": 750,
+          "height": 366,
+          "size": 24.46,
+          "path": null,
+          "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626668195/medium_inferencecloud2_f71d6343c6.jpg",
+          "provider_metadata": {
+            "public_id": "medium_inferencecloud2_f71d6343c6",
+            "resource_type": "image"
+          }
+        },
+        "small": {
+          "name": "small_inferencecloud2.jpg",
+          "hash": "small_inferencecloud2_f71d6343c6",
+          "ext": ".jpg",
+          "mime": "image/jpeg",
+          "width": 500,
+          "height": 244,
+          "size": 13.28,
+          "path": null,
+          "url": "https://res.cloudinary.com/hoatrinh-dev/image/upload/v1626668197/small_inferencecloud2_f71d6343c6.jpg",
+          "provider_metadata": {
+            "public_id": "small_inferencecloud2_f71d6343c6",
+            "resource_type": "image"
+          }
+        }
+      },
+      "provider": "cloudinary",
+      "related": [],
+      "createdAt": "2021-07-19T04:16:41.947Z",
+      "updatedAt": "2021-07-20T15:01:28.193Z",
+      "__v": 0,
+      "id": "60f4fca9ab8b353bc26f6577"
+    }
+  ],
+  "videos": [],
+  "project_categories": [
+    {
+      "_id": "60f4f76fab8b353bc26f6576",
+      "name": "AI",
+      "published_at": "2021-07-19T03:54:26.136Z",
+      "createdAt": "2021-07-19T03:54:23.446Z",
+      "updatedAt": "2021-07-19T03:54:26.272Z",
+      "__v": 0,
+      "id": "60f4f76fab8b353bc26f6576"
+    },
+    {
+      "_id": "60f4f749ab8b353bc26f6575",
+      "name": "SaaS",
+      "published_at": "2021-07-19T03:53:48.321Z",
+      "createdAt": "2021-07-19T03:53:45.896Z",
+      "updatedAt": "2021-07-19T03:53:48.485Z",
+      "__v": 0,
+      "id": "60f4f749ab8b353bc26f6575"
+    }
+  ],
+  "_id": "60f4fcf6ab8b353bc26f657a",
+  "name": "InferenceCloud",
+  "link": "https://inferencecloud.ai/",
+  "description": "InferenceCloud is an AI platform designed to enhance communication effectiveness, reduce manual tasks, and free up time for focusing on broader goals. Utilizing AI, our product enables companies to grasp audience interests and track what is being discussed. It leverages extensive research to translate strategy into data-informed planning. Additionally, it generates genuine content that reflects your unique voice.",
+  "published_at": "2021-07-19T04:18:02.809Z",
+  "createdAt": "2021-07-19T04:17:58.573Z",
+  "updatedAt": "2021-07-19T04:18:03.094Z",
+  "__v": 0,
+  "id": "60f4fcf6ab8b353bc26f657a"
+}
