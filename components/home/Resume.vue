@@ -68,6 +68,7 @@
               :aria-valuenow="item.progress"
               aria-valuemin="0"
               aria-valuemax="100"
+              :aria-label="item.label"
             />
           </div>
         </div>
