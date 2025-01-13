@@ -270,8 +270,7 @@ onMounted(() => {
     }
 
     &-date {
-      @apply font-secondary text-sm leading-6 pb-2;
-      color: #999;
+      @apply font-secondary text-sm leading-6 pb-2 text-neutral-600;
     }
   }
 }
