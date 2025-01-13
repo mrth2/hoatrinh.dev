@@ -14,19 +14,25 @@ body {
   color: #555;
 }
 
-*, :after, :before {
+*,
+:after,
+:before {
   box-sizing: inherit;
 }
 
 .container {
-  @apply px-5 w-full mx-auto;
+  @apply max-w-[540px] sm:max-w-[720px] md:max-w-[960px] lg:max-w-[1140px] mx-auto px-4;
 }
 
 .container .row {
   @apply flex flex-wrap mx-2 md:mx-5;
 }
 
-button, input, optgroup, select, textarea {
+button,
+input,
+optgroup,
+select,
+textarea {
   font-family: sans-serif;
   margin: 0;
 }
@@ -49,6 +55,8 @@ a {
   @apply transition-all duration-300 relative no-underline cursor-pointer bg-transparent;
 }
 
-a:hover, a:active, a:focus {
+a:hover,
+a:active,
+a:focus {
   @apply underline;
 }

@@ -20,9 +20,6 @@ watch(isModalOpen, () => {
 </script>
 
 <style lang="postcss">
-.container {
-  @apply max-w-[540px] sm:max-w-[720px] md:max-w-[960px] lg:max-w-[1140px] mx-auto px-4;
-}
 .background {
   @apply bg-green-50 h-full bg-no-repeat bg-cover relative;
   background-position: 50%;
