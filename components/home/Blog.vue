@@ -97,18 +97,15 @@ function parseCreatedAt(createdAt: number): string {
   }
 
   &__date {
-    @apply text-xs leading-5 uppercase mb-5;
-    color: #999;
+    @apply text-xs leading-5 uppercase mb-5 text-neutral-600;
   }
 
   &__title {
-    @apply font-heading text-sm leading-6 uppercase mb-6 font-bold;
-    color: #555;
+    @apply font-heading text-sm leading-6 uppercase mb-6 font-bold text-neutral-500;
   }
 
   &__description {
-    @apply text-sm leading-6 mb-0;
-    color: #999;
+    @apply text-sm leading-6 mb-0 text-neutral-600;
   }
 }
 </style>

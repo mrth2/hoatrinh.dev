@@ -242,9 +242,7 @@ onMounted(() => {
   @apply my-7 flex-initial relative;
 
   &_title {
-    @apply text-sm leading-6 uppercase font-heading font-semibold mb-8;
-    letter-spacing: 5px;
-    color: #999;
+    @apply text-sm leading-6 uppercase font-heading font-semibold mb-8 tracking-wide text-neutral-600;
   }
 
   &__block {
@@ -292,9 +290,7 @@ onMounted(() => {
   }
 
   &__title {
-    @apply font-heading font-bold mb-12;
-    color: #999;
-    letter-spacing: 5px;
+    @apply font-heading font-bold mb-12 tracking-wide text-neutral-600;
   }
 
   &__skill {

@@ -63,8 +63,7 @@ watch(isModalOpen, () => {
       @apply inline-block;
 
       a {
-        @apply pr-20;
-        color: #999;
+        @apply pr-20 text-neutral-600;
       }
     }
   }
