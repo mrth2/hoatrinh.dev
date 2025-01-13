@@ -12,7 +12,9 @@
             <ul>
               <li><a @click="filterProjects('all')">all</a></li>
               <li v-for="category in categories" :key="category.id">
-                <a @click="filterProjects(category.id)">{{ category.name }}</a>
+                <a @click="filterProjects(category.name)">
+                  {{ category.name }}
+                </a>
               </li>
             </ul>
           </nav>
@@ -31,7 +33,8 @@
           <div class="w-full md:w-6/12 lg:w-5/12 project-card__img">
             <Swiper
               v-if="project.images.length"
-              :options="swiperOptions"
+              :autoplay="swiperOptions.autoplay"
+              :loop="true"
               class="h-full"
             >
               <SwiperSlide
@@ -119,9 +122,13 @@ const projects = await fetchProjects();
 
 const categories = computed<ProjectCategory[]>(() => {
   let _categories: ProjectCategory[] = [];
-  projects.forEach((project) => {
-    _categories = [...project.project_categories];
-  });
+  for (const project of projects) {
+    for (const category of project.project_categories) {
+      if (!_categories.some((c) => c.name === category.name)) {
+        _categories.push(category);
+      }
+    }
+  }
   return _categories
     .filter((value, index, self) => {
       return self.indexOf(value) === index;
@@ -137,8 +144,8 @@ function getProjectLink(link: string): string {
   return new URL(link).hostname;
 }
 const categoryId = ref("all");
-function filterProjects(_categoryId: string): void {
-  categoryId.value = _categoryId;
+function filterProjects(_category: string): void {
+  categoryId.value = _category;
 }
 const filteredProjects = computed(() => {
   if (categoryId.value === "all") {
@@ -146,7 +153,7 @@ const filteredProjects = computed(() => {
   } else {
     return projects.filter((project) =>
       project.project_categories.find(
-        (category: any) => category.id === categoryId.value
+        (category: any) => category.name === categoryId.value
       )
     );
   }
