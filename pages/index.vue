@@ -97,8 +97,7 @@ onBeforeUnmount(() => {
 
 /* buttons */
 ::v-deep(.site-btn) {
-  @apply bg-green-600 rounded-lg text-sm leading-5 uppercase px-4 py-3 text-center inline-block font-semibold overflow-hidden;
-  color: #fff;
+  @apply bg-green-700 text-white rounded-lg text-sm leading-5 uppercase px-4 py-3 text-center inline-block font-semibold overflow-hidden;
   min-width: 170px;
 }
 </style>
