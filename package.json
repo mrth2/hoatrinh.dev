@@ -2,7 +2,10 @@
   "name": "hoatrinh-dev",
   "private": true,
   "type": "module",
-  "workspaces": ["apps/*", "packages/*"],
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "scripts": {
     "dev": "bun run --filter @hoatrinh/web dev",
     "build": "bun run --filter @hoatrinh/web build",

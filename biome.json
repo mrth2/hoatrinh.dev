@@ -7,7 +7,10 @@
       "!**/node_modules",
       "!**/.vite",
       "!**/playwright-report",
-      "!**/test-results"
+      "!**/test-results",
+      "!.keepgoing",
+      "!.git",
+      "!bun.lock"
     ]
   },
   "formatter": {
