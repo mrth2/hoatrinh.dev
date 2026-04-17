@@ -1,0 +1,35 @@
+{
+  "name": "@hoatrinh/web",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview --port 4173",
+    "prerender": "bun run scripts/prerender.ts",
+    "e2e": "playwright test",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:unit": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@fontsource/jetbrains-mono": "latest",
+    "@fontsource/space-mono": "latest",
+    "@hoatrinh/content": "workspace:*",
+    "@solidjs/meta": "latest",
+    "@solidjs/router": "latest",
+    "solid-js": "latest"
+  },
+  "devDependencies": {
+    "@playwright/test": "latest",
+    "@solidjs/testing-library": "latest",
+    "@testing-library/jest-dom": "latest",
+    "jsdom": "latest",
+    "typescript": "latest",
+    "vite": "latest",
+    "vite-plugin-solid": "latest",
+    "vitest": "latest"
+  }
+}
