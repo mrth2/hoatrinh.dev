@@ -712,7 +712,7 @@ Lighthouse CI is not added in MVP.
 - Build output directory: `apps/web/dist`.
 - Environment: `BUN_VERSION` pinned to the local Bun version.
 - Preview deploys per PR.
-- Production deploys on merge to `main`.
+- Production deploys on merge to `master`.
 - Custom domain: `hoatrinh.dev` (apex); `www.hoatrinh.dev` redirects to apex via Cloudflare rule.
 - Auto HTTPS.
 - 404: `dist/404.html` served for unmatched URLs.
