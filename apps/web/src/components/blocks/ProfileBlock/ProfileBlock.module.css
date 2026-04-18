@@ -1,7 +1,12 @@
-.root { display: flex; flex-direction: column; gap: var(--space-3); }
-.header { display: flex; flex-direction: column; gap: var(--space-1); }
 .name { font-size: var(--text-xl); font-weight: 700; color: var(--text-primary); }
 .role { font-size: var(--text-sm); color: var(--text-muted); }
 .body { color: var(--text-primary); }
 .body :global(p) { margin-bottom: var(--space-2); }
-.links { display: flex; flex-wrap: wrap; gap: var(--space-4); list-style: none; padding: 0; }
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  list-style: none;
+  padding: 0;
+  margin-top: var(--space-2);
+}

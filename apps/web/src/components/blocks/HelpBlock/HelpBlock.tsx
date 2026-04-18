@@ -4,7 +4,7 @@ import type { HelpEntry } from '@/terminal/entries';
 
 export function HelpBlock(props: { data: HelpEntry['data'] }) {
   return (
-    <section class={styles.root}>
+    <>
       <p class={styles.hint}>Type a command and press Enter. Tab completes. Up/Down scroll history.</p>
       <table class={styles.table}>
         <tbody>
@@ -19,6 +19,6 @@ export function HelpBlock(props: { data: HelpEntry['data'] }) {
         </tbody>
       </table>
       <p class={styles.footer}>built with solid, vite, bun, typescript</p>
-    </section>
+    </>
   );
 }
