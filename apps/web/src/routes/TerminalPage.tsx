@@ -2,6 +2,7 @@ import { getProjects } from '@hoatrinh/content';
 import { useNavigate } from '@solidjs/router';
 import { onMount } from 'solid-js';
 import { EntryList } from '@/components/EntryList/EntryList';
+import { Motd } from '@/components/Motd/Motd';
 import { Prompt } from '@/components/Prompt/Prompt';
 import { autocomplete } from '@/terminal/autocomplete';
 import { registry } from '@/terminal/commands';
@@ -12,6 +13,7 @@ import styles from './TerminalPage.module.css';
 
 const PROJECT_SLUGS = getProjects().map((p) => p.slug);
 const NOOP_NAVIGATE = () => {};
+const SESSION_DATE = new Date().toISOString().slice(0, 10);
 
 export function TerminalPage(props: { initialCommand?: string }) {
   const [state, setState] = createTerminalStore();
@@ -70,9 +72,16 @@ export function TerminalPage(props: { initialCommand?: string }) {
       <a class="skip-link" href="#terminal-input">
         Skip to prompt
       </a>
+      <header class={styles.sessionBar} aria-label="Session">
+        <span class={styles.sessionHost}>hoa@trinh.dev</span>
+        <span class={styles.sessionSep}> · session </span>
+        <time class={styles.sessionDate} datetime={SESSION_DATE}>{SESSION_DATE}</time>
+        <span class={styles.sessionHelp}>type 'help' for commands</span>
+      </header>
       {/* biome-ignore lint/a11y/noStaticElementInteractions: click-to-focus is a pointer-only enhancement; keyboard users tab to #terminal-input directly */}
       {/* biome-ignore lint/a11y/useKeyWithClickEvents: keyboard users reach the input via Tab; this click handler is an enhancement */}
       <div class={styles.scroll} onClick={onListClick}>
+        {state.entries.length === 0 && <Motd onSuggestion={onSuggestion} />}
         <EntryList entries={state.entries} onSuggestion={onSuggestion} />
       </div>
       <Prompt
