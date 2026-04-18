@@ -25,7 +25,8 @@ export function autocomplete(input: string, opts: AutocompleteOptions): Autocomp
 
 function completeAgainst(prefix: string, vocab: readonly string[]): AutocompleteResult {
   if (!prefix) return { completion: null, candidates: [] };
-  const matches = vocab.filter((v) => v.startsWith(prefix.toLowerCase()));
+  const needle = prefix.toLowerCase();
+  const matches = vocab.filter((v) => v.startsWith(needle));
   if (matches.length === 1) return { completion: matches[0] ?? null, candidates: [] };
   if (matches.length > 1) return { completion: null, candidates: matches };
   return { completion: null, candidates: [] };
