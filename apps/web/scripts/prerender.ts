@@ -14,7 +14,7 @@ type EntryServer = {
 
 const DIST = fileURLToPath(new URL('../dist', import.meta.url));
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
-const SITE_URL = process.env.SITE_URL || 'https://hoatrinh.dev';
+const SITE_URL = (process.env.SITE_URL || 'https://hoatrinh.dev').replace(/\/$/, '');
 
 const vite = await createServer({
   root: ROOT,
@@ -29,7 +29,7 @@ const { renderUrl, getRoutes } = (await vite.ssrLoadModule('/src/entry-server.ts
 
 const routes = getRoutes();
 
-for (const route of routes) {
+async function renderRoute(route: RouteDef) {
   const rendered = await renderUrl(route.path);
   const html = shellHtml(rendered.body, rendered.head, {
     title: route.title,
@@ -42,22 +42,28 @@ for (const route of routes) {
   console.log(`  prerendered ${route.path} -> ${outPath.replace(DIST, 'dist')}`);
 }
 
-const notFound = await renderUrl('/__not_found__');
-await writeFile(
-  join(DIST, '404.html'),
-  shellHtml(notFound.body, notFound.head, {
-    title: 'Not Found',
-    description: 'Route not found.',
-    url: `${SITE_URL}/404`,
-  }),
-);
+async function renderNotFound() {
+  const notFound = await renderUrl('/__not_found__');
+  await writeFile(
+    join(DIST, '404.html'),
+    shellHtml(notFound.body, notFound.head, {
+      title: 'Not Found',
+      description: 'Route not found.',
+      url: `${SITE_URL}/404`,
+    }),
+  );
+}
 
-const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+async function writeSitemap() {
+  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${routes.map((r) => `  <url><loc>${SITE_URL}${r.path === '/' ? '' : r.path}</loc></url>`).join('\n')}
 </urlset>
 `;
-await writeFile(join(DIST, 'sitemap.xml'), sitemap);
+  await writeFile(join(DIST, 'sitemap.xml'), sitemap);
+}
+
+await Promise.all([...routes.map(renderRoute), renderNotFound(), writeSitemap()]);
 console.log('  wrote sitemap.xml and 404.html');
 
 await vite.close();

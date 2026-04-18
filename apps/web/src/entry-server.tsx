@@ -28,10 +28,3 @@ export function getRoutes(): RouteDef[] {
     })),
   ];
 }
-
-export function getNotFoundMeta(name: string) {
-  return {
-    title: `Not Found - ${name}`,
-    description: 'Route not found.',
-  };
-}
