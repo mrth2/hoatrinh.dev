@@ -12,7 +12,6 @@ export function Prompt(props: {
   onHistory: (dir: HistoryDirection) => string | null;
   onTab: (raw: string) => TabAction | null;
 }) {
-  let inputEl: HTMLInputElement | undefined;
   const [announce, setAnnounce] = createSignal<string>('');
 
   function handleKeyDown(e: KeyboardEvent) {
@@ -42,12 +41,11 @@ export function Prompt(props: {
   }
 
   return (
-    <form class={styles.prompt} onSubmit={handleSubmit} role="search">
+    <form class={styles.prompt} onSubmit={handleSubmit}>
       <label for="terminal-input" class="sr-only">Terminal prompt, type a command</label>
       <span class={styles.sigil} aria-hidden="true">{props.sigil ?? 'hoa@trinh.dev ~ %'}</span>
       <input
         id="terminal-input"
-        ref={inputEl}
         class={styles.input}
         type="text"
         value={props.value}

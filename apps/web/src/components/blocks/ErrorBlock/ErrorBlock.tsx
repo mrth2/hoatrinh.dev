@@ -1,3 +1,4 @@
+import { For } from 'solid-js';
 import styles from './ErrorBlock.module.css';
 
 export function ErrorBlock(props: {
@@ -11,18 +12,20 @@ export function ErrorBlock(props: {
       {props.suggestions.length > 0 && (
         <p class={styles.suggestLine}>
           Try:{' '}
-          {props.suggestions.map((s, i) => (
-            <>
-              {i > 0 && ', '}
-              <button
-                class={styles.chip}
-                type="button"
-                onClick={() => props.onSuggestion?.(s)}
-              >
-                {s}
-              </button>
-            </>
-          ))}
+          <For each={props.suggestions}>
+            {(s, i) => (
+              <>
+                {i() > 0 && ', '}
+                <button
+                  class={styles.chip}
+                  type="button"
+                  onClick={() => props.onSuggestion?.(s)}
+                >
+                  {s}
+                </button>
+              </>
+            )}
+          </For>
         </p>
       )}
     </div>

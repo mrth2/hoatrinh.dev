@@ -1,3 +1,4 @@
+import { For } from 'solid-js';
 import type { Project } from '@hoatrinh/content';
 import styles from './ProjectBlock.module.css';
 
@@ -14,7 +15,7 @@ export function ProjectBlock(props: { data: Project }) {
         </dl>
         {props.data.tech.length > 0 && (
           <ul class={styles.tech}>
-            {props.data.tech.map((t) => <li>{t}</li>)}
+            <For each={props.data.tech}>{(t) => <li>{t}</li>}</For>
           </ul>
         )}
       </header>

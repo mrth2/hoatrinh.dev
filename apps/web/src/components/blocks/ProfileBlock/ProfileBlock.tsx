@@ -1,3 +1,4 @@
+import { For } from 'solid-js';
 import type { Profile } from '@hoatrinh/content';
 import styles from './ProfileBlock.module.css';
 
@@ -10,9 +11,9 @@ export function ProfileBlock(props: { data: Profile }) {
       </header>
       <div class={styles.body} innerHTML={props.data.bodyHtml} />
       <ul class={styles.links}>
-        {props.data.links.map((l) => (
-          <li><a href={l.href}>{l.label}</a></li>
-        ))}
+        <For each={props.data.links}>
+          {(l) => <li><a href={l.href}>{l.label}</a></li>}
+        </For>
       </ul>
     </section>
   );
