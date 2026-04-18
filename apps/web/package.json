@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "check:contrast": "bun run scripts/check-contrast.ts",
     "preview": "bun run scripts/preview.ts",
     "prerender": "bun run scripts/prerender.ts",
     "e2e": "playwright test",

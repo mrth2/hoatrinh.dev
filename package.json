@@ -15,7 +15,7 @@
     "test:unit": "bun run --filter '*' test:unit",
     "e2e": "bun run --filter @hoatrinh/web e2e",
     "typecheck": "bun run --filter '*' typecheck",
-    "lint": "biome check .",
+    "lint": "biome check . && bun run --filter @hoatrinh/web check:contrast",
     "format": "biome format --write ."
   },
   "devDependencies": {
