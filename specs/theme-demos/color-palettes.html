@@ -1,0 +1,668 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>hoatrinh.dev - color palette demos (A / B / C)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font: 400 14px/1.55 'Space Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+    background: #050505;
+    color: #aaa;
+    padding: 32px 24px 80px;
+  }
+  .page-title {
+    max-width: 1400px;
+    margin: 0 auto 24px;
+    color: #888;
+    font-size: 13px;
+  }
+  .page-title strong { color: #ddd; font-weight: 700; }
+  .page-title .hint { display: block; margin-top: 6px; color: #555; }
+
+  .grid {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  @media (min-width: 1080px) {
+    .grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 1600px) {
+    .grid { grid-template-columns: repeat(4, 1fr); max-width: 1800px; }
+  }
+
+  .caption {
+    padding: 10px 14px;
+    border: 1px solid #222;
+    border-bottom: none;
+    background: #0b0b0b;
+    color: #ddd;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .caption .name { font-weight: 700; color: #fff; }
+  .caption .tag { color: #777; }
+  .swatches {
+    display: flex;
+    gap: 4px;
+    margin-top: 6px;
+  }
+  .swatches span {
+    display: inline-block;
+    height: 14px;
+    width: 28px;
+    border-radius: 2px;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  /* ======================= shared panel layout ======================= */
+  .panel {
+    --space-1: 4px;  --space-2: 8px;  --space-3: 12px;
+    --space-4: 16px; --space-5: 20px; --space-6: 24px;
+    --space-8: 32px;
+    --radius-sm: 2px; --radius-md: 4px;
+    --font-ui:   'Space Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+    --font-code: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+    font-family: var(--font-ui);
+    color: var(--text-primary);
+    background-color: var(--bg);
+    background-image: radial-gradient(var(--dot) 1px, transparent 1px);
+    background-size: 20px 20px;
+    border: 1px solid var(--border);
+    min-height: 560px;
+    padding: 20px 22px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-code);
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+  .topbar .id { color: var(--accent); font-weight: 700; }
+  .topbar .sep { color: var(--text-dim); margin: 0 6px; }
+  .topbar .hint code {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .hero h1 {
+    font-family: var(--font-ui);
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 6px;
+    letter-spacing: 0.01em;
+  }
+  .hero .sub {
+    color: var(--text-muted);
+    font-size: 13px;
+  }
+  .hero .sub b { color: var(--text-primary); font-weight: 400; }
+  .hero .help {
+    color: var(--text-muted);
+    font-size: 13px;
+    margin-top: 4px;
+  }
+  .hero .help .k { color: var(--accent); }
+  .hero .help .k-alt { color: var(--accent-alt, var(--accent)); }
+
+  .panel-section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .panel-section .title {
+    font-family: var(--font-code);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--text-dim);
+  }
+  .panel-section .title .pill {
+    background: var(--accent-soft);
+    color: var(--accent);
+    padding: 1px 6px;
+    border-radius: 2px;
+    margin-left: 6px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+  }
+
+  .row {
+    font-family: var(--font-code);
+    font-size: 13px;
+    color: var(--text-muted);
+    display: flex;
+    gap: 10px;
+  }
+  .row .k { color: var(--accent); min-width: 80px; font-weight: 500; }
+  .row .v { color: var(--text-primary); }
+  .row a { color: var(--accent-link, var(--accent)); text-decoration: none; }
+  .row a:hover { text-decoration: underline; }
+
+  .err-row .k { color: var(--error); }
+  .err-row .v { color: var(--text-primary); }
+
+  /* prompt */
+  .prompt {
+    margin-top: auto;
+    border: 1px solid var(--accent);
+    background: var(--bg-elevated);
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-code);
+    font-size: 13px;
+    box-shadow: 0 0 0 1px var(--accent-soft);
+  }
+  .prompt .ps { color: var(--accent); font-weight: 700; }
+  .prompt .cursor {
+    display: inline-block;
+    width: 8px;
+    height: 14px;
+    background: var(--accent);
+    vertical-align: -2px;
+    animation: blink 1s steps(2) infinite;
+  }
+  .prompt .meta {
+    margin-left: auto;
+    color: var(--text-dim);
+    font-size: 11px;
+  }
+  .prompt .meta .k { color: var(--accent-alt, var(--text-muted)); }
+
+  .prompt.err {
+    border-left: 3px solid var(--error);
+    padding-left: 9px;
+  }
+
+  @keyframes blink {
+    to { opacity: 0; }
+  }
+
+  /* ======================= A · amber mono ======================= */
+  .panel-a {
+    --bg: #0a0806;
+    --bg-elevated: #14100a;
+    --border: #2a1f10;
+    --text-primary: #ecdfc2;
+    --text-muted: #a08a64;
+    --text-dim: #5a4a30;
+    --accent: #ffb347;
+    --accent-alt: #ffb347;
+    --accent-link: #ffb347;
+    --accent-soft: rgba(255, 179, 71, 0.12);
+    --error: #ff8a5c;
+    --dot: rgba(110, 80, 30, 0.25);
+  }
+  .panel-a h1 { text-shadow: 0 0 12px rgba(255,179,71,0.08); }
+
+  /* ======================= B · duotone ======================= */
+  .panel-b {
+    --bg: #0a0d0b;
+    --bg-elevated: #121814;
+    --border: #1f2a23;
+    --text-primary: #d8e1da;
+    --text-muted: #8b9891;
+    --text-dim: #5e6a64;
+    --accent: #6fe0a1;
+    --accent-alt: #ff4fd8;
+    --accent-link: #ff4fd8;
+    --accent-soft: rgba(111, 224, 161, 0.12);
+    --error: #ff7a7a;
+    --dot: rgba(31, 42, 35, 0.55);
+  }
+  .panel-b .hero h1 b.neon {
+    color: #ff4fd8;
+    text-shadow: 0 0 12px rgba(255,79,216,0.35);
+  }
+
+  /* ======================= D · amber + muted green ======================= */
+  .panel-d {
+    --bg: #0a0806;
+    --bg-elevated: #14100a;
+    --border: #2a1f10;
+    --text-primary: #ecdfc2;
+    --text-muted: #a08a64;
+    --text-dim: #5a4a30;
+    --accent: #ffb347;       /* amber - primary (prompt, headings, emphasis) */
+    --accent-alt: #7dc69a;   /* muted green - secondary (success/ok/cursor) */
+    --accent-link: #ffb347;
+    --accent-soft: rgba(255, 179, 71, 0.12);
+    --error: #ff8a5c;
+    --dot: rgba(110, 80, 30, 0.25);
+  }
+  .panel-d h1 { text-shadow: 0 0 12px rgba(255,179,71,0.1); }
+  .panel-d .prompt .cursor { background: #7dc69a; }
+  .panel-d .chip.ok { border-color: #7dc69a; color: #7dc69a; }
+  .panel-d .ok-tag {
+    color: #7dc69a;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+  }
+
+  /* ======================= D+ · amber + green + hover neon ======================= */
+  .panel-dplus {
+    --bg: #0a0806;
+    --bg-elevated: #14100a;
+    --border: #2a1f10;
+    --text-primary: #ecdfc2;
+    --text-muted: #a08a64;
+    --text-dim: #5a4a30;
+    --accent: #ffb347;       /* amber - primary */
+    --accent-alt: #7dc69a;   /* muted green - secondary */
+    --accent-link: #ffb347;
+    --accent-soft: rgba(255, 179, 71, 0.12);
+    --error: #ff8a5c;
+    --dot: rgba(110, 80, 30, 0.25);
+    --neon: #ff4fd8;         /* neon magenta - hover only */
+  }
+  .panel-dplus h1 { text-shadow: 0 0 12px rgba(255,179,71,0.1); }
+  .panel-dplus .prompt .cursor { background: #7dc69a; }
+  .panel-dplus .chip.ok { border-color: #7dc69a; color: #7dc69a; }
+  .panel-dplus .ok-tag {
+    color: #7dc69a;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+  }
+  .panel-dplus a:hover,
+  .panel-dplus a.demo-hover {
+    color: var(--neon);
+    text-decoration: underline;
+    text-shadow: 0 0 10px rgba(255,79,216,0.45);
+  }
+  .panel-dplus .hover-label {
+    color: var(--neon);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-left: 8px;
+    opacity: 0.8;
+  }
+
+  /* ======================= C · tri-chromatic ======================= */
+  .panel-c {
+    --bg: #080b0a;
+    --bg-elevated: #101614;
+    --border: #1a2620;
+    --text-primary: #d8e1da;
+    --text-muted: #8b9891;
+    --text-dim: #5e6a64;
+    --accent: #6fe0a1;
+    --accent-alt: #ff4fd8;
+    --accent-link: #7cf0ff;
+    --accent-soft: rgba(111, 224, 161, 0.12);
+    --error: #ff4fd8;
+    --dot: rgba(31, 42, 35, 0.55);
+  }
+  .panel-c .hero h1 {
+    text-shadow: 0 0 14px rgba(111,224,161,0.18);
+  }
+  .panel-c .hero h1 b.neon-c {
+    color: #7cf0ff;
+    text-shadow: 0 0 14px rgba(124,240,255,0.45);
+  }
+  .panel-c .prompt .cursor {
+    background: #7cf0ff;
+  }
+  .panel-c .prompt { box-shadow: 0 0 0 1px rgba(124,240,255,0.25); border-color: #7cf0ff33; }
+  .panel-c .prompt .ps { color: #6fe0a1; }
+
+  /* subtle scanline overlay (demo only, very faint) */
+  .panel::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.012) 0 1px,
+      transparent 1px 3px
+    );
+    pointer-events: none;
+  }
+
+  /* ASCII block used inside panels */
+  pre.ascii {
+    margin: 0;
+    font-family: var(--font-code);
+    font-size: 11px;
+    line-height: 1.35;
+    color: var(--text-dim);
+    white-space: pre;
+  }
+  .panel-b pre.ascii { color: var(--accent); opacity: 0.55; }
+  .panel-c pre.ascii { color: var(--accent); opacity: 0.55; }
+  .panel-a pre.ascii { color: var(--accent); opacity: 0.4; }
+
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .chip {
+    font-family: var(--font-code);
+    font-size: 11px;
+    padding: 2px 8px;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    border-radius: 2px;
+  }
+  .chip.on {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  .panel-c .chip.alt { border-color: var(--accent-alt); color: var(--accent-alt); }
+  .panel-c .chip.lnk { border-color: var(--accent-link); color: var(--accent-link); }
+  .panel-b .chip.alt { border-color: var(--accent-alt); color: var(--accent-alt); }
+</style>
+</head>
+<body>
+
+<div class="page-title">
+  <strong>hoatrinh.dev</strong> · color palette demos
+  <span class="hint">three directions for the refined terminal theme - same layout, different palette. all with subtle scanlines + blinking cursor + one small neon flourish where it applies.</span>
+</div>
+
+<div class="grid">
+
+  <!-- =========================== A =========================== -->
+  <div>
+    <div class="caption">
+      <div><span class="name">A - Mono bold (amber)</span> <span class="tag">· VT220 warmth, one accent</span></div>
+      <div class="swatches">
+        <span style="background:#0a0806"></span>
+        <span style="background:#ecdfc2"></span>
+        <span style="background:#ffb347"></span>
+        <span style="background:#ff8a5c"></span>
+      </div>
+    </div>
+    <div class="panel panel-a">
+      <div class="topbar">
+        <div><span class="id">hoa@trinh.dev</span><span class="sep">·</span>session 2026-04-18</div>
+        <div class="hint">type <code>'help'</code> for commands</div>
+      </div>
+
+      <div class="hero">
+        <h1>hoa trinh hai</h1>
+        <div class="sub">senior software engineer <span class="sep" style="color:var(--text-dim)">·</span> vietnam</div>
+        <div class="help">type <span class="k">help</span> to see commands, or try <span class="k-alt">about</span></div>
+      </div>
+
+      <div class="panel-section">
+        <div class="title">motd <span class="pill">0.1.0</span></div>
+<pre class="ascii">  ╭──────────────────────────────╮
+  │  welcome back, traveller.    │
+  ╰──────────────────────────────╯</pre>
+      </div>
+
+      <div class="panel-section">
+        <div class="title">skills</div>
+        <div class="chips">
+          <span class="chip on">typescript</span>
+          <span class="chip on">go</span>
+          <span class="chip">react</span>
+          <span class="chip">nestjs</span>
+          <span class="chip">postgres</span>
+          <span class="chip">kubernetes</span>
+        </div>
+      </div>
+
+      <div class="panel-section">
+        <div class="row"><span class="k">whoami</span><span class="v">hoa - builds things, ships them, iterates</span></div>
+        <div class="row"><span class="k">email</span><a href="#">hoa@trinh.dev</a></div>
+        <div class="row err-row"><span class="k">last</span><span class="v">command not found: sudo make me a sandwich</span></div>
+      </div>
+
+      <div class="prompt err">
+        <span class="ps">hoa@trinh.dev ~ %</span><span class="cursor"></span>
+        <span class="meta"><span class="k">⏎</span> run · <span class="k">↑↓</span> history · <span class="k">→</span> complete</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================== B =========================== -->
+  <div>
+    <div class="caption">
+      <div><span class="name">B - Duotone</span> <span class="tag">· phosphor green + magenta neon</span></div>
+      <div class="swatches">
+        <span style="background:#0a0d0b"></span>
+        <span style="background:#d8e1da"></span>
+        <span style="background:#6fe0a1"></span>
+        <span style="background:#ff4fd8"></span>
+      </div>
+    </div>
+    <div class="panel panel-b">
+      <div class="topbar">
+        <div><span class="id">hoa@trinh.dev</span><span class="sep">·</span>session 2026-04-18</div>
+        <div class="hint">type <code>'help'</code> for commands</div>
+      </div>
+
+      <div class="hero">
+        <h1>hoa trinh <b class="neon">hai</b></h1>
+        <div class="sub">senior software engineer <span class="sep" style="color:var(--text-dim)">·</span> vietnam</div>
+        <div class="help">type <span class="k">help</span> to see commands, or try <span class="k-alt" style="color:var(--accent-alt)">about</span></div>
+      </div>
+
+      <div class="panel-section">
+        <div class="title">motd <span class="pill">0.1.0</span></div>
+<pre class="ascii">  ┌──────────────────────────────┐
+  │  welcome back, traveller.    │
+  └──────────────────────────────┘</pre>
+      </div>
+
+      <div class="panel-section">
+        <div class="title">skills</div>
+        <div class="chips">
+          <span class="chip on">typescript</span>
+          <span class="chip on">go</span>
+          <span class="chip alt">react</span>
+          <span class="chip">nestjs</span>
+          <span class="chip">postgres</span>
+          <span class="chip">kubernetes</span>
+        </div>
+      </div>
+
+      <div class="panel-section">
+        <div class="row"><span class="k">whoami</span><span class="v">hoa - builds things, ships them, iterates</span></div>
+        <div class="row"><span class="k">email</span><a href="#">hoa@trinh.dev</a></div>
+        <div class="row err-row"><span class="k">last</span><span class="v">command not found: sudo make me a sandwich</span></div>
+      </div>
+
+      <div class="prompt err">
+        <span class="ps">hoa@trinh.dev ~ %</span><span class="cursor"></span>
+        <span class="meta"><span class="k" style="color:var(--accent-alt)">⏎</span> run · <span class="k" style="color:var(--accent-alt)">↑↓</span> history · <span class="k" style="color:var(--accent-alt)">→</span> complete</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================== C =========================== -->
+  <div>
+    <div class="caption">
+      <div><span class="name">C - Tri-chromatic</span> <span class="tag">· green + magenta + cyan</span></div>
+      <div class="swatches">
+        <span style="background:#080b0a"></span>
+        <span style="background:#6fe0a1"></span>
+        <span style="background:#ff4fd8"></span>
+        <span style="background:#7cf0ff"></span>
+      </div>
+    </div>
+    <div class="panel panel-c">
+      <div class="topbar">
+        <div><span class="id">hoa@trinh.dev</span><span class="sep">·</span>session 2026-04-18</div>
+        <div class="hint">type <code>'help'</code> for commands</div>
+      </div>
+
+      <div class="hero">
+        <h1>hoa trinh <b class="neon-c">hai</b></h1>
+        <div class="sub">senior software engineer <span class="sep" style="color:var(--text-dim)">·</span> vietnam</div>
+        <div class="help">type <span class="k">help</span> to see commands, or try <span class="k-alt" style="color:var(--accent-link)">about</span></div>
+      </div>
+
+      <div class="panel-section">
+        <div class="title">motd <span class="pill">0.1.0</span></div>
+<pre class="ascii">  ┌──────────────────────────────┐
+  │  welcome back, traveller.    │
+  └──────────────────────────────┘</pre>
+      </div>
+
+      <div class="panel-section">
+        <div class="title">skills</div>
+        <div class="chips">
+          <span class="chip on">typescript</span>
+          <span class="chip on">go</span>
+          <span class="chip lnk">react</span>
+          <span class="chip alt">nestjs</span>
+          <span class="chip">postgres</span>
+          <span class="chip">kubernetes</span>
+        </div>
+      </div>
+
+      <div class="panel-section">
+        <div class="row"><span class="k">whoami</span><span class="v">hoa - builds things, ships them, iterates</span></div>
+        <div class="row"><span class="k">email</span><a href="#">hoa@trinh.dev</a></div>
+        <div class="row err-row"><span class="k" style="color:var(--accent-alt)">last</span><span class="v">command not found: sudo make me a sandwich</span></div>
+      </div>
+
+      <div class="prompt err">
+        <span class="ps">hoa@trinh.dev ~ %</span><span class="cursor"></span>
+        <span class="meta"><span class="k" style="color:var(--accent-link)">⏎</span> run · <span class="k" style="color:var(--accent-link)">↑↓</span> history · <span class="k" style="color:var(--accent-link)">→</span> complete</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================== D+ =========================== -->
+  <div>
+    <div class="caption">
+      <div><span class="name">D+ - D with hover neon</span> <span class="tag">· same warmth, one cyberpunk moment on hover</span></div>
+      <div class="swatches">
+        <span style="background:#0a0806"></span>
+        <span style="background:#ffb347"></span>
+        <span style="background:#7dc69a"></span>
+        <span style="background:#ff4fd8"></span>
+      </div>
+    </div>
+    <div class="panel panel-dplus">
+      <div class="topbar">
+        <div><span class="id">hoa@trinh.dev</span><span class="sep">·</span>session 2026-04-18</div>
+        <div class="hint">type <code>'help'</code> for commands</div>
+      </div>
+
+      <div class="hero">
+        <h1>hoa trinh hai</h1>
+        <div class="sub">senior software engineer <span class="sep" style="color:var(--text-dim)">·</span> vietnam</div>
+        <div class="help">type <span class="k">help</span> to see commands, or try <span class="k-alt">about</span></div>
+      </div>
+
+      <div class="panel-section">
+        <div class="title">motd <span class="pill">0.1.0</span></div>
+<pre class="ascii">  ╭──────────────────────────────╮
+  │  welcome back, traveller.    │
+  ╰──────────────────────────────╯</pre>
+      </div>
+
+      <div class="panel-section">
+        <div class="title">skills</div>
+        <div class="chips">
+          <span class="chip on">typescript</span>
+          <span class="chip on">go</span>
+          <span class="chip ok">react <span class="ok-tag">OK</span></span>
+          <span class="chip">nestjs</span>
+          <span class="chip">postgres</span>
+          <span class="chip">kubernetes</span>
+        </div>
+      </div>
+
+      <div class="panel-section">
+        <div class="row"><span class="k">whoami</span><span class="v">hoa - builds things, ships them, iterates</span></div>
+        <div class="row"><span class="k">email</span><a href="#">hoa@trinh.dev</a></div>
+        <div class="row"><span class="k">github</span><a href="#" class="demo-hover">github.com/mrth2</a><span class="hover-label">:hover</span></div>
+        <div class="row"><span class="k" style="color:#7dc69a">status</span><span class="v">online <span class="ok-tag">OK</span></span></div>
+        <div class="row err-row"><span class="k">last</span><span class="v">command not found: sudo make me a sandwich</span></div>
+      </div>
+
+      <div class="prompt err">
+        <span class="ps">hoa@trinh.dev ~ %</span><span class="cursor"></span>
+        <span class="meta"><span class="k">⏎</span> run · <span class="k">↑↓</span> history · <span class="k">→</span> complete</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================== D =========================== -->
+  <div>
+    <div class="caption">
+      <div><span class="name">D - Amber primary + muted green secondary</span> <span class="tag">· green keeps the phosphor soul, amber becomes the face</span></div>
+      <div class="swatches">
+        <span style="background:#0a0806"></span>
+        <span style="background:#ecdfc2"></span>
+        <span style="background:#ffb347"></span>
+        <span style="background:#7dc69a"></span>
+      </div>
+    </div>
+    <div class="panel panel-d">
+      <div class="topbar">
+        <div><span class="id">hoa@trinh.dev</span><span class="sep">·</span>session 2026-04-18</div>
+        <div class="hint">type <code>'help'</code> for commands</div>
+      </div>
+
+      <div class="hero">
+        <h1>hoa trinh hai</h1>
+        <div class="sub">senior software engineer <span class="sep" style="color:var(--text-dim)">·</span> vietnam</div>
+        <div class="help">type <span class="k">help</span> to see commands, or try <span class="k-alt">about</span></div>
+      </div>
+
+      <div class="panel-section">
+        <div class="title">motd <span class="pill">0.1.0</span></div>
+<pre class="ascii">  ╭──────────────────────────────╮
+  │  welcome back, traveller.    │
+  ╰──────────────────────────────╯</pre>
+      </div>
+
+      <div class="panel-section">
+        <div class="title">skills</div>
+        <div class="chips">
+          <span class="chip on">typescript</span>
+          <span class="chip on">go</span>
+          <span class="chip ok">react <span class="ok-tag">OK</span></span>
+          <span class="chip">nestjs</span>
+          <span class="chip">postgres</span>
+          <span class="chip">kubernetes</span>
+        </div>
+      </div>
+
+      <div class="panel-section">
+        <div class="row"><span class="k">whoami</span><span class="v">hoa - builds things, ships them, iterates</span></div>
+        <div class="row"><span class="k">email</span><a href="#">hoa@trinh.dev</a></div>
+        <div class="row"><span class="k" style="color:#7dc69a">status</span><span class="v">online <span class="ok-tag">OK</span></span></div>
+        <div class="row err-row"><span class="k">last</span><span class="v">command not found: sudo make me a sandwich</span></div>
+      </div>
+
+      <div class="prompt err">
+        <span class="ps">hoa@trinh.dev ~ %</span><span class="cursor"></span>
+        <span class="meta"><span class="k">⏎</span> run · <span class="k">↑↓</span> history · <span class="k">→</span> complete</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
