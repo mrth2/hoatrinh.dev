@@ -1,6 +1,6 @@
-import { Route, Router } from '@solidjs/router';
-import { TerminalPage } from './routes/TerminalPage';
+import { Route, Router, type RouteSectionProps } from '@solidjs/router';
 import { NotFoundPage } from './routes/NotFoundPage';
+import { TerminalPage } from './routes/TerminalPage';
 
 export function App(props: { url?: string }) {
   return (
@@ -10,7 +10,9 @@ export function App(props: { url?: string }) {
       <Route path="/projects" component={() => <TerminalPage initialCommand="projects" />} />
       <Route
         path="/project/:slug"
-        component={(p: any) => <TerminalPage initialCommand={`project ${p.params.slug}`} />}
+        component={(p: RouteSectionProps) => (
+          <TerminalPage initialCommand={`project ${p.params.slug}`} />
+        )}
       />
       <Route path="/experience" component={() => <TerminalPage initialCommand="experience" />} />
       <Route path="/skills" component={() => <TerminalPage initialCommand="skills" />} />

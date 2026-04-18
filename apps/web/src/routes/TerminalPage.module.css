@@ -8,6 +8,11 @@
   gap: var(--space-2);
 }
 @media (min-width: 640px) {
-  .page { padding: var(--space-6); }
+  .page {
+    padding: var(--space-6);
+  }
 }
-.scroll { flex: 1; overflow-y: auto; }
+.scroll {
+  flex: 1;
+  overflow-y: auto;
+}

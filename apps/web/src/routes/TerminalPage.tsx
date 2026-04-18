@@ -1,13 +1,13 @@
-import { onMount } from 'solid-js';
+import { getProjects } from '@hoatrinh/content';
 import { useNavigate } from '@solidjs/router';
-import { createHistory } from '@/terminal/history';
-import { execute } from '@/terminal/execute';
-import { registry } from '@/terminal/commands';
-import { autocomplete } from '@/terminal/autocomplete';
-import { createTerminalStore } from '@/terminal/store';
+import { onMount } from 'solid-js';
 import { EntryList } from '@/components/EntryList/EntryList';
 import { Prompt } from '@/components/Prompt/Prompt';
-import { getProjects } from '@hoatrinh/content';
+import { autocomplete } from '@/terminal/autocomplete';
+import { registry } from '@/terminal/commands';
+import { execute } from '@/terminal/execute';
+import { createHistory } from '@/terminal/history';
+import { createTerminalStore } from '@/terminal/store';
 import styles from './TerminalPage.module.css';
 
 export function TerminalPage(props: { initialCommand?: string }) {
@@ -51,14 +51,18 @@ export function TerminalPage(props: { initialCommand?: string }) {
 
   function onListClick(e: MouseEvent) {
     const selection = window.getSelection();
-    if (selection && selection.toString()) return;
+    if (selection?.toString()) return;
     if ((e.target as HTMLElement).closest('a, button')) return;
     document.getElementById('terminal-input')?.focus();
   }
 
   return (
     <main class={styles.page}>
-      <a class="skip-link" href="#terminal-input">Skip to prompt</a>
+      <a class="skip-link" href="#terminal-input">
+        Skip to prompt
+      </a>
+      {/* biome-ignore lint/a11y/noStaticElementInteractions: click-to-focus is a pointer-only enhancement; keyboard users tab to #terminal-input directly */}
+      {/* biome-ignore lint/a11y/useKeyWithClickEvents: keyboard users reach the input via Tab; this click handler is an enhancement */}
       <div class={styles.scroll} onClick={onListClick}>
         <EntryList entries={state.entries} onSuggestion={onSuggestion} />
       </div>
