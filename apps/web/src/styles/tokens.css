@@ -57,4 +57,7 @@
 
   /* borders */
   --border-width: 1px;
+
+  /* grid */
+  --grid-dot: rgba(31, 42, 35, 0.35);  /* border-default #1f2a23 at 35% alpha */
 }

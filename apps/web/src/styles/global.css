@@ -2,8 +2,9 @@ body {
   color: var(--text-primary);
   font: 400 var(--text-base) / var(--leading-relaxed) var(--font-ui);
   background-color: var(--bg-base);
-  background-image:
-    radial-gradient(ellipse at top, rgba(111, 224, 161, 0.02), transparent 60%);
+  background-image: radial-gradient(var(--grid-dot) 1px, transparent 1px);
+  background-size: 24px 24px;
+  background-attachment: fixed;
   min-height: 100dvh;
 }
 
@@ -41,3 +42,19 @@ a:hover { text-decoration: underline; }
   z-index: 100;
 }
 .skip-link:focus { top: var(--space-2); }
+
+@media (prefers-contrast: more) {
+  body { background-image: none; }
+  :root {
+    --border-default: var(--border-strong);
+    --text-muted: #b8c1bb;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
