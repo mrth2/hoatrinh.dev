@@ -21,7 +21,7 @@
   border-top-color: var(--border-strong);
   box-shadow:
     inset 2px 0 0 var(--accent-primary),
-    0 0 0 2px rgba(111, 224, 161, 0.25);
+    0 0 0 2px rgba(255, 179, 71, 0.25);
 }
 
 .sigil {
@@ -70,7 +70,7 @@
 .prompt[data-errored="true"]:focus-within {
   box-shadow:
     inset 2px 0 0 var(--state-error),
-    0 0 0 2px rgba(111, 224, 161, 0.25);
+    0 0 0 2px rgba(255, 179, 71, 0.25);
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -80,6 +80,6 @@
 }
 
 @keyframes prompt-error-flash {
-  0%   { box-shadow: inset 2px 0 0 var(--state-error), 0 0 0 2px rgba(255, 122, 122, 0.25); }
+  0%   { box-shadow: inset 2px 0 0 var(--state-error), 0 0 0 2px rgba(255, 138, 92, 0.35); }
   100% { box-shadow: inset 2px 0 0 var(--state-error); }
 }
