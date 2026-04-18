@@ -10,17 +10,22 @@ import { createHistory } from '@/terminal/history';
 import { createTerminalStore } from '@/terminal/store';
 import styles from './TerminalPage.module.css';
 
+const PROJECT_SLUGS = getProjects().map((p) => p.slug);
+const NOOP_NAVIGATE = () => {};
+
 export function TerminalPage(props: { initialCommand?: string }) {
   const [state, setState] = createTerminalStore();
   const navigate = useNavigate();
   const history = createHistory();
+  let inputEl: HTMLInputElement | undefined;
 
   onMount(async () => {
     if (props.initialCommand) {
-      await execute(props.initialCommand, { state, setState, registry, navigate: () => {} });
+      // Router already landed us at this URL; skip execute's navigate side effect.
+      await execute(props.initialCommand, { state, setState, registry, navigate: NOOP_NAVIGATE });
     }
     if (matchMedia('(pointer: fine)').matches) {
-      document.getElementById('terminal-input')?.focus();
+      inputEl?.focus();
     }
   });
 
@@ -40,7 +45,7 @@ export function TerminalPage(props: { initialCommand?: string }) {
   function onTab(raw: string) {
     return autocomplete(raw, {
       commands: registry.vocab,
-      projectSlugs: getProjects().map((p) => p.slug),
+      projectSlugs: PROJECT_SLUGS,
     });
   }
 
@@ -53,7 +58,7 @@ export function TerminalPage(props: { initialCommand?: string }) {
     const selection = window.getSelection();
     if (selection?.toString()) return;
     if ((e.target as HTMLElement).closest('a, button')) return;
-    document.getElementById('terminal-input')?.focus();
+    inputEl?.focus();
   }
 
   return (
@@ -72,6 +77,9 @@ export function TerminalPage(props: { initialCommand?: string }) {
         onSubmit={submit}
         onHistory={onHistory}
         onTab={onTab}
+        inputRef={(el) => {
+          inputEl = el;
+        }}
       />
     </main>
   );
