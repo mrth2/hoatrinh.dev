@@ -2,7 +2,8 @@
 // and fails the build if any pair drops below its target.
 
 import { readFileSync } from 'node:fs';
-import { resolve } from 'node:path';
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 type Hex = `#${string}`;
 
@@ -10,7 +11,8 @@ function readTokens(path: string): Record<string, string> {
   const src = readFileSync(path, 'utf8');
   const out: Record<string, string> = {};
   for (const m of src.matchAll(/--([a-z0-9-]+):\s*([^;]+);/gi)) {
-    out[m[1]] = m[2].trim();
+    const [, name, value] = m;
+    if (name && value) out[name] = value.trim();
   }
   return out;
 }
@@ -35,7 +37,7 @@ function contrast(a: Hex, b: Hex): number {
   return (hi + 0.05) / (lo + 0.05);
 }
 
-const tokensPath = resolve(import.meta.dir, '../src/styles/tokens.css');
+const tokensPath = resolve(dirname(fileURLToPath(import.meta.url)), '../src/styles/tokens.css');
 const tokens = readTokens(tokensPath);
 const bg = tokens['bg-base'] as Hex;
 

@@ -7,9 +7,13 @@ export function Motd(props: { onSuggestion: (cmd: string) => void }) {
       <p class={styles.role}>senior software engineer · vietnam</p>
       <p class={styles.hint}>
         type{' '}
-        <button type="button" class={styles.cmd} onClick={() => props.onSuggestion('help')}>help</button>
-        {' '}to see commands, or try{' '}
-        <button type="button" class={styles.cmd} onClick={() => props.onSuggestion('about')}>about</button>
+        <button type="button" class={styles.cmd} onClick={() => props.onSuggestion('help')}>
+          help
+        </button>{' '}
+        to see commands, or try{' '}
+        <button type="button" class={styles.cmd} onClick={() => props.onSuggestion('about')}>
+          about
+        </button>
       </p>
     </section>
   );

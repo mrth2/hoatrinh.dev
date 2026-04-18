@@ -5,9 +5,22 @@
   margin-top: var(--space-6);
   font-family: var(--font-code);
 }
-.name { font-size: var(--text-lg); font-weight: 700; color: var(--text-primary); margin: 0; }
-.role { font-size: var(--text-sm); color: var(--text-muted); margin: 0; }
-.hint { font-size: var(--text-sm); color: var(--text-dim); margin: 0; }
+.name {
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+.role {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  margin: 0;
+}
+.hint {
+  font-size: var(--text-sm);
+  color: var(--text-dim);
+  margin: 0;
+}
 .cmd {
   font: inherit;
   color: var(--accent-primary);
@@ -16,4 +29,6 @@
   padding: 0;
   cursor: pointer;
 }
-.cmd:hover { text-decoration: underline; }
+.cmd:hover {
+  text-decoration: underline;
+}

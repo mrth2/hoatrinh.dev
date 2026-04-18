@@ -1,5 +1,5 @@
-import { For } from 'solid-js';
 import type { SkillGroup } from '@hoatrinh/content';
+import { For } from 'solid-js';
 import styles from './SkillsBlock.module.css';
 
 export function SkillsBlock(props: { data: SkillGroup[] }) {

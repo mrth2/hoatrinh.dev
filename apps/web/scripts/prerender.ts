@@ -36,7 +36,8 @@ async function renderRoute(route: RouteDef) {
     description: route.description,
     url: `${SITE_URL}${route.path === '/' ? '' : route.path}`,
   });
-  const outPath = route.path === '/' ? join(DIST, 'index.html') : join(DIST, route.path.slice(1), 'index.html');
+  const outPath =
+    route.path === '/' ? join(DIST, 'index.html') : join(DIST, route.path.slice(1), 'index.html');
   await mkdir(dirname(outPath), { recursive: true });
   await writeFile(outPath, html);
   console.log(`  prerendered ${route.path} -> ${outPath.replace(DIST, 'dist')}`);

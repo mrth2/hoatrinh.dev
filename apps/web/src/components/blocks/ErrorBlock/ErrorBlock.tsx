@@ -8,7 +8,9 @@ export function ErrorBlock(props: {
 }) {
   return (
     <div class={styles.root}>
-      <p class={styles.message}><span aria-hidden="true">×</span> {props.message}</p>
+      <p class={styles.message}>
+        <span aria-hidden="true">×</span> {props.message}
+      </p>
       {props.suggestions.length > 0 && (
         <p class={styles.suggestLine}>
           Try:{' '}
@@ -16,11 +18,7 @@ export function ErrorBlock(props: {
             {(s, i) => (
               <>
                 {i() > 0 && ', '}
-                <button
-                  class={styles.chip}
-                  type="button"
-                  onClick={() => props.onSuggestion?.(s)}
-                >
+                <button class={styles.chip} type="button" onClick={() => props.onSuggestion?.(s)}>
                   {s}
                 </button>
               </>

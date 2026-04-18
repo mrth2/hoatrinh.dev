@@ -1,12 +1,9 @@
 import { For } from 'solid-js';
-import { EntryRenderer } from '../EntryRenderer/EntryRenderer';
 import type { TerminalEntry } from '@/terminal/entries';
+import { EntryRenderer } from '../EntryRenderer/EntryRenderer';
 import styles from './EntryList.module.css';
 
-export function EntryList(props: {
-  entries: TerminalEntry[];
-  onSuggestion?: (s: string) => void;
-}) {
+export function EntryList(props: { entries: TerminalEntry[]; onSuggestion?: (s: string) => void }) {
   return (
     <section
       role="log"

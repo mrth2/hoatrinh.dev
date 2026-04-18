@@ -1,5 +1,5 @@
-import { For } from 'solid-js';
 import type { Project } from '@hoatrinh/content';
+import { For } from 'solid-js';
 import styles from './ProjectsBlock.module.css';
 
 export function ProjectsBlock(props: { data: Project[] }) {
@@ -8,7 +8,9 @@ export function ProjectsBlock(props: { data: Project[] }) {
       <For each={props.data}>
         {(p) => (
           <li class={styles.row}>
-            <a class={styles.slug} href={`/project/${p.slug}`}>{p.slug}</a>
+            <a class={styles.slug} href={`/project/${p.slug}`}>
+              {p.slug}
+            </a>
             <span class={styles.title}>{p.title}</span>
             <span class={styles.year}>{p.year}</span>
             <span class={styles.tagline}>{p.tagline}</span>

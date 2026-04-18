@@ -4,4 +4,6 @@
   font-size: var(--text-sm);
   margin: 0;
 }
-.line:empty::before { content: '\00a0'; }
+.line:empty::before {
+  content: "\00a0";
+}

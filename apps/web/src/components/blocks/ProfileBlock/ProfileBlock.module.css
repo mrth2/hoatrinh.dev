@@ -1,7 +1,18 @@
-.name { font-size: var(--text-xl); font-weight: 700; color: var(--text-primary); }
-.role { font-size: var(--text-sm); color: var(--text-muted); }
-.body { color: var(--text-primary); }
-.body :global(p) { margin-bottom: var(--space-2); }
+.name {
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.role {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+.body {
+  color: var(--text-primary);
+}
+.body :global(p) {
+  margin-bottom: var(--space-2);
+}
 .links {
   display: flex;
   flex-wrap: wrap;

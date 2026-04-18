@@ -50,8 +50,12 @@ export function Prompt(props: {
       onSubmit={handleSubmit}
       {...(props.errored ? { 'data-errored': 'true' } : {})}
     >
-      <label for="terminal-input" class="sr-only">Terminal prompt, type a command</label>
-      <span class={styles.sigil} aria-hidden="true">{props.sigil ?? 'hoa@trinh.dev ~ %'}</span>
+      <label for="terminal-input" class="sr-only">
+        Terminal prompt, type a command
+      </label>
+      <span class={styles.sigil} aria-hidden="true">
+        {props.sigil ?? 'hoa@trinh.dev ~ %'}
+      </span>
       <input
         id="terminal-input"
         class={styles.input}
@@ -70,9 +74,13 @@ export function Prompt(props: {
         onBlur={() => setFocused(false)}
       />
       {showHint() && (
-        <span class={styles.hint} aria-hidden="true">↵ run · ↑↓ history · ⇥ complete</span>
+        <span class={styles.hint} aria-hidden="true">
+          ↵ run · ↑↓ history · ⇥ complete
+        </span>
       )}
-      <span id="prompt-announce" class="sr-only" aria-live="polite">{announce()}</span>
+      <span id="prompt-announce" class="sr-only" aria-live="polite">
+        {announce()}
+      </span>
     </form>
   );
 }

@@ -1,4 +1,5 @@
 import { Match, Switch } from 'solid-js';
+import type { TerminalEntry } from '@/terminal/entries';
 import { ContactBlock } from '../blocks/ContactBlock/ContactBlock';
 import { ErrorBlock } from '../blocks/ErrorBlock/ErrorBlock';
 import { ExperienceBlock } from '../blocks/ExperienceBlock/ExperienceBlock';
@@ -9,7 +10,6 @@ import { ProjectsBlock } from '../blocks/ProjectsBlock/ProjectsBlock';
 import { SkillsBlock } from '../blocks/SkillsBlock/SkillsBlock';
 import { TextBlock } from '../blocks/TextBlock/TextBlock';
 import { OutputPanel, type OutputPanelVariant } from '../OutputPanel/OutputPanel';
-import type { TerminalEntry } from '@/terminal/entries';
 
 export function EntryRenderer(props: {
   entry: TerminalEntry;
@@ -25,13 +25,17 @@ export function EntryRenderer(props: {
           <ProfileBlock data={(props.entry as Extract<TerminalEntry, { kind: 'profile' }>).data} />
         </Match>
         <Match when={props.entry.kind === 'projects'}>
-          <ProjectsBlock data={(props.entry as Extract<TerminalEntry, { kind: 'projects' }>).data} />
+          <ProjectsBlock
+            data={(props.entry as Extract<TerminalEntry, { kind: 'projects' }>).data}
+          />
         </Match>
         <Match when={props.entry.kind === 'project'}>
           <ProjectBlock data={(props.entry as Extract<TerminalEntry, { kind: 'project' }>).data} />
         </Match>
         <Match when={props.entry.kind === 'experience'}>
-          <ExperienceBlock data={(props.entry as Extract<TerminalEntry, { kind: 'experience' }>).data} />
+          <ExperienceBlock
+            data={(props.entry as Extract<TerminalEntry, { kind: 'experience' }>).data}
+          />
         </Match>
         <Match when={props.entry.kind === 'skills'}>
           <SkillsBlock data={(props.entry as Extract<TerminalEntry, { kind: 'skills' }>).data} />

@@ -1,6 +1,24 @@
-.hint { color: var(--text-muted); font-size: var(--text-sm); }
-.table { border-collapse: collapse; font-family: var(--font-code); font-size: var(--text-sm); }
-.table td { padding: var(--space-1) var(--space-3) var(--space-1) 0; vertical-align: top; }
-.usage { color: var(--accent-primary); white-space: nowrap; }
-.summary { color: var(--text-primary); }
-.footer { color: var(--text-dim); font-size: var(--text-xs); }
+.hint {
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+}
+.table {
+  border-collapse: collapse;
+  font-family: var(--font-code);
+  font-size: var(--text-sm);
+}
+.table td {
+  padding: var(--space-1) var(--space-3) var(--space-1) 0;
+  vertical-align: top;
+}
+.usage {
+  color: var(--accent-primary);
+  white-space: nowrap;
+}
+.summary {
+  color: var(--text-primary);
+}
+.footer {
+  color: var(--text-dim);
+  font-size: var(--text-xs);
+}

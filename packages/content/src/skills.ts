@@ -11,7 +11,16 @@ const skills: SkillGroup[] = [
   },
   {
     label: 'Frontend',
-    items: ['Solid', 'Svelte / SvelteKit', 'Astro', 'Nuxt', 'Vue', 'React', 'Flutter', 'Tailwind CSS'],
+    items: [
+      'Solid',
+      'Svelte / SvelteKit',
+      'Astro',
+      'Nuxt',
+      'Vue',
+      'React',
+      'Flutter',
+      'Tailwind CSS',
+    ],
   },
   {
     label: 'Backend',

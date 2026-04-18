@@ -10,7 +10,9 @@
   background: var(--bg-elevated);
   border-top: 1px solid var(--border-default);
   box-shadow: inset 2px 0 0 var(--accent-primary);
-  transition: border-color 120ms ease-out, box-shadow 120ms ease-out;
+  transition:
+    border-color 120ms ease-out,
+    box-shadow 120ms ease-out;
 }
 
 .prompt:hover {
@@ -43,7 +45,9 @@
   min-width: 0;
   padding: 0;
 }
-.input:focus-visible { outline: 0; }
+.input:focus-visible {
+  outline: 0;
+}
 
 .hint {
   font-family: var(--font-code);
@@ -53,10 +57,18 @@
 }
 
 @media (max-width: 640px) {
-  .prompt { padding: var(--space-2) var(--space-3) calc(var(--space-2) + env(safe-area-inset-bottom, 0px)); }
-  .input { font-size: var(--text-base); }
-  .hint { display: none; }
-  .sigil { font-size: 0; }
+  .prompt {
+    padding: var(--space-2) var(--space-3) calc(var(--space-2) + env(safe-area-inset-bottom, 0px));
+  }
+  .input {
+    font-size: var(--text-base);
+  }
+  .hint {
+    display: none;
+  }
+  .sigil {
+    font-size: 0;
+  }
   .sigil::after {
     content: "~ %";
     font-size: var(--text-base);
@@ -80,6 +92,12 @@
 }
 
 @keyframes prompt-error-flash {
-  0%   { box-shadow: inset 2px 0 0 var(--state-error), 0 0 0 2px rgba(255, 138, 92, 0.35); }
-  100% { box-shadow: inset 2px 0 0 var(--state-error); }
+  0% {
+    box-shadow:
+      inset 2px 0 0 var(--state-error),
+      0 0 0 2px rgba(255, 138, 92, 0.35);
+  }
+  100% {
+    box-shadow: inset 2px 0 0 var(--state-error);
+  }
 }

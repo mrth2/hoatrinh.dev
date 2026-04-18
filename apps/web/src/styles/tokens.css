@@ -1,28 +1,28 @@
 :root {
   /* surfaces - warm black */
-  --bg-base:        #0a0806;
-  --bg-elevated:    #14100a;
-  --bg-subtle:      #1a140c;
+  --bg-base: #0a0806;
+  --bg-elevated: #14100a;
+  --bg-subtle: #1a140c;
 
   /* borders - warm brown-black */
   --border-default: #2a1f10;
-  --border-strong:  #3a2f1e;
+  --border-strong: #3a2f1e;
 
   /* text - warm cream */
-  --text-primary:   #ecdfc2;
-  --text-muted:     #a08a64;
-  --text-dim:       #5a4a30;   /* decorative / meta only, never body */
+  --text-primary: #ecdfc2;
+  --text-muted: #a08a64;
+  --text-dim: #5a4a30; /* decorative / meta only, never body */
 
   /* accents */
-  --accent-primary:   #ffb347;   /* amber, the brand face */
-  --accent-secondary: #7dc69a;   /* muted green, semantic success only */
-  --accent-hover:     #ff4fd8;   /* neon magenta, interactive-only */
+  --accent-primary: #ffb347; /* amber, the brand face */
+  --accent-secondary: #7dc69a; /* muted green, semantic success only */
+  --accent-hover: #ff4fd8; /* neon magenta, interactive-only */
 
   /* state */
   --state-success: var(--accent-secondary);
   --state-warning: #f0b46a;
-  --state-error:   #ff8a5c;      /* warm coral */
-  --state-info:    var(--accent-primary);
+  --state-error: #ff8a5c; /* warm coral */
+  --state-info: var(--accent-primary);
 
   /* focus */
   --focus-ring-width: 2px;
@@ -30,26 +30,32 @@
   --focus-offset: 2px;
 
   /* typography */
-  --font-ui:   'Space Mono', ui-monospace, 'SF Mono', Menlo, monospace;
-  --font-code: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  --font-ui: "Space Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --font-code: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
 
-  --text-xs:       12px;
-  --text-sm:       13px;
-  --text-base:     14px;
-  --text-md:       16px;
-  --text-lg:       18px;
-  --text-xl:       22px;
-  --text-2xl:      28px;
-  --text-display:  36px;
+  --text-xs: 12px;
+  --text-sm: 13px;
+  --text-base: 14px;
+  --text-md: 16px;
+  --text-lg: 18px;
+  --text-xl: 22px;
+  --text-2xl: 28px;
+  --text-display: 36px;
 
-  --leading-tight:  1.25;
+  --leading-tight: 1.25;
   --leading-normal: 1.55;
   --leading-relaxed: 1.6;
 
   /* spacing */
-  --space-1: 4px;   --space-2: 8px;   --space-3: 12px;
-  --space-4: 16px;  --space-5: 20px;  --space-6: 24px;
-  --space-8: 32px;  --space-10: 40px; --space-12: 48px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
 
   /* radius */
   --radius-sm: 2px;

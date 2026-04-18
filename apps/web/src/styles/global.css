@@ -19,7 +19,9 @@ body {
   color: var(--bg-base);
 }
 
-a { color: var(--accent-primary); }
+a {
+  color: var(--accent-primary);
+}
 a:hover {
   color: var(--accent-hover);
   text-decoration: underline;
@@ -27,15 +29,21 @@ a:hover {
 }
 
 @media (prefers-reduced-motion: reduce), (prefers-contrast: more) {
-  a:hover { text-shadow: none; }
+  a:hover {
+    text-shadow: none;
+  }
 }
 
 .sr-only {
   position: absolute;
-  width: 1px; height: 1px;
-  padding: 0; margin: -1px;
-  overflow: hidden; clip: rect(0, 0, 0, 0);
-  white-space: nowrap; border: 0;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .skip-link {
@@ -49,21 +57,30 @@ a:hover {
   border-radius: var(--radius-sm);
   z-index: 100;
 }
-.skip-link:focus { top: var(--space-2); }
+.skip-link:focus {
+  top: var(--space-2);
+}
 
 @media (prefers-contrast: more) {
-  body { background-image: none; }
+  body {
+    background-image: none;
+  }
   :root {
     --border-default: var(--border-strong);
     --text-muted: #d4c49a;
-    --text-dim:   #a08a64;
+    --text-dim: #a08a64;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
+    /* biome-ignore lint/complexity/noImportantStyles: reduced-motion reset must override component animations; standard a11y pattern */
     animation-duration: 0.001ms !important;
+    /* biome-ignore lint/complexity/noImportantStyles: see above */
     animation-iteration-count: 1 !important;
+    /* biome-ignore lint/complexity/noImportantStyles: see above */
     transition-duration: 0.001ms !important;
   }
 }

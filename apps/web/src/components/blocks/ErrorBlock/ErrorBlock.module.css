@@ -1,10 +1,25 @@
-.root { display: flex; flex-direction: column; gap: var(--space-1); color: var(--state-error); font-family: var(--font-code); font-size: var(--text-sm); }
-.message { display: flex; gap: var(--space-1); align-items: baseline; }
-.suggestLine { color: var(--text-muted); }
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  color: var(--state-error);
+  font-family: var(--font-code);
+  font-size: var(--text-sm);
+}
+.message {
+  display: flex;
+  gap: var(--space-1);
+  align-items: baseline;
+}
+.suggestLine {
+  color: var(--text-muted);
+}
 .chip {
   font-family: var(--font-code);
   color: var(--accent-primary);
   text-decoration: underline dotted;
   padding: 0;
 }
-.chip:hover { text-decoration: underline solid; }
+.chip:hover {
+  text-decoration: underline solid;
+}

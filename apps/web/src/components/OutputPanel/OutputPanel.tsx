@@ -13,18 +13,18 @@ export function OutputPanel(props: {
   const displayInput = () => (props.input === '' ? '(empty)' : props.input);
 
   return (
-    <article
-      class={styles.panel}
-      data-variant={props.variant}
-      aria-labelledby={labelId}
-    >
-      <h2 id={labelId} class="sr-only">Output of: {displayInput()}</h2>
+    <article class={styles.panel} data-variant={props.variant} aria-labelledby={labelId}>
+      <h2 id={labelId} class="sr-only">
+        Output of: {displayInput()}
+      </h2>
 
       {props.variant === 'titled' ? (
         <div class={styles.header}>
           <Echo input={props.input} />
           {props.meta !== undefined ? (
-            <span class={styles.meta} data-meta>{props.meta}</span>
+            <span class={styles.meta} data-meta>
+              {props.meta}
+            </span>
           ) : null}
         </div>
       ) : (
@@ -39,7 +39,9 @@ export function OutputPanel(props: {
 function Echo(props: { input: string }) {
   return (
     <div class={styles.echo}>
-      <span class={styles.echoSigil} aria-hidden="true">&gt;</span>
+      <span class={styles.echoSigil} aria-hidden="true">
+        &gt;
+      </span>
       <span class={styles.echoText}>{props.input}</span>
     </div>
   );

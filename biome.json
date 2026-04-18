@@ -11,7 +11,8 @@
       "!**/test-results",
       "!.keepgoing",
       "!.git",
-      "!bun.lock"
+      "!bun.lock",
+      "!specs"
     ]
   },
   "formatter": {

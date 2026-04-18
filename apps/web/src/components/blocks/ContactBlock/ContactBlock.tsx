@@ -1,5 +1,5 @@
-import { For } from 'solid-js';
 import type { Link } from '@hoatrinh/content';
+import { For } from 'solid-js';
 import styles from './ContactBlock.module.css';
 
 export function ContactBlock(props: { data: Link[] }) {
@@ -9,7 +9,9 @@ export function ContactBlock(props: { data: Link[] }) {
         {(l) => (
           <li class={styles.row}>
             <span class={styles.label}>{l.label}</span>
-            <a class={styles.link} href={l.href}>{l.href}</a>
+            <a class={styles.link} href={l.href}>
+              {l.href}
+            </a>
           </li>
         )}
       </For>

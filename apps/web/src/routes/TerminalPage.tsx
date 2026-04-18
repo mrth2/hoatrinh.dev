@@ -78,12 +78,14 @@ export function TerminalPage(props: { initialCommand?: string }) {
       <a class="skip-link" href="#terminal-input">
         Skip to prompt
       </a>
-      <header class={styles.sessionBar} aria-label="Session">
+      <section class={styles.sessionBar} aria-label="Session">
         <span class={styles.sessionHost}>hoa@trinh.dev</span>
         <span class={styles.sessionSep}> · session </span>
-        <time class={styles.sessionDate} datetime={SESSION_DATE}>{SESSION_DATE}</time>
+        <time class={styles.sessionDate} datetime={SESSION_DATE}>
+          {SESSION_DATE}
+        </time>
         <span class={styles.sessionHelp}>type 'help' for commands</span>
-      </header>
+      </section>
       {/* biome-ignore lint/a11y/noStaticElementInteractions: click-to-focus is a pointer-only enhancement; keyboard users tab to #terminal-input directly */}
       {/* biome-ignore lint/a11y/useKeyWithClickEvents: keyboard users reach the input via Tab; this click handler is an enhancement */}
       <div class={styles.scroll} onClick={onListClick}>

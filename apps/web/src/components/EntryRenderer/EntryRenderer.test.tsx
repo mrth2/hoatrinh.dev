@@ -1,8 +1,8 @@
-import { describe, expect, it } from 'vitest';
 import { render } from '@solidjs/testing-library';
-import { EntryRenderer } from './EntryRenderer';
-import { resetEntryIds, nextEntryId } from '@/terminal/entries';
+import { describe, expect, it } from 'vitest';
 import type { TerminalEntry } from '@/terminal/entries';
+import { nextEntryId, resetEntryIds } from '@/terminal/entries';
+import { EntryRenderer } from './EntryRenderer';
 
 function textEntry(input: string, lines: string[]): TerminalEntry {
   resetEntryIds();
@@ -12,8 +12,15 @@ function textEntry(input: string, lines: string[]): TerminalEntry {
 function projectsEntry(count: number): TerminalEntry {
   resetEntryIds();
   const data = Array.from({ length: count }, (_, i) => ({
-    slug: `p${i}`, title: `Project ${i}`, year: 2024, role: 'r',
-    status: 'shipped', tech: [], links: {}, bodyHtml: '', tagline: 't',
+    slug: `p${i}`,
+    title: `Project ${i}`,
+    year: 2024,
+    role: 'r',
+    status: 'shipped',
+    tech: [],
+    links: {},
+    bodyHtml: '',
+    tagline: 't',
   })) as unknown as Extract<TerminalEntry, { kind: 'projects' }>['data'];
   return { id: nextEntryId(), input: 'projects', kind: 'projects', data };
 }

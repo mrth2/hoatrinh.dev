@@ -1,5 +1,5 @@
-import { For } from 'solid-js';
 import type { Experience } from '@hoatrinh/content';
+import { For } from 'solid-js';
 import styles from './ExperienceBlock.module.css';
 
 export function ExperienceBlock(props: { data: Experience[] }) {
@@ -12,7 +12,9 @@ export function ExperienceBlock(props: { data: Experience[] }) {
               <span class={styles.company}>{e.company}</span>
               <span class={styles.sep}>·</span>
               <span class={styles.title}>{e.title}</span>
-              <span class={styles.dates}>{e.start} - {e.end}</span>
+              <span class={styles.dates}>
+                {e.start} - {e.end}
+              </span>
             </div>
             {e.location && <div class={styles.location}>{e.location}</div>}
             {e.highlights.length > 0 && (

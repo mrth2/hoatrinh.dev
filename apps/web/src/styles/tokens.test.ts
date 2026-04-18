@@ -6,7 +6,7 @@ const tokens = readFileSync(resolve(__dirname, 'tokens.css'), 'utf8');
 
 function getVar(name: string) {
   const match = tokens.match(new RegExp(`--${name}:\\s*([^;]+);`));
-  return match ? match[1]!.trim() : null;
+  return match?.[1]?.trim() ?? null;
 }
 
 describe('design tokens (D+ palette)', () => {
