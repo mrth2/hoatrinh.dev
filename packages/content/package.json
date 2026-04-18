@@ -13,12 +13,13 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "gray-matter": "latest",
+    "js-yaml": "^4.1.1",
     "marked": "latest",
     "shiki": "latest",
     "zod": "latest"
   },
   "devDependencies": {
+    "@types/js-yaml": "^4.0.9",
     "@types/node": "^25.6.0",
     "typescript": "latest",
     "vitest": "latest"
