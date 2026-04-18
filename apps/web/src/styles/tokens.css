@@ -1,27 +1,28 @@
 :root {
-  /* surfaces */
-  --bg-base:        #0a0d0b;
-  --bg-elevated:    #121814;
-  --bg-subtle:      #171d1a;
+  /* surfaces - warm black */
+  --bg-base:        #0a0806;
+  --bg-elevated:    #14100a;
+  --bg-subtle:      #1a140c;
 
-  /* borders */
-  --border-default: #1f2a23;
-  --border-strong:  #2f4036;
+  /* borders - warm brown-black */
+  --border-default: #2a1f10;
+  --border-strong:  #3a2f1e;
 
-  /* text */
-  --text-primary:   #d8e1da;
-  --text-muted:     #8b9891;
-  --text-dim:       #5e6a64;   /* decorative / meta only, never body */
+  /* text - warm cream */
+  --text-primary:   #ecdfc2;
+  --text-muted:     #a08a64;
+  --text-dim:       #5a4a30;   /* decorative / meta only, never body */
 
   /* accents */
-  --accent-primary:   #6fe0a1;
-  --accent-secondary: #7ab8ff;
+  --accent-primary:   #ffb347;   /* amber, the brand face */
+  --accent-secondary: #7dc69a;   /* muted green, semantic success only */
+  --accent-hover:     #ff4fd8;   /* neon magenta, interactive-only */
 
   /* state */
-  --state-success: var(--accent-primary);
+  --state-success: var(--accent-secondary);
   --state-warning: #f0b46a;
-  --state-error:   #ff7a7a;
-  --state-info:    var(--accent-secondary);
+  --state-error:   #ff8a5c;      /* warm coral */
+  --state-info:    var(--accent-primary);
 
   /* focus */
   --focus-ring-width: 2px;
@@ -58,6 +59,6 @@
   /* borders */
   --border-width: 1px;
 
-  /* grid */
-  --grid-dot: rgba(31, 42, 35, 0.35);  /* border-default #1f2a23 at 35% alpha */
+  /* grid - warmer */
+  --grid-dot: rgba(110, 80, 30, 0.25);
 }
