@@ -1,4 +1,5 @@
 {
   "files": [],
+  "include": [],
   "references": [{ "path": "./apps/web" }, { "path": "./packages/content" }]
 }
