@@ -11,8 +11,9 @@ describe('getProjects', () => {
   it('sorts featured first, then year desc', () => {
     const projects = getProjects();
     for (let i = 1; i < projects.length; i++) {
-      const prev = projects[i - 1]!;
-      const curr = projects[i]!;
+      const prev = projects[i - 1];
+      const curr = projects[i];
+      if (!prev || !curr) continue;
       if (prev.featured && !curr.featured) continue;
       if (!prev.featured && curr.featured) throw new Error('non-featured before featured');
       expect(prev.year).toBeGreaterThanOrEqual(curr.year);
