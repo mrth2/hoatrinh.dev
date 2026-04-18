@@ -19,11 +19,14 @@ export function TerminalPage(props: { initialCommand?: string }) {
   const history = createHistory();
   let inputEl: HTMLInputElement | undefined;
 
-  onMount(async () => {
-    if (props.initialCommand) {
-      // Router already landed us at this URL; skip execute's navigate side effect.
-      await execute(props.initialCommand, { state, setState, registry, navigate: NOOP_NAVIGATE });
-    }
+  if (props.initialCommand) {
+    // Run synchronously at setup (not onMount) so SSR includes the rendered entries
+    // and client hydration matches. Router already landed us at this URL, so
+    // suppress execute's navigate side effect.
+    void execute(props.initialCommand, { state, setState, registry, navigate: NOOP_NAVIGATE });
+  }
+
+  onMount(() => {
     if (matchMedia('(pointer: fine)').matches) {
       inputEl?.focus();
     }

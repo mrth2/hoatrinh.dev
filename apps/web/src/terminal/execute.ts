@@ -29,7 +29,8 @@ export async function execute(raw: string, ctx: ExecuteContext): Promise<void> {
     return;
   }
 
-  const result = await Promise.resolve(spec.handler(parsed.args, parsed.rest, {}));
+  const handled = spec.handler(parsed.args, parsed.rest, {});
+  const result = handled instanceof Promise ? await handled : handled;
 
   if ('action' in result && result.action === 'clear') {
     ctx.setState('entries', []);
