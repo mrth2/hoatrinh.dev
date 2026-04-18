@@ -7,6 +7,7 @@ export type TabAction = { completion: string | null; candidates: string[] };
 export function Prompt(props: {
   value: string;
   sigil?: string;
+  errored?: boolean;
   onInput: (v: string) => void;
   onSubmit: (raw: string) => void;
   onHistory: (dir: HistoryDirection) => string | null;
@@ -44,7 +45,11 @@ export function Prompt(props: {
   const showHint = () => focused() && props.value === '';
 
   return (
-    <form class={styles.prompt} onSubmit={handleSubmit}>
+    <form
+      class={styles.prompt}
+      onSubmit={handleSubmit}
+      {...(props.errored ? { 'data-errored': 'true' } : {})}
+    >
       <label for="terminal-input" class="sr-only">Terminal prompt, type a command</label>
       <span class={styles.sigil} aria-hidden="true">{props.sigil ?? 'hoa@trinh.dev ~ %'}</span>
       <input

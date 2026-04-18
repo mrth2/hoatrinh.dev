@@ -67,6 +67,12 @@ export function TerminalPage(props: { initialCommand?: string }) {
     focusInput();
   }
 
+  const isErrored = () => {
+    if (state.currentInput !== '') return false;
+    const last = state.entries[state.entries.length - 1];
+    return last?.kind === 'error';
+  };
+
   return (
     <main class={styles.page}>
       <a class="skip-link" href="#terminal-input">
@@ -86,6 +92,7 @@ export function TerminalPage(props: { initialCommand?: string }) {
       </div>
       <Prompt
         value={state.currentInput}
+        errored={isErrored()}
         onInput={(v) => setState('currentInput', v)}
         onSubmit={submit}
         onHistory={onHistory}

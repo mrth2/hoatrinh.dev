@@ -39,4 +39,32 @@ describe('Prompt', () => {
     ));
     expect(queryByText(/run · .*history · .*complete/i)).toBeNull();
   });
+
+  it('applies data-errored when the errored prop is true', () => {
+    const { container } = render(() => (
+      <Prompt
+        value=""
+        errored={true}
+        onInput={() => {}}
+        onSubmit={() => {}}
+        onHistory={() => null}
+        onTab={() => null}
+      />
+    ));
+    expect(container.querySelector('form[data-errored="true"]')).not.toBeNull();
+  });
+
+  it('omits data-errored when the errored prop is false or absent', () => {
+    const { container } = render(() => (
+      <Prompt
+        value=""
+        onInput={() => {}}
+        onSubmit={() => {}}
+        onHistory={() => null}
+        onTab={() => null}
+      />
+    ));
+    const form = container.querySelector('form');
+    expect(form?.getAttribute('data-errored')).not.toBe('true');
+  });
 });

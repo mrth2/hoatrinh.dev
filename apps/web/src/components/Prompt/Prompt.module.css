@@ -62,3 +62,24 @@
     font-size: var(--text-base);
   }
 }
+
+.prompt[data-errored="true"] {
+  box-shadow: inset 2px 0 0 var(--state-error);
+}
+
+.prompt[data-errored="true"]:focus-within {
+  box-shadow:
+    inset 2px 0 0 var(--state-error),
+    0 0 0 2px rgba(111, 224, 161, 0.25);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .prompt[data-errored="true"] {
+    animation: prompt-error-flash 200ms ease-out;
+  }
+}
+
+@keyframes prompt-error-flash {
+  0%   { box-shadow: inset 2px 0 0 var(--state-error), 0 0 0 2px rgba(255, 122, 122, 0.25); }
+  100% { box-shadow: inset 2px 0 0 var(--state-error); }
+}
