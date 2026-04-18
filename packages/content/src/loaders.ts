@@ -6,7 +6,7 @@ function parseFrontmatter(raw: string): { data: Record<string, unknown>; content
   const match = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/);
   if (!match) return { data: {}, content: raw };
   return {
-    data: (load(match[1]) ?? {}) as Record<string, unknown>,
+    data: (load(match[1] ?? '') ?? {}) as Record<string, unknown>,
     content: match[2] ?? '',
   };
 }

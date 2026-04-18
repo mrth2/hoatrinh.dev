@@ -22,6 +22,7 @@
     "@types/js-yaml": "^4.0.9",
     "@types/node": "^25.6.0",
     "typescript": "latest",
+    "vite": "latest",
     "vitest": "latest"
   }
 }

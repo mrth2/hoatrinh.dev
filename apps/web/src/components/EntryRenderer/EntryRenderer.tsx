@@ -18,8 +18,13 @@ export function EntryRenderer(props: {
   const variant = (): OutputPanelVariant => variantFor(props.entry.kind);
   const meta = () => metaFor(props.entry);
 
+  const metaProp = () => {
+    const m = meta();
+    return m !== undefined ? { meta: m } : {};
+  };
+
   return (
-    <OutputPanel input={props.entry.input} variant={variant()} meta={meta()}>
+    <OutputPanel input={props.entry.input} variant={variant()} {...metaProp()}>
       <Switch>
         <Match when={props.entry.kind === 'profile'}>
           <ProfileBlock data={(props.entry as Extract<TerminalEntry, { kind: 'profile' }>).data} />

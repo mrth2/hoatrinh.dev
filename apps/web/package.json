@@ -27,6 +27,7 @@
     "@playwright/test": "latest",
     "@solidjs/testing-library": "latest",
     "@testing-library/jest-dom": "latest",
+    "@types/bun": "latest",
     "jsdom": "latest",
     "typescript": "latest",
     "vite": "latest",
