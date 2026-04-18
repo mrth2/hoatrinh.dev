@@ -1,8 +1,8 @@
 import { expect, test } from '@playwright/test';
 
-test('cold load runs about', async ({ page }) => {
+test('cold load shows motd and focuses prompt', async ({ page }) => {
   await page.goto('/');
-  await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+  await expect(page.getByText(/hoa trinh hai/i)).toBeVisible();
   await expect(page.locator('#terminal-input')).toBeFocused();
 });
 
@@ -40,9 +40,9 @@ test('up arrow recalls previous command', async ({ page }) => {
 });
 
 test('clear empties the entry list', async ({ page }) => {
-  await page.goto('/');
+  await page.goto('/about');
   const input = page.locator('#terminal-input');
   await input.fill('clear');
   await input.press('Enter');
-  await expect(page.locator('[data-kind]')).toHaveCount(0);
+  await expect(page.locator('[data-variant]')).toHaveCount(0);
 });
