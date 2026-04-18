@@ -1,0 +1,26 @@
+.prompt {
+  display: flex;
+  gap: var(--space-2);
+  align-items: baseline;
+  padding: var(--space-2) 0;
+  position: sticky;
+  bottom: 0;
+  background: var(--bg-base);
+}
+.sigil {
+  font-family: var(--font-code);
+  font-weight: 700;
+  color: var(--accent-primary);
+  white-space: nowrap;
+}
+.input {
+  font-family: var(--font-code);
+  font-size: var(--text-base);
+  color: var(--text-primary);
+  caret-color: var(--accent-primary);
+  flex: 1;
+  min-width: 0;
+}
+@media (max-width: 640px) {
+  .input { font-size: var(--text-md); }
+}
