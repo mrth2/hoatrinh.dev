@@ -13,6 +13,7 @@ export function Prompt(props: {
   onTab: (raw: string) => TabAction | null;
 }) {
   const [announce, setAnnounce] = createSignal<string>('');
+  const [focused, setFocused] = createSignal(false);
 
   function handleKeyDown(e: KeyboardEvent) {
     if (e.key === 'ArrowUp') {
@@ -40,6 +41,8 @@ export function Prompt(props: {
     props.onSubmit(props.value);
   }
 
+  const showHint = () => focused() && props.value === '';
+
   return (
     <form class={styles.prompt} onSubmit={handleSubmit}>
       <label for="terminal-input" class="sr-only">Terminal prompt, type a command</label>
@@ -58,7 +61,12 @@ export function Prompt(props: {
         aria-describedby="prompt-announce"
         onInput={(e) => props.onInput(e.currentTarget.value)}
         onKeyDown={handleKeyDown}
+        onFocus={() => setFocused(true)}
+        onBlur={() => setFocused(false)}
       />
+      {showHint() && (
+        <span class={styles.hint} aria-hidden="true">↵ run · ↑↓ history · ⇥ complete</span>
+      )}
       <span id="prompt-announce" class="sr-only" aria-live="polite">{announce()}</span>
     </form>
   );

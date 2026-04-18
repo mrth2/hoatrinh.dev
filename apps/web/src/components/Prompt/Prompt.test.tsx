@@ -14,4 +14,29 @@ describe('Prompt', () => {
     fireEvent.submit(input.form!);
     expect(onSubmit).toHaveBeenCalled();
   });
+
+  it('shows the inline hint when input is empty and focused', () => {
+    const { getByLabelText, queryByText } = render(() => (
+      <Prompt value="" onInput={() => {}} onSubmit={() => {}} onHistory={() => null} onTab={() => null} />
+    ));
+    const input = getByLabelText(/terminal prompt/i) as HTMLInputElement;
+    fireEvent.focus(input);
+    expect(queryByText(/run · .*history · .*complete/i)).not.toBeNull();
+  });
+
+  it('hides the inline hint while typing', () => {
+    const { getByLabelText, queryByText } = render(() => (
+      <Prompt value="a" onInput={() => {}} onSubmit={() => {}} onHistory={() => null} onTab={() => null} />
+    ));
+    const input = getByLabelText(/terminal prompt/i) as HTMLInputElement;
+    fireEvent.focus(input);
+    expect(queryByText(/run · .*history · .*complete/i)).toBeNull();
+  });
+
+  it('hides the inline hint when input is empty but not focused', () => {
+    const { queryByText } = render(() => (
+      <Prompt value="" onInput={() => {}} onSubmit={() => {}} onHistory={() => null} onTab={() => null} />
+    ));
+    expect(queryByText(/run · .*history · .*complete/i)).toBeNull();
+  });
 });
