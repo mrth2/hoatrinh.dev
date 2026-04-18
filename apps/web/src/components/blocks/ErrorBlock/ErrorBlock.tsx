@@ -3,7 +3,7 @@ import styles from './ErrorBlock.module.css';
 export function ErrorBlock(props: {
   message: string;
   suggestions: string[];
-  onSuggestion?: (s: string) => void;
+  onSuggestion?: ((s: string) => void) | undefined;
 }) {
   return (
     <div class={styles.root}>

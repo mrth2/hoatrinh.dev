@@ -14,7 +14,7 @@ import styles from './EntryRenderer.module.css';
 
 export function EntryRenderer(props: {
   entry: TerminalEntry;
-  onSuggestion?: (s: string) => void;
+  onSuggestion?: ((s: string) => void) | undefined;
 }) {
   const labelId = `entry-${props.entry.id}-label`;
   return (
