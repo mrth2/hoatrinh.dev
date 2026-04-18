@@ -1,0 +1,2 @@
+.root { color: var(--text-primary); font-family: var(--font-code); font-size: var(--text-sm); display: flex; flex-direction: column; gap: var(--space-1); }
+.root p:empty::before { content: '\00a0'; }
