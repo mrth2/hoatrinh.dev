@@ -20,7 +20,15 @@ body {
 }
 
 a { color: var(--accent-primary); }
-a:hover { text-decoration: underline; }
+a:hover {
+  color: var(--accent-hover);
+  text-decoration: underline;
+  text-shadow: 0 0 10px rgba(255, 79, 216, 0.4);
+}
+
+@media (prefers-reduced-motion: reduce), (prefers-contrast: more) {
+  a:hover { text-shadow: none; }
+}
 
 .sr-only {
   position: absolute;
@@ -47,7 +55,8 @@ a:hover { text-decoration: underline; }
   body { background-image: none; }
   :root {
     --border-default: var(--border-strong);
-    --text-muted: #b8c1bb;
+    --text-muted: #d4c49a;
+    --text-dim:   #a08a64;
   }
 }
 
