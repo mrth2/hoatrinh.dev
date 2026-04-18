@@ -10,7 +10,7 @@
 }
 .slug { color: var(--accent-primary); }
 .title { color: var(--text-primary); }
-.year { color: var(--text-dim); }
+.year { color: var(--text-muted); }
 .tagline { color: var(--text-muted); }
 @media (max-width: 640px) {
   .row { grid-template-columns: 1fr; gap: 0; }

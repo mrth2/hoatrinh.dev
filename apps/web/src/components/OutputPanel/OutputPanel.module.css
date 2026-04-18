@@ -54,7 +54,7 @@
 }
 .panel[data-variant="titled"] .header .echo { font-size: var(--text-sm); }
 .panel[data-variant="titled"] .meta {
-  color: var(--text-dim);
+  color: var(--text-muted);
   font-family: var(--font-code);
   font-size: var(--text-xs);
   letter-spacing: 0.05em;
