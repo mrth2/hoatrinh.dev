@@ -11,7 +11,6 @@ export function Prompt(props: {
   onSubmit: (raw: string) => void;
   onHistory: (dir: HistoryDirection) => string | null;
   onTab: (raw: string) => TabAction | null;
-  inputRef?: (el: HTMLInputElement) => void;
 }) {
   const [announce, setAnnounce] = createSignal<string>('');
 
@@ -47,7 +46,6 @@ export function Prompt(props: {
       <span class={styles.sigil} aria-hidden="true">{props.sigil ?? 'hoa@trinh.dev ~ %'}</span>
       <input
         id="terminal-input"
-        ref={props.inputRef}
         class={styles.input}
         type="text"
         value={props.value}

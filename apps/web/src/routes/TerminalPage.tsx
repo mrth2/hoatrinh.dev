@@ -17,7 +17,6 @@ export function TerminalPage(props: { initialCommand?: string }) {
   const [state, setState] = createTerminalStore();
   const navigate = useNavigate();
   const history = createHistory();
-  let inputEl: HTMLInputElement | undefined;
 
   if (props.initialCommand) {
     // Run synchronously at setup (not onMount) so SSR includes the rendered entries
@@ -26,10 +25,12 @@ export function TerminalPage(props: { initialCommand?: string }) {
     void execute(props.initialCommand, { state, setState, registry, navigate: NOOP_NAVIGATE });
   }
 
+  function focusInput() {
+    document.getElementById('terminal-input')?.focus();
+  }
+
   onMount(() => {
-    if (matchMedia('(pointer: fine)').matches) {
-      inputEl?.focus();
-    }
+    if (matchMedia('(pointer: fine)').matches) focusInput();
   });
 
   async function submit(raw: string) {
@@ -61,7 +62,7 @@ export function TerminalPage(props: { initialCommand?: string }) {
     const selection = window.getSelection();
     if (selection?.toString()) return;
     if ((e.target as HTMLElement).closest('a, button')) return;
-    inputEl?.focus();
+    focusInput();
   }
 
   return (
@@ -80,9 +81,6 @@ export function TerminalPage(props: { initialCommand?: string }) {
         onSubmit={submit}
         onHistory={onHistory}
         onTab={onTab}
-        inputRef={(el) => {
-          inputEl = el;
-        }}
       />
     </main>
   );
