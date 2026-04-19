@@ -6,10 +6,18 @@
   font-family: var(--font-code);
 }
 .name {
-  font-size: var(--text-lg);
+  font-size: var(--text-display);
   font-weight: 700;
   color: var(--text-primary);
   margin: 0;
+  text-shadow: 0 0 14px rgba(255, 179, 71, 0.22);
+  line-height: var(--leading-tight);
+}
+
+@media (prefers-reduced-motion: reduce), (prefers-contrast: more) {
+  .name {
+    text-shadow: none;
+  }
 }
 .role {
   font-size: var(--text-sm);
