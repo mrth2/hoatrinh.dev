@@ -31,7 +31,11 @@ export function CommandIndex(props: { onSuggestion: (cmd: string) => void }) {
   const rows = buildRows();
   return (
     <nav class={styles.wrapper} aria-label="Command index">
-      <p class={styles.header}>── commands ──────────────────────────── {rows.length} total</p>
+      <div class={styles.header}>
+        <span class={styles.headerLabel}>── commands</span>
+        <span class={styles.headerLine} aria-hidden="true" />
+        <span class={styles.headerCount}>{rows.length} total</span>
+      </div>
       <ul class={styles.list}>
         <For each={rows}>
           {(row) => (

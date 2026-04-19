@@ -4,10 +4,28 @@
 }
 
 .header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
   color: var(--text-dim);
   font-size: var(--text-xs);
   margin: 0 0 var(--space-1);
   letter-spacing: 0.02em;
+}
+
+.headerLabel {
+  white-space: nowrap;
+}
+
+.headerLine {
+  flex: 1;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.35;
+}
+
+.headerCount {
+  white-space: nowrap;
 }
 
 .list {
