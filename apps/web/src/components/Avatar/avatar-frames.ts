@@ -20,6 +20,23 @@ const GLASSES_COL_END = 79; // inclusive
 const ARM_ROW_START = 27;
 const ARM_ROW_END = 34; // inclusive
 
+// Eye/pupil rows within the visor interior (0-indexed).
+// Replacing ↑ arrows only in the inner pupil zones of each lens
+// simulates the avatar looking left or right.
+// Inner zones were determined by mapping actual ↑ clusters:
+//   left pupil:  cols 37-39 (rows 24-26)  → target range 35-43
+//   right pupil: cols 60-62 (rows 24-26)  → target range 58-66
+// This avoids the outer-left cluster (21-26), lone bridge-edge chars
+// (44, 55), and outer-right cluster (73-78).
+const EYE_ROW_START = 23;
+const EYE_ROW_END = 26;
+const BRIDGE_COL_START = 45; // left lens: cols 20-44, bridge: 45-54, right lens: 55-79
+const BRIDGE_COL_END = 54;
+const LEFT_PUPIL_START = 35;
+const LEFT_PUPIL_END = 43;
+const RIGHT_PUPIL_START = 58;
+const RIGHT_PUPIL_END = 66;
+
 export type FrameSegment = { text: string; kind: 'body' | 'glow' };
 
 const idleRows = idleRaw.split('\n');
@@ -109,3 +126,36 @@ export const WAVE_SEQUENCE: FrameSegment[][] = [
   FRAME_IDLE,
 ];
 export const WAVE_FRAME_MS = 250;
+
+// Replace ↑ arrows only in the inner pupil zones of each lens.
+// Outer lens clusters and bridge-edge chars are intentionally left unchanged.
+function withEyeDirection(rows: string[], dir: '←' | '→'): string[] {
+  return rows.map((row, r) => {
+    if (r < EYE_ROW_START || r > EYE_ROW_END) return row;
+    const leftPupil = row.slice(LEFT_PUPIL_START, LEFT_PUPIL_END + 1);
+    const rightPupil = row.slice(RIGHT_PUPIL_START, RIGHT_PUPIL_END + 1);
+    return (
+      row.slice(0, LEFT_PUPIL_START) +
+      leftPupil.replaceAll('↑', dir) +
+      row.slice(LEFT_PUPIL_END + 1, RIGHT_PUPIL_START) +
+      rightPupil.replaceAll('↑', dir) +
+      row.slice(RIGHT_PUPIL_END + 1)
+    );
+  });
+}
+
+export const FRAME_LOOK_LEFT: FrameSegment[] = segmentRows(withEyeDirection(idleRows, '←'));
+export const FRAME_LOOK_RIGHT: FrameSegment[] = segmentRows(withEyeDirection(idleRows, '→'));
+
+// left → center → right → center, twice
+export const LOOKAROUND_SEQUENCE: FrameSegment[][] = [
+  FRAME_LOOK_LEFT,
+  FRAME_IDLE,
+  FRAME_LOOK_RIGHT,
+  FRAME_IDLE,
+  FRAME_LOOK_LEFT,
+  FRAME_IDLE,
+  FRAME_LOOK_RIGHT,
+  FRAME_IDLE,
+];
+export const LOOKAROUND_FRAME_MS = 350;
