@@ -4,7 +4,7 @@ import { createEffect, createSignal, onCleanup, onMount } from 'solid-js';
 import { EntryList } from '@/components/EntryList/EntryList';
 import { Motd } from '@/components/Motd/Motd';
 import { Prompt } from '@/components/Prompt/Prompt';
-import { autocomplete } from '@/terminal/autocomplete';
+import { autocomplete, suggest } from '@/terminal/autocomplete';
 import { registry } from '@/terminal/commands';
 import { execute } from '@/terminal/execute';
 import { createHistory } from '@/terminal/history';
@@ -13,6 +13,7 @@ import { createTerminalStore } from '@/terminal/store';
 import styles from './TerminalPage.module.css';
 
 const PROJECT_SLUGS = getProjects().map((p) => p.slug);
+const CANONICAL_NAMES = registry.specs.map((s) => s.name);
 const NOOP_NAVIGATE = () => {};
 const SESSION_DATE = new Date().toISOString().slice(0, 10);
 
@@ -108,6 +109,13 @@ export function TerminalPage() {
     });
   }
 
+  const ghostSuggestion = () =>
+    suggest(state.currentInput, {
+      canonicalNames: CANONICAL_NAMES,
+      allNames: registry.vocab,
+      projectSlugs: PROJECT_SLUGS,
+    }) ?? undefined;
+
   function onSuggestion(s: string) {
     setState('currentInput', s);
     submit(s);
@@ -162,6 +170,7 @@ export function TerminalPage() {
       </div>
       <Prompt
         value={state.currentInput}
+        ghost={ghostSuggestion()}
         errored={isErrored()}
         onInput={(v) => setState('currentInput', v)}
         onSubmit={submit}

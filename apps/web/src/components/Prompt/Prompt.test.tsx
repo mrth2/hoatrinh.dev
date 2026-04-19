@@ -92,4 +92,71 @@ describe('Prompt', () => {
     const form = container.querySelector('form');
     expect(form?.getAttribute('data-errored')).not.toBe('true');
   });
+
+  it('renders ghost suffix when ghost prop is longer than value', () => {
+    const { container } = render(() => (
+      <Prompt
+        value="ab"
+        ghost="about"
+        onInput={() => {}}
+        onSubmit={() => {}}
+        onHistory={() => null}
+        onTab={() => null}
+      />
+    ));
+    const suffix = container.querySelector('[aria-hidden="true"] + [aria-hidden="true"] span:last-child') ??
+      container.querySelector('[aria-hidden="true"] span:last-child');
+    expect(suffix?.textContent).toBe('out');
+  });
+
+  it('does not render ghost when ghost equals value', () => {
+    const { container } = render(() => (
+      <Prompt
+        value="about"
+        ghost="about"
+        onInput={() => {}}
+        onSubmit={() => {}}
+        onHistory={() => null}
+        onTab={() => null}
+      />
+    ));
+    const ghosts = container.querySelectorAll('[class*="ghost"]');
+    expect(ghosts.length).toBe(0);
+  });
+
+  it('accepts ghost on ArrowRight when cursor is at end', () => {
+    const onInput = vi.fn();
+    const { getByLabelText } = render(() => (
+      <Prompt
+        value="ab"
+        ghost="about"
+        onInput={onInput}
+        onSubmit={() => {}}
+        onHistory={() => null}
+        onTab={() => null}
+      />
+    ));
+    const input = getByLabelText(/terminal prompt/i) as HTMLInputElement;
+    Object.defineProperty(input, 'selectionStart', { value: 2, configurable: true });
+    fireEvent.keyDown(input, { key: 'ArrowRight' });
+    expect(onInput).toHaveBeenCalledWith('about');
+  });
+
+  it('does not accept ghost on ArrowRight when cursor is not at end', () => {
+    const onInput = vi.fn();
+    const { getByLabelText } = render(() => (
+      <Prompt
+        value="ab"
+        ghost="about"
+        onInput={onInput}
+        onSubmit={() => {}}
+        onHistory={() => null}
+        onTab={() => null}
+      />
+    ));
+    const input = getByLabelText(/terminal prompt/i) as HTMLInputElement;
+    Object.defineProperty(input, 'selectionStart', { value: 1, configurable: true });
+    fireEvent.keyDown(input, { key: 'ArrowRight' });
+    expect(onInput).not.toHaveBeenCalled();
+  });
 });

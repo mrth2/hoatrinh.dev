@@ -6,6 +6,7 @@ export type TabAction = { completion: string | null; candidates: string[] };
 
 export function Prompt(props: {
   value: string;
+  ghost?: string;
   sigil?: string;
   errored?: boolean;
   onInput: (v: string) => void;
@@ -15,6 +16,22 @@ export function Prompt(props: {
 }) {
   const [announce, setAnnounce] = createSignal<string>('');
   const [focused, setFocused] = createSignal(false);
+  const [suppressGhost, setSuppressGhost] = createSignal(false);
+
+  const ghostSuffix = () => {
+    const g = props.ghost;
+    if (!g || suppressGhost()) return null;
+    const suffix = g.slice(props.value.length);
+    return suffix.length > 0 ? suffix : null;
+  };
+
+  function acceptGhost() {
+    const g = props.ghost;
+    if (g) {
+      setSuppressGhost(false);
+      props.onInput(g);
+    }
+  }
 
   function handleKeyDown(e: KeyboardEvent) {
     if (e.key === 'ArrowUp') {
@@ -25,8 +42,23 @@ export function Prompt(props: {
       e.preventDefault();
       const next = props.onHistory('down');
       if (next !== null) props.onInput(next);
+    } else if (e.key === 'ArrowRight') {
+      const input = e.currentTarget as HTMLInputElement;
+      if (ghostSuffix() !== null && input.selectionStart === props.value.length) {
+        e.preventDefault();
+        acceptGhost();
+      }
+    } else if (e.key === 'Escape') {
+      if (ghostSuffix() !== null) {
+        e.preventDefault();
+        setSuppressGhost(true);
+      }
     } else if (e.key === 'Tab') {
       e.preventDefault();
+      if (ghostSuffix() !== null) {
+        acceptGhost();
+        return;
+      }
       const result = props.onTab(props.value);
       if (!result) return;
       if (result.completion) {
@@ -56,23 +88,34 @@ export function Prompt(props: {
       <span class={styles.sigil} aria-hidden="true">
         {props.sigil ?? 'hi@hoatrinh.dev ~ %'}
       </span>
-      <input
-        id="terminal-input"
-        class={styles.input}
-        type="text"
-        value={props.value}
-        autocomplete="off"
-        autocorrect="off"
-        autocapitalize="none"
-        spellcheck={false}
-        enterkeyhint="go"
-        inputmode="text"
-        aria-describedby="prompt-announce"
-        onInput={(e) => props.onInput(e.currentTarget.value)}
-        onKeyDown={handleKeyDown}
-        onFocus={() => setFocused(true)}
-        onBlur={() => setFocused(false)}
-      />
+      <div class={styles.inputWrap}>
+        {ghostSuffix() !== null && (
+          <span class={styles.ghost} aria-hidden="true">
+            <span class={styles.ghostTyped}>{props.value}</span>
+            <span class={styles.ghostSuffix}>{ghostSuffix()}</span>
+          </span>
+        )}
+        <input
+          id="terminal-input"
+          class={styles.input}
+          type="text"
+          value={props.value}
+          autocomplete="off"
+          autocorrect="off"
+          autocapitalize="none"
+          spellcheck={false}
+          enterkeyhint="go"
+          inputmode="text"
+          aria-describedby="prompt-announce"
+          onInput={(e) => {
+            setSuppressGhost(false);
+            props.onInput(e.currentTarget.value);
+          }}
+          onKeyDown={handleKeyDown}
+          onFocus={() => setFocused(true)}
+          onBlur={() => setFocused(false)}
+        />
+      </div>
       {showHint() && (
         <span class={styles.hint} aria-hidden="true">
           ↵ run · ↑↓ history · ⇥ complete

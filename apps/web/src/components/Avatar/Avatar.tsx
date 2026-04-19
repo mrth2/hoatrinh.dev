@@ -20,14 +20,16 @@ export function Avatar() {
     timer = undefined;
   };
 
-  function playLookAround() {
+  function playLookAround(times = 1) {
     if (playing()) return;
     if (reducedMotionMql?.matches) return;
     if (fit().hidden) return;
     setPlaying(true);
+    const seq: FrameSegment[][] = [];
+    for (let t = 0; t < times; t++) seq.push(...LOOKAROUND_SEQUENCE);
     let i = 0;
     const tick = () => {
-      const next = LOOKAROUND_SEQUENCE[i];
+      const next = seq[i];
       if (next === undefined) {
         setFrame(FRAME_IDLE);
         setPlaying(false);
@@ -36,7 +38,7 @@ export function Avatar() {
       }
       setFrame(next);
       i++;
-      if (i >= LOOKAROUND_SEQUENCE.length) {
+      if (i >= seq.length) {
         setPlaying(false);
         timer = undefined;
       } else {
@@ -47,7 +49,7 @@ export function Avatar() {
   }
 
   onMount(() => {
-    playLookAround();
+    playLookAround(2);
   });
 
   onCleanup(() => clearTimer());
@@ -65,8 +67,8 @@ export function Avatar() {
         class={styles.artSlot}
         ref={setContainer}
         data-testid="avatar"
-        onClick={playLookAround}
-        onMouseEnter={playLookAround}
+        onClick={() => playLookAround()}
+        onMouseEnter={() => playLookAround()}
         style={fontSizeStyle()}
       >
         <span class="sr-only">Avatar of Hoa</span>

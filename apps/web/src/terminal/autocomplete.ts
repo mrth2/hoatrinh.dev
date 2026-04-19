@@ -8,6 +8,38 @@ export type AutocompleteResult = {
   candidates: string[];
 };
 
+export type SuggestOptions = {
+  canonicalNames: readonly string[];
+  allNames: readonly string[];
+  projectSlugs: readonly string[];
+};
+
+export function suggest(input: string, opts: SuggestOptions): string | null {
+  const leading = /^\s*/.exec(input)?.[0] ?? '';
+  const trimmed = input.trimStart();
+  if (!trimmed) return null;
+
+  if (!trimmed.includes(' ')) {
+    const needle = trimmed.toLowerCase();
+    const canonical = opts.canonicalNames.find((n) => n.startsWith(needle) && n !== needle);
+    if (canonical) return leading + canonical;
+    const alias = opts.allNames.find((n) => n.startsWith(needle) && n !== needle);
+    return alias != null ? leading + alias : null;
+  }
+
+  const parts = trimmed.split(/\s+/);
+  const cmd = parts[0];
+  if (cmd === 'project' && parts.length === 2) {
+    const arg = parts[1] ?? '';
+    if (!arg) return null;
+    const needle = arg.toLowerCase();
+    const slug = opts.projectSlugs.find((s) => s.startsWith(needle) && s !== needle);
+    if (slug) return `${leading}project ${slug}`;
+  }
+
+  return null;
+}
+
 export function autocomplete(input: string, opts: AutocompleteOptions): AutocompleteResult {
   const trimmed = input.trimStart();
   if (!trimmed.includes(' ')) {

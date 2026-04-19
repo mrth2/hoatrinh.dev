@@ -127,32 +127,35 @@ export const WAVE_SEQUENCE: FrameSegment[][] = [
 ];
 export const WAVE_FRAME_MS = 250;
 
-// Replace ↑ arrows only in the inner pupil zones of each lens.
-// Outer lens clusters and bridge-edge chars are intentionally left unchanged.
-function withEyeDirection(rows: string[], dir: '←' | '→'): string[] {
+// Shift ↑ arrows in the inner pupil zones by colShift columns.
+// Clears each ↑ from its idle position and places it colShift away.
+// Non-↑ chars and chars outside the zones are untouched.
+function withEyeShift(rows: string[], colShift: number): string[] {
   return rows.map((row, r) => {
     if (r < EYE_ROW_START || r > EYE_ROW_END) return row;
-    const leftPupil = row.slice(LEFT_PUPIL_START, LEFT_PUPIL_END + 1);
-    const rightPupil = row.slice(RIGHT_PUPIL_START, RIGHT_PUPIL_END + 1);
-    return (
-      row.slice(0, LEFT_PUPIL_START) +
-      leftPupil.replaceAll('↑', dir) +
-      row.slice(LEFT_PUPIL_END + 1, RIGHT_PUPIL_START) +
-      rightPupil.replaceAll('↑', dir) +
-      row.slice(RIGHT_PUPIL_END + 1)
-    );
+    const chars = [...row];
+    function shiftZone(start: number, end: number) {
+      const ups: number[] = [];
+      for (let c = start; c <= end; c++) {
+        if (row[c] === '↑') ups.push(c);
+      }
+      for (const c of ups) chars[c] = ' ';
+      for (const c of ups) {
+        const nc = c + colShift;
+        if (nc >= 0 && nc < chars.length) chars[nc] = '↑';
+      }
+    }
+    shiftZone(LEFT_PUPIL_START, LEFT_PUPIL_END);
+    shiftZone(RIGHT_PUPIL_START, RIGHT_PUPIL_END);
+    return chars.join('');
   });
 }
 
-export const FRAME_LOOK_LEFT: FrameSegment[] = segmentRows(withEyeDirection(idleRows, '←'));
-export const FRAME_LOOK_RIGHT: FrameSegment[] = segmentRows(withEyeDirection(idleRows, '→'));
+export const FRAME_LOOK_LEFT: FrameSegment[] = segmentRows(withEyeShift(idleRows, -4));
+export const FRAME_LOOK_RIGHT: FrameSegment[] = segmentRows(withEyeShift(idleRows, 4));
 
-// left → center → right → center, twice
+// One look-around cycle: left → center → right → center
 export const LOOKAROUND_SEQUENCE: FrameSegment[][] = [
-  FRAME_LOOK_LEFT,
-  FRAME_IDLE,
-  FRAME_LOOK_RIGHT,
-  FRAME_IDLE,
   FRAME_LOOK_LEFT,
   FRAME_IDLE,
   FRAME_LOOK_RIGHT,
