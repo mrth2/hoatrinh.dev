@@ -89,3 +89,11 @@ test('command index shows project count', async ({ page }) => {
   const meta = projectsRow.locator('[data-meta]');
   await expect(meta).toHaveText(/^\d+$/);
 });
+
+test('home page renders the avatar', async ({ page }) => {
+  await page.goto('/');
+  const avatar = page.getByTestId('avatar');
+  await expect(avatar).toBeVisible();
+  const text = await avatar.textContent();
+  expect((text ?? '').length).toBeGreaterThan(100);
+});
