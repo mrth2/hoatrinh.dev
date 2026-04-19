@@ -97,3 +97,23 @@ test('home page renders the avatar', async ({ page }) => {
   const text = await avatar.textContent();
   expect((text ?? '').length).toBeGreaterThan(100);
 });
+
+test('navigation preserves previous terminal entries', async ({ page }) => {
+  await page.goto('/');
+  await page.keyboard.press('Escape'); // skip boot animation
+
+  const input = page.locator('#terminal-input');
+
+  // Run first command - this navigates URL to /help
+  await input.fill('help');
+  await input.press('Enter');
+  await expect(page).toHaveURL(/\/help$/);
+
+  // Run second command - this navigates URL to /about
+  await input.fill('about');
+  await input.press('Enter');
+  await expect(page).toHaveURL(/\/about$/);
+
+  // Both entries must be in the DOM - history was preserved across navigation
+  await expect(page.locator('[data-variant]')).toHaveCount(2);
+});
