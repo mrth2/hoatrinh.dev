@@ -97,3 +97,18 @@
     animation: none;
   }
 }
+
+@keyframes motd-reveal {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: none; }
+}
+
+[data-motd-compact] {
+  animation: motd-reveal 300ms ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-motd-compact] {
+    animation: none;
+  }
+}
