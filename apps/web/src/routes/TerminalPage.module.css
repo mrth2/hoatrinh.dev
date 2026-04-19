@@ -70,3 +70,18 @@
   flex: 1;
   overflow-y: auto;
 }
+
+@keyframes session-hrt-pulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.55; }
+}
+
+.sessionStatus[data-state="ok"] {
+  animation: session-hrt-pulse 4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sessionStatus[data-state="ok"] {
+    animation: none;
+  }
+}

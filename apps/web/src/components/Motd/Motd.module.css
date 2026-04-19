@@ -82,3 +82,18 @@
     box-shadow: none;
   }
 }
+
+@keyframes motd-ready-pulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.55; }
+}
+
+.dot {
+  animation: motd-ready-pulse 4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dot {
+    animation: none;
+  }
+}
