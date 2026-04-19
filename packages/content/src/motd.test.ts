@@ -2,12 +2,33 @@ import { describe, expect, it } from 'vitest';
 import { getMotd, pickBootSet, pickCompact } from './motd';
 
 describe('getMotd', () => {
-  it('returns four tagged pools with >= 3 items each', () => {
-    const pools = getMotd();
+  it('returns four tagged pools with >= 3 items each (with buildData)', () => {
+    const pools = getMotd({
+      latestCommitSubject: 'test commit',
+      latestCommitIso: new Date().toISOString(),
+      buildTimeIso: new Date().toISOString(),
+    });
     expect(pools.greetings.length).toBeGreaterThanOrEqual(3);
     expect(pools.tips.length).toBeGreaterThanOrEqual(3);
     expect(pools.facts.length).toBeGreaterThanOrEqual(3);
     expect(pools.poetic.length).toBeGreaterThanOrEqual(3);
+  });
+
+  it('returns empty facts array without buildData', () => {
+    const pools = getMotd();
+    expect(pools.facts.length).toBe(0);
+  });
+});
+
+describe('getMotd with buildData', () => {
+  it('injects dynamic facts when buildData is provided', () => {
+    const pools = getMotd({
+      latestCommitSubject: 'feat(web): add x',
+      latestCommitIso: new Date().toISOString(),
+      buildTimeIso: new Date().toISOString(),
+    });
+    expect(pools.facts.some((f) => f.includes('last deploy'))).toBe(true);
+    expect(pools.facts.some((f) => f.includes('feat(web): add x'))).toBe(true);
   });
 });
 

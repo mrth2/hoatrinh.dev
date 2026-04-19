@@ -4,6 +4,10 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "build:motd": "bun run scripts/generate-motd.ts",
+    "prebuild": "bun run build:motd",
+    "predev": "bun run build:motd",
+    "preprerender": "bun run build:motd",
     "dev": "vite",
     "build": "vite build",
     "check:contrast": "bun run scripts/check-contrast.ts",

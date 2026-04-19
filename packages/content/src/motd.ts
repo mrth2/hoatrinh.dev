@@ -12,6 +12,12 @@ export type MotdBootSet = {
   poetic: string;
 };
 
+export type MotdBuildData = {
+  latestCommitSubject: string;
+  latestCommitIso: string;
+  buildTimeIso: string;
+};
+
 const POOLS: MotdPools = {
   greetings: [
     'welcome back, traveller.',
@@ -27,12 +33,7 @@ const POOLS: MotdPools = {
     'deep-link to anything: /about, /projects, /project/<slug>',
     '`clear` if things get noisy',
   ],
-  facts: [
-    'status: online',
-    'timezone: ict (utc+7)',
-    'editor: neovim',
-    'shell: zsh',
-  ],
+  facts: [],  // populated at runtime via getMotd(buildData)
   poetic: [
     'the river does not hurry, yet it arrives.',
     'good code is a letter to the future.',
@@ -41,8 +42,31 @@ const POOLS: MotdPools = {
   ],
 };
 
-export function getMotd(): MotdPools {
-  return POOLS;
+function relative(iso: string, now: Date = new Date()): string {
+  const then = new Date(iso).getTime();
+  const diffMs = now.getTime() - then;
+  const mins = Math.floor(diffMs / 60000);
+  if (mins < 1) return 'just now';
+  if (mins < 60) return `${mins}m ago`;
+  const hrs = Math.floor(mins / 60);
+  if (hrs < 24) return `${hrs}h ago`;
+  const days = Math.floor(hrs / 24);
+  if (days < 30) return `${days}d ago`;
+  const months = Math.floor(days / 30);
+  return `${months}mo ago`;
+}
+
+export function getMotd(buildData?: MotdBuildData): MotdPools {
+  if (!buildData) return POOLS;
+  const facts = [
+    'status: online',
+    'timezone: ict (utc+7)',
+    'editor: neovim',
+    'shell: zsh',
+    `last deploy: ${relative(buildData.buildTimeIso)}`,
+    `\`${buildData.latestCommitSubject}\``,
+  ];
+  return { ...POOLS, facts };
 }
 
 function rng(seed: number) {
@@ -60,23 +84,25 @@ function pickOne<T>(arr: readonly T[], rand: () => number): T {
   return arr[idx] as T;
 }
 
-export function pickBootSet(seed: number = Date.now()): MotdBootSet {
+export function pickBootSet(seed: number = Date.now(), buildData?: MotdBuildData): MotdBootSet {
+  const pools = getMotd(buildData);
   const r = rng(seed);
   return {
-    greeting: pickOne(POOLS.greetings, r),
-    tip: pickOne(POOLS.tips, r),
-    fact: pickOne(POOLS.facts, r),
-    poetic: pickOne(POOLS.poetic, r),
+    greeting: pickOne(pools.greetings, r),
+    tip:      pickOne(pools.tips, r),
+    fact:     pickOne(pools.facts.length ? pools.facts : POOLS.greetings, r),
+    poetic:   pickOne(pools.poetic, r),
   };
 }
 
-export function pickCompact(seed: number = Date.now()): string {
+export function pickCompact(seed: number = Date.now(), buildData?: MotdBuildData): string {
+  const pools = getMotd(buildData);
   const r = rng(seed);
   const all = [
-    ...POOLS.greetings,
-    ...POOLS.tips,
-    ...POOLS.facts,
-    ...POOLS.poetic,
-  ];
+    ...pools.greetings,
+    ...pools.tips,
+    ...pools.facts,
+    ...pools.poetic,
+  ].filter(Boolean);
   return pickOne(all, r);
 }
