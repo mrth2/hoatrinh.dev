@@ -1,6 +1,6 @@
 import { getProjects } from '@hoatrinh/content';
-import { useNavigate } from '@solidjs/router';
-import { createSignal, onCleanup, onMount } from 'solid-js';
+import { useLocation, useNavigate } from '@solidjs/router';
+import { createEffect, createSignal, onCleanup, onMount } from 'solid-js';
 import { EntryList } from '@/components/EntryList/EntryList';
 import { Motd } from '@/components/Motd/Motd';
 import { Prompt } from '@/components/Prompt/Prompt';
@@ -8,6 +8,7 @@ import { autocomplete } from '@/terminal/autocomplete';
 import { registry } from '@/terminal/commands';
 import { execute } from '@/terminal/execute';
 import { createHistory } from '@/terminal/history';
+import { pathToCommand } from '@/terminal/path-to-command';
 import { createTerminalStore } from '@/terminal/store';
 import styles from './TerminalPage.module.css';
 
@@ -21,9 +22,10 @@ function formatClock(d: Date): string {
   return `${h}:${m}`;
 }
 
-export function TerminalPage(props: { initialCommand?: string }) {
+export function TerminalPage() {
   const [state, setState] = createTerminalStore();
   const navigate = useNavigate();
+  const location = useLocation();
   const history = createHistory();
 
   const [currentTime, setCurrentTime] = createSignal(formatClock(new Date()));
@@ -32,12 +34,30 @@ export function TerminalPage(props: { initialCommand?: string }) {
     onCleanup(() => clearInterval(id));
   });
 
-  if (props.initialCommand) {
-    // Run synchronously at setup (not onMount) so SSR includes the rendered entries
-    // and client hydration matches. Router already landed us at this URL, so
-    // suppress execute's navigate side effect.
-    void execute(props.initialCommand, { state, setState, registry, navigate: NOOP_NAVIGATE });
+  // Run synchronously at setup (not onMount) so SSR includes the rendered entries
+  // and client hydration matches. We are already at this URL, so suppress
+  // execute's navigate side effect.
+  const initialCmd = pathToCommand(location.pathname);
+  if (initialCmd) {
+    void execute(initialCmd, { state, setState, registry, navigate: NOOP_NAVIGATE });
   }
+
+  // lastPath tracks the pathname we most recently executed a command for.
+  // Initialized to current pathname so the initial createEffect run is skipped
+  // (initial execution already happened above, synchronously).
+  const lastPath = { current: location.pathname };
+
+  // React to client-side navigation. When the URL changes (e.g. user clicks a
+  // link), derive and execute the corresponding command, appending to existing
+  // entries. Skip when we caused the navigation ourselves (submit calls
+  // navigateAndTrack which updates lastPath.current before calling navigate).
+  createEffect(() => {
+    const path = location.pathname;
+    if (path === lastPath.current) return;
+    lastPath.current = path;
+    const cmd = pathToCommand(path);
+    if (cmd) void execute(cmd, { state, setState, registry, navigate: NOOP_NAVIGATE });
+  });
 
   function focusInput() {
     document.getElementById('terminal-input')?.focus();
@@ -47,12 +67,20 @@ export function TerminalPage(props: { initialCommand?: string }) {
     if (matchMedia('(pointer: fine)').matches) focusInput();
   });
 
+  // Update lastPath before navigating so the createEffect skips the navigation
+  // we just caused (the typed command already ran; we don't want it to run again
+  // from the URL change).
+  function navigateAndTrack(path: string) {
+    lastPath.current = path;
+    navigate(path);
+  }
+
   async function submit(raw: string) {
     const trimmed = raw.trim();
     if (trimmed) history.push(trimmed);
     setState('currentInput', '');
     history.reset();
-    await execute(raw, { state, setState, registry, navigate });
+    await execute(raw, { state, setState, registry, navigate: navigateAndTrack });
   }
 
   function onHistory(dir: 'up' | 'down') {

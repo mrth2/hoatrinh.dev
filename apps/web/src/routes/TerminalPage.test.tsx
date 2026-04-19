@@ -4,6 +4,7 @@ import { markBooted, resetBooted } from '@/lib/motd/boot-state';
 
 vi.mock('@solidjs/router', () => ({
   useNavigate: () => () => {},
+  useLocation: () => ({ pathname: '/' }),
 }));
 
 // jsdom does not implement matchMedia; provide a minimal stub
