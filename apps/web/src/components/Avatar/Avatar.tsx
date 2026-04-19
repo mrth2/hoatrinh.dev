@@ -1,9 +1,14 @@
-import { createSignal, For, onCleanup, onMount, Show } from 'solid-js';
+import { createMemo, createSignal, For, onCleanup, onMount, Show } from 'solid-js';
 import styles from './Avatar.module.css';
 import { FRAME_IDLE, type FrameSegment, WAVE_FRAME_MS, WAVE_SEQUENCE } from './avatar-frames';
 import { useArtFit } from './useArtFit';
 
 export function Avatar() {
+  const reducedMotionMql =
+    typeof window !== 'undefined' && window.matchMedia
+      ? window.matchMedia('(prefers-reduced-motion: reduce)')
+      : null;
+
   const [container, setContainer] = createSignal<HTMLDivElement | undefined>();
   const [frame, setFrame] = createSignal<FrameSegment[]>(FRAME_IDLE);
   const [playing, setPlaying] = createSignal(false);
@@ -15,14 +20,9 @@ export function Avatar() {
     timer = undefined;
   };
 
-  function reducedMotion(): boolean {
-    if (typeof window === 'undefined' || !window.matchMedia) return false;
-    return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  }
-
   function playWave() {
     if (playing()) return;
-    if (reducedMotion()) return;
+    if (reducedMotionMql?.matches) return;
     if (fit().hidden) return;
     setPlaying(true);
     let i = 0;
@@ -37,7 +37,6 @@ export function Avatar() {
       setFrame(next);
       i++;
       if (i >= WAVE_SEQUENCE.length) {
-        // Last frame shown - mark done immediately
         setPlaying(false);
         timer = undefined;
       } else {
@@ -53,10 +52,10 @@ export function Avatar() {
 
   onCleanup(() => clearTimer());
 
-  const fontSizeStyle = () => {
+  const fontSizeStyle = createMemo(() => {
     const f = fit();
     return f.fontSize ? { '--art-font-size': `${f.fontSize}px` } : {};
-  };
+  });
 
   return (
     <Show when={!fit().hidden}>
@@ -70,7 +69,7 @@ export function Avatar() {
         onMouseEnter={playWave}
         style={fontSizeStyle()}
       >
-        <span class={styles.visuallyHidden}>Avatar of Hoa</span>
+        <span class="sr-only">Avatar of Hoa</span>
         <pre class={styles.art} aria-hidden="true">
           <For each={frame()}>
             {(seg) => (
