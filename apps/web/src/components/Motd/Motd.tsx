@@ -1,5 +1,6 @@
 import { pickBootSet, pickCompact } from '@hoatrinh/content';
 import { createSignal, onCleanup, onMount, Show } from 'solid-js';
+import { Avatar } from '@/components/Avatar/Avatar';
 import { CommandIndex } from '@/components/CommandIndex/CommandIndex';
 import buildData from '@/generated/motd-build.json';
 import { hasBooted, markBooted, shouldAnimateBoot } from '@/lib/motd/boot-state';
@@ -83,6 +84,9 @@ function CompactMotd(props: { compactLine: string; onSuggestion: (cmd: string) =
     <section class={styles.motd} aria-label="Welcome message" data-motd-compact>
       <p class={styles.name}>hoa trinh hai</p>
       <p class={styles.role}>senior software engineer · vietnam</p>
+      <div class={styles.motdSpacer}>
+        <Avatar />
+      </div>
       <CommandIndex onSuggestion={props.onSuggestion} />
       <p class={styles.compactLine}>
         <span class={styles.dot} aria-hidden="true">
@@ -114,6 +118,9 @@ function BootStatic(props: {
       <p class={styles.bootLine}>{props.bootSet.tip}</p>
       <p class={styles.name}>hoa trinh hai</p>
       <p class={styles.role}>senior software engineer · vietnam</p>
+      <div class={styles.motdSpacer}>
+        <Avatar />
+      </div>
       <CommandIndex onSuggestion={props.onSuggestion} />
       <p class={styles.compactLine}>
         <span class={styles.dot} aria-hidden="true">
@@ -200,6 +207,9 @@ function BootAnimated(props: {
       <Show when={done()}>
         <p class={styles.name}>hoa trinh hai</p>
         <p class={styles.role}>senior software engineer · vietnam</p>
+        <div class={styles.motdSpacer}>
+          <Avatar />
+        </div>
         <CommandIndex onSuggestion={props.onSuggestion} />
         <p class={styles.compactLine}>
           <span class={styles.dot} aria-hidden="true">

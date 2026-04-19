@@ -4,6 +4,16 @@
   gap: var(--space-1);
   margin-top: var(--space-6);
   font-family: var(--font-code);
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+/* The CommandIndex + compactLine should anchor near the bottom; Avatar
+   absorbs the flexible space above them. */
+.motdSpacer {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
 }
 .name {
   font-size: var(--text-display);
