@@ -144,7 +144,7 @@ export function TerminalPage() {
       {/* biome-ignore lint/a11y/noStaticElementInteractions: click-to-focus is a pointer-only enhancement; keyboard users tab to #terminal-input directly */}
       {/* biome-ignore lint/a11y/useKeyWithClickEvents: keyboard users reach the input via Tab; this click handler is an enhancement */}
       <div class={styles.scroll} onClick={onListClick}>
-        {state.entries.length === 0 && <Motd onSuggestion={onSuggestion} />}
+        <Motd onSuggestion={onSuggestion} />
         <EntryList entries={state.entries} onSuggestion={onSuggestion} />
       </div>
       <Prompt
