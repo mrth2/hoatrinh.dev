@@ -39,7 +39,7 @@ export function CommandIndex(props: { onSuggestion: (cmd: string) => void }) {
               >
                 <span class={styles.name}>{row.name}</span>{' '}
                 <span class={styles.summary}>{row.summary}</span>
-                <span class={styles.meta}>{row.count ?? ''}</span>
+                <span class={styles.meta} data-meta>{row.count ?? ''}</span>
               </button>
             </li>
           )}

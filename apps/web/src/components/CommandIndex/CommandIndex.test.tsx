@@ -25,4 +25,24 @@ describe('CommandIndex', () => {
     fireEvent.click(getByRole('button', { name: /^projects\b/i }));
     expect(onSuggestion).toHaveBeenCalledWith('projects');
   });
+
+  it('renders counts for projects, experience, and skills only', () => {
+    const { getByRole } = render(() => <CommandIndex onSuggestion={() => {}} />);
+    const projectsBtn = getByRole('button', { name: /^projects\b/i });
+    const experienceBtn = getByRole('button', { name: /^experience\b/i });
+    const skillsBtn = getByRole('button', { name: /^skills\b/i });
+    const aboutBtn = getByRole('button', { name: /^about\b/i });
+    const contactBtn = getByRole('button', { name: /^contact\b/i });
+    const helpBtn = getByRole('button', { name: /^help\b/i });
+
+    const metaOf = (el: HTMLElement) =>
+      (el.querySelector('[data-meta]') as HTMLElement | null)?.textContent?.trim() ?? '';
+
+    expect(metaOf(projectsBtn)).toMatch(/^\d+$/);
+    expect(metaOf(experienceBtn)).toMatch(/^\d+$/);
+    expect(metaOf(skillsBtn)).toMatch(/^\d+$/);
+    expect(metaOf(aboutBtn)).toBe('');
+    expect(metaOf(contactBtn)).toBe('');
+    expect(metaOf(helpBtn)).toBe('');
+  });
 });
