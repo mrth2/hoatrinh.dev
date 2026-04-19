@@ -11,3 +11,4 @@ test-results/
 coverage/
 *.tsbuildinfo
 dist-types/
+**/.keepgoing/
