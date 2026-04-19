@@ -27,6 +27,7 @@ export function TerminalPage() {
   const navigate = useNavigate();
   const location = useLocation();
   const history = createHistory();
+  let scrollEl: HTMLDivElement | undefined;
 
   const [currentTime, setCurrentTime] = createSignal(formatClock(new Date()));
   onMount(() => {
@@ -57,6 +58,18 @@ export function TerminalPage() {
     lastPath.current = path;
     const cmd = pathToCommand(path);
     if (cmd) void execute(cmd, { state, setState, registry, navigate: NOOP_NAVIGATE });
+  });
+
+  // After each new entry, scroll it into view. requestAnimationFrame ensures
+  // this runs after the router's own scroll restoration so we always win.
+  createEffect(() => {
+    const len = state.entries.length;
+    if (len === 0) return;
+    requestAnimationFrame(() => {
+      const panels = scrollEl?.querySelectorAll('[data-variant]');
+      const last = panels?.[panels.length - 1] as HTMLElement | undefined;
+      last?.scrollIntoView({ block: 'start', behavior: 'instant' });
+    });
   });
 
   function focusInput() {
@@ -143,7 +156,7 @@ export function TerminalPage() {
       </section>
       {/* biome-ignore lint/a11y/noStaticElementInteractions: click-to-focus is a pointer-only enhancement; keyboard users tab to #terminal-input directly */}
       {/* biome-ignore lint/a11y/useKeyWithClickEvents: keyboard users reach the input via Tab; this click handler is an enhancement */}
-      <div class={styles.scroll} onClick={onListClick}>
+      <div ref={scrollEl} class={styles.scroll} onClick={onListClick}>
         <Motd onSuggestion={onSuggestion} />
         <EntryList entries={state.entries} onSuggestion={onSuggestion} />
       </div>
