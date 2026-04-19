@@ -29,7 +29,12 @@ describe('boot-state', () => {
     // jsdom: override matchMedia for the test
     const original = window.matchMedia;
     window.matchMedia = (q: string) =>
-      ({ matches: q.includes('prefers-reduced-motion'), media: q, addEventListener() {}, removeEventListener() {} }) as unknown as MediaQueryList;
+      ({
+        matches: q.includes('prefers-reduced-motion'),
+        media: q,
+        addEventListener() {},
+        removeEventListener() {},
+      }) as unknown as MediaQueryList;
     try {
       expect(shouldAnimateBoot()).toBe(false);
     } finally {
@@ -40,7 +45,12 @@ describe('boot-state', () => {
   it('shouldAnimateBoot is true when fresh and motion allowed', () => {
     const original = window.matchMedia;
     window.matchMedia = (q: string) =>
-      ({ matches: false, media: q, addEventListener() {}, removeEventListener() {} }) as unknown as MediaQueryList;
+      ({
+        matches: false,
+        media: q,
+        addEventListener() {},
+        removeEventListener() {},
+      }) as unknown as MediaQueryList;
     try {
       expect(shouldAnimateBoot()).toBe(true);
     } finally {

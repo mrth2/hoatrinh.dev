@@ -33,7 +33,7 @@ const POOLS: MotdPools = {
     'deep-link to anything: /about, /projects, /project/<slug>',
     '`clear` if things get noisy',
   ],
-  facts: [],  // populated at runtime via getMotd(buildData)
+  facts: [], // populated at runtime via getMotd(buildData)
   poetic: [
     'the river does not hurry, yet it arrives.',
     'good code is a letter to the future.',
@@ -89,20 +89,15 @@ export function pickBootSet(seed: number = Date.now(), buildData?: MotdBuildData
   const r = rng(seed);
   return {
     greeting: pickOne(pools.greetings, r),
-    tip:      pickOne(pools.tips, r),
-    fact:     pickOne(pools.facts.length ? pools.facts : POOLS.greetings, r),
-    poetic:   pickOne(pools.poetic, r),
+    tip: pickOne(pools.tips, r),
+    fact: pickOne(pools.facts.length ? pools.facts : POOLS.greetings, r),
+    poetic: pickOne(pools.poetic, r),
   };
 }
 
 export function pickCompact(seed: number = Date.now(), buildData?: MotdBuildData): string {
   const pools = getMotd(buildData);
   const r = rng(seed);
-  const all = [
-    ...pools.greetings,
-    ...pools.tips,
-    ...pools.facts,
-    ...pools.poetic,
-  ].filter(Boolean);
+  const all = [...pools.greetings, ...pools.tips, ...pools.facts, ...pools.poetic].filter(Boolean);
   return pickOne(all, r);
 }

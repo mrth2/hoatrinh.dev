@@ -12,7 +12,8 @@
       "!.keepgoing",
       "!.git",
       "!bun.lock",
-      "!specs"
+      "!specs",
+      "!**/src/generated"
     ]
   },
   "formatter": {

@@ -85,9 +85,12 @@ export function TerminalPage(props: { initialCommand?: string }) {
           {SESSION_DATE}
         </time>
         <span
+          role="img"
           class={styles.sessionStatus}
           data-state={isErrored() ? 'error' : state.isExecuting ? 'pending' : 'ok'}
-          aria-label={isErrored() ? 'last command errored' : state.isExecuting ? 'executing' : 'ready'}
+          aria-label={
+            isErrored() ? 'last command errored' : state.isExecuting ? 'executing' : 'ready'
+          }
         >
           ●
         </span>

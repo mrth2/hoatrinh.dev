@@ -46,3 +46,29 @@ test('clear empties the entry list', async ({ page }) => {
   await input.press('Enter');
   await expect(page.locator('[data-variant]')).toHaveCount(0);
 });
+
+test('boot sequence renders on fresh tab, compact on reload', async ({ browser }) => {
+  const context = await browser.newContext();
+  const page = await context.newPage();
+  await page.goto('/');
+  // boot lines visible (one of them)
+  await expect(page.getByText(/initializing session/i)).toBeVisible();
+
+  // reload within same tab/context -> compact (no initializing line)
+  await page.reload();
+  await expect(page.getByText(/initializing session/i)).toHaveCount(0);
+
+  // But the hero is still there
+  await expect(page.getByText(/hoa trinh hai/i)).toBeVisible();
+  await context.close();
+});
+
+test('boot sequence is skippable by keypress', async ({ browser }) => {
+  const context = await browser.newContext();
+  const page = await context.newPage();
+  await page.goto('/');
+  await page.keyboard.press('Escape');
+  // After skipping, the ready line appears
+  await expect(page.getByText(/ready/i)).toBeVisible({ timeout: 2000 });
+  await context.close();
+});

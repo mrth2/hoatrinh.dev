@@ -1,11 +1,14 @@
-import { describe, expect, it, vi, beforeEach, afterEach } from 'vitest';
-import { render, fireEvent, cleanup } from '@solidjs/testing-library';
-import { Motd } from './Motd';
+import { cleanup, fireEvent, render } from '@solidjs/testing-library';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { markBooted, resetBooted } from '@/lib/motd/boot-state';
+import { Motd } from './Motd';
 
 describe('Motd (compact mode)', () => {
-  beforeEach(() => markBooted());     // force compact path
-  afterEach(() => { resetBooted(); cleanup(); });
+  beforeEach(() => markBooted()); // force compact path
+  afterEach(() => {
+    resetBooted();
+    cleanup();
+  });
 
   it('renders the name line', () => {
     const { getByText } = render(() => <Motd onSuggestion={() => {}} />);
@@ -44,17 +47,23 @@ describe('Motd (compact mode)', () => {
 });
 
 describe('Motd (boot mode)', () => {
+  let origMatchMedia: typeof window.matchMedia;
+
   beforeEach(() => {
     resetBooted();
     // Force prefers-reduced-motion: reduce so boot renders final state instantly
     // (we test the char-streamer path separately in char-streamer.test.ts)
-    const original = window.matchMedia;
-    (window as any).__origMM = original;
+    origMatchMedia = window.matchMedia;
     window.matchMedia = (q: string) =>
-      ({ matches: q.includes('prefers-reduced-motion'), media: q, addEventListener() {}, removeEventListener() {} }) as unknown as MediaQueryList;
+      ({
+        matches: q.includes('prefers-reduced-motion'),
+        media: q,
+        addEventListener() {},
+        removeEventListener() {},
+      }) as unknown as MediaQueryList;
   });
   afterEach(() => {
-    window.matchMedia = (window as any).__origMM;
+    window.matchMedia = origMatchMedia;
     resetBooted();
     cleanup();
   });

@@ -7,8 +7,8 @@ function run(cmd: string): string {
 }
 
 const latestCommitSubject = run('git log -1 --pretty=%s');
-const latestCommitIso      = run('git log -1 --pretty=%cI');
-const buildTimeIso         = new Date().toISOString();
+const latestCommitIso = run('git log -1 --pretty=%cI');
+const buildTimeIso = new Date().toISOString();
 
 const outDir = resolve(import.meta.dir, '../src/generated');
 mkdirSync(outDir, { recursive: true });
