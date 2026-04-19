@@ -3,6 +3,7 @@ import { createSignal, onCleanup, onMount, Show } from 'solid-js';
 import buildData from '@/generated/motd-build.json';
 import { hasBooted, markBooted, shouldAnimateBoot } from '@/lib/motd/boot-state';
 import { streamChars } from '@/lib/motd/char-streamer';
+import { CommandIndex } from '@/components/CommandIndex/CommandIndex';
 import styles from './Motd.module.css';
 
 function relativeToSentence(iso: string): string {
@@ -82,16 +83,7 @@ function CompactMotd(props: { compactLine: string; onSuggestion: (cmd: string) =
     <section class={styles.motd} aria-label="Welcome message" data-motd-compact>
       <p class={styles.name}>hoa trinh hai</p>
       <p class={styles.role}>senior software engineer · vietnam</p>
-      <p class={styles.hint}>
-        type{' '}
-        <button type="button" class={styles.cmd} onClick={() => props.onSuggestion('help')}>
-          help
-        </button>{' '}
-        to see commands, or try{' '}
-        <button type="button" class={styles.cmd} onClick={() => props.onSuggestion('about')}>
-          about
-        </button>
-      </p>
+      <CommandIndex onSuggestion={props.onSuggestion} />
       <p class={styles.compactLine}>
         <span class={styles.dot} aria-hidden="true">
           ●
@@ -122,16 +114,7 @@ function BootStatic(props: {
       <p class={styles.bootLine}>{props.bootSet.tip}</p>
       <p class={styles.name}>hoa trinh hai</p>
       <p class={styles.role}>senior software engineer · vietnam</p>
-      <p class={styles.hint}>
-        type{' '}
-        <button type="button" class={styles.cmd} onClick={() => props.onSuggestion('help')}>
-          help
-        </button>{' '}
-        to see commands, or try{' '}
-        <button type="button" class={styles.cmd} onClick={() => props.onSuggestion('about')}>
-          about
-        </button>
-      </p>
+      <CommandIndex onSuggestion={props.onSuggestion} />
       <p class={styles.compactLine}>
         <span class={styles.dot} aria-hidden="true">
           ●
@@ -217,16 +200,7 @@ function BootAnimated(props: {
       <Show when={done()}>
         <p class={styles.name}>hoa trinh hai</p>
         <p class={styles.role}>senior software engineer · vietnam</p>
-        <p class={styles.hint}>
-          type{' '}
-          <button type="button" class={styles.cmd} onClick={() => props.onSuggestion('help')}>
-            help
-          </button>{' '}
-          to see commands, or try{' '}
-          <button type="button" class={styles.cmd} onClick={() => props.onSuggestion('about')}>
-            about
-          </button>
-        </p>
+        <CommandIndex onSuggestion={props.onSuggestion} />
         <p class={styles.compactLine}>
           <span class={styles.dot} aria-hidden="true">
             ●
