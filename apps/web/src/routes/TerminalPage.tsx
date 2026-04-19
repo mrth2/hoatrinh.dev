@@ -1,6 +1,6 @@
 import { getProjects } from '@hoatrinh/content';
 import { useNavigate } from '@solidjs/router';
-import { onMount } from 'solid-js';
+import { createSignal, onCleanup, onMount } from 'solid-js';
 import { EntryList } from '@/components/EntryList/EntryList';
 import { Motd } from '@/components/Motd/Motd';
 import { Prompt } from '@/components/Prompt/Prompt';
@@ -15,10 +15,22 @@ const PROJECT_SLUGS = getProjects().map((p) => p.slug);
 const NOOP_NAVIGATE = () => {};
 const SESSION_DATE = new Date().toISOString().slice(0, 10);
 
+function formatClock(d: Date): string {
+  const h = String(d.getHours()).padStart(2, '0');
+  const m = String(d.getMinutes()).padStart(2, '0');
+  return `${h}:${m}`;
+}
+
 export function TerminalPage(props: { initialCommand?: string }) {
   const [state, setState] = createTerminalStore();
   const navigate = useNavigate();
   const history = createHistory();
+
+  const [currentTime, setCurrentTime] = createSignal(formatClock(new Date()));
+  onMount(() => {
+    const id = setInterval(() => setCurrentTime(formatClock(new Date())), 30_000);
+    onCleanup(() => clearInterval(id));
+  });
 
   if (props.initialCommand) {
     // Run synchronously at setup (not onMount) so SSR includes the rendered entries
@@ -83,6 +95,9 @@ export function TerminalPage(props: { initialCommand?: string }) {
         <span class={styles.sessionSep}> · session </span>
         <time class={styles.sessionDate} datetime={SESSION_DATE}>
           {SESSION_DATE}
+        </time>
+        <time class={styles.sessionTime} data-session-time="">
+          {currentTime()}
         </time>
         <span
           role="img"

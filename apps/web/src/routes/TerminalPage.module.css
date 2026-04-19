@@ -37,6 +37,10 @@
 .sessionDate {
   color: var(--text-dim);
 }
+.sessionTime {
+  color: var(--text-dim);
+  font-variant-numeric: tabular-nums;
+}
 .sessionHelp {
   margin-left: auto;
   color: var(--text-muted);
