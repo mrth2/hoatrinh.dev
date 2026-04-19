@@ -79,7 +79,7 @@ export function TerminalPage(props: { initialCommand?: string }) {
         Skip to prompt
       </a>
       <section class={styles.sessionBar} aria-label="Session">
-        <span class={styles.sessionHost}>hi@hoatrinh.dev</span>
+        <a href="/" class={styles.sessionHost}>hi@hoatrinh.dev</a>
         <span class={styles.sessionSep}> · session </span>
         <time class={styles.sessionDate} datetime={SESSION_DATE}>
           {SESSION_DATE}
