@@ -38,7 +38,15 @@
   cursor: pointer;
 }
 .cmd:hover {
+  color: var(--accent-hover);
   text-decoration: underline;
+  text-shadow: 0 0 10px rgba(255, 79, 216, 0.4);
+}
+
+@media (prefers-reduced-motion: reduce), (prefers-contrast: more) {
+  .cmd:hover {
+    text-shadow: none;
+  }
 }
 
 .bootLine {
