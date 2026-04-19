@@ -1,9 +1,9 @@
 import { pickBootSet, pickCompact } from '@hoatrinh/content';
 import { createSignal, onCleanup, onMount, Show } from 'solid-js';
+import { CommandIndex } from '@/components/CommandIndex/CommandIndex';
 import buildData from '@/generated/motd-build.json';
 import { hasBooted, markBooted, shouldAnimateBoot } from '@/lib/motd/boot-state';
 import { streamChars } from '@/lib/motd/char-streamer';
-import { CommandIndex } from '@/components/CommandIndex/CommandIndex';
 import styles from './Motd.module.css';
 
 function relativeToSentence(iso: string): string {

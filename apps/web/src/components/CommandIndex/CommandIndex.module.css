@@ -32,7 +32,10 @@
   font: inherit;
   font-size: var(--text-sm);
   color: var(--text-primary);
-  transition: background 120ms ease-out, box-shadow 120ms ease-out, color 120ms ease-out;
+  transition:
+    background 120ms ease-out,
+    box-shadow 120ms ease-out,
+    color 120ms ease-out;
 }
 
 .name {
