@@ -2,7 +2,7 @@
 name: Hoa Trinh Hai
 role: Senior Software Engineer
 location: Vietnam
-email: hoatrinhdev@gmail.com
+email: hi@hoatrinh.dev
 links:
   - label: GitHub
     href: https://github.com/mrth2

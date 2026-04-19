@@ -54,7 +54,7 @@ export function Prompt(props: {
         Terminal prompt, type a command
       </label>
       <span class={styles.sigil} aria-hidden="true">
-        {props.sigil ?? 'hoa@trinh.dev ~ %'}
+        {props.sigil ?? 'hi@hoatrinh.dev ~ %'}
       </span>
       <input
         id="terminal-input"
