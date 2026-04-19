@@ -15,6 +15,8 @@ function buildRows(): Row[] {
     experience: getExperience().length,
     skills: getSkills().reduce((n, g) => n + g.items.length, 0),
   };
+  // Exclude `clear` (terminal-only action) and any command that needs positional
+  // args (argsHint set) — those can't be invoked from a zero-arg click.
   return commandSpecs
     .filter((s) => s.name !== 'clear' && s.argsHint === undefined)
     .map((s) => {
