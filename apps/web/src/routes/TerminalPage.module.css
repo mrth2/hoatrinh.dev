@@ -44,6 +44,14 @@
   }
 }
 
+.sessionStatus {
+  font-size: var(--text-sm);
+  line-height: 1;
+}
+.sessionStatus[data-state="ok"]      { color: var(--accent-secondary); }
+.sessionStatus[data-state="error"]   { color: var(--state-error); }
+.sessionStatus[data-state="pending"] { color: var(--accent-primary); }
+
 .scroll {
   flex: 1;
   overflow-y: auto;

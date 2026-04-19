@@ -84,6 +84,13 @@ export function TerminalPage(props: { initialCommand?: string }) {
         <time class={styles.sessionDate} datetime={SESSION_DATE}>
           {SESSION_DATE}
         </time>
+        <span
+          class={styles.sessionStatus}
+          data-state={isErrored() ? 'error' : state.isExecuting ? 'pending' : 'ok'}
+          aria-label={isErrored() ? 'last command errored' : state.isExecuting ? 'executing' : 'ready'}
+        >
+          ●
+        </span>
         <span class={styles.sessionHelp}>type 'help' for commands</span>
       </section>
       {/* biome-ignore lint/a11y/noStaticElementInteractions: click-to-focus is a pointer-only enhancement; keyboard users tab to #terminal-input directly */}
