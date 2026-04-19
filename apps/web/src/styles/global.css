@@ -84,3 +84,22 @@ a:hover {
     transition-duration: 0.001ms !important;
   }
 }
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.015) 0 1px,
+    transparent 1px 3px
+  );
+}
+
+@media (prefers-reduced-motion: reduce), (prefers-contrast: more) {
+  body::before {
+    display: none;
+  }
+}
