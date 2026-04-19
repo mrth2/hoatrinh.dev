@@ -68,7 +68,24 @@ test('boot sequence is skippable by keypress', async ({ browser }) => {
   const page = await context.newPage();
   await page.goto('/');
   await page.keyboard.press('Escape');
-  // After skipping, the ready line appears
-  await expect(page.getByText(/ready/i)).toBeVisible({ timeout: 2000 });
+  // After skipping, the ready indicator appears
+  await expect(page.getByText('ready', { exact: true })).toBeVisible({ timeout: 2000 });
   await context.close();
+});
+
+test('clicking an index row runs the command and updates the URL', async ({ page }) => {
+  await page.goto('/');
+  await page.keyboard.press('Escape');
+  const aboutRow = page.getByRole('button', { name: /^about\b/i });
+  await expect(aboutRow).toBeVisible();
+  await aboutRow.click();
+  await expect(page).toHaveURL(/\/about$/);
+});
+
+test('command index shows project count', async ({ page }) => {
+  await page.goto('/');
+  const projectsRow = page.getByRole('button', { name: /^projects\b/i });
+  await expect(projectsRow).toBeVisible();
+  const meta = projectsRow.locator('[data-meta]');
+  await expect(meta).toHaveText(/^\d+$/);
 });
