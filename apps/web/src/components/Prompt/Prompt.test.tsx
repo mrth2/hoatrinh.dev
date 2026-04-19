@@ -104,7 +104,8 @@ describe('Prompt', () => {
         onTab={() => null}
       />
     ));
-    const suffix = container.querySelector('[aria-hidden="true"] + [aria-hidden="true"] span:last-child') ??
+    const suffix =
+      container.querySelector('[aria-hidden="true"] + [aria-hidden="true"] span:last-child') ??
       container.querySelector('[aria-hidden="true"] span:last-child');
     expect(suffix?.textContent).toBe('out');
   });

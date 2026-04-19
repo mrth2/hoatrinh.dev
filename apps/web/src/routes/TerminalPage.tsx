@@ -170,7 +170,7 @@ export function TerminalPage() {
       </div>
       <Prompt
         value={state.currentInput}
-        ghost={ghostSuggestion()}
+        {...(ghostSuggestion() !== undefined ? { ghost: ghostSuggestion() as string } : {})}
         errored={isErrored()}
         onInput={(v) => setState('currentInput', v)}
         onSubmit={submit}

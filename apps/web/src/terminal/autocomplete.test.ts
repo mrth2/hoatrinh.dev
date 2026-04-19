@@ -13,7 +13,16 @@ const commands = [
 ];
 const projectSlugs = ['keepgoing', 'win95-fun'];
 
-const canonicalNames = ['about', 'projects', 'project', 'experience', 'skills', 'contact', 'help', 'clear'];
+const canonicalNames = [
+  'about',
+  'projects',
+  'project',
+  'experience',
+  'skills',
+  'contact',
+  'help',
+  'clear',
+];
 const allNames = [...canonicalNames, 'whoami', 'me', 'a', 'work', 'ls', 'open', 'show'];
 
 describe('autocomplete', () => {
