@@ -23,12 +23,12 @@ const MIME: Record<string, string> = {
 };
 
 function resolve(pathname: string): string | null {
-  const clean = pathname.replace(/\/+$/, '') || '/';
-  const candidates = [
-    join(DIST, clean),
-    join(DIST, clean, 'index.html'),
-    join(DIST, `${clean}.html`),
-  ];
+  const clean = pathname.replace(/\/+$/, '');
+  const relative = clean.replace(/^\/+/, '');
+  const candidates =
+    relative === ''
+      ? [join(DIST, 'index.html')]
+      : [join(DIST, relative), join(DIST, relative, 'index.html'), join(DIST, `${relative}.html`)];
   for (const c of candidates) {
     if (existsSync(c) && statSync(c).isFile()) return c;
   }

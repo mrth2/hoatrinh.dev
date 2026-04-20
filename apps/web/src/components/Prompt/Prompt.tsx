@@ -66,20 +66,18 @@ export function Prompt(props: {
       } else if (result.candidates.length > 0) {
         setAnnounce(`Matches: ${result.candidates.join(', ')}`);
       }
+    } else if (e.key === 'Enter' && !e.isComposing) {
+      e.preventDefault();
+      props.onSubmit(props.value);
     }
-  }
-
-  function handleSubmit(e: Event) {
-    e.preventDefault();
-    props.onSubmit(props.value);
   }
 
   const showHint = () => focused() && props.value === '';
 
   return (
-    <form
+    <div
       class={styles.prompt}
-      onSubmit={handleSubmit}
+      data-testid="prompt-shell"
       {...(props.errored ? { 'data-errored': 'true' } : {})}
     >
       <label for="terminal-input" class="sr-only">
@@ -124,6 +122,6 @@ export function Prompt(props: {
       <span id="prompt-announce" class="sr-only" aria-live="polite">
         {announce()}
       </span>
-    </form>
+    </div>
   );
 }

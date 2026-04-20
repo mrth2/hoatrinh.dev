@@ -151,6 +151,7 @@ function BootAnimated(props: {
   const [rendered, setRendered] = createSignal<string[]>(['']);
   const [done, setDone] = createSignal(false);
   const ctrl = new AbortController();
+  let maxBootTimer: number | undefined;
 
   async function run() {
     for (let i = 0; i < lines.length; i++) {
@@ -177,6 +178,7 @@ function BootAnimated(props: {
   }
 
   function skip() {
+    if (done()) return;
     ctrl.abort();
     setRendered(lines as string[]);
     markBooted();
@@ -184,10 +186,12 @@ function BootAnimated(props: {
   }
 
   onMount(() => {
+    maxBootTimer = window.setTimeout(skip, 1_500);
     window.addEventListener('keydown', skip, { once: true });
     void run();
   });
   onCleanup(() => {
+    if (maxBootTimer !== undefined) window.clearTimeout(maxBootTimer);
     ctrl.abort();
     window.removeEventListener('keydown', skip);
   });

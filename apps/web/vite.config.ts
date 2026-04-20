@@ -6,4 +6,10 @@ export default defineConfig({
   resolve: {
     alias: { '@': new URL('./src', import.meta.url).pathname },
   },
+  optimizeDeps: {
+    exclude: ['@hoatrinh/content'],
+  },
+  ssr: {
+    noExternal: ['@hoatrinh/content'],
+  },
 });

@@ -78,7 +78,7 @@ export function TerminalPage() {
   }
 
   onMount(() => {
-    if (matchMedia('(pointer: fine)').matches) focusInput();
+    focusInput();
   });
 
   // Update lastPath before navigating so the createEffect skips the navigation

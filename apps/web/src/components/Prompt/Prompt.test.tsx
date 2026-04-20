@@ -17,8 +17,7 @@ describe('Prompt', () => {
     const input = getByLabelText(/terminal prompt/i) as HTMLInputElement;
     input.value = 'about';
     fireEvent.input(input);
-    if (!input.form) throw new Error('input has no parent form');
-    fireEvent.submit(input.form);
+    fireEvent.keyDown(input, { key: 'Enter' });
     expect(onSubmit).toHaveBeenCalled();
   });
 
@@ -76,7 +75,7 @@ describe('Prompt', () => {
         onTab={() => null}
       />
     ));
-    expect(container.querySelector('form[data-errored="true"]')).not.toBeNull();
+    expect(container.querySelector('[data-errored="true"]')).not.toBeNull();
   });
 
   it('omits data-errored when the errored prop is false or absent', () => {
@@ -89,8 +88,8 @@ describe('Prompt', () => {
         onTab={() => null}
       />
     ));
-    const form = container.querySelector('form');
-    expect(form?.getAttribute('data-errored')).not.toBe('true');
+    const prompt = container.querySelector('[data-testid="prompt-shell"]');
+    expect(prompt?.getAttribute('data-errored')).not.toBe('true');
   });
 
   it('renders ghost suffix when ghost prop is longer than value', () => {

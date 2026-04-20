@@ -27,7 +27,7 @@ test('unknown command shows error with suggestion', async ({ page }) => {
   const input = page.locator('#terminal-input');
   await input.fill('abot');
   await input.press('Enter');
-  await expect(page.getByRole('button', { name: 'about' })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'about', exact: true })).toBeVisible();
 });
 
 test('up arrow recalls previous command', async ({ page }) => {
