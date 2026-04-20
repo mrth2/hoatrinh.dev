@@ -1,9 +1,46 @@
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import { ensureSessionStorage } from '@/test-utils/session-storage';
 import { hasBooted, markBooted, resetBooted, shouldAnimateBoot } from './boot-state';
 
+function ensureWindowWithMatchMedia(): Window {
+  if (typeof window !== 'undefined') {
+    if (typeof window.matchMedia !== 'function') {
+      window.matchMedia = ((q: string) =>
+        ({
+          matches: false,
+          media: q,
+          addEventListener() {},
+          removeEventListener() {},
+        }) as MediaQueryList) as typeof window.matchMedia;
+    }
+    return window;
+  }
+
+  const fakeWindow = {
+    matchMedia: (q: string) =>
+      ({
+        matches: false,
+        media: q,
+        addEventListener() {},
+        removeEventListener() {},
+      }) as MediaQueryList,
+  } as unknown as Window;
+
+  Object.defineProperty(globalThis, 'window', {
+    value: fakeWindow,
+    configurable: true,
+    writable: true,
+  });
+
+  return fakeWindow;
+}
+
 describe('boot-state', () => {
-  beforeEach(() => sessionStorage.clear());
-  afterEach(() => sessionStorage.clear());
+  beforeEach(() => {
+    ensureSessionStorage().clear();
+    ensureWindowWithMatchMedia();
+  });
+  afterEach(() => ensureSessionStorage().clear());
 
   it('hasBooted returns false when key absent', () => {
     expect(hasBooted()).toBe(false);
@@ -26,9 +63,9 @@ describe('boot-state', () => {
   });
 
   it('shouldAnimateBoot is false under prefers-reduced-motion', () => {
-    // jsdom: override matchMedia for the test
-    const original = window.matchMedia;
-    window.matchMedia = (q: string) =>
+    const win = ensureWindowWithMatchMedia();
+    const original = win.matchMedia;
+    win.matchMedia = (q: string) =>
       ({
         matches: q.includes('prefers-reduced-motion'),
         media: q,
@@ -38,13 +75,14 @@ describe('boot-state', () => {
     try {
       expect(shouldAnimateBoot()).toBe(false);
     } finally {
-      window.matchMedia = original;
+      win.matchMedia = original;
     }
   });
 
   it('shouldAnimateBoot is true when fresh and motion allowed', () => {
-    const original = window.matchMedia;
-    window.matchMedia = (q: string) =>
+    const win = ensureWindowWithMatchMedia();
+    const original = win.matchMedia;
+    win.matchMedia = (q: string) =>
       ({
         matches: false,
         media: q,
@@ -54,7 +92,7 @@ describe('boot-state', () => {
     try {
       expect(shouldAnimateBoot()).toBe(true);
     } finally {
-      window.matchMedia = original;
+      win.matchMedia = original;
     }
   });
 });

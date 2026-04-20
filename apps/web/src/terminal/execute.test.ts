@@ -1,4 +1,5 @@
 import { beforeEach, describe, expect, it } from 'vitest';
+import { ensureSessionStorage } from '@/test-utils/session-storage';
 import { registry } from './commands';
 import { resetEntryIds } from './entries';
 import { execute } from './execute';
@@ -6,7 +7,7 @@ import { createTerminalStore } from './store';
 
 describe('execute', () => {
   beforeEach(() => {
-    sessionStorage.clear();
+    ensureSessionStorage().clear();
     resetEntryIds();
   });
 

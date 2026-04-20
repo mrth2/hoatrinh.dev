@@ -1,9 +1,10 @@
 import { beforeEach, describe, expect, it } from 'vitest';
+import { ensureSessionStorage } from '@/test-utils/session-storage';
 import { createHistory } from './history';
 
 describe('createHistory', () => {
   beforeEach(() => {
-    sessionStorage.clear();
+    ensureSessionStorage().clear();
   });
 
   it('pushes entries and persists', () => {
