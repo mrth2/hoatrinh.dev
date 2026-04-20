@@ -130,7 +130,7 @@ export const WAVE_FRAME_MS = 250;
 // Shift ↑ arrows in the inner pupil zones by colShift columns.
 // Clears each ↑ from its idle position and places it colShift away.
 // Non-↑ chars and chars outside the zones are untouched.
-function withEyeShift(rows: string[], colShift: number): string[] {
+function withEyeShift(rows: string[], colShift: number, arrowChar = '↑'): string[] {
   return rows.map((row, r) => {
     if (r < EYE_ROW_START || r > EYE_ROW_END) return row;
     const chars = [...row];
@@ -142,7 +142,7 @@ function withEyeShift(rows: string[], colShift: number): string[] {
       for (const c of ups) chars[c] = ' ';
       for (const c of ups) {
         const nc = c + colShift;
-        if (nc >= 0 && nc < chars.length) chars[nc] = '↑';
+        if (nc >= 0 && nc < chars.length) chars[nc] = arrowChar;
       }
     }
     shiftZone(LEFT_PUPIL_START, LEFT_PUPIL_END);
@@ -151,14 +151,25 @@ function withEyeShift(rows: string[], colShift: number): string[] {
   });
 }
 
-export const FRAME_LOOK_LEFT: FrameSegment[] = segmentRows(withEyeShift(idleRows, -4));
-export const FRAME_LOOK_RIGHT: FrameSegment[] = segmentRows(withEyeShift(idleRows, 4));
+// Diagonal and cardinal frames — each step is 45° of rotation + 2-col position shift.
+// Shift interpolates: 0 → -2 → -4 → -2 → 0 → +2 → +4 → +2 → 0
+const FRAME_STEP_UL: FrameSegment[] = segmentRows(withEyeShift(idleRows, -2, '↖'));
+export const FRAME_LOOK_LEFT: FrameSegment[] = segmentRows(withEyeShift(idleRows, -4, '←'));
+const FRAME_STEP_DL: FrameSegment[] = segmentRows(withEyeShift(idleRows, -2, '↙'));
+export const FRAME_LOOK_DOWN: FrameSegment[] = segmentRows(withEyeShift(idleRows, 0, '↓'));
+const FRAME_STEP_DR: FrameSegment[] = segmentRows(withEyeShift(idleRows, 2, '↘'));
+export const FRAME_LOOK_RIGHT: FrameSegment[] = segmentRows(withEyeShift(idleRows, 4, '→'));
+const FRAME_STEP_UR: FrameSegment[] = segmentRows(withEyeShift(idleRows, 2, '↗'));
 
-// One look-around cycle: left → center → right → center
+// Full smooth cycle: ↑ → ↖ → ← → ↙ → ↓ → ↘ → → → ↗ → ↑
 export const LOOKAROUND_SEQUENCE: FrameSegment[][] = [
+  FRAME_STEP_UL,
   FRAME_LOOK_LEFT,
-  FRAME_IDLE,
+  FRAME_STEP_DL,
+  FRAME_LOOK_DOWN,
+  FRAME_STEP_DR,
   FRAME_LOOK_RIGHT,
+  FRAME_STEP_UR,
   FRAME_IDLE,
 ];
-export const LOOKAROUND_FRAME_MS = 350;
+export const LOOKAROUND_FRAME_MS = 300;

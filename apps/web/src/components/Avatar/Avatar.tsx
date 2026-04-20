@@ -1,4 +1,4 @@
-import { createMemo, createSignal, For, onCleanup, onMount, Show } from 'solid-js';
+import { createMemo, createSignal, For, onCleanup, Show } from 'solid-js';
 import styles from './Avatar.module.css';
 import { FRAME_IDLE, type FrameSegment, LOOKAROUND_FRAME_MS, LOOKAROUND_SEQUENCE } from './avatar-frames';
 import { useArtFit } from './useArtFit';
@@ -47,10 +47,6 @@ export function Avatar() {
     };
     timer = setTimeout(tick, LOOKAROUND_FRAME_MS);
   }
-
-  onMount(() => {
-    playLookAround(2);
-  });
 
   onCleanup(() => clearTimer());
 
