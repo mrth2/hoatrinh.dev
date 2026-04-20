@@ -11,6 +11,7 @@
       "!**/playwright-report",
       "!**/test-results",
       "!.keepgoing",
+      "!.claude",
       "!.git",
       "!bun.lock",
       "!specs",
