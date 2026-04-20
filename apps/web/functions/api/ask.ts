@@ -1,7 +1,7 @@
-import { buildAboutContext } from '../../src/lib/ai/about-context';
 import { evaluateAboutScope } from '../../src/lib/ai/topic-guard';
 import { isObject } from '../../src/lib/ai/utils';
 import { runWorkersAiWithFallback } from '../../src/lib/ai/workers-ai';
+import { aboutKeywords, aboutPromptContext } from './about-data';
 
 type Env = {
   CLOUDFLARE_ACCOUNT_ID?: string;
@@ -25,8 +25,7 @@ export async function onRequestPost(context: PagesFunctionContext<Env>): Promise
   if (!question) return json({ message: 'question is required' }, 400);
   if (question.length > 500) return json({ message: 'question is too long (max 500 chars)' }, 400);
 
-  const aboutContext = buildAboutContext();
-  const scope = evaluateAboutScope(question, aboutContext.keywords);
+  const scope = evaluateAboutScope(question, aboutKeywords);
   if (!scope.inScope) return json({ kind: 'refusal', answer: OUT_OF_SCOPE_MESSAGE }, 200);
 
   const accountId = context.env.CLOUDFLARE_ACCOUNT_ID;
@@ -51,7 +50,7 @@ export async function onRequestPost(context: PagesFunctionContext<Env>): Promise
       messages: [
         {
           role: 'system',
-          content: buildSystemPrompt(aboutContext.promptContext),
+          content: buildSystemPrompt(aboutPromptContext),
         },
         { role: 'user', content: question },
       ],

@@ -59,3 +59,13 @@ Required runtime environment variables:
 Deployment includes functions with:
 
 - `wrangler pages deploy apps/web/dist --functions=apps/web/functions`
+
+### Local testing before deploy
+
+1. Copy env template:
+   - `cp apps/web/.dev.vars.example apps/web/.dev.vars`
+2. Fill real values in `apps/web/.dev.vars`.
+3. Run local full-stack Pages runtime:
+   - `bun run local:ai`
+
+This command builds + prerenders the site, then runs Cloudflare Pages local server from `apps/web` (which includes its `functions/` directory), so `ask <question>` works locally.
