@@ -95,6 +95,7 @@ export function TerminalPage() {
     setState('currentInput', '');
     history.reset();
     await execute(raw, { state, setState, registry, navigate: navigateAndTrack });
+    requestAnimationFrame(focusInput);
   }
 
   function onHistory(dir: 'up' | 'down') {
