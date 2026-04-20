@@ -1,6 +1,7 @@
 import { cleanup, fireEvent, render } from '@solidjs/testing-library';
-import { afterEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { Avatar } from './Avatar';
+import { FRAME_IDLE, LOOKAROUND_SEQUENCE } from './avatar-frames';
 
 function mockMatchMedia(matches: (q: string) => boolean) {
   Object.defineProperty(window, 'matchMedia', {
@@ -18,14 +19,32 @@ function mockMatchMedia(matches: (q: string) => boolean) {
   });
 }
 
+function artText(el: HTMLElement): string {
+  return el.querySelector('pre')?.textContent ?? '';
+}
+
 describe('Avatar', () => {
-  afterEach(() => cleanup());
+  const cycleLookAroundMs = LOOKAROUND_SEQUENCE.reduce((total, entry) => total + entry.ms, 0);
+  const lastFrameMs = LOOKAROUND_SEQUENCE.at(-1)?.ms ?? 0;
+  const mountLookAroundMs = cycleLookAroundMs * 2 - lastFrameMs;
+  const firstTransitionMs = (LOOKAROUND_SEQUENCE[0]?.ms ?? 0) + 50;
+  const idleText = FRAME_IDLE.map((seg) => seg.text).join('');
+
+  beforeEach(() => {
+    vi.stubGlobal('ResizeObserver', undefined);
+  });
+
+  afterEach(() => {
+    vi.useRealTimers();
+    vi.unstubAllGlobals();
+    cleanup();
+  });
 
   it('renders the idle frame by default', () => {
     mockMatchMedia((q) => q.includes('reduce'));
     const { getByTestId } = render(() => <Avatar />);
     const el = getByTestId('avatar');
-    expect(el.textContent?.length ?? 0).toBeGreaterThan(100);
+    expect(artText(el).length).toBeGreaterThan(100);
   });
 
   it('stays on idle when prefers-reduced-motion is set', () => {
@@ -33,10 +52,9 @@ describe('Avatar', () => {
     mockMatchMedia((q) => q.includes('reduce'));
     const { getByTestId } = render(() => <Avatar />);
     const el = getByTestId('avatar');
-    const first = el.textContent ?? '';
+    const first = artText(el);
     vi.advanceTimersByTime(5000);
-    expect(el.textContent).toBe(first);
-    vi.useRealTimers();
+    expect(artText(el)).toBe(first);
   });
 
   it('cycles through wave frames on mount without reduced motion', async () => {
@@ -44,13 +62,10 @@ describe('Avatar', () => {
     mockMatchMedia(() => false);
     const { getByTestId } = render(() => <Avatar />);
     const el = getByTestId('avatar');
-    const idle = el.textContent ?? '';
-    await vi.advanceTimersByTimeAsync(250);
-    expect(el.textContent).not.toBe(idle);
-    // Run out the cycle (6 frames x 250ms)
-    await vi.advanceTimersByTimeAsync(6 * 250 + 50);
-    expect(el.textContent).toBe(idle);
-    vi.useRealTimers();
+    await vi.advanceTimersByTimeAsync(firstTransitionMs);
+    expect(artText(el)).not.toBe(idleText);
+    await vi.advanceTimersByTimeAsync(mountLookAroundMs + 1000);
+    expect(artText(el)).toBe(idleText);
   });
 
   it('replays the wave when clicked while idle', async () => {
@@ -58,12 +73,10 @@ describe('Avatar', () => {
     mockMatchMedia(() => false);
     const { getByTestId } = render(() => <Avatar />);
     const el = getByTestId('avatar');
-    // Let initial cycle finish.
-    await vi.advanceTimersByTimeAsync(6 * 250 + 100);
-    const idle = el.textContent ?? '';
+    await vi.advanceTimersByTimeAsync(mountLookAroundMs + 1000);
+    expect(artText(el)).toBe(idleText);
     fireEvent.click(el);
-    await vi.advanceTimersByTimeAsync(250);
-    expect(el.textContent).not.toBe(idle);
-    vi.useRealTimers();
+    await vi.advanceTimersByTimeAsync(firstTransitionMs);
+    expect(artText(el)).not.toBe(idleText);
   });
 });

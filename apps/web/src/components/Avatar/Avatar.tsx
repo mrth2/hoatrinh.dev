@@ -44,6 +44,7 @@ export function Avatar() {
       setFrame(entry.frame);
       i++;
       if (i >= seq.length) {
+        setFrame(FRAME_IDLE);
         setPlaying(false);
         timer = undefined;
       } else {
