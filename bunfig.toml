@@ -1,0 +1,2 @@
+[test]
+pathIgnorePatterns = ["apps/web/src/**/*.test.tsx", "apps/web/tests/e2e/**"]
