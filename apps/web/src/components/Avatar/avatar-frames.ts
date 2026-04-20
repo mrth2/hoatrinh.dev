@@ -38,6 +38,7 @@ const RIGHT_PUPIL_START = 58;
 const RIGHT_PUPIL_END = 66;
 
 export type FrameSegment = { text: string; kind: 'body' | 'glow' };
+export type LookaroundFrame = { frame: FrameSegment[]; ms: number };
 
 const idleRows = idleRaw.split('\n');
 
@@ -151,25 +152,26 @@ function withEyeShift(rows: string[], colShift: number, arrowChar = '↑'): stri
   });
 }
 
-// Diagonal and cardinal frames — each step is 45° of rotation + 2-col position shift.
-// Shift interpolates: 0 → -2 → -4 → -2 → 0 → +2 → +4 → +2 → 0
-const FRAME_STEP_UL: FrameSegment[] = segmentRows(withEyeShift(idleRows, -2, '↖'));
-export const FRAME_LOOK_LEFT: FrameSegment[] = segmentRows(withEyeShift(idleRows, -4, '←'));
-const FRAME_STEP_DL: FrameSegment[] = segmentRows(withEyeShift(idleRows, -2, '↙'));
-export const FRAME_LOOK_DOWN: FrameSegment[] = segmentRows(withEyeShift(idleRows, 0, '↓'));
-const FRAME_STEP_DR: FrameSegment[] = segmentRows(withEyeShift(idleRows, 2, '↘'));
-export const FRAME_LOOK_RIGHT: FrameSegment[] = segmentRows(withEyeShift(idleRows, 4, '→'));
-const FRAME_STEP_UR: FrameSegment[] = segmentRows(withEyeShift(idleRows, 2, '↗'));
+// Only ↑, ← and → are used. Position slides in 2-col steps to carry the motion.
+// Character flips at the peak (→←) and at center crossing (←→).
+// Path: ↑(0) → ↑(-2) → ←(-4) → ←(-2) → →(0) → →(+2) → →(+4) → →(+2) → ↑(0)
+const FRAME_SLIDE_LEFT: FrameSegment[]  = segmentRows(withEyeShift(idleRows, -2, '↑'));
+export const FRAME_LOOK_LEFT: FrameSegment[]   = segmentRows(withEyeShift(idleRows, -4, '←'));
+const FRAME_LEAVE_LEFT: FrameSegment[]  = segmentRows(withEyeShift(idleRows, -2, '←'));
+const FRAME_CROSS: FrameSegment[]       = segmentRows(withEyeShift(idleRows,  0, '→'));
+const FRAME_ENTER_RIGHT: FrameSegment[] = segmentRows(withEyeShift(idleRows, +2, '→'));
+export const FRAME_LOOK_RIGHT: FrameSegment[]  = segmentRows(withEyeShift(idleRows, +4, '→'));
+const FRAME_LEAVE_RIGHT: FrameSegment[] = segmentRows(withEyeShift(idleRows, +2, '→'));
 
-// Full smooth cycle: ↑ → ↖ → ← → ↙ → ↓ → ↘ → → → ↗ → ↑
-export const LOOKAROUND_SEQUENCE: FrameSegment[][] = [
-  FRAME_STEP_UL,
-  FRAME_LOOK_LEFT,
-  FRAME_STEP_DL,
-  FRAME_LOOK_DOWN,
-  FRAME_STEP_DR,
-  FRAME_LOOK_RIGHT,
-  FRAME_STEP_UR,
-  FRAME_IDLE,
+const STEP_MS = 350;
+const PAUSE_MS = 500;
+
+export const LOOKAROUND_SEQUENCE: LookaroundFrame[] = [
+  { frame: FRAME_SLIDE_LEFT,  ms: STEP_MS  },
+  { frame: FRAME_LOOK_LEFT,   ms: PAUSE_MS },
+  { frame: FRAME_LEAVE_LEFT,  ms: STEP_MS  },
+  { frame: FRAME_CROSS,       ms: STEP_MS  },
+  { frame: FRAME_ENTER_RIGHT, ms: STEP_MS  },
+  { frame: FRAME_LOOK_RIGHT,  ms: PAUSE_MS },
+  { frame: FRAME_LEAVE_RIGHT, ms: STEP_MS  },
 ];
-export const LOOKAROUND_FRAME_MS = 300;

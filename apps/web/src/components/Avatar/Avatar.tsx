@@ -1,6 +1,6 @@
 import { createMemo, createSignal, For, onCleanup, Show } from 'solid-js';
 import styles from './Avatar.module.css';
-import { FRAME_IDLE, type FrameSegment, LOOKAROUND_FRAME_MS, LOOKAROUND_SEQUENCE } from './avatar-frames';
+import { FRAME_IDLE, type FrameSegment, type LookaroundFrame, LOOKAROUND_SEQUENCE } from './avatar-frames';
 import { useArtFit } from './useArtFit';
 
 export function Avatar() {
@@ -25,27 +25,27 @@ export function Avatar() {
     if (reducedMotionMql?.matches) return;
     if (fit().hidden) return;
     setPlaying(true);
-    const seq: FrameSegment[][] = [];
+    const seq: LookaroundFrame[] = [];
     for (let t = 0; t < times; t++) seq.push(...LOOKAROUND_SEQUENCE);
     let i = 0;
     const tick = () => {
-      const next = seq[i];
-      if (next === undefined) {
+      const entry = seq[i];
+      if (entry === undefined) {
         setFrame(FRAME_IDLE);
         setPlaying(false);
         timer = undefined;
         return;
       }
-      setFrame(next);
+      setFrame(entry.frame);
       i++;
       if (i >= seq.length) {
         setPlaying(false);
         timer = undefined;
       } else {
-        timer = setTimeout(tick, LOOKAROUND_FRAME_MS);
+        timer = setTimeout(tick, entry.ms);
       }
     };
-    timer = setTimeout(tick, LOOKAROUND_FRAME_MS);
+    tick();
   }
 
   onCleanup(() => clearTimer());
