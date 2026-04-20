@@ -26,6 +26,7 @@
     "@hoatrinh/content": "workspace:*",
     "@solidjs/meta": "latest",
     "@solidjs/router": "latest",
+    "marked": "latest",
     "solid-js": "latest"
   },
   "devDependencies": {

@@ -7,3 +7,29 @@
 .line:empty::before {
   content: "\00a0";
 }
+
+.markdown {
+  color: var(--text-primary);
+  font-family: var(--font-code);
+  font-size: var(--text-sm);
+}
+
+.markdown :where(p, ul, ol) {
+  margin: 0 0 var(--space-3);
+}
+
+.markdown :where(p:last-child, ul:last-child, ol:last-child) {
+  margin-bottom: 0;
+}
+
+.markdown :where(ul, ol) {
+  padding-left: var(--space-5);
+}
+
+.markdown li {
+  margin-bottom: var(--space-2);
+}
+
+.markdown li:last-child {
+  margin-bottom: 0;
+}

@@ -12,7 +12,7 @@ export type HelpEntry = BaseEntry & {
   kind: 'help';
   data: { commands: Array<{ name: string; usage: string; summary: string }> };
 };
-export type TextEntry = BaseEntry & { kind: 'text'; lines: string[] };
+export type TextEntry = BaseEntry & { kind: 'text'; lines: string[]; markdown?: boolean };
 export type ErrorEntry = BaseEntry & {
   kind: 'error';
   message: string;

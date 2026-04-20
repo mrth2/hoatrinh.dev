@@ -26,6 +26,7 @@ describe('askHandler', () => {
     const entry = await askHandler([], 'what is your role?', {});
     expect(entry.kind).toBe('text');
     if (entry.kind === 'text') {
+      expect(entry.markdown).toBe(true);
       expect(entry.lines[0]).toContain('senior software engineer');
     }
   });
@@ -48,6 +49,7 @@ describe('askHandler', () => {
     const entry = await askHandler([], 'what is the weather today?', {});
     expect(entry.kind).toBe('text');
     if (entry.kind === 'text') {
+      expect(entry.markdown).toBe(true);
       expect(entry.lines[0]).toContain('only answer questions about Hoa Trinh Hai');
     }
   });

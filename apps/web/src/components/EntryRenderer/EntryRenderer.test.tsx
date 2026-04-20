@@ -4,9 +4,9 @@ import type { TerminalEntry } from '@/terminal/entries';
 import { nextEntryId, resetEntryIds } from '@/terminal/entries';
 import { EntryRenderer } from './EntryRenderer';
 
-function textEntry(input: string, lines: string[]): TerminalEntry {
+function textEntry(input: string, lines: string[], markdown = false): TerminalEntry {
   resetEntryIds();
-  return { id: nextEntryId(), input, kind: 'text', lines };
+  return { id: nextEntryId(), input, kind: 'text', lines, ...(markdown ? { markdown: true } : {}) };
 }
 
 function projectsEntry(count: number): TerminalEntry {
@@ -34,6 +34,16 @@ describe('EntryRenderer', () => {
   it('renders the text body', () => {
     const { getByText } = render(() => <EntryRenderer entry={textEntry('x', ['hello world'])} />);
     expect(getByText('hello world')).toBeInTheDocument();
+  });
+
+  it('renders markdown when text entry is marked as markdown', () => {
+    const { container } = render(() => (
+      <EntryRenderer
+        entry={textEntry('x', ['**System Design:**', '', '* Builds stable systems.'], true)}
+      />
+    ));
+    expect(container.querySelector('strong')).not.toBeNull();
+    expect(container.querySelector('ul li')).not.toBeNull();
   });
 
   it('wraps text entries in a plain OutputPanel', () => {

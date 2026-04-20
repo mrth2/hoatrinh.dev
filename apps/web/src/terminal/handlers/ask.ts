@@ -19,16 +19,15 @@ export async function askHandler(
 
   try {
     const result = await askAboutMe(question);
-    const lines = result.answer
-      .split('\n')
-      .map((line) => line.trimEnd())
-      .filter((line) => line.length > 0);
+    const lines = result.answer.split('\n').map((line) => line.trimEnd());
+    const hasContent = lines.some((line) => line.trim().length > 0);
 
     return {
       id: nextEntryId(),
       input: `/ask ${question}`,
       kind: 'text',
-      lines: lines.length > 0 ? lines : ['No response.'],
+      markdown: true,
+      lines: hasContent ? lines : ['No response.'],
     };
   } catch (error) {
     if (error instanceof Error) {

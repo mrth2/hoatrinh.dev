@@ -53,7 +53,15 @@ export function EntryRenderer(props: {
           <HelpBlock data={(props.entry as Extract<TerminalEntry, { kind: 'help' }>).data} />
         </Match>
         <Match when={props.entry.kind === 'text'}>
-          <TextBlock lines={(props.entry as Extract<TerminalEntry, { kind: 'text' }>).lines} />
+          {(() => {
+            const e = props.entry as Extract<TerminalEntry, { kind: 'text' }>;
+            return (
+              <TextBlock
+                lines={e.lines}
+                {...(e.markdown !== undefined ? { markdown: e.markdown } : {})}
+              />
+            );
+          })()}
         </Match>
         <Match when={props.entry.kind === 'error'}>
           <ErrorBlock
