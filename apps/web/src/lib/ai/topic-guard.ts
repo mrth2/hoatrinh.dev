@@ -38,6 +38,7 @@ const IDENTITY_HINTS = new Set(['hoa', 'trinh', 'hai', 'hoatrinh']);
 const SELF_INTRO_PATTERNS = [
   /\bwho are you\b/,
   /\btell me about yourself\b/,
+  /\bdescribe yourself\b/,
   /\bintroduce yourself\b/,
   /\babout you\b/,
 ];

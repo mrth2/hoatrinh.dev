@@ -71,6 +71,7 @@ describe('ExperienceFrontmatter', () => {
       highlights: ['Shipped X'],
     });
     expect(parsed.end).toBe('present');
+    expect(parsed.askContext).toEqual([]);
   });
 
   it('rejects start in wrong format', () => {

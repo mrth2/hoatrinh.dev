@@ -28,6 +28,7 @@ export const ExperienceFrontmatter = z.object({
   location: z.string().optional(),
   tech: z.array(z.string()).default([]),
   highlights: z.array(z.string()).max(6),
+  askContext: z.array(z.string()).default([]),
 });
 export type ExperienceMeta = z.infer<typeof ExperienceFrontmatter>;
 export type Experience = ExperienceMeta & { bodyHtml: string };

@@ -21,10 +21,11 @@ export function buildAboutContext(): AboutContext {
     (project) =>
       `- ${project.title} (${project.slug}): ${project.tagline}. Role: ${project.role}. Year: ${project.year}.`,
   );
-  const roleSummaries = experience.map(
-    (role) =>
-      `- ${role.title} at ${role.company} (${role.start} to ${role.end})${role.location ? `, ${role.location}` : ''}.`,
-  );
+  const roleSummaries = experience.flatMap((role) => [
+    `- ${role.title} at ${role.company} (${role.start} to ${role.end})${role.location ? `, ${role.location}` : ''}.`,
+    ...role.highlights.map((highlight) => `  - Highlight: ${highlight}`),
+    ...role.askContext.map((detail) => `  - Context: ${detail}`),
+  ]);
   const linkSummaries = links.map((link) => `- ${link.label}: ${link.href}`);
 
   const promptContext = [

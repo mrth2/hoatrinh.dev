@@ -9,6 +9,8 @@ describe('buildAboutContext', () => {
     expect(context.promptContext).toContain('Projects:');
     expect(context.promptContext).toContain('Experience:');
     expect(context.promptContext).toContain('Skills:');
+    expect(context.promptContext).toContain('Context:');
+    expect(context.promptContext).toContain('RecruitMate');
   });
 
   it('produces keyword tokens from profile and content', () => {

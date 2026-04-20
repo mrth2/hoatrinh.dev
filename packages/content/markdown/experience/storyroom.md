@@ -16,4 +16,8 @@ highlights:
   - Led the migration from Vue and Nuxt 2 to Vue and Nuxt 3, cutting page-load times roughly in half
   - Diagnosed and removed D3 bottlenecks in data-heavy views, lifting user satisfaction by about 30% in three months
   - Built interactive Vue and D3 visualizations that increased product engagement 30% over six months
+askContext:
+  - Storyroom combined a Nuxt-based user app and admin dashboard with multiple Node and Express backend services for profile management, data provider orchestration, data writing, and brand analysis.
+  - README docs described data-provider as the orchestrator for SSOT keyword and relationship data, with writer-service triggers when source data was missing.
+  - Brand-analysis service docs focused on generating topic strategies and related metrics, while internal DevOps tools handled workspace bootstrapping plus keyword-class and voice-of-customer setup.
 ---
