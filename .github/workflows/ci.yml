@@ -47,14 +47,13 @@ jobs:
         with:
           name: web-dist
           path: apps/web/dist
-      - uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          workingDirectory: apps/web
-          command: >
-            pages deploy dist
-            --project-name=${{ vars.CLOUDFLARE_PAGES_PROJECT }}
+      - name: Deploy preview to Cloudflare Pages
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          bunx wrangler@3 pages deploy apps/web/dist \
+            --project-name=${{ vars.CLOUDFLARE_PAGES_PROJECT }} \
             --branch=pr-${{ github.event.pull_request.number }}
 
   deploy_production:
@@ -70,12 +69,11 @@ jobs:
         with:
           name: web-dist
           path: apps/web/dist
-      - uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          workingDirectory: apps/web
-          command: >
-            pages deploy dist
-            --project-name=${{ vars.CLOUDFLARE_PAGES_PROJECT }}
+      - name: Deploy to Cloudflare Pages
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          bunx wrangler@3 pages deploy apps/web/dist \
+            --project-name=${{ vars.CLOUDFLARE_PAGES_PROJECT }} \
             --branch=master
