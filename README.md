@@ -37,11 +37,11 @@ The site is a single terminal-style page. User input is parsed and dispatched th
 
 Content lives in `packages/content/markdown/` as Markdown files with frontmatter. All content is loaded eagerly at build time.
 
-## LLM terminal chat (`ask <question>`)
+## LLM terminal chat (`/ask <question>`)
 
 The terminal now supports an AI command:
 
-- `ask <question>` - ask about Hoa Trinh Hai (profile, projects, experience, skills, contact)
+- `/ask <question>` - ask about Hoa Trinh Hai (profile, projects, experience, skills, contact)
 
 Out-of-topic questions are refused by policy.
 
@@ -49,7 +49,11 @@ Out-of-topic questions are refused by policy.
 
 This repo uses a Cloudflare Pages Function at `apps/web/functions/api/ask.ts` and calls Workers AI server-side.
 
-Required runtime environment variables:
+Preferred runtime setup:
+
+- Bind `AI` in Cloudflare Pages/Workers (recommended, no token/account env needed)
+
+Optional REST fallback environment variables (used only when `AI` binding is missing):
 
 - `CLOUDFLARE_ACCOUNT_ID`
 - `CLOUDFLARE_API_TOKEN`
@@ -68,4 +72,4 @@ Deployment includes functions with:
 3. Run local full-stack Pages runtime:
    - `bun run local:ai`
 
-This command builds + prerenders the site, then runs Cloudflare Pages local server from `apps/web` (which includes its `functions/` directory), so `ask <question>` works locally.
+This command builds + prerenders the site, then runs Cloudflare Pages local server from `apps/web` (which includes its `functions/` directory), so `/ask <question>` works locally.

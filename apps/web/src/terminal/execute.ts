@@ -30,7 +30,15 @@ export async function execute(raw: string, ctx: ExecuteContext): Promise<void> {
   }
 
   const handled = spec.handler(parsed.args, parsed.rest, {});
-  const result = handled instanceof Promise ? await handled : handled;
+  const isAsync = handled instanceof Promise;
+  if (isAsync) ctx.setState('isExecuting', true);
+
+  let result: Awaited<typeof handled>;
+  try {
+    result = isAsync ? await handled : handled;
+  } finally {
+    if (isAsync) ctx.setState('isExecuting', false);
+  }
 
   if ('action' in result && result.action === 'clear') {
     ctx.setState('entries', []);

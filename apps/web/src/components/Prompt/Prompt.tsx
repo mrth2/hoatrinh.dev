@@ -9,6 +9,7 @@ export function Prompt(props: {
   ghost?: string;
   sigil?: string;
   errored?: boolean;
+  executing?: boolean;
   onInput: (v: string) => void;
   onSubmit: (raw: string) => void;
   onHistory: (dir: HistoryDirection) => string | null;
@@ -68,11 +69,12 @@ export function Prompt(props: {
       }
     } else if (e.key === 'Enter' && !e.isComposing) {
       e.preventDefault();
+      if (props.executing) return;
       props.onSubmit(props.value);
     }
   }
 
-  const showHint = () => focused() && props.value === '';
+  const showHint = () => focused() && props.value === '' && !props.executing;
 
   return (
     <div
@@ -102,6 +104,7 @@ export function Prompt(props: {
           autocorrect="off"
           autocapitalize="none"
           spellcheck={false}
+          disabled={props.executing}
           enterkeyhint="go"
           inputmode="text"
           aria-describedby="prompt-announce"
@@ -117,6 +120,11 @@ export function Prompt(props: {
       {showHint() && (
         <span class={styles.hint} aria-hidden="true">
           ↵ run · ↑↓ history · ⇥ complete
+        </span>
+      )}
+      {props.executing && (
+        <span class={styles.hint} aria-hidden="true">
+          waiting for response…
         </span>
       )}
       <span id="prompt-announce" class="sr-only" aria-live="polite">

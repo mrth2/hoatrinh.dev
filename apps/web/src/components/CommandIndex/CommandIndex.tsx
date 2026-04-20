@@ -5,6 +5,7 @@ import styles from './CommandIndex.module.css';
 
 type Row = {
   name: string;
+  command: string;
   summary: string;
   count?: number;
 };
@@ -15,15 +16,16 @@ function buildRows(): Row[] {
     experience: getExperience().length,
     skills: getSkills().reduce((n, g) => n + g.items.length, 0),
   };
-  // Exclude `clear` (terminal-only action) and any command that needs positional
-  // args (argsHint set) — those can't be invoked from a zero-arg click.
+  // Exclude `clear` (terminal-only action). Include `/ask` as a draft-only entry.
   return commandSpecs
-    .filter((s) => s.name !== 'clear' && s.argsHint === undefined)
+    .filter((s) => s.name !== 'clear' && (s.argsHint === undefined || s.name === '/ask'))
     .map((s) => {
       const count = counts[s.name];
+      const command = s.name === '/ask' ? '/ask ' : s.name;
+      const name = s.name === '/ask' ? '/ask <question>' : s.name;
       return count !== undefined
-        ? { name: s.name, summary: s.summary, count }
-        : { name: s.name, summary: s.summary };
+        ? { name, command, summary: s.summary, count }
+        : { name, command, summary: s.summary };
     });
 }
 
@@ -40,7 +42,11 @@ export function CommandIndex(props: { onSuggestion: (cmd: string) => void }) {
         <For each={rows}>
           {(row) => (
             <li>
-              <button type="button" class={styles.row} onClick={() => props.onSuggestion(row.name)}>
+              <button
+                type="button"
+                class={styles.row}
+                onClick={() => props.onSuggestion(row.command)}
+              >
                 <span class={styles.name}>{row.name}</span>{' '}
                 <span class={styles.summary}>{row.summary}</span>
                 <span class={styles.meta} data-meta>

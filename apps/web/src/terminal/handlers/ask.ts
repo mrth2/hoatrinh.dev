@@ -10,9 +10,9 @@ export async function askHandler(
   if (!question) {
     return {
       id: nextEntryId(),
-      input: 'ask',
+      input: '/ask',
       kind: 'error',
-      message: 'ask requires a question. Try: ask <question>',
+      message: '/ask requires a question. Try: /ask <question>',
       suggestions: ['about', 'projects', 'experience', 'skills', 'contact'],
     };
   }
@@ -26,7 +26,7 @@ export async function askHandler(
 
     return {
       id: nextEntryId(),
-      input: `ask ${question}`,
+      input: `/ask ${question}`,
       kind: 'text',
       lines: lines.length > 0 ? lines : ['No response.'],
     };
@@ -34,7 +34,7 @@ export async function askHandler(
     if (error instanceof Error) {
       return {
         id: nextEntryId(),
-        input: `ask ${question}`,
+        input: `/ask ${question}`,
         kind: 'error',
         message: `AI request failed: ${error.message}`,
         suggestions: ['about', 'projects', 'experience', 'skills', 'contact', 'help'],

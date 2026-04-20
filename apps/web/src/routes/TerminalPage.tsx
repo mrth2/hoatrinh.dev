@@ -118,7 +118,7 @@ export function TerminalPage() {
 
   function onSuggestion(s: string) {
     setState('currentInput', s);
-    submit(s);
+    if (!s.endsWith(' ')) submit(s);
   }
 
   function onListClick(e: MouseEvent) {
@@ -173,6 +173,7 @@ export function TerminalPage() {
         {...(ghostSuggestion() !== undefined ? { ghost: ghostSuggestion() as string } : {})}
         errored={isErrored()}
         onInput={(v) => setState('currentInput', v)}
+        executing={state.isExecuting}
         onSubmit={submit}
         onHistory={onHistory}
         onTab={onTab}

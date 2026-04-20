@@ -54,6 +54,11 @@ export async function runWorkersAiWithFallback(
     }
 
     const errorMessage = readWorkersError(payload) ?? `HTTP ${response.status}`;
+    if (isAuthenticationError(errorMessage)) {
+      throw new Error(
+        `${model}: authentication error. Confirm CLOUDFLARE_ACCOUNT_ID matches the token account and CLOUDFLARE_API_TOKEN has Workers AI permissions (or use AI binding).`,
+      );
+    }
     failures.push(`${model}: ${errorMessage}`);
     if (!isRetryableStatus(response.status)) break;
   }
@@ -110,4 +115,8 @@ function readWorkersError(payload: unknown): string | null {
   if (!isObject(first)) return null;
   const message = first.message;
   return typeof message === 'string' ? message : null;
+}
+
+function isAuthenticationError(message: string): boolean {
+  return /authentication error/i.test(message);
 }

@@ -3,6 +3,7 @@ import { ensureSessionStorage } from '@/test-utils/session-storage';
 import { registry } from './commands';
 import { resetEntryIds } from './entries';
 import { execute } from './execute';
+import { createRegistry } from './registry';
 import { createTerminalStore } from './store';
 
 describe('execute', () => {
@@ -58,5 +59,35 @@ describe('execute', () => {
       },
     });
     expect(visited).toBe('/projects');
+  });
+
+  it('sets executing state while awaiting async command handlers', async () => {
+    const [state, setState] = createTerminalStore();
+    let resolvePending!: (value: {
+      id: string;
+      input: string;
+      kind: 'text';
+      lines: string[];
+    }) => void;
+    const pending = new Promise<{ id: string; input: string; kind: 'text'; lines: string[] }>(
+      (resolve) => {
+        resolvePending = resolve;
+      },
+    );
+
+    const localRegistry = createRegistry([
+      {
+        name: 'slow',
+        summary: 'slow command',
+        handler: () => pending,
+      },
+    ]);
+
+    const run = execute('slow', { state, setState, registry: localRegistry, navigate: () => {} });
+    expect(state.isExecuting).toBe(true);
+
+    resolvePending({ id: 'e-local', input: 'slow', kind: 'text', lines: ['done'] });
+    await run;
+    expect(state.isExecuting).toBe(false);
   });
 });

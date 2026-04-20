@@ -54,8 +54,8 @@ const baseSpecs: CommandSpec[] = [
     handler: contactHandler,
   },
   {
-    name: 'ask',
-    aliases: ['chat', 'q', 'ai'],
+    name: '/ask',
+    aliases: ['ask', 'chat', 'q', 'ai'],
     summary: 'Ask about me',
     argsHint: '<question>',
     handler: askHandler,

@@ -27,6 +27,14 @@ describe('parseInput', () => {
     });
   });
 
+  it('supports slash-prefixed commands', () => {
+    expect(parseInput('/ask what is typescript')).toEqual({
+      cmd: '/ask',
+      args: ['what', 'is', 'typescript'],
+      rest: 'what is typescript',
+    });
+  });
+
   it('trims leading and trailing whitespace', () => {
     expect(parseInput('  help  ')).toEqual({ cmd: 'help', args: [], rest: '' });
   });

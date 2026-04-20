@@ -54,4 +54,24 @@ describe('runWorkersAiWithFallback', () => {
       }),
     ).rejects.toThrow(/model-a: bad request/);
   });
+
+  it('returns actionable guidance on authentication failures', async () => {
+    const fetchImpl = async (): Promise<Response> =>
+      new Response(JSON.stringify({ errors: [{ message: 'Authentication error' }] }), {
+        status: 403,
+      });
+
+    await expect(
+      runWorkersAiWithFallback({
+        accountId: 'acc',
+        apiToken: 'token',
+        primaryModel: 'model-a',
+        fallbackModelsCsv: 'model-b',
+        messages: [{ role: 'user', content: 'hello' }],
+        maxTokens: 64,
+        temperature: 0.2,
+        fetchImpl,
+      }),
+    ).rejects.toThrow(/has Workers AI permissions/);
+  });
 });
