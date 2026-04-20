@@ -30,8 +30,8 @@ const ARM_ROW_END = 34; // inclusive
 // (44, 55), and outer-right cluster (73-78).
 const EYE_ROW_START = 23;
 const EYE_ROW_END = 26;
-const BRIDGE_COL_START = 45; // left lens: cols 20-44, bridge: 45-54, right lens: 55-79
-const BRIDGE_COL_END = 54;
+const _BRIDGE_COL_START = 45; // left lens: cols 20-44, bridge: 45-54, right lens: 55-79
+const _BRIDGE_COL_END = 54;
 const LEFT_PUPIL_START = 35;
 const LEFT_PUPIL_END = 43;
 const RIGHT_PUPIL_START = 58;
@@ -155,23 +155,23 @@ function withEyeShift(rows: string[], colShift: number, arrowChar = '↑'): stri
 // Only ↑, ← and → are used. Position slides in 2-col steps to carry the motion.
 // Character flips at the peak (→←) and at center crossing (←→).
 // Path: ↑(0) → ↑(-2) → ←(-4) → ←(-2) → →(0) → →(+2) → →(+4) → →(+2) → ↑(0)
-const FRAME_SLIDE_LEFT: FrameSegment[]  = segmentRows(withEyeShift(idleRows, -2, '↑'));
-export const FRAME_LOOK_LEFT: FrameSegment[]   = segmentRows(withEyeShift(idleRows, -4, '←'));
-const FRAME_LEAVE_LEFT: FrameSegment[]  = segmentRows(withEyeShift(idleRows, -2, '←'));
-const FRAME_CROSS: FrameSegment[]       = segmentRows(withEyeShift(idleRows,  0, '→'));
+const FRAME_SLIDE_LEFT: FrameSegment[] = segmentRows(withEyeShift(idleRows, -2, '↑'));
+export const FRAME_LOOK_LEFT: FrameSegment[] = segmentRows(withEyeShift(idleRows, -4, '←'));
+const FRAME_LEAVE_LEFT: FrameSegment[] = segmentRows(withEyeShift(idleRows, -2, '←'));
+const FRAME_CROSS: FrameSegment[] = segmentRows(withEyeShift(idleRows, 0, '→'));
 const FRAME_ENTER_RIGHT: FrameSegment[] = segmentRows(withEyeShift(idleRows, +2, '→'));
-export const FRAME_LOOK_RIGHT: FrameSegment[]  = segmentRows(withEyeShift(idleRows, +4, '→'));
+export const FRAME_LOOK_RIGHT: FrameSegment[] = segmentRows(withEyeShift(idleRows, +4, '→'));
 const FRAME_LEAVE_RIGHT: FrameSegment[] = segmentRows(withEyeShift(idleRows, +2, '→'));
 
 const STEP_MS = 350;
 const PAUSE_MS = 500;
 
 export const LOOKAROUND_SEQUENCE: LookaroundFrame[] = [
-  { frame: FRAME_SLIDE_LEFT,  ms: STEP_MS  },
-  { frame: FRAME_LOOK_LEFT,   ms: PAUSE_MS },
-  { frame: FRAME_LEAVE_LEFT,  ms: STEP_MS  },
-  { frame: FRAME_CROSS,       ms: STEP_MS  },
-  { frame: FRAME_ENTER_RIGHT, ms: STEP_MS  },
-  { frame: FRAME_LOOK_RIGHT,  ms: PAUSE_MS },
-  { frame: FRAME_LEAVE_RIGHT, ms: STEP_MS  },
+  { frame: FRAME_SLIDE_LEFT, ms: STEP_MS },
+  { frame: FRAME_LOOK_LEFT, ms: PAUSE_MS },
+  { frame: FRAME_LEAVE_LEFT, ms: STEP_MS },
+  { frame: FRAME_CROSS, ms: STEP_MS },
+  { frame: FRAME_ENTER_RIGHT, ms: STEP_MS },
+  { frame: FRAME_LOOK_RIGHT, ms: PAUSE_MS },
+  { frame: FRAME_LEAVE_RIGHT, ms: STEP_MS },
 ];

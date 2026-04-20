@@ -1,6 +1,11 @@
 import { createMemo, createSignal, For, onCleanup, onMount, Show } from 'solid-js';
 import styles from './Avatar.module.css';
-import { FRAME_IDLE, type FrameSegment, type LookaroundFrame, LOOKAROUND_SEQUENCE } from './avatar-frames';
+import {
+  FRAME_IDLE,
+  type FrameSegment,
+  LOOKAROUND_SEQUENCE,
+  type LookaroundFrame,
+} from './avatar-frames';
 import { useArtFit } from './useArtFit';
 
 export function Avatar() {

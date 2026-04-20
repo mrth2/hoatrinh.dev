@@ -52,7 +52,12 @@ const baseSpecs: CommandSpec[] = [
     route: '/contact',
     handler: contactHandler,
   },
-  { name: 'clear', aliases: ['cls', 'clr', 'reset', 'clean'], summary: 'Clear the screen', handler: clearHandler },
+  {
+    name: 'clear',
+    aliases: ['cls', 'clr', 'reset', 'clean'],
+    summary: 'Clear the screen',
+    handler: clearHandler,
+  },
 ];
 
 export const specs: CommandSpec[] = [
