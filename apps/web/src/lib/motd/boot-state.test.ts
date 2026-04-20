@@ -2,28 +2,31 @@ import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { ensureSessionStorage } from '@/test-utils/session-storage';
 import { hasBooted, markBooted, resetBooted, shouldAnimateBoot } from './boot-state';
 
+function createMediaQueryList(media: string, matches = false): MediaQueryList {
+  return {
+    matches,
+    media,
+    onchange: null,
+    addEventListener() {},
+    removeEventListener() {},
+    dispatchEvent() {
+      return true;
+    },
+    addListener() {},
+    removeListener() {},
+  };
+}
+
 function ensureWindowWithMatchMedia(): Window {
   if (typeof window !== 'undefined') {
     if (typeof window.matchMedia !== 'function') {
-      window.matchMedia = ((q: string) =>
-        ({
-          matches: false,
-          media: q,
-          addEventListener() {},
-          removeEventListener() {},
-        }) as MediaQueryList) as typeof window.matchMedia;
+      window.matchMedia = ((q: string) => createMediaQueryList(q)) as typeof window.matchMedia;
     }
     return window;
   }
 
   const fakeWindow = {
-    matchMedia: (q: string) =>
-      ({
-        matches: false,
-        media: q,
-        addEventListener() {},
-        removeEventListener() {},
-      }) as MediaQueryList,
+    matchMedia: (q: string) => createMediaQueryList(q),
   } as unknown as Window;
 
   Object.defineProperty(globalThis, 'window', {
@@ -65,13 +68,7 @@ describe('boot-state', () => {
   it('shouldAnimateBoot is false under prefers-reduced-motion', () => {
     const win = ensureWindowWithMatchMedia();
     const original = win.matchMedia;
-    win.matchMedia = (q: string) =>
-      ({
-        matches: q.includes('prefers-reduced-motion'),
-        media: q,
-        addEventListener() {},
-        removeEventListener() {},
-      }) as unknown as MediaQueryList;
+    win.matchMedia = (q: string) => createMediaQueryList(q, q.includes('prefers-reduced-motion'));
     try {
       expect(shouldAnimateBoot()).toBe(false);
     } finally {
@@ -82,13 +79,7 @@ describe('boot-state', () => {
   it('shouldAnimateBoot is true when fresh and motion allowed', () => {
     const win = ensureWindowWithMatchMedia();
     const original = win.matchMedia;
-    win.matchMedia = (q: string) =>
-      ({
-        matches: false,
-        media: q,
-        addEventListener() {},
-        removeEventListener() {},
-      }) as unknown as MediaQueryList;
+    win.matchMedia = (q: string) => createMediaQueryList(q);
     try {
       expect(shouldAnimateBoot()).toBe(true);
     } finally {

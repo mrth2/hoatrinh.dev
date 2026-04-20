@@ -30,6 +30,14 @@ Run a single test file: `bun x vitest run path/to/file.test.ts` (from the worksp
 
 CI (`.github/workflows/ci.yml`) runs: typecheck → lint → test → build → prerender → e2e. Keep that order in mind when debugging CI failures locally.
 
+## apps/web guardrails
+
+For any change under `apps/web/`, always run these from repo root before finishing:
+
+- `bun run typecheck`
+- `bun run lint`
+- `bun run test`
+
 ## Architecture
 
 ### Terminal command pipeline (`apps/web/src/terminal/`)

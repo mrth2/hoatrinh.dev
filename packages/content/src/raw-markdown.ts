@@ -1,5 +1,7 @@
 type BunLike = {
-  Glob: new (pattern: string) => {
+  Glob: new (
+    pattern: string,
+  ) => {
     scanSync(options: { cwd: string; onlyFiles?: boolean }): Iterable<string>;
   };
   file(path: string): { text(): Promise<string> };
