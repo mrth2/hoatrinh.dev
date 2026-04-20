@@ -5,25 +5,36 @@ export type AskApiResult = {
   answer: string;
 };
 
+const ASK_UNAVAILABLE_MESSAGE =
+  "Sorry, I'm having trouble answering that right now. Please try again.";
+
 export async function askAboutMe(question: string): Promise<AskApiResult> {
-  const response = await fetch('/api/ask', {
-    method: 'POST',
-    headers: { 'content-type': 'application/json' },
-    body: JSON.stringify({ question }),
-  });
+  try {
+    const response = await fetch('/api/ask', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ question }),
+    });
 
-  const payload = (await response.json()) as unknown;
+    const payload = (await response.json()) as unknown;
 
-  if (!response.ok) {
-    const message = readMessage(payload) ?? `Request failed with status ${response.status}`;
-    throw new Error(message);
+    if (!response.ok) {
+      const message =
+        response.status >= 500
+          ? ASK_UNAVAILABLE_MESSAGE
+          : (readMessage(payload) ?? `Request failed with status ${response.status}`);
+      throw new Error(message);
+    }
+
+    if (!isAskApiResult(payload)) {
+      throw new Error(ASK_UNAVAILABLE_MESSAGE);
+    }
+
+    return payload;
+  } catch (error) {
+    if (error instanceof Error && error.message === ASK_UNAVAILABLE_MESSAGE) throw error;
+    throw new Error(ASK_UNAVAILABLE_MESSAGE);
   }
-
-  if (!isAskApiResult(payload)) {
-    throw new Error('Invalid AI response payload.');
-  }
-
-  return payload;
 }
 
 function isAskApiResult(value: unknown): value is AskApiResult {

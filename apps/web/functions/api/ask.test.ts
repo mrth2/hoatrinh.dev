@@ -3,6 +3,8 @@ import { onRequestPost } from './ask';
 
 const OUT_OF_SCOPE_MESSAGE =
   'I can only answer questions about my profile, projects, experience, skills, and contact information.';
+const ASK_UNAVAILABLE_MESSAGE =
+  "Sorry, I'm having trouble answering that right now. Please try again.";
 
 function createContext(question: string, aiRun: ReturnType<typeof vi.fn>) {
   return {
@@ -88,6 +90,22 @@ describe('functions/api/ask onRequestPost', () => {
     await expect(response.json()).resolves.toEqual({
       kind: 'refusal',
       answer: OUT_OF_SCOPE_MESSAGE,
+    });
+  });
+
+  it('returns a generic message when the AI provider fails', async () => {
+    const aiRun = vi.fn(async () => {
+      throw new Error(
+        'Workers AI request failed across models. @cf/meta/llama-3.1-8b-instruct: unknown internal error',
+      );
+    });
+    const response = await onRequestPost(
+      createContext('tell me about your Upwork projects', aiRun),
+    );
+
+    expect(response.status).toBe(502);
+    await expect(response.json()).resolves.toEqual({
+      message: ASK_UNAVAILABLE_MESSAGE,
     });
   });
 });

@@ -63,7 +63,9 @@ describe('askHandler', () => {
     const entry = await askHandler([], 'what is your role?', {});
     expect(entry.kind).toBe('error');
     if (entry.kind === 'error') {
-      expect(entry.message).toContain('boom');
+      expect(entry.message).toBe(
+        "Sorry, I'm having trouble answering that right now. Please try again.",
+      );
     }
   });
 });

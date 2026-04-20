@@ -35,6 +35,8 @@ const DEFAULT_MODEL = '@cf/meta/llama-3.1-8b-instruct';
 const MAX_SELECTED_CHUNKS = 5;
 const OUT_OF_SCOPE_MESSAGE =
   'I can only answer questions about my profile, projects, experience, skills, and contact information.';
+const ASK_UNAVAILABLE_MESSAGE =
+  "Sorry, I'm having trouble answering that right now. Please try again.";
 const CODING_TASK_REQUEST_PATTERNS = [
   /\b(write|create|generate|implement|debug|fix|refactor|optimize)\b.*\b(function|code|algorithm|snippet|script|query|regex|api|linked list|binary tree|leetcode)\b/,
   /\b(reverse|sort|traverse)\b.*\b(linked list|array|tree|graph)\b/,
@@ -136,7 +138,10 @@ export async function onRequestPost(context: PagesFunctionContext<Env>): Promise
       200,
     );
   } catch (error) {
-    if (error instanceof Error) return json({ message: error.message }, 502);
+    if (error instanceof Error) {
+      console.error('Ask API request failed.', error);
+      return json({ message: ASK_UNAVAILABLE_MESSAGE }, 502);
+    }
     throw error;
   }
 }

@@ -35,7 +35,7 @@ export async function askHandler(
         id: nextEntryId(),
         input: `/ask ${question}`,
         kind: 'error',
-        message: `AI request failed: ${error.message}`,
+        message: error.message,
         suggestions: ['about', 'projects', 'experience', 'skills', 'contact', 'help'],
       };
     }
