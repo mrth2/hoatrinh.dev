@@ -1,4 +1,5 @@
 import { aboutHandler } from './handlers/about';
+import { askHandler } from './handlers/ask';
 import { clearHandler } from './handlers/clear';
 import { contactHandler } from './handlers/contact';
 import { experienceHandler } from './handlers/experience';
@@ -51,6 +52,13 @@ const baseSpecs: CommandSpec[] = [
     summary: 'Ways to reach me',
     route: '/contact',
     handler: contactHandler,
+  },
+  {
+    name: 'ask',
+    aliases: ['chat', 'q', 'ai'],
+    summary: 'Ask about me',
+    argsHint: '<question>',
+    handler: askHandler,
   },
   {
     name: 'clear',

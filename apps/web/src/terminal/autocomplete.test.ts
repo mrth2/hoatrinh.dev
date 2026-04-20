@@ -9,6 +9,7 @@ const commands = [
   'skills',
   'contact',
   'help',
+  'ask',
   'clear',
 ];
 const projectSlugs = ['keepgoing', 'win95-fun'];
@@ -21,6 +22,7 @@ const canonicalNames = [
   'skills',
   'contact',
   'help',
+  'ask',
   'clear',
 ];
 const allNames = [...canonicalNames, 'whoami', 'me', 'a', 'work', 'ls', 'open', 'show'];

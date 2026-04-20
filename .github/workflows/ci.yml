@@ -39,16 +39,18 @@ jobs:
     needs: verify
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - uses: actions/download-artifact@v4
         with:
           name: web-dist
-          path: dist
+          path: apps/web/dist
       - uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: >
-            pages deploy dist
+            pages deploy apps/web/dist
+            --functions=apps/web/functions
             --project-name=${{ vars.CLOUDFLARE_PAGES_PROJECT }}
             --branch=pr-${{ github.event.pull_request.number }}
 
@@ -57,15 +59,17 @@ jobs:
     needs: verify
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - uses: actions/download-artifact@v4
         with:
           name: web-dist
-          path: dist
+          path: apps/web/dist
       - uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: >
-            pages deploy dist
+            pages deploy apps/web/dist
+            --functions=apps/web/functions
             --project-name=${{ vars.CLOUDFLARE_PAGES_PROJECT }}
             --branch=master

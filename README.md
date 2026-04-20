@@ -36,3 +36,26 @@ bun run dev
 The site is a single terminal-style page. User input is parsed and dispatched through a command registry (`apps/web/src/terminal/`). Each command returns a typed entry that is rendered by a matching block component.
 
 Content lives in `packages/content/markdown/` as Markdown files with frontmatter. All content is loaded eagerly at build time.
+
+## LLM terminal chat (`ask <question>`)
+
+The terminal now supports an AI command:
+
+- `ask <question>` - ask about Hoa Trinh Hai (profile, projects, experience, skills, contact)
+
+Out-of-topic questions are refused by policy.
+
+### Workers AI setup (free-tier path)
+
+This repo uses a Cloudflare Pages Function at `apps/web/functions/api/ask.ts` and calls Workers AI server-side.
+
+Required runtime environment variables:
+
+- `CLOUDFLARE_ACCOUNT_ID`
+- `CLOUDFLARE_API_TOKEN`
+- `WORKERS_AI_MODEL` (optional, defaults to `@cf/meta/llama-3.1-8b-instruct`)
+- `WORKERS_AI_FALLBACK_MODELS` (optional, comma-separated models; used on 429/5xx or empty output)
+
+Deployment includes functions with:
+
+- `wrangler pages deploy apps/web/dist --functions=apps/web/functions`
