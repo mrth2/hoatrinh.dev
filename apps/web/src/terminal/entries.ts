@@ -18,6 +18,7 @@ export type ErrorEntry = BaseEntry & {
   message: string;
   suggestions: string[];
 };
+export type LoadingEntry = BaseEntry & { kind: 'loading' };
 
 export type TerminalEntry =
   | ProfileEntry
@@ -28,7 +29,8 @@ export type TerminalEntry =
   | ContactEntry
   | HelpEntry
   | TextEntry
-  | ErrorEntry;
+  | ErrorEntry
+  | LoadingEntry;
 
 export type ClearAction = { action: 'clear' };
 

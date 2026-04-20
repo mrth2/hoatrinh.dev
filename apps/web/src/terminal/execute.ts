@@ -31,7 +31,16 @@ export async function execute(raw: string, ctx: ExecuteContext): Promise<void> {
 
   const handled = spec.handler(parsed.args, parsed.rest, {});
   const isAsync = handled instanceof Promise;
-  if (isAsync) ctx.setState('isExecuting', true);
+
+  let loadingId: string | null = null;
+  if (isAsync) {
+    loadingId = nextEntryId();
+    ctx.setState('entries', (list) => [
+      ...list,
+      { id: loadingId as string, input: raw.trim(), kind: 'loading' },
+    ]);
+    ctx.setState('isExecuting', true);
+  }
 
   let result: Awaited<typeof handled>;
   try {
@@ -46,7 +55,11 @@ export async function execute(raw: string, ctx: ExecuteContext): Promise<void> {
   }
 
   const entry = result as TerminalEntry;
-  ctx.setState('entries', (list) => [...list, entry]);
+  if (loadingId !== null) {
+    ctx.setState('entries', (list) => list.map((e) => (e.id === loadingId ? entry : e)));
+  } else {
+    ctx.setState('entries', (list) => [...list, entry]);
+  }
 
   const routeVal =
     typeof spec.route === 'function' ? spec.route(parsed.args, parsed.rest) : spec.route;

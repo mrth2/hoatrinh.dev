@@ -4,6 +4,7 @@ import { ContactBlock } from '../blocks/ContactBlock/ContactBlock';
 import { ErrorBlock } from '../blocks/ErrorBlock/ErrorBlock';
 import { ExperienceBlock } from '../blocks/ExperienceBlock/ExperienceBlock';
 import { HelpBlock } from '../blocks/HelpBlock/HelpBlock';
+import { LoadingBlock } from '../blocks/LoadingBlock/LoadingBlock';
 import { ProfileBlock } from '../blocks/ProfileBlock/ProfileBlock';
 import { ProjectBlock } from '../blocks/ProjectBlock/ProjectBlock';
 import { ProjectsBlock } from '../blocks/ProjectsBlock/ProjectsBlock';
@@ -61,6 +62,9 @@ export function EntryRenderer(props: {
             onSuggestion={props.onSuggestion}
           />
         </Match>
+        <Match when={props.entry.kind === 'loading'}>
+          <LoadingBlock />
+        </Match>
       </Switch>
     </OutputPanel>
   );
@@ -79,6 +83,7 @@ function variantFor(kind: TerminalEntry['kind']): OutputPanelVariant {
     case 'text':
     case 'help':
     case 'error':
+    case 'loading':
       return 'plain';
   }
 }

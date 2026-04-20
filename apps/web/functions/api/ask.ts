@@ -32,13 +32,27 @@ type PagesFunctionContext<TEnv = unknown> = {
 
 const DEFAULT_MODEL = '@cf/meta/llama-3.1-8b-instruct';
 const OUT_OF_SCOPE_MESSAGE =
-  "I can only answer questions about Hoa Trinh Hai's profile, projects, experience, skills, and contact information.";
+  'I can only answer questions about my profile, projects, experience, skills, and contact information.';
+const CODING_TASK_REQUEST_PATTERNS = [
+  /\b(write|create|generate|implement|debug|fix|refactor|optimize)\b.*\b(function|code|algorithm|snippet|script|query|regex|api|linked list|binary tree|leetcode)\b/,
+  /\b(reverse|sort|traverse)\b.*\b(linked list|array|tree|graph)\b/,
+  /\b(linked list|binary tree|dynamic programming|leetcode)\b/,
+];
 
 export async function onRequestPost(context: PagesFunctionContext<Env>): Promise<Response> {
   const body = (await context.request.json()) as unknown;
   const question = readQuestion(body);
   if (!question) return json({ message: 'question is required' }, 400);
   if (question.length > 500) return json({ message: 'question is too long (max 500 chars)' }, 400);
+  if (isOutOfTopicQuestion(question)) {
+    return json(
+      {
+        kind: 'refusal',
+        answer: OUT_OF_SCOPE_MESSAGE,
+      },
+      200,
+    );
+  }
 
   try {
     const model = context.env.WORKERS_AI_MODEL ?? DEFAULT_MODEL;
@@ -85,6 +99,11 @@ function readQuestion(value: unknown): string | null {
   if (typeof question !== 'string') return null;
   const trimmed = question.trim();
   return trimmed.length > 0 ? trimmed : null;
+}
+
+function isOutOfTopicQuestion(question: string): boolean {
+  const normalizedQuestion = normalize(question);
+  return CODING_TASK_REQUEST_PATTERNS.some((pattern) => pattern.test(normalizedQuestion));
 }
 
 function buildSystemPrompt(context: string): string {
