@@ -26,8 +26,8 @@
     "@hoatrinh/content": "workspace:*",
     "@solidjs/meta": "latest",
     "@solidjs/router": "latest",
-    "marked": "latest",
-    "solid-js": "latest"
+    "marked": "^18.0.2",
+    "solid-js": "^1.9.12"
   },
   "devDependencies": {
     "@playwright/test": "latest",
@@ -36,8 +36,8 @@
     "@types/bun": "latest",
     "jsdom": "latest",
     "typescript": "latest",
-    "vite": "latest",
+    "vite": "^8.0.9",
     "vite-plugin-solid": "latest",
-    "vitest": "latest"
+    "vitest": "^4.1.4"
   }
 }
