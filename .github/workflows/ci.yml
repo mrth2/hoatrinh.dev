@@ -4,6 +4,7 @@ on:
   push:
     branches: [master]
   pull_request:
+    branches: [master]
 
 jobs:
   verify:
@@ -19,7 +20,52 @@ jobs:
       - run: bun run lint
       - run: bun run test
       - run: bun run build
+        env:
+          SITE_URL: ${{ vars.SITE_URL || 'https://hoatrinh.dev' }}
       - run: bun run prerender
+        env:
+          SITE_URL: ${{ vars.SITE_URL || 'https://hoatrinh.dev' }}
       - name: Install Playwright browsers
         run: bun x playwright install --with-deps chromium
       - run: bun run e2e
+      - uses: actions/upload-artifact@v4
+        with:
+          name: web-dist
+          path: apps/web/dist
+          if-no-files-found: error
+
+  deploy_preview:
+    if: github.event_name == 'pull_request'
+    needs: verify
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: web-dist
+          path: dist
+      - uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: >
+            pages deploy dist
+            --project-name=${{ vars.CLOUDFLARE_PAGES_PROJECT }}
+            --branch=pr-${{ github.event.pull_request.number }}
+
+  deploy_production:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    needs: verify
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: web-dist
+          path: dist
+      - uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: >
+            pages deploy dist
+            --project-name=${{ vars.CLOUDFLARE_PAGES_PROJECT }}
+            --branch=master
