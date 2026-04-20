@@ -1,11 +1,10 @@
-import { evaluateAboutScope } from '../../src/lib/ai/topic-guard';
-import { isObject } from '../../src/lib/ai/utils';
+import { isObject, normalize } from '../../src/lib/ai/utils';
 import {
   type ChatMessage,
   resolveModelCandidates,
   runWorkersAiWithFallback,
 } from '../../src/lib/ai/workers-ai';
-import { aboutKeywords, aboutPromptContext } from './about-data';
+import { aboutPromptContext } from './about-data';
 
 type WorkersAiBinding = {
   run: (
@@ -41,9 +40,6 @@ export async function onRequestPost(context: PagesFunctionContext<Env>): Promise
   if (!question) return json({ message: 'question is required' }, 400);
   if (question.length > 500) return json({ message: 'question is too long (max 500 chars)' }, 400);
 
-  const scope = evaluateAboutScope(question, aboutKeywords);
-  if (!scope.inScope) return json({ kind: 'refusal', answer: OUT_OF_SCOPE_MESSAGE }, 200);
-
   try {
     const model = context.env.WORKERS_AI_MODEL ?? DEFAULT_MODEL;
     const messages: ChatMessage[] = [
@@ -70,7 +66,13 @@ export async function onRequestPost(context: PagesFunctionContext<Env>): Promise
           temperature: 0.2,
           maxTokens: 500,
         });
-    return json({ kind: 'answer', answer: result.answer }, 200);
+    return json(
+      {
+        kind: isOutOfScopeAnswer(result.answer) ? 'refusal' : 'answer',
+        answer: result.answer,
+      },
+      200,
+    );
   } catch (error) {
     if (error instanceof Error) return json({ message: error.message }, 502);
     throw error;
@@ -89,12 +91,23 @@ function buildSystemPrompt(context: string): string {
   return [
     'You are a portfolio assistant for Hoa Trinh Hai.',
     'You must answer ONLY from the provided context.',
-    'If the question is outside the context or asks for unrelated topics, refuse briefly.',
-    'Do not invent facts. Do not provide generic world knowledge unless directly tied to Hoa Trinh Hai.',
+    'Interpret "you", "your", and "yourself" as references to Hoa Trinh Hai.',
+    'Always answer in first person as Hoa Trinh Hai (use "I", "me", "my"), not third person.',
+    'Treat capability questions about Hoa (for example, whether he can build a website) as in-scope when they can be reasonably inferred from listed skills or experience.',
+    'You may make cautious, explicit inferences from the context, but do not fabricate facts.',
+    'Refuse only when the question is clearly unrelated to Hoa Trinh Hai or cannot be grounded in the context.',
+    `If the question is outside the context or asks for unrelated topics, respond with this exact sentence: ${OUT_OF_SCOPE_MESSAGE}`,
+    'Do not provide generic world knowledge unless directly tied to Hoa Trinh Hai.',
     '',
     'Context:',
     context,
   ].join('\n');
+}
+
+function isOutOfScopeAnswer(answer: string): boolean {
+  const normalizedAnswer = normalize(answer);
+  const normalizedRefusal = normalize(OUT_OF_SCOPE_MESSAGE);
+  return normalizedAnswer === normalizedRefusal || normalizedAnswer.startsWith(normalizedRefusal);
 }
 
 type AiCallOptions = {
