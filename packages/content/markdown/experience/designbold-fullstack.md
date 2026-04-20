@@ -12,7 +12,7 @@ tech:
   - JavaScript
   - Vue
 highlights:
-  - Designed the drag-and-drop editor that let non-technical users create graphics end-to-end
-  - Accelerated graphic rendering from 15s to 5s, lifting satisfaction 70% and tripling 2019 downloads
-  - Built backend services, Redis caching layers, and REST APIs that supported 500,000 monthly users
+  - Helped build the drag-and-drop editor that let non-designers create polished graphics end to end
+  - Cut graphic rendering time from 15s to 5s, increasing satisfaction and supporting 3x download growth in 2019
+  - Built backend services, Redis caching layers, and REST APIs that supported roughly 500,000 monthly users
 ---

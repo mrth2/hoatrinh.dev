@@ -12,10 +12,10 @@ tech:
   - Monorepo
   - AI Orchestration
 highlights:
-  - Drive end-to-end technical architecture of Frontier, a startup infrastructure planner, from AI scaffolding to a commercial platform
-  - Shipped an interactive 3D globe and AI-driven data center explorer now used as the primary USP in investor and partner pitches
-  - Orchestrated a monorepo migration, Nuxt 4 upgrade, and the core commercial engine (order quoting, dynamic pricing, partner white-labeling)
-  - Own the technical roadmap for Identity (id.oneqode.com) and WHMCS billing integrations supporting global expansion
+  - Lead Frontier from AI-scaffolded prototype to commercial platform, owning architecture, delivery flow, and product direction
+  - Shipped an interactive 3D globe and AI-guided data center explorer now used in investor and partner demos
+  - "Delivered the commercial core: quoting, dynamic pricing, partner white-labeling, plus the monorepo and Nuxt 4 migration behind it"
+  - Own the roadmap for Identity and WHMCS billing integrations that support onboarding and global expansion
 ---
 
-Product Lead for Frontier: from initial AI scaffolding to a full-scale commercial platform.
+Product Lead for Frontier, covering architecture, delivery systems, and product execution from early prototype to commercial rollout.

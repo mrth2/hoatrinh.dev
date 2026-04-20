@@ -13,7 +13,7 @@ tech:
   - Tailwind CSS
   - D3.js
 highlights:
-  - Led the Vue + Nuxt 2 → Vue + Nuxt 3 migration, halving page load times
-  - Diagnosed and eliminated D3 chart performance bottlenecks, lifting user satisfaction ~30% in three months
-  - Shipped dynamic Vue + D3 data visualizations that drove a 30% engagement increase over six months
+  - Led the migration from Vue and Nuxt 2 to Vue and Nuxt 3, cutting page-load times roughly in half
+  - Diagnosed and removed D3 bottlenecks in data-heavy views, lifting user satisfaction by about 30% in three months
+  - Built interactive Vue and D3 visualizations that increased product engagement 30% over six months
 ---

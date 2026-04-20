@@ -10,8 +10,8 @@ links:
     href: https://www.linkedin.com/in/hoa-trinh-dev/
 ---
 
-Hi — I'm Hoa (some know me as Kyle). Software engineer with 13+ years shipping web products across frontend, full-stack, and AI-driven platforms.
+Hi - I'm Hoa (Kyle), a senior software engineer based in Vietnam with 13+ years building web products across frontend, full-stack, and AI-assisted systems.
 
-Since late 2025 I stopped writing code by hand. I design systems, shape products, and orchestrate agentic workflows — Claude Code, MCP, custom tooling — to deliver. Currently Product Lead for Frontier at OneQode, a startup infrastructure planner.
+Today I lead product and engineering for Frontier at OneQode, turning early AI-generated scaffolding into a commercial platform. My work spans system design, product shaping, developer workflows, and the delivery systems that help small teams move quickly.
 
-Personal builds: KeepGoing (momentum for developers), Win95.fun (retro games), PaceLingo (AI English tutor for my family). Remote from Vietnam. Happy to talk about system design, AI workflows, and how small teams ship fast.
+I also build my own products: KeepGoing for developer momentum, Win95.fun for browser-native retro games, and PaceLingo for voice-first English practice at home. I care most about pragmatic architecture, sharp UX, and AI workflows that make teams faster without adding ceremony.

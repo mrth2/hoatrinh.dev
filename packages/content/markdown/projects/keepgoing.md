@@ -1,10 +1,10 @@
 ---
 slug: keepgoing
 title: KeepGoing
-tagline: Momentum companion for developers — resume side projects without the mental friction
+tagline: Developer momentum toolkit for resuming side projects with context, checkpoints, and AI-aware handoffs
 status: active
 role: Creator
-year: 2025
+year: 2026
 tech:
   - TypeScript
   - Bun
@@ -18,8 +18,6 @@ links:
 featured: true
 ---
 
-A monorepo of tools that keep context and momentum across coding sessions: a CLI, an MCP server for AI clients (Claude Code, Cursor, Windsurf), a VS Code extension, a JetBrains plugin, and a Kotlin desktop tray companion.
+KeepGoing is a developer momentum toolkit built around one recurring problem: restarting a project without losing the thread. The monorepo includes a CLI, an MCP server for AI clients, editor integrations, and a Kotlin tray app for desktop re-entry.
 
-Free tier covers session checkpoints, re-entry briefings, AI integration, auto-checkpoints, and a shell hook. Paid add-ons layer on commit classification, rationale annotation, multi-session tracking, and cross-session conflict detection.
-
-Built so I could stop losing thread between side projects.
+It captures session checkpoints, generates re-entry briefings, syncs context into AI tools, and reduces the mental tax of switching between projects. Advanced features layer on commit classification, rationale tracking, multi-session awareness, and conflict detection.

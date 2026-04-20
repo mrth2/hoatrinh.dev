@@ -13,9 +13,9 @@ tech:
   - D3.js
   - Cypress
 highlights:
-  - Led frontend for six AI-driven data products (business analysis, media insights, content planning), contributing to a 30% lift in marketing effectiveness for a tier-one EU client
-  - Built a component-based design system that cut UI workflow time by ~30%
-  - Introduced AI pair-programming into the team's Vue + Tailwind flow, doubling delivery over six months
-  - Rebuilt CI/CD on AWS Amplify with Cypress E2E, cutting bug resolution time by 30%
-  - Spearheaded feature planning and retros, driving a 20% increase in team efficiency within six months
+  - Led frontend delivery across six AI-driven products spanning business analysis, media insights, and content planning
+  - Built a reusable component system that cut UI implementation time by about 30%
+  - Introduced AI-assisted development workflows that doubled team delivery over six months
+  - Rebuilt AWS Amplify CI/CD and added Cypress coverage, reducing bug-resolution time by 30%
+  - Facilitated planning and retrospectives that improved team efficiency by 20% within six months
 ---

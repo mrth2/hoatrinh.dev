@@ -2,36 +2,49 @@ import type { SkillGroup } from './schema';
 
 const skills: SkillGroup[] = [
   {
-    label: 'Practice',
-    items: ['Agentic Engineering', 'System Design', 'Product Thinking', 'AI Orchestration'],
+    label: 'Focus',
+    items: [
+      'Product-minded engineering',
+      'System design',
+      'Agentic workflows',
+      'Technical leadership',
+      'AI-assisted delivery',
+    ],
   },
   {
     label: 'Languages',
-    items: ['TypeScript', 'JavaScript', 'Dart', 'Kotlin', 'Python', 'PHP'],
+    items: ['TypeScript', 'JavaScript', 'Kotlin', 'Dart', 'Python', 'PHP'],
   },
   {
     label: 'Frontend',
     items: [
-      'Solid',
+      'SolidJS',
+      'Vue / Nuxt',
       'Svelte / SvelteKit',
       'Astro',
-      'Nuxt',
-      'Vue',
       'React',
       'Flutter',
       'Tailwind CSS',
+      'D3.js',
     ],
   },
   {
     label: 'Backend',
-    items: ['Node', 'Bun', 'Firebase', 'Laravel', 'Phaser'],
+    items: ['Bun', 'Node.js', 'Firebase', 'Cloud Functions', 'Laravel', 'REST APIs'],
   },
   {
-    label: 'Infra',
-    items: ['Cloudflare Pages / D1 / Workers', 'AWS Amplify', 'Vercel', 'Docker', 'Turborepo'],
+    label: 'Platform',
+    items: [
+      'Cloudflare Pages / D1 / Workers',
+      'AWS Amplify',
+      'Docker',
+      'Turborepo',
+      'Monorepos',
+      'CI/CD',
+    ],
   },
   {
-    label: 'AI tools',
+    label: 'AI tooling',
     items: ['Claude Code', 'MCP', 'Cursor', 'Gemini', 'OpenAI'],
   },
 ];

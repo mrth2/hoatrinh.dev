@@ -11,7 +11,7 @@ tech:
   - PHP
   - MySQL
 highlights:
-  - Led a team of five engineers across performance, releases, and roadmap
-  - Delivered to 40,000 daily active users with rigorous product testing
-  - Partnered with Customer Success to turn behavior data into features, driving 30% engagement growth in six months
+  - Led a team of five engineers across performance, release quality, and roadmap delivery
+  - Supported 40,000 daily active users with tighter testing, release discipline, and product feedback loops
+  - Partnered with Customer Success to turn usage signals into features, driving 30% engagement growth in six months
 ---
