@@ -1,6 +1,22 @@
 import { describe, expect, it, vi } from 'vitest';
 import { streamChars } from './char-streamer';
 
+async function advanceBy(ms: number): Promise<void> {
+  const advanceTimersByTimeAsync = (
+    vi as typeof vi & {
+      advanceTimersByTimeAsync?: (time: number) => Promise<void>;
+    }
+  ).advanceTimersByTimeAsync;
+
+  if (advanceTimersByTimeAsync !== undefined) {
+    await advanceTimersByTimeAsync(ms);
+    return;
+  }
+
+  vi.advanceTimersByTime(ms);
+  await Promise.resolve();
+}
+
 describe('streamChars', () => {
   it('emits each character in order, then calls onDone', async () => {
     vi.useFakeTimers();
@@ -14,7 +30,7 @@ describe('streamChars', () => {
     });
     // Advance timers in steps of 10ms until complete
     for (let i = 0; i < 5; i++) {
-      await vi.advanceTimersByTimeAsync(10);
+      await advanceBy(10);
     }
     await promise;
     expect(chars.join('')).toBe('abc');
@@ -34,9 +50,9 @@ describe('streamChars', () => {
       onDone: done,
       signal: ctrl.signal,
     });
-    await vi.advanceTimersByTimeAsync(30);
+    await advanceBy(30);
     ctrl.abort();
-    await vi.advanceTimersByTimeAsync(200);
+    await advanceBy(200);
     await promise;
     expect(chars.length).toBeLessThan(10);
     expect(done).not.toHaveBeenCalled();
