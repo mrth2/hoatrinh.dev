@@ -2,10 +2,11 @@ import { describe, expect, it } from 'vitest';
 import { getProject, getProjects } from './projects';
 
 describe('getProjects', () => {
-  it('returns at least the seed project', () => {
+  it('returns listed projects by default', () => {
     const projects = getProjects();
     expect(projects.length).toBeGreaterThan(0);
     expect(projects.find((p) => p.slug === 'keepgoing')).toBeDefined();
+    expect(projects.find((p) => p.slug === 'social-scout')).toBeUndefined();
   });
 
   it('sorts featured first, then year desc', () => {
@@ -19,11 +20,20 @@ describe('getProjects', () => {
       expect(prev.year).toBeGreaterThanOrEqual(curr.year);
     }
   });
+
+  it('includes hidden projects when requested', () => {
+    const projects = getProjects({ includeUnlisted: true });
+    expect(projects.find((p) => p.slug === 'social-scout')?.listed).toBe(false);
+  });
 });
 
 describe('getProject', () => {
   it('returns a project by slug', () => {
     expect(getProject('keepgoing')?.title).toBe('KeepGoing');
+  });
+
+  it('can resolve hidden projects by slug', () => {
+    expect(getProject('social-scout')?.listed).toBe(false);
   });
 
   it('returns undefined for unknown slug', () => {

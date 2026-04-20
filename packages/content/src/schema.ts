@@ -14,6 +14,8 @@ export const ProjectFrontmatter = z.object({
       repo: z.url().optional(),
     })
     .default({}),
+  listed: z.boolean().default(true),
+  askContext: z.array(z.string()).default([]),
   featured: z.boolean().default(false),
 });
 export type ProjectMeta = z.infer<typeof ProjectFrontmatter>;

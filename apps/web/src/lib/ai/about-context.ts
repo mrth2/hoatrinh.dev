@@ -11,16 +11,16 @@ let cached: AboutContext | undefined;
 export function buildAboutContext(): AboutContext {
   if (cached) return cached;
   const profile = getProfile();
-  const projects = getProjects();
+  const projects = getProjects({ includeUnlisted: true });
   const experience = getExperience();
   const skills = getSkills();
   const links = getLinks();
 
   const skillItems = skills.flatMap((group) => group.items);
-  const projectSummaries = projects.map(
-    (project) =>
-      `- ${project.title} (${project.slug}): ${project.tagline}. Role: ${project.role}. Year: ${project.year}.`,
-  );
+  const projectSummaries = projects.flatMap((project) => [
+    `- ${project.title} (${project.slug}): ${project.tagline}. Role: ${project.role}. Year: ${project.year}.`,
+    ...project.askContext.map((detail) => `  - Context: ${detail}`),
+  ]);
   const roleSummaries = experience.flatMap((role) => [
     `- ${role.title} at ${role.company} (${role.start} to ${role.end})${role.location ? `, ${role.location}` : ''}.`,
     ...role.highlights.map((highlight) => `  - Highlight: ${highlight}`),

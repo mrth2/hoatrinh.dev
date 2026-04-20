@@ -11,10 +11,15 @@ tech:
   - Astro
   - Svelte
   - Cloudflare
+  - Rust
   - Kotlin
   - MCP
 links:
   live: https://keepgoing.dev
+askContext:
+  - The monorepo spans a CLI, MCP server, VS Code extension, Astro marketing site, Rust daemon and hook tools, Kotlin tray app, and a JetBrains plugin.
+  - Free features called out in the README include session checkpoints, re-entry briefings, AI integration, auto-checkpoints, shell hooks, and a desktop tray companion.
+  - Paid add-ons focus on decision detection, rationale tagging, and session awareness across multiple active sessions.
 featured: true
 ---
 

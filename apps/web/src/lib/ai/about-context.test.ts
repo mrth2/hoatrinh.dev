@@ -11,6 +11,8 @@ describe('buildAboutContext', () => {
     expect(context.promptContext).toContain('Skills:');
     expect(context.promptContext).toContain('Context:');
     expect(context.promptContext).toContain('RecruitMate');
+    expect(context.promptContext).toContain('Cloud Firestore');
+    expect(context.promptContext).toContain('Social Scout');
   });
 
   it('produces keyword tokens from profile and content', () => {

@@ -24,9 +24,12 @@ projects.sort((a, b) => {
   return b.year - a.year;
 });
 
-export function getProjects(opts: { featured?: boolean } = {}): Project[] {
-  if (opts.featured === undefined) return projects;
-  return projects.filter((p) => p.featured === opts.featured);
+export function getProjects(
+  opts: { featured?: boolean; includeUnlisted?: boolean } = {},
+): Project[] {
+  const filtered = opts.includeUnlisted ? projects : projects.filter((p) => p.listed);
+  if (opts.featured === undefined) return filtered;
+  return filtered.filter((p) => p.featured === opts.featured);
 }
 
 export function getProject(slug: string): Project | undefined {
