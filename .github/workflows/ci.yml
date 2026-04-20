@@ -48,11 +48,12 @@ jobs:
           name: web-dist
           path: apps/web/dist
       - name: Deploy preview to Cloudflare Pages
+        working-directory: apps/web
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
-          bunx wrangler@3 pages deploy apps/web/dist \
+          bunx wrangler@3 pages deploy dist \
             --project-name=${{ vars.CLOUDFLARE_PAGES_PROJECT }} \
             --branch=pr-${{ github.event.pull_request.number }}
 
@@ -70,10 +71,11 @@ jobs:
           name: web-dist
           path: apps/web/dist
       - name: Deploy to Cloudflare Pages
+        working-directory: apps/web
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
-          bunx wrangler@3 pages deploy apps/web/dist \
+          bunx wrangler@3 pages deploy dist \
             --project-name=${{ vars.CLOUDFLARE_PAGES_PROJECT }} \
             --branch=master
