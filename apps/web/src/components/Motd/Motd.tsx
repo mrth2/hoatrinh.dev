@@ -1,5 +1,5 @@
 import { pickBootSet, pickCompact } from '@hoatrinh/content';
-import { createSignal, onCleanup, onMount, Show } from 'solid-js';
+import { createSignal, Match, onCleanup, onMount, Show, Switch } from 'solid-js';
 import { Avatar } from '@/components/Avatar/Avatar';
 import { CommandIndex } from '@/components/CommandIndex/CommandIndex';
 import buildData from '@/generated/motd-build.json';
@@ -31,11 +31,12 @@ type MotdMode = 'compact' | 'boot-static' | 'boot-animated';
 export function Motd(props: { onSuggestion: (cmd: string) => void }) {
   const bootSet = pickBootSet(Date.now(), buildData);
   const compactLine = pickCompact(Date.now(), buildData);
+  const relative = relativeToSentence(buildData.buildTimeIso);
+  const uaHash = uaHashShort();
   // SSR always starts in compact (sessionStorage unavailable = hasBooted() -> true)
   const [mode, setMode] = createSignal<MotdMode>('compact');
 
   onMount(() => {
-    // After hydration, decide whether to switch to boot
     if (!hasBooted()) {
       if (shouldAnimateBoot()) {
         setMode('boot-animated');
@@ -47,54 +48,41 @@ export function Motd(props: { onSuggestion: (cmd: string) => void }) {
   });
 
   return (
-    <Show
-      when={mode() === 'compact'}
-      fallback={
-        <Show
-          when={mode() === 'boot-static'}
-          fallback={
-            <BootAnimated
-              bootSet={bootSet}
-              relative={relativeToSentence(buildData.buildTimeIso)}
-              uaHash={uaHashShort()}
-              compactLine={compactLine}
-              onSuggestion={props.onSuggestion}
-            />
-          }
-        >
-          <BootStatic
-            bootSet={bootSet}
-            relative={relativeToSentence(buildData.buildTimeIso)}
-            uaHash={uaHashShort()}
-            compactLine={compactLine}
-            onSuggestion={props.onSuggestion}
-          />
-        </Show>
-      }
-    >
-      <CompactMotd compactLine={compactLine} onSuggestion={props.onSuggestion} />
-    </Show>
+    <Switch>
+      <Match when={mode() === 'compact'}>
+        <CompactMotd onSuggestion={props.onSuggestion} />
+      </Match>
+      <Match when={mode() === 'boot-static'}>
+        <BootStatic
+          bootSet={bootSet}
+          relative={relative}
+          uaHash={uaHash}
+          compactLine={compactLine}
+          onSuggestion={props.onSuggestion}
+        />
+      </Match>
+      <Match when={mode() === 'boot-animated'}>
+        <BootAnimated
+          bootSet={bootSet}
+          relative={relative}
+          uaHash={uaHash}
+          compactLine={compactLine}
+          onSuggestion={props.onSuggestion}
+        />
+      </Match>
+    </Switch>
   );
 }
 
 // -------------------- Compact --------------------
 
-function CompactMotd(props: { compactLine: string; onSuggestion: (cmd: string) => void }) {
+function CompactMotd(props: { onSuggestion: (cmd: string) => void }) {
   return (
     <section class={styles.motd} aria-label="Welcome message" data-motd-compact>
-      <p class={styles.name}>hoa trinh hai</p>
-      <p class={styles.role}>senior software engineer · vietnam</p>
       <div class={styles.motdSpacer}>
         <Avatar />
       </div>
       <CommandIndex onSuggestion={props.onSuggestion} />
-      <p class={styles.compactLine}>
-        <span class={styles.dot} aria-hidden="true">
-          ●
-        </span>
-        <span class={styles.ready}>ready</span>
-        <span class={styles.subline}>{props.compactLine}</span>
-      </p>
     </section>
   );
 }

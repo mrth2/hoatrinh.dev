@@ -11,6 +11,7 @@ export type ComputeFitInput = {
   minPx: number;
   maxPx: number;
   hideBelowHeight: number;
+  fitMode?: 'auto' | 'width';
 };
 
 export function computeFit(i: ComputeFitInput): Fit {
@@ -18,7 +19,8 @@ export function computeFit(i: ComputeFitInput): Fit {
   if (i.height < i.hideBelowHeight) return { fontSize: null, hidden: true };
   const fsByWidth = i.width / (i.cols * i.charAspect);
   const fsByHeight = i.height / i.rows;
-  const raw = Math.floor(Math.min(fsByWidth, fsByHeight));
+  const raw =
+    i.fitMode === 'width' ? Math.floor(fsByWidth) : Math.floor(Math.min(fsByWidth, fsByHeight));
   const fontSize = Math.max(i.minPx, Math.min(i.maxPx, raw));
   return { fontSize, hidden: false };
 }
@@ -31,6 +33,7 @@ export type UseArtFitOpts = {
   hideBelowHeight?: number;
   minPx?: number;
   maxPx?: number;
+  fitMode?: 'auto' | 'width';
 };
 
 export function useArtFit(opts: UseArtFitOpts): () => Fit {
@@ -40,6 +43,7 @@ export function useArtFit(opts: UseArtFitOpts): () => Fit {
   const hideBelowHeight = opts.hideBelowHeight ?? 220;
   const minPx = opts.minPx ?? 6;
   const maxPx = opts.maxPx ?? 16;
+  const fitMode = opts.fitMode ?? 'auto';
   const [fit, setFit] = createSignal<Fit>({ fontSize: null, hidden: false });
 
   const measure = () => {
@@ -55,6 +59,7 @@ export function useArtFit(opts: UseArtFitOpts): () => Fit {
         minPx,
         maxPx,
         hideBelowHeight,
+        fitMode,
       }),
     );
   };

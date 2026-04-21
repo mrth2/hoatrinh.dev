@@ -1,6 +1,7 @@
 .artSlot {
   flex: 1 1 auto;
   min-height: 0;
+  width: 100%;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -14,7 +15,8 @@
   padding: 0;
   white-space: pre;
   line-height: 1;
-  font-size: var(--art-font-size, clamp(6px, 1.6vh, 14px));
+  max-width: 100%;
+  font-size: var(--art-font-size, clamp(5px, 1.6vh, 14px));
   letter-spacing: 0;
   color: inherit;
 }

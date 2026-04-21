@@ -10,14 +10,10 @@ describe('Motd (compact mode)', () => {
     cleanup();
   });
 
-  it('renders the name line', () => {
-    const { getByText } = render(() => <Motd onSuggestion={() => {}} />);
-    expect(getByText(/hoa trinh hai/i)).toBeInTheDocument();
-  });
-
-  it('renders the role and location line', () => {
-    const { getByText } = render(() => <Motd onSuggestion={() => {}} />);
-    expect(getByText(/senior software engineer/i)).toBeInTheDocument();
+  it('renders avatar and command index in compact mode', () => {
+    const { getByTestId, getByRole } = render(() => <Motd onSuggestion={() => {}} />);
+    expect(getByTestId('avatar')).toBeInTheDocument();
+    expect(getByRole('navigation', { name: /command index/i })).toBeInTheDocument();
   });
 
   it('renders help and about as buttons via CommandIndex', () => {
@@ -40,7 +36,7 @@ describe('Motd (compact mode)', () => {
     expect(onSuggestion).toHaveBeenCalledWith('about');
   });
 
-  it('renders a compact status line with a rotating subline', () => {
+  it('renders compact mode container', () => {
     const { container } = render(() => <Motd onSuggestion={() => {}} />);
     expect(container.querySelector('[data-motd-compact]')).toBeTruthy();
   });

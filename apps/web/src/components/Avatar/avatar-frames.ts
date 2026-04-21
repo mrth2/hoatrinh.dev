@@ -1,7 +1,9 @@
 import idleRaw from './avatar-idle.txt?raw';
 
-export const ROWS = 55;
-export const COLS = 85;
+const idleRows = idleRaw.split('\n');
+
+export const ROWS = idleRows.length;
+export const COLS = idleRows.reduce((max, row) => Math.max(max, row.length), 0);
 export const CHAR_ASPECT = 0.6;
 export const HIDE_BELOW_HEIGHT = 300;
 
@@ -39,8 +41,6 @@ const RIGHT_PUPIL_END = 66;
 
 export type FrameSegment = { text: string; kind: 'body' | 'glow' };
 export type LookaroundFrame = { frame: FrameSegment[]; ms: number };
-
-const idleRows = idleRaw.split('\n');
 
 function segmentRows(rows: string[]): FrameSegment[] {
   const segments: FrameSegment[] = [];

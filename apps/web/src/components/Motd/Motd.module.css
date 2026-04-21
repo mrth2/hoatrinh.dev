@@ -9,15 +9,12 @@
   min-height: 0;
 }
 
-/* The CommandIndex + compactLine should anchor near the bottom; Avatar
-   absorbs the flexible space above them. */
+/* Keep enough vertical room so the avatar can render full-height on mobile
+   without clipping while still capping oversized desktop layouts. */
 .motdSpacer {
   flex: 1 1 0%;
-  min-height: 0;
-  /* page-pad(20) + session-bar(44) + motd-margins(48) + name(45) + role(20)
-     + gaps+compactLine-margin(24) + cmd-index(206) + compact-line(20)
-     + scroll-pad(16) + prompt(50) ≈ 493px; round to 500 for safety */
-  max-height: calc(100dvh - 500px);
+  min-height: 336px;
+  max-height: clamp(336px, 56dvh, 560px);
   display: flex;
 }
 .name {

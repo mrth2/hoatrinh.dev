@@ -1,6 +1,6 @@
 import { getProjects } from '@hoatrinh/content';
 import { useLocation, useNavigate } from '@solidjs/router';
-import { createEffect, createSignal, onCleanup, onMount } from 'solid-js';
+import { createEffect, createMemo, createSignal, onCleanup, onMount } from 'solid-js';
 import { EntryList } from '@/components/EntryList/EntryList';
 import { Motd } from '@/components/Motd/Motd';
 import { Prompt } from '@/components/Prompt/Prompt';
@@ -16,6 +16,9 @@ const PROJECT_SLUGS = getProjects().map((p) => p.slug);
 const CANONICAL_NAMES = registry.specs.map((s) => s.name);
 const NOOP_NAVIGATE = () => {};
 const SESSION_DATE = new Date().toISOString().slice(0, 10);
+const CAN_AUTO_FOCUS =
+  typeof window !== 'undefined' &&
+  window.matchMedia?.('(hover: hover) and (pointer: fine)').matches === true;
 
 function formatClock(d: Date): string {
   const h = String(d.getHours()).padStart(2, '0');
@@ -78,7 +81,7 @@ export function TerminalPage() {
   }
 
   onMount(() => {
-    focusInput();
+    if (CAN_AUTO_FOCUS) focusInput();
   });
 
   // Update lastPath before navigating so the createEffect skips the navigation
@@ -110,12 +113,14 @@ export function TerminalPage() {
     });
   }
 
-  const ghostSuggestion = () =>
-    suggest(state.currentInput, {
-      canonicalNames: CANONICAL_NAMES,
-      allNames: registry.vocab,
-      projectSlugs: PROJECT_SLUGS,
-    }) ?? undefined;
+  const ghostSuggestion = createMemo(
+    () =>
+      suggest(state.currentInput, {
+        canonicalNames: CANONICAL_NAMES,
+        allNames: registry.vocab,
+        projectSlugs: PROJECT_SLUGS,
+      }) ?? undefined,
+  );
 
   function onSuggestion(s: string) {
     setState('currentInput', s);
@@ -123,6 +128,7 @@ export function TerminalPage() {
   }
 
   function onListClick(e: MouseEvent) {
+    if (!CAN_AUTO_FOCUS) return;
     const selection = window.getSelection();
     if (selection?.toString()) return;
     if ((e.target as HTMLElement).closest('a, button')) return;
