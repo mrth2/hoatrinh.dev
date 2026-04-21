@@ -1,9 +1,19 @@
-import { afterEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, describe, expect, it } from 'vitest';
 import { askHandler } from './ask';
 
 describe('askHandler', () => {
+  const originalFetch = globalThis.fetch;
+
   afterEach(() => {
-    vi.unstubAllGlobals();
+    if (originalFetch === undefined) {
+      delete (globalThis as { fetch?: typeof fetch }).fetch;
+      return;
+    }
+    Object.defineProperty(globalThis, 'fetch', {
+      value: originalFetch,
+      configurable: true,
+      writable: true,
+    });
   });
 
   it('returns error when question is missing', async () => {
@@ -12,16 +22,17 @@ describe('askHandler', () => {
   });
 
   it('returns text entry for in-scope answer', async () => {
-    vi.stubGlobal(
-      'fetch',
-      vi.fn(
-        async () =>
-          new Response(
-            JSON.stringify({ kind: 'answer', answer: 'Hoa is a senior software engineer.' }),
-            { status: 200 },
-          ),
-      ),
-    );
+    Object.defineProperty(globalThis, 'fetch', {
+      value: async () =>
+        new Response(
+          JSON.stringify({ kind: 'answer', answer: 'Hoa is a senior software engineer.' }),
+          {
+            status: 200,
+          },
+        ),
+      configurable: true,
+      writable: true,
+    });
 
     const entry = await askHandler([], 'what is your role?', {});
     expect(entry.kind).toBe('text');
@@ -32,19 +43,18 @@ describe('askHandler', () => {
   });
 
   it('returns text entry for out-of-scope refusal', async () => {
-    vi.stubGlobal(
-      'fetch',
-      vi.fn(
-        async () =>
-          new Response(
-            JSON.stringify({
-              kind: 'refusal',
-              answer: 'I can only answer questions about Hoa Trinh Hai.',
-            }),
-            { status: 200 },
-          ),
-      ),
-    );
+    Object.defineProperty(globalThis, 'fetch', {
+      value: async () =>
+        new Response(
+          JSON.stringify({
+            kind: 'refusal',
+            answer: 'I can only answer questions about Hoa Trinh Hai.',
+          }),
+          { status: 200 },
+        ),
+      configurable: true,
+      writable: true,
+    });
 
     const entry = await askHandler([], 'what is the weather today?', {});
     expect(entry.kind).toBe('text');
@@ -55,10 +65,11 @@ describe('askHandler', () => {
   });
 
   it('returns error entry when API responds with failure', async () => {
-    vi.stubGlobal(
-      'fetch',
-      vi.fn(async () => new Response(JSON.stringify({ message: 'boom' }), { status: 500 })),
-    );
+    Object.defineProperty(globalThis, 'fetch', {
+      value: async () => new Response(JSON.stringify({ message: 'boom' }), { status: 500 }),
+      configurable: true,
+      writable: true,
+    });
 
     const entry = await askHandler([], 'what is your role?', {});
     expect(entry.kind).toBe('error');

@@ -1,11 +1,15 @@
 import { loadMarkdownEntity } from './loaders';
+import { loadRawMarkdownFallback } from './raw-markdown';
 import { type Profile, ProfileFrontmatter } from './schema';
 
-const raw = import.meta.glob<string>('../markdown/profile.md', {
-  eager: true,
-  query: '?raw',
-  import: 'default',
-});
+const raw =
+  typeof import.meta.glob === 'function'
+    ? import.meta.glob<string>('../markdown/profile.md', {
+        eager: true,
+        query: '?raw',
+        import: 'default',
+      })
+    : await loadRawMarkdownFallback('../markdown/profile.md', import.meta.url);
 
 const entries = Object.values(raw);
 if (entries.length !== 1 || entries[0] === undefined) {
