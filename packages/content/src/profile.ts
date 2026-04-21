@@ -3,13 +3,13 @@ import { loadRawMarkdownFallback } from './raw-markdown';
 import { type Profile, ProfileFrontmatter } from './schema';
 
 const raw =
-  typeof import.meta.glob === 'function'
-    ? import.meta.glob<string>('../markdown/profile.md', {
+  typeof (globalThis as { Bun?: unknown }).Bun !== 'undefined'
+    ? await loadRawMarkdownFallback('../markdown/profile.md', import.meta.url)
+    : import.meta.glob<string>('../markdown/profile.md', {
         eager: true,
         query: '?raw',
         import: 'default',
-      })
-    : await loadRawMarkdownFallback('../markdown/profile.md', import.meta.url);
+      });
 
 const entries = Object.values(raw);
 if (entries.length !== 1 || entries[0] === undefined) {

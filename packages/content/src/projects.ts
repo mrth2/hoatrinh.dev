@@ -3,13 +3,13 @@ import { loadRawMarkdownFallback } from './raw-markdown';
 import { type Project, ProjectFrontmatter } from './schema';
 
 const rawFiles =
-  typeof import.meta.glob === 'function'
-    ? import.meta.glob<string>('../markdown/projects/*.md', {
+  typeof (globalThis as { Bun?: unknown }).Bun !== 'undefined'
+    ? await loadRawMarkdownFallback('../markdown/projects/*.md', import.meta.url)
+    : import.meta.glob<string>('../markdown/projects/*.md', {
         eager: true,
         query: '?raw',
         import: 'default',
-      })
-    : await loadRawMarkdownFallback('../markdown/projects/*.md', import.meta.url);
+      });
 
 const projects: Project[] = await Promise.all(
   Object.entries(rawFiles).map(async ([path, raw]) => {
