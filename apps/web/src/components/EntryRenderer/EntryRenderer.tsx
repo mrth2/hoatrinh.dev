@@ -64,11 +64,17 @@ export function EntryRenderer(props: {
           })()}
         </Match>
         <Match when={props.entry.kind === 'error'}>
-          <ErrorBlock
-            message={(props.entry as Extract<TerminalEntry, { kind: 'error' }>).message}
-            suggestions={(props.entry as Extract<TerminalEntry, { kind: 'error' }>).suggestions}
-            onSuggestion={props.onSuggestion}
-          />
+          {(() => {
+            const e = props.entry as Extract<TerminalEntry, { kind: 'error' }>;
+            return (
+              <ErrorBlock
+                message={e.message}
+                suggestions={e.suggestions}
+                {...(e.contactLink !== undefined ? { contactLink: e.contactLink } : {})}
+                onSuggestion={props.onSuggestion}
+              />
+            );
+          })()}
         </Match>
         <Match when={props.entry.kind === 'loading'}>
           <LoadingBlock />

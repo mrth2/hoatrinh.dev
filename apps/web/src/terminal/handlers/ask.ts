@@ -37,6 +37,7 @@ export async function askHandler(
         kind: 'error',
         message: error.message,
         suggestions: ['about', 'projects', 'experience', 'skills', 'contact', 'help'],
+        contactLink: { label: 'contact me', href: 'mailto:hoatrinhdev@gmail.com' },
       };
     }
     throw error;

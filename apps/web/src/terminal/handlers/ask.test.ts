@@ -63,9 +63,11 @@ describe('askHandler', () => {
     const entry = await askHandler([], 'what is your role?', {});
     expect(entry.kind).toBe('error');
     if (entry.kind === 'error') {
-      expect(entry.message).toBe(
-        "Sorry, I'm having trouble answering that right now. Please try again.",
-      );
+      expect(entry.message).toBe('Hmm, my AI assistant hit a snag! Please try again in a moment.');
+      expect(entry.contactLink).toEqual({
+        label: 'contact me',
+        href: 'mailto:hoatrinhdev@gmail.com',
+      });
     }
   });
 });

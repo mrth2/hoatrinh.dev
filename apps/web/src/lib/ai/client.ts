@@ -5,8 +5,7 @@ export type AskApiResult = {
   answer: string;
 };
 
-const ASK_UNAVAILABLE_MESSAGE =
-  "Sorry, I'm having trouble answering that right now. Please try again.";
+const ASK_UNAVAILABLE_MESSAGE = 'Hmm, my AI assistant hit a snag! Please try again in a moment.';
 
 export async function askAboutMe(question: string): Promise<AskApiResult> {
   try {

@@ -17,6 +17,7 @@ export type ErrorEntry = BaseEntry & {
   kind: 'error';
   message: string;
   suggestions: string[];
+  contactLink?: { label: string; href: string };
 };
 export type LoadingEntry = BaseEntry & { kind: 'loading' };
 
