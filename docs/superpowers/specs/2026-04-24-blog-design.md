@@ -69,32 +69,21 @@ blogPostSchema = z.object({
   handler: postHandler }
 ```
 
-`blog` is listed in `help`. `post` is not listed (requires a slug), matching the existing `project` behaviour.
+Both `blog` and `post` are listed in `help` output, matching how `projects` and `project` are both listed today. The help handler iterates all registered specs.
 
 ### Handlers
 
 - `blogHandler` → returns `BlogListEntry`. Computes cadence: `{ targetDays: 7, postCount, latestDate, nextBy }` where `nextBy = addDays(latestDate, 7)`. Empty list → `postCount: 0`, `latestDate: ''`, `nextBy: todayISO()`.
 - `postHandler` → resolves slug via `getBlogPost(slug)`. Unknown slug produces an `ErrorEntry` with `nearestMatches` drawn from all known slugs (same pattern as `projectHandler`). Known slug returns `PostEntry` containing fully-resolved fields plus `prev` / `next` neighbour refs computed from `getBlogPosts()`.
 
-### App routing (`apps/web/src/App.tsx`)
+### App routing
 
-Replace the current catch-all-only setup with explicit routes so `/post/:slug` can forward the slug into the initial command. Existing routes become explicit:
+**No `App.tsx` change required.** URL-to-command mapping already lives in `apps/web/src/terminal/path-to-command.ts`, which strips the leading `/` and replaces any remaining `/` with a space. That produces the correct commands automatically once the specs are registered:
 
-```tsx
-<Route path="/" component={() => <TerminalPage />} />
-<Route path="/about" component={() => <TerminalPage initialCommand="about" />} />
-<Route path="/projects" component={() => <TerminalPage initialCommand="projects" />} />
-<Route path="/project/:slug" component={(p) => <TerminalPage initialCommand={`project ${p.params.slug}`} />} />
-<Route path="/experience" component={() => <TerminalPage initialCommand="experience" />} />
-<Route path="/skills" component={() => <TerminalPage initialCommand="skills" />} />
-<Route path="/contact" component={() => <TerminalPage initialCommand="contact" />} />
-<Route path="/help" component={() => <TerminalPage initialCommand="help" />} />
-<Route path="/blog" component={() => <TerminalPage initialCommand="blog" />} />
-<Route path="/post/:slug" component={(p) => <TerminalPage initialCommand={`post ${p.params.slug}`} />} />
-<Route path="/*" component={() => <TerminalPage initialCommand="help" />} />
-```
+- `/blog` -> `blog`
+- `/post/<slug>` -> `post <slug>`
 
-`initialCommand` already runs synchronously during component setup, which is SSR-critical; this change only broadens which URLs resolve.
+Registering the `blog` and `post` specs in `commands.ts` is the only wiring needed for routing.
 
 ### SSR / prerender (`apps/web/src/entry-server.tsx`)
 
@@ -268,8 +257,7 @@ packages/content/src/schema.ts                 # + blogPostSchema
 packages/content/src/index.ts                  # re-export BlogPost / getBlogPosts / getBlogPost
 apps/web/src/terminal/commands.ts              # + blog, post specs
 apps/web/src/terminal/entries.ts               # + BlogListEntry, PostEntry in union
-apps/web/src/components/EntryRenderer/index.tsx # + 2 cases
-apps/web/src/App.tsx                           # explicit routes for all commands
+apps/web/src/components/EntryRenderer/EntryRenderer.tsx # + 2 Match arms, variant/meta mappings
 apps/web/src/entry-server.tsx                  # getRoutes() includes /blog + /post/<slug>
 ```
 
