@@ -71,4 +71,11 @@ describe('__loadBlogFromRawFiles (fixture-driven)', () => {
     const posts = await __loadBlogFromRawFiles({ 'explicit-reading-time.md': raw });
     expect(posts[0]?.readingTime).toBe(7);
   });
+
+  it('rejects timestamp-like dates in frontmatter', async () => {
+    const raw = await loadBlogFixture('timestamp-date.md');
+    await expect(__loadBlogFromRawFiles({ 'timestamp-date.md': raw })).rejects.toThrow(
+      /frontmatter validation failed/,
+    );
+  });
 });

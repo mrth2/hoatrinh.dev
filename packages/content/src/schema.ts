@@ -52,6 +52,14 @@ export type Link = { label: string; href: string; kind: 'email' | 'social' | 'co
 const BlogPostDate = z.preprocess(
   (value) => {
     if (value instanceof Date) {
+      const isUtcMidnight =
+        value.getUTCHours() === 0 &&
+        value.getUTCMinutes() === 0 &&
+        value.getUTCSeconds() === 0 &&
+        value.getUTCMilliseconds() === 0;
+      if (!isUtcMidnight) {
+        return value;
+      }
       return value.toISOString().slice(0, 10);
     }
     return value;
