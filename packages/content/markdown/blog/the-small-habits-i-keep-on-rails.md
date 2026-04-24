@@ -6,10 +6,12 @@ excerpt: Why I wired my mornings to Todoist, and what I'd cut if I had to.
 tag: habits
 ---
 
-This is the first post in a weekly-ish series. The author will replace
-this placeholder body before publishing. Keeping the post in the tree as
-a draft stand-in lets the rest of the blog pipeline be built and tested
-end-to-end with real content shape.
+Willpower is a bad scheduler. If a habit has to be decided every
+morning, I skip it about a third of the time. If it shows up as a
+Todoist task at 6:10 with a due time, I do it, because the friction of
+dismissing the notification is higher than the friction of doing the
+thing. That is the whole trick. The habits below are not special. The
+rails around them are.
 
 ## What I do every day
 
@@ -22,7 +24,48 @@ end-to-end with real content shape.
 Todoist handles the scheduling. Recurring tasks for the habit stack;
 one-off tasks for anything that is not on rails yet.
 
+## What I would cut first
+
+Ranked by return on the minute it costs me. If the week got crowded and
+I had to start pulling things out, this is the order.
+
+1. **Keep.** The 30 to 60 minute workout block. Biggest mood and energy
+   lift of the day, and the only one that pays back into everything
+   else.
+2. **Keep.** The 6:10 bodyweight stack. Tiny time cost, primes the day,
+   and the streak matters more than the volume.
+3. **Keep.** Multivitamin. Cheap, zero friction, no reason to touch it.
+4. **First to cut.** daily.dev. It is the most passive item on the
+   list, and the easiest to rationalise as "input" when I am really
+   just scrolling.
+5. **Second to cut.** monkey-type. Fun, but if my keyboard speed were
+   the bottleneck in my life I would already know.
+
+## When the rails break
+
+Travel, illness, late nights, a deadline that eats the evening. The
+stack dies and pretending it did not makes it worse. The minimum viable
+version I fall back to:
+
+- One walk, any length.
+- Multivitamin.
+- Skip everything else without negotiating with myself about it.
+
+The goal on a bad day is not to run the program. It is to not break the
+identity. One tiny thing keeps the "I do this" label intact. Zero
+things starts a story about quitting.
+
 ## The commitment
 
-One post per week, on Fridays. If I miss a Friday, the cadence header on
-/blog will tell on me. That is the point.
+One new habit, starting with this post: one post per week, on Fridays.
+This blog is day one. The rules are the same as the rest of the stack.
+Todoist handles the scheduling. If I miss a Friday, the cadence header
+on /blog will tell on me. That is the point.
+
+## What success looks like
+
+Three months from now, late July, the honest metric is not whether I
+hit every day. It is two things. Is the Friday post still going up. Is
+the workout block still showing a streak longer than two weeks. If both
+are true, the rails are working. If one breaks, the rails are wrong for
+the season, not the habits.
