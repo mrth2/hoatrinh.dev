@@ -56,7 +56,7 @@ export function EmailCaptureForm() {
           id="email"
           type="email"
           autocomplete="email"
-          placeholder="you@mac.dev"
+          placeholder="your@email.com"
           value={email()}
           onInput={(event) => setEmail(event.currentTarget.value)}
           required

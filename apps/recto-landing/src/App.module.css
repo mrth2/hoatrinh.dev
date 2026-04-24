@@ -6,6 +6,19 @@
   gap: 28px;
 }
 
+.heroTitleRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.heroLogo {
+  height: clamp(44px, 9vw, 92px);
+  width: auto;
+  display: block;
+  margin-right: -20px;
+}
+
 .hero {
   border: 1px solid var(--recto-grid);
   padding: 24px;
@@ -31,8 +44,8 @@
 
 .title {
   margin: 0;
-  font-size: clamp(44px, 9vw, 92px);
-  line-height: 0.95;
+  font-size: clamp(36px, 7.4vw, 78px);
+  line-height: 1;
   letter-spacing: 0.02em;
 }
 
