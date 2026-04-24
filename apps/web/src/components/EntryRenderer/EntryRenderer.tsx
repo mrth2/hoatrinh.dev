@@ -1,10 +1,12 @@
 import { Match, Switch } from 'solid-js';
 import type { TerminalEntry } from '@/terminal/entries';
+import { BlogListBlock } from '../blocks/BlogListBlock/BlogListBlock';
 import { ContactBlock } from '../blocks/ContactBlock/ContactBlock';
 import { ErrorBlock } from '../blocks/ErrorBlock/ErrorBlock';
 import { ExperienceBlock } from '../blocks/ExperienceBlock/ExperienceBlock';
 import { HelpBlock } from '../blocks/HelpBlock/HelpBlock';
 import { LoadingBlock } from '../blocks/LoadingBlock/LoadingBlock';
+import { PostBlock } from '../blocks/PostBlock/PostBlock';
 import { ProfileBlock } from '../blocks/ProfileBlock/ProfileBlock';
 import { ProjectBlock } from '../blocks/ProjectBlock/ProjectBlock';
 import { ProjectsBlock } from '../blocks/ProjectsBlock/ProjectsBlock';
@@ -49,6 +51,14 @@ export function EntryRenderer(props: {
         <Match when={props.entry.kind === 'contact'}>
           <ContactBlock data={(props.entry as Extract<TerminalEntry, { kind: 'contact' }>).data} />
         </Match>
+        <Match when={props.entry.kind === 'blog-list'}>
+          <BlogListBlock
+            data={(props.entry as Extract<TerminalEntry, { kind: 'blog-list' }>).data}
+          />
+        </Match>
+        <Match when={props.entry.kind === 'post'}>
+          <PostBlock data={(props.entry as Extract<TerminalEntry, { kind: 'post' }>).data} />
+        </Match>
         <Match when={props.entry.kind === 'help'}>
           <HelpBlock data={(props.entry as Extract<TerminalEntry, { kind: 'help' }>).data} />
         </Match>
@@ -90,10 +100,12 @@ function variantFor(kind: TerminalEntry['kind']): OutputPanelVariant {
     case 'projects':
     case 'project':
     case 'experience':
+    case 'blog-list':
       return 'titled';
     case 'skills':
     case 'contact':
       return 'frame';
+    case 'post':
     case 'text':
     case 'help':
     case 'error':
@@ -116,6 +128,12 @@ function metaFor(entry: TerminalEntry): string | undefined {
       const n = entry.data.length;
       return `${n} ${n === 1 ? 'role' : 'roles'}`;
     }
+    case 'blog-list': {
+      const n = entry.data.posts.length;
+      return `${n} ${n === 1 ? 'post' : 'posts'}`;
+    }
+    case 'post':
+      return entry.data.post.slug;
     default:
       return undefined;
   }

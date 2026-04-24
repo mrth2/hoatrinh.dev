@@ -1,4 +1,4 @@
-import type { Experience, Link, Profile, Project, SkillGroup } from '@hoatrinh/content';
+import type { BlogPost, Experience, Link, Profile, Project, SkillGroup } from '@hoatrinh/content';
 
 export type BaseEntry = { id: string; input: string };
 
@@ -8,6 +8,29 @@ export type ProjectEntry = BaseEntry & { kind: 'project'; data: Project };
 export type ExperienceEntry = BaseEntry & { kind: 'experience'; data: Experience[] };
 export type SkillsEntry = BaseEntry & { kind: 'skills'; data: SkillGroup[] };
 export type ContactEntry = BaseEntry & { kind: 'contact'; data: Link[] };
+export type BlogListEntry = BaseEntry & {
+  kind: 'blog-list';
+  data: {
+    cadence: { targetDays: 7; postCount: number; latestDate: string; nextBy: string };
+    posts: Array<{
+      slug: string;
+      title: string;
+      date: string;
+      tag: string;
+      excerpt: string;
+      readingTime: number;
+    }>;
+  };
+};
+
+export type PostEntry = BaseEntry & {
+  kind: 'post';
+  data: {
+    post: BlogPost;
+    prev?: { slug: string; title: string };
+    next?: { slug: string; title: string };
+  };
+};
 export type HelpEntry = BaseEntry & {
   kind: 'help';
   data: { commands: Array<{ name: string; usage: string; summary: string }> };
@@ -28,6 +51,8 @@ export type TerminalEntry =
   | ExperienceEntry
   | SkillsEntry
   | ContactEntry
+  | BlogListEntry
+  | PostEntry
   | HelpEntry
   | TextEntry
   | ErrorEntry

@@ -1,6 +1,7 @@
 export type AutocompleteOptions = {
   commands: readonly string[];
   projectSlugs: readonly string[];
+  postSlugs: readonly string[];
 };
 
 export type AutocompleteResult = {
@@ -12,6 +13,7 @@ export type SuggestOptions = {
   canonicalNames: readonly string[];
   allNames: readonly string[];
   projectSlugs: readonly string[];
+  postSlugs: readonly string[];
 };
 
 export function suggest(input: string, opts: SuggestOptions): string | null {
@@ -36,6 +38,13 @@ export function suggest(input: string, opts: SuggestOptions): string | null {
     const slug = opts.projectSlugs.find((s) => s.startsWith(needle) && s !== needle);
     if (slug) return `${leading}project ${slug}`;
   }
+  if (cmd === 'post' && parts.length === 2) {
+    const arg = parts[1] ?? '';
+    if (!arg) return null;
+    const needle = arg.toLowerCase();
+    const slug = opts.postSlugs.find((s) => s.startsWith(needle) && s !== needle);
+    if (slug) return `${leading}post ${slug}`;
+  }
 
   return null;
 }
@@ -51,6 +60,12 @@ export function autocomplete(input: string, opts: AutocompleteOptions): Autocomp
     const sub = completeAgainst(arg, opts.projectSlugs);
     if (sub.completion) return { completion: `project ${sub.completion}`, candidates: [] };
     return { completion: null, candidates: sub.candidates.map((c) => `project ${c}`) };
+  }
+  if (cmd === 'post' && rest.length === 1) {
+    const arg = rest[0] ?? '';
+    const sub = completeAgainst(arg, opts.postSlugs);
+    if (sub.completion) return { completion: `post ${sub.completion}`, candidates: [] };
+    return { completion: null, candidates: sub.candidates.map((c) => `post ${c}`) };
   }
   return { completion: null, candidates: [] };
 }

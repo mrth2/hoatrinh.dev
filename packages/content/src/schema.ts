@@ -48,3 +48,18 @@ export type Profile = ProfileMeta & { bodyHtml: string };
 
 export type SkillGroup = { label: string; items: string[] };
 export type Link = { label: string; href: string; kind: 'email' | 'social' | 'code' | 'other' };
+
+export const BlogPostFrontmatter = z.object({
+  slug: z.string().regex(/^[a-z0-9][a-z0-9-]*$/),
+  title: z.string().min(1),
+  date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+  excerpt: z.string().min(1).max(160),
+  tag: z.string().regex(/^[a-z0-9][a-z0-9-]*$/),
+  readingTime: z.number().int().positive().optional(),
+  draft: z.boolean().optional(),
+});
+export type BlogPostMeta = z.infer<typeof BlogPostFrontmatter>;
+export type BlogPost = BlogPostMeta & {
+  bodyHtml: string;
+  readingTime: number;
+};

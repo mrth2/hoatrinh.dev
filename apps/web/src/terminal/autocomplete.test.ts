@@ -5,6 +5,8 @@ const commands = [
   'about',
   'projects',
   'project',
+  'blog',
+  'post',
   'experience',
   'skills',
   'contact',
@@ -13,11 +15,14 @@ const commands = [
   'clear',
 ];
 const projectSlugs = ['keepgoing', 'win95-fun'];
+const postSlugs = ['the-small-habits-i-keep-on-rails', 'debugging-with-notes'];
 
 const canonicalNames = [
   'about',
   'projects',
   'project',
+  'blog',
+  'post',
   'experience',
   'skills',
   'contact',
@@ -25,31 +30,45 @@ const canonicalNames = [
   'ask',
   'clear',
 ];
-const allNames = [...canonicalNames, 'whoami', 'me', 'a', 'work', 'ls', 'open', 'show'];
+const allNames = [...canonicalNames, 'whoami', 'me', 'a', 'work', 'ls', 'open', 'show', 'read'];
 
 describe('autocomplete', () => {
   it('completes an unambiguous command prefix', () => {
-    expect(autocomplete('abo', { commands, projectSlugs })).toEqual({
+    expect(autocomplete('abo', { commands, projectSlugs, postSlugs })).toEqual({
       completion: 'about',
       candidates: [],
     });
   });
 
   it('returns candidates for ambiguous prefix', () => {
-    const res = autocomplete('proj', { commands, projectSlugs });
+    const res = autocomplete('proj', { commands, projectSlugs, postSlugs });
     expect(res.completion).toBeNull();
     expect(res.candidates).toEqual(expect.arrayContaining(['projects', 'project']));
   });
 
   it('completes a project slug after "project "', () => {
-    expect(autocomplete('project keep', { commands, projectSlugs })).toEqual({
+    expect(autocomplete('project keep', { commands, projectSlugs, postSlugs })).toEqual({
       completion: 'project keepgoing',
       candidates: [],
     });
   });
 
+  it('completes a post slug after "post "', () => {
+    expect(autocomplete('post the-small', { commands, projectSlugs, postSlugs })).toEqual({
+      completion: 'post the-small-habits-i-keep-on-rails',
+      candidates: [],
+    });
+  });
+
+  it('does not suggest post slugs for the project command', () => {
+    expect(autocomplete('project the-small', { commands, projectSlugs, postSlugs })).toEqual({
+      completion: null,
+      candidates: [],
+    });
+  });
+
   it('returns empty on unknown prefix', () => {
-    expect(autocomplete('xyz', { commands, projectSlugs })).toEqual({
+    expect(autocomplete('xyz', { commands, projectSlugs, postSlugs })).toEqual({
       completion: null,
       candidates: [],
     });
@@ -57,7 +76,7 @@ describe('autocomplete', () => {
 });
 
 describe('suggest', () => {
-  const opts = { canonicalNames, allNames, projectSlugs };
+  const opts = { canonicalNames, allNames, projectSlugs, postSlugs };
 
   it('returns the canonical match for an unambiguous prefix', () => {
     expect(suggest('abo', opts)).toBe('about');
@@ -97,5 +116,17 @@ describe('suggest', () => {
 
   it('returns null when project arg already exactly matches a slug', () => {
     expect(suggest('project keepgoing', opts)).toBeNull();
+  });
+
+  it('suggests a post slug after "post "', () => {
+    expect(suggest('post the-small', opts)).toBe('post the-small-habits-i-keep-on-rails');
+  });
+
+  it('returns null when post arg already exactly matches a slug', () => {
+    expect(suggest('post the-small-habits-i-keep-on-rails', opts)).toBeNull();
+  });
+
+  it('does not suggest post slugs when using project command', () => {
+    expect(suggest('project the-small', opts)).toBeNull();
   });
 });
