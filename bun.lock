@@ -9,6 +9,19 @@
         "typescript": "latest",
       },
     },
+    "apps/recto-landing": {
+      "name": "@hoatrinh/recto-landing",
+      "version": "0.0.0",
+      "dependencies": {
+        "solid-js": "^1.9.12",
+      },
+      "devDependencies": {
+        "typescript": "latest",
+        "vite": "^8.0.9",
+        "vite-plugin-solid": "latest",
+        "vitest": "^4.1.4",
+      },
+    },
     "apps/web": {
       "name": "@hoatrinh/web",
       "version": "0.0.0",
@@ -145,6 +158,8 @@
     "@fontsource/space-mono": ["@fontsource/space-mono@5.2.9", "", {}, "sha512-b61faFOHEISQ/pD25G+cfGY9o/WW6lRv6hBQQfpWvEJ4y1V+S4gmth95EVyBE2VL3qDYHeVQ8nBzrplzdXTDDg=="],
 
     "@hoatrinh/content": ["@hoatrinh/content@workspace:packages/content"],
+
+    "@hoatrinh/recto-landing": ["@hoatrinh/recto-landing@workspace:apps/recto-landing"],
 
     "@hoatrinh/web": ["@hoatrinh/web@workspace:apps/web"],
 

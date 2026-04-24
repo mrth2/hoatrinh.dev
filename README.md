@@ -8,6 +8,7 @@ Terminal-style personal portfolio. Built with SolidJS, Vite, and Bun.
 - **Content:** Markdown + frontmatter, validated with Zod, rendered via marked + shiki
 - **Monorepo:** Bun workspaces
   - `apps/web` - the SPA
+  - `apps/recto-landing` - RECTO pre-MVP landing page (Vite + Solid + Pages Function)
   - `packages/content` - content loading and rendering
 
 ## Getting Started

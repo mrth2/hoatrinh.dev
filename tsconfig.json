@@ -1,5 +1,9 @@
 {
   "files": [],
   "include": [],
-  "references": [{ "path": "./apps/web" }, { "path": "./packages/content" }]
+  "references": [
+    { "path": "./apps/web" },
+    { "path": "./apps/recto-landing" },
+    { "path": "./packages/content" }
+  ]
 }
