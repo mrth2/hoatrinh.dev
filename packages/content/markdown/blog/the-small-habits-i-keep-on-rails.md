@@ -62,6 +62,8 @@ This blog is day one. The rules are the same as the rest of the stack.
 Todoist handles the scheduling. If I miss a Friday, the cadence header
 on /blog will tell on me. That is the point.
 
+![Recurring Todoist task: write one blog post for hoatrinh.dev, every Friday](/blog/habits-rails-todoist-weekly-post.png)
+
 ## What success looks like
 
 Three months from now, late July, the honest metric is not whether I
