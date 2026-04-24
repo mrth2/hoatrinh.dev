@@ -123,10 +123,16 @@ export function App() {
                 <span>MENU BAR</span>
                 <span>PASSIVE STATE</span>
               </div>
-              <div class={styles.menuBarPreview}>
-                <span class={styles.menuBarDot} />
-                <span>RECTO · STABLE</span>
-                <span class={styles.menuBarDrift}>DRIFT 12%</span>
+              <div class={styles.menuBarStates}>
+                <div class={styles.menuBarPreview}>
+                  <span class={styles.menuBarDotStable} />
+                  <span>RECTO</span>
+                </div>
+                <div class={styles.menuBarPreview}>
+                  <span class={styles.menuBarDotDrift} />
+                  <span>RECTO</span>
+                  <span class={styles.menuBarDrift}>18%</span>
+                </div>
               </div>
             </div>
             <div class={styles.mockCardCopy}>
