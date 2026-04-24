@@ -1,3 +1,4 @@
+export { getBlogPost, getBlogPosts } from './blog';
 export { getExperience } from './experience';
 export { getLinks } from './links';
 export type { MotdBootSet, MotdPools } from './motd';
