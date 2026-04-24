@@ -1,3 +1,4 @@
+import { JSON_SCHEMA } from 'js-yaml';
 import { loadMarkdownEntity } from './loaders';
 import { loadRawMarkdownFallback } from './raw-markdown';
 import { type BlogPost, BlogPostFrontmatter } from './schema';
@@ -16,7 +17,13 @@ export async function __loadBlogFromRawFiles(
 
   for (const [path, raw] of Object.entries(rawFiles)) {
     const filename = path.split('/').pop() ?? path;
-    const entity = await loadMarkdownEntity(raw, BlogPostFrontmatter, filename);
+    const entity = await loadMarkdownEntity(raw, BlogPostFrontmatter, filename, {
+      frontmatter: {
+        yamlLoadOptions: {
+          schema: JSON_SCHEMA,
+        },
+      },
+    });
     const stem = filename.replace(/\.md$/, '');
     if (stem !== entity.slug) {
       throw new Error(`[content] ${filename}: filename stem "${stem}" != slug "${entity.slug}"`);

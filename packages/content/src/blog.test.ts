@@ -72,9 +72,16 @@ describe('__loadBlogFromRawFiles (fixture-driven)', () => {
     expect(posts[0]?.readingTime).toBe(7);
   });
 
-  it('rejects timestamp-like dates in frontmatter', async () => {
-    const raw = await loadBlogFixture('timestamp-date.md');
-    await expect(__loadBlogFromRawFiles({ 'timestamp-date.md': raw })).rejects.toThrow(
+  it('rejects offset timestamp-like dates in frontmatter', async () => {
+    const raw = await loadBlogFixture('timestamp-date-offset.md');
+    await expect(__loadBlogFromRawFiles({ 'timestamp-date-offset.md': raw })).rejects.toThrow(
+      /frontmatter validation failed/,
+    );
+  });
+
+  it('rejects UTC timestamp-like dates in frontmatter', async () => {
+    const raw = await loadBlogFixture('timestamp-date-z.md');
+    await expect(__loadBlogFromRawFiles({ 'timestamp-date-z.md': raw })).rejects.toThrow(
       /frontmatter validation failed/,
     );
   });
