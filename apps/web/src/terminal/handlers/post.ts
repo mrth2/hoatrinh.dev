@@ -1,5 +1,6 @@
 import { getBlogPost, getBlogPosts } from '@hoatrinh/content';
 import { type ErrorEntry, nextEntryId, type PostEntry } from '../entries';
+import { nearestMatches } from '../suggestions';
 
 export function postHandler(args: string[], _rest: string, _ctx: unknown): PostEntry | ErrorEntry {
   const slug = args[0]?.toLowerCase();
@@ -21,7 +22,7 @@ export function postHandler(args: string[], _rest: string, _ctx: unknown): PostE
       input: `post ${slug}`,
       kind: 'error',
       message: `No post "${slug}" found.`,
-      suggestions: ['blog', ...known.slice(0, 3)],
+      suggestions: ['blog', ...nearestMatches(slug, known)],
     };
   }
 
