@@ -1,5 +1,14 @@
+import { readFile } from 'node:fs/promises';
+import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
 import { __loadBlogFromRawFiles, getBlogPost, getBlogPosts } from './blog';
+
+const fixturesBaseUrl = new URL('../markdown/__fixtures__/blog/', import.meta.url);
+
+async function loadBlogFixture(filename: string): Promise<string> {
+  const fixturePath = fileURLToPath(new URL(filename, fixturesBaseUrl));
+  return readFile(fixturePath, 'utf8');
+}
 
 describe('getBlogPosts', () => {
   it('returns non-draft posts newest-first', () => {
@@ -12,6 +21,17 @@ describe('getBlogPosts', () => {
     }
     expect(posts.find((p) => (p as { draft?: boolean }).draft === true)).toBeUndefined();
   });
+
+  it('returns a shallow copy so callers cannot mutate the source array', () => {
+    const first = getBlogPosts();
+    const originalLength = first.length;
+    const injected = { slug: '__injected__' } as (typeof first)[number];
+    first.push(injected);
+    const second = getBlogPosts();
+    expect(first.length).toBe(originalLength + 1);
+    expect(second.length).toBe(originalLength);
+    expect(second.some((post) => post.slug === '__injected__')).toBe(false);
+  });
 });
 
 describe('getBlogPost', () => {
@@ -23,33 +43,31 @@ describe('getBlogPost', () => {
 // Internal loader helper tested against fixtures to cover edge cases that
 // the production markdown folder cannot reliably exercise.
 describe('__loadBlogFromRawFiles (fixture-driven)', () => {
-  it('parses a valid post and auto-computes reading time >= 1', async () => {
-    const raw =
-      `---\nslug: valid-post\ntitle: A valid test post\ndate: "2026-04-01"\nexcerpt: One line.\ntag: test\n---\n\nWord. `.repeat(
-        1,
-      );
+  it('parses a valid post fixture and normalizes date to YYYY-MM-DD string', async () => {
+    const raw = await loadBlogFixture('valid-post.md');
     const posts = await __loadBlogFromRawFiles({ 'valid-post.md': raw });
     expect(posts).toHaveLength(1);
     expect(posts[0]?.slug).toBe('valid-post');
+    expect(posts[0]?.date).toBe('2026-04-01');
+    expect(typeof posts[0]?.date).toBe('string');
     expect(posts[0]?.readingTime).toBeGreaterThanOrEqual(1);
   });
 
   it('throws when filename stem does not match slug', async () => {
-    const raw = `---\nslug: mismatched\ntitle: x\ndate: "2026-04-02"\nexcerpt: x\ntag: test\n---\nBody.`;
+    const raw = await loadBlogFixture('wrong-name.md');
     await expect(__loadBlogFromRawFiles({ 'wrong-name.md': raw })).rejects.toThrow(
       /filename stem .* != slug/,
     );
   });
 
   it('excludes drafts', async () => {
-    const raw = `---\nslug: draft\ntitle: x\ndate: "2026-04-03"\nexcerpt: x\ntag: test\ndraft: true\n---\nBody.`;
+    const raw = await loadBlogFixture('draft.md');
     const posts = await __loadBlogFromRawFiles({ 'draft.md': raw });
     expect(posts).toHaveLength(0);
   });
 
   it('respects explicit readingTime over auto-computed value', async () => {
-    const body = 'word '.repeat(5000); // would auto-compute ~23 min
-    const raw = `---\nslug: explicit-reading-time\ntitle: x\ndate: "2026-04-04"\nexcerpt: x\ntag: test\nreadingTime: 7\n---\n${body}`;
+    const raw = await loadBlogFixture('explicit-reading-time.md');
     const posts = await __loadBlogFromRawFiles({ 'explicit-reading-time.md': raw });
     expect(posts[0]?.readingTime).toBe(7);
   });

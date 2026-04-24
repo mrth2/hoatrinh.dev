@@ -44,7 +44,7 @@ const rawFiles =
 const posts: BlogPost[] = await __loadBlogFromRawFiles(rawFiles);
 
 export function getBlogPosts(): BlogPost[] {
-  return posts;
+  return [...posts];
 }
 
 export function getBlogPost(slug: string): BlogPost | undefined {
