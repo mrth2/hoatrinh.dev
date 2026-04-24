@@ -1,4 +1,4 @@
-import { getProjects } from '@hoatrinh/content';
+import { getBlogPosts, getProjects } from '@hoatrinh/content';
 import { useLocation, useNavigate } from '@solidjs/router';
 import { createEffect, createMemo, createSignal, onCleanup, onMount } from 'solid-js';
 import { EntryList } from '@/components/EntryList/EntryList';
@@ -13,6 +13,7 @@ import { createTerminalStore } from '@/terminal/store';
 import styles from './TerminalPage.module.css';
 
 const PROJECT_SLUGS = getProjects().map((p) => p.slug);
+const BLOG_SLUGS = getBlogPosts().map((p) => p.slug);
 const CANONICAL_NAMES = registry.specs.map((s) => s.name);
 const NOOP_NAVIGATE = () => {};
 const SESSION_DATE = new Date().toISOString().slice(0, 10);
@@ -109,7 +110,7 @@ export function TerminalPage() {
   function onTab(raw: string) {
     return autocomplete(raw, {
       commands: registry.vocab,
-      projectSlugs: PROJECT_SLUGS,
+      projectSlugs: [...PROJECT_SLUGS, ...BLOG_SLUGS],
     });
   }
 
@@ -118,7 +119,7 @@ export function TerminalPage() {
       suggest(state.currentInput, {
         canonicalNames: CANONICAL_NAMES,
         allNames: registry.vocab,
-        projectSlugs: PROJECT_SLUGS,
+        projectSlugs: [...PROJECT_SLUGS, ...BLOG_SLUGS],
       }) ?? undefined,
   );
 

@@ -1,9 +1,11 @@
 import { aboutHandler } from './handlers/about';
 import { askHandler } from './handlers/ask';
+import { blogHandler } from './handlers/blog';
 import { clearHandler } from './handlers/clear';
 import { contactHandler } from './handlers/contact';
 import { experienceHandler } from './handlers/experience';
 import { makeHelpHandler } from './handlers/help';
+import { postHandler } from './handlers/post';
 import { projectHandler } from './handlers/project';
 import { projectsHandler } from './handlers/projects';
 import { skillsHandler } from './handlers/skills';
@@ -52,6 +54,21 @@ const baseSpecs: CommandSpec[] = [
     summary: 'Ways to reach me',
     route: '/contact',
     handler: contactHandler,
+  },
+  {
+    name: 'blog',
+    aliases: ['posts', 'writing', 'b'],
+    summary: 'Things I write',
+    route: '/blog',
+    handler: blogHandler,
+  },
+  {
+    name: 'post',
+    aliases: ['read'],
+    summary: 'Read a post',
+    argsHint: '<slug>',
+    route: (args) => (args[0] ? `/post/${args[0].toLowerCase()}` : null),
+    handler: postHandler,
   },
   {
     name: '/ask',
