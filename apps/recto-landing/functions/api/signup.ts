@@ -1,6 +1,6 @@
 interface Env {
   RESEND_API_KEY?: string;
-  RESEND_AUDIENCE_ID?: string;
+  RESEND_SEGMENT_ID?: string;
 }
 
 interface SignupRequest {
@@ -28,9 +28,9 @@ export async function onRequestPost(context: Context): Promise<Response> {
   }
 
   const apiKey = context.env.RESEND_API_KEY;
-  const audienceId = context.env.RESEND_AUDIENCE_ID;
+  const segmentId = context.env.RESEND_SEGMENT_ID;
 
-  if (apiKey === undefined || audienceId === undefined) {
+  if (apiKey === undefined || segmentId === undefined) {
     return json(
       {
         message: 'Signup endpoint is not configured yet.',
@@ -39,7 +39,7 @@ export async function onRequestPost(context: Context): Promise<Response> {
     );
   }
 
-  const response = await fetch(`https://api.resend.com/audiences/${audienceId}/contacts`, {
+  const response = await fetch('https://api.resend.com/contacts', {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${apiKey}`,
@@ -48,6 +48,7 @@ export async function onRequestPost(context: Context): Promise<Response> {
     body: JSON.stringify({
       email,
       unsubscribed: false,
+      segments: [segmentId],
     }),
   });
 
