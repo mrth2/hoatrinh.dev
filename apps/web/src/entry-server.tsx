@@ -1,4 +1,4 @@
-import { getProfile, getProjects } from '@hoatrinh/content';
+import { getBlogPosts, getProfile, getProjects } from '@hoatrinh/content';
 import { generateHydrationScript, renderToString } from 'solid-js/web';
 import { App } from './App';
 
@@ -29,10 +29,16 @@ export function getRoutes(): RouteDef[] {
     },
     { path: '/contact', title: `Contact - ${profile.name}`, description: 'Ways to reach me.' },
     { path: '/help', title: `Help - ${profile.name}`, description: 'Commands available.' },
+    { path: '/blog', title: `Blog - ${profile.name}`, description: 'Things I write.' },
     ...getProjects().map((p) => ({
       path: `/project/${p.slug}`,
       title: `${p.title} - ${profile.name}`,
       description: p.tagline,
+    })),
+    ...getBlogPosts().map((p) => ({
+      path: `/post/${p.slug}`,
+      title: `${p.title} - ${profile.name}`,
+      description: p.excerpt,
     })),
   ];
 }
