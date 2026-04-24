@@ -21,7 +21,7 @@ export function App() {
     <main class={styles.page}>
       <section class={styles.hero}>
         <div class={styles.heroCopy}>
-          <p class={styles.kicker}>Validation Preview / macOS Utility</p>
+          <p class={styles.kicker}>Early Access / macOS Utility</p>
           <div class={styles.heroTitleRow}>
             <img src={logo} alt="RECTO" class={styles.heroLogo} />
             <h1 class={styles.title}>ECTO</h1>
