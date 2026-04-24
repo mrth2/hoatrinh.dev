@@ -80,7 +80,7 @@
 
 .row:hover .rowTitle {
   color: var(--accent-hover);
-  text-shadow: 0 0 10px rgba(255, 79, 216, 0.4);
+  text-shadow: 0 0 10px var(--accent-hover);
 }
 
 .rowExcerpt {
