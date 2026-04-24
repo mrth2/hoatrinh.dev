@@ -103,3 +103,28 @@ body::before {
     display: none;
   }
 }
+
+/* Ensure images/videos/pictures inside titled output panels render at a uniform height
+   while preserving aspect ratio. Targets the OutputPanel article which wraps rendered
+   markdown/content for profile/project/experience entries. */
+article[data-variant="titled"] img,
+article[data-variant="titled"] picture,
+article[data-variant="titled"] video {
+  height: 220px;
+  max-height: 55vh;
+  width: auto;
+  max-width: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: var(--radius-sm);
+}
+
+@media (max-width: 640px) {
+  /* On small screens allow images to scale full-width instead of fixed height */
+  article[data-variant="titled"] img,
+  article[data-variant="titled"] picture,
+  article[data-variant="titled"] video {
+    height: auto;
+    width: 100%;
+  }
+}
