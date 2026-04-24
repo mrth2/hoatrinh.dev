@@ -13,10 +13,11 @@
 }
 
 .heroLogo {
-  height: clamp(44px, 9vw, 92px);
+  --logo-size: clamp(44px, 9vw, 92px);
+  height: var(--logo-size);
   width: auto;
   display: block;
-  margin-right: -20px;
+  margin-right: calc(var(--logo-size) * -0.22);
 }
 
 .hero {
@@ -133,8 +134,27 @@
 }
 
 .heroMeter {
-  padding: 0 12px;
+  padding: 0 12px 18px;
   position: relative;
+}
+
+.heroMeter::before,
+.heroMeter::after {
+  position: absolute;
+  top: 16px;
+  color: var(--recto-text-dim);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+}
+
+.heroMeter::before {
+  content: "0";
+  left: 12px;
+}
+
+.heroMeter::after {
+  content: "100";
+  right: 12px;
 }
 
 .heroMeterTrack {
