@@ -3,17 +3,16 @@ import { EmailCaptureForm } from '@/components/EmailCaptureForm';
 import styles from './App.module.css';
 
 const differentiators = [
-  'Tracks drift continuously, then surfaces it with subtle visual feedback before it gets too far.',
-  'Uses ambient cues and quick checks instead of pop-ups, timers, and guilt-driven reminders.',
-  'Lives in the menu bar like a utility, not a habit app.',
-  'Built for people who already buy small sharp Mac tools.',
-  'Keeps the camera pipeline on-device. No uploads. No feed review.',
+  'Calibration over correction. Set your baseline, and RECTO simply measures your relative drift from it.',
+  'Subtle ambient feedback instead of pop-ups, timers, and guilt-driven reminders.',
+  'Lives in the menu bar. Built as a technical instrument for people who already buy small, sharp Mac utilities.',
+  'Local-only by design. Camera frames are processed in-memory via Apple Vision and discarded immediately.',
 ];
 
 const concerns = [
-  'Does the number react quickly enough to feel real?',
-  'Can it stay calm when you are still, instead of jittering?',
-  'Can it be useful without turning into a guilt machine?',
+  'Does the measurement react quickly enough to feel real?',
+  'Does the signal stay calm when you are still, instead of jittering?',
+  'Can it surface drift awareness without turning into a nagging machine?',
 ];
 
 export function App() {
@@ -24,12 +23,12 @@ export function App() {
           <p class={styles.kicker}>Validation Preview / macOS Utility</p>
           <h1 class={styles.title}>RECTO</h1>
           <p class={styles.subtitle}>
-            The moment you drop into focus, posture usually slips in the background. RECTO aims to
-            surface that drift early with subtle visual feedback: enough to notice, not enough to
-            break flow.
+            When you drop into focus, ergonomics usually slip in the background. RECTO
+            is designed to surface that drift early through subtle visual feedback: enough to notice,
+            not enough to break flow.
           </p>
           <p class={styles.lede}>
-            It is a posture drift instrument for macOS: on-device vision, menu bar only, no nagging.
+            A posture drift instrument for macOS: on-device vision, menu bar only, no nagging.
           </p>
 
           <div class={styles.signalRow}>
@@ -74,16 +73,15 @@ export function App() {
       </section>
 
       <section class={styles.block}>
-        <h2>What RECTO does</h2>
+        <h2>Calibration over correction</h2>
         <p class={styles.bodyCopy}>
-          Most posture apps choose one bad extreme: constant reminders or total silence. RECTO is
-          aimed at the middle. It should monitor drift continuously, then surface a gentle signal
-          when you are moving away from baseline, visible enough to catch and restrained enough not
-          to yank you out of work.
+          Most posture apps choose one bad extreme: constant reminders or total silence. 
+          RECTO aims for the middle. Set your ideal baseline, and RECTO monitors your drift continuously. 
+          When you move away from baseline, it surfaces a gentle ambient signal—visible enough to catch, 
+          but restrained enough not to yank you out of your work.
         </p>
         <p class={styles.bodyCopy}>
-          Not a coach. Not a silent dashboard. More like ambient calibration feedback for long focus
-          sessions.
+          Not a coach or a nanny. More like an ambient calibration instrument for long focus sessions.
         </p>
       </section>
 
@@ -184,19 +182,19 @@ export function App() {
       </section>
 
       <section class={styles.block}>
-        <h2>Private by design</h2>
+        <h2>Privacy by design</h2>
         <p class={styles.privacy}>On-device Apple Vision. No frames stored. No network.</p>
         <p class={styles.bodyCopy}>
-          If this ever requires uploading camera data to feel useful, the product has failed the
-          brief.
+          Camera frames are fed directly to your Mac's Neural Engine to compute baseline drift, then discarded immediately.
+          If this ever requires uploading camera data to feel useful, the product has failed its brief.
         </p>
       </section>
 
       <section class={styles.block}>
         <h2>Get early access</h2>
         <p class={styles.bodyCopy}>
-          Early access is for people who want a low-distraction Mac utility that nudges awareness
-          without turning into another source of interruption.
+          I'm collecting early signs of interest. If you want a private, low-distraction technical instrument 
+          for your menu bar that gives you subtle drift awareness, add your email below.
         </p>
         <div class={styles.earlyAccessForm}>
           <EmailCaptureForm />
