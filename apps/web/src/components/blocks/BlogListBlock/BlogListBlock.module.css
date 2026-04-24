@@ -59,6 +59,7 @@
 
 .row:hover {
   border-top-color: var(--border-strong);
+  text-decoration: none;
 }
 
 .row:focus-visible {
@@ -70,6 +71,12 @@
   font-family: var(--font-code);
   font-size: var(--text-xs);
   color: var(--text-muted);
+  text-decoration: none;
+}
+
+.row:hover .rowMeta {
+  color: var(--text-muted);
+  text-decoration: none;
 }
 
 .rowTitle {
@@ -80,6 +87,7 @@
 
 .row:hover .rowTitle {
   color: var(--accent-hover);
+  text-decoration: underline;
   text-shadow: 0 0 10px color-mix(in srgb, var(--accent-hover) 40%, transparent);
 }
 
@@ -90,6 +98,12 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  text-decoration: none;
+}
+
+.row:hover .rowExcerpt {
+  color: var(--text-muted);
+  text-decoration: none;
 }
 
 .empty {
