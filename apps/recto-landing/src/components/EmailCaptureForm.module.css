@@ -1,0 +1,76 @@
+.form {
+  display: grid;
+  gap: 12px;
+}
+
+.label {
+  font-size: 14px;
+}
+
+.helper {
+  margin: -4px 0 0;
+  color: var(--recto-text-dim);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) auto;
+  gap: 10px;
+}
+
+.input {
+  border: 1px solid var(--recto-grid);
+  background: var(--recto-bg-raised);
+  color: var(--recto-text);
+  font: inherit;
+  padding: 10px 12px;
+}
+
+.input:focus-visible {
+  outline: 2px solid var(--recto-accent);
+  outline-offset: 2px;
+}
+
+.button {
+  border: 1px solid var(--recto-accent);
+  background: var(--recto-accent);
+  color: var(--recto-bg);
+  font: inherit;
+  font-weight: 600;
+  padding: 10px 14px;
+  cursor: pointer;
+}
+
+.button:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
+
+.confirmation {
+  margin: 0;
+  color: var(--recto-text);
+}
+
+.error {
+  margin: 0;
+  color: #ff7a7a;
+}
+
+.deposit {
+  margin: 2px 0 0;
+  color: var(--recto-text-dim);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.deposit a {
+  color: var(--recto-accent);
+}
+
+@media (max-width: 560px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+}
