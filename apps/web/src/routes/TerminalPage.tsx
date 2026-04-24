@@ -110,7 +110,8 @@ export function TerminalPage() {
   function onTab(raw: string) {
     return autocomplete(raw, {
       commands: registry.vocab,
-      projectSlugs: [...PROJECT_SLUGS, ...BLOG_SLUGS],
+      projectSlugs: PROJECT_SLUGS,
+      postSlugs: BLOG_SLUGS,
     });
   }
 
@@ -119,7 +120,8 @@ export function TerminalPage() {
       suggest(state.currentInput, {
         canonicalNames: CANONICAL_NAMES,
         allNames: registry.vocab,
-        projectSlugs: [...PROJECT_SLUGS, ...BLOG_SLUGS],
+        projectSlugs: PROJECT_SLUGS,
+        postSlugs: BLOG_SLUGS,
       }) ?? undefined,
   );
 
