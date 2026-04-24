@@ -13,11 +13,10 @@ end-to-end with real content shape.
 
 ## What I do every day
 
-- 10 push ups + 20 squats + 10 leg raises + 40 mountain climbers + 30s hollow hold, at 6:10.
+- 20 push ups + 20 squats + 15 leg raises + 40 mountain climbers + 30s hollow hold, at 6:10.
 - Take a multivitamin at 10:00.
 - Read one post on daily.dev.
 - 30 to 60 minutes of workout / running / cycling.
-- 10 minutes of leetcode.
 - A monkey-type round.
 
 Todoist handles the scheduling. Recurring tasks for the habit stack;
