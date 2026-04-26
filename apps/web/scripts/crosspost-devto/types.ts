@@ -6,7 +6,7 @@ export type DevtoPayload = {
   title: string;
   body_markdown: string;
   canonical_url: string;
-  published: true;
+  published: boolean;
   main_image: string | null;
   tags: string[];
   description: string;
@@ -21,6 +21,7 @@ export type DevtoArticle = {
   main_image?: string | null;
   tag_list: string[] | string;
   description: string;
+  published?: boolean;
 };
 
 export type Action =

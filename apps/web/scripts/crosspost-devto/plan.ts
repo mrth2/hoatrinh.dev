@@ -47,8 +47,8 @@ export function normalizeExisting(article: DevtoArticle): DevtoPayload {
     title: article.title,
     body_markdown: article.body_markdown,
     canonical_url: article.canonical_url ?? '',
-    published: true,
-    main_image: article.main_image ?? null,
+    published: article.published !== false,
+    main_image: article.main_image ?? article.cover_image ?? null,
     tags,
     description: article.description,
   };

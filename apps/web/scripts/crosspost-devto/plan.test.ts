@@ -85,6 +85,32 @@ describe('normalizeExisting', () => {
     };
     expect(normalizeExisting(article).tags).toEqual(['a', 'b', 'c']);
   });
+
+  it('falls back to cover_image when main_image is absent', () => {
+    const article: DevtoArticle = {
+      id: 3,
+      title: 't',
+      body_markdown: 'b',
+      canonical_url: 'x',
+      cover_image: 'https://cdn.example.com/cover.png',
+      tag_list: [],
+      description: 'd',
+    };
+    expect(normalizeExisting(article).main_image).toBe('https://cdn.example.com/cover.png');
+  });
+
+  it('preserves published: false from the article', () => {
+    const article: DevtoArticle = {
+      id: 4,
+      title: 't',
+      body_markdown: 'b',
+      canonical_url: 'x',
+      tag_list: [],
+      description: 'd',
+      published: false,
+    };
+    expect(normalizeExisting(article).published).toBe(false);
+  });
 });
 
 describe('computePlan', () => {
@@ -136,5 +162,22 @@ describe('computePlan', () => {
       siteUrl: SITE,
     });
     expect(plan[0]).toMatchObject({ kind: 'skip', slug: 'sample', reason: 'opt-out' });
+  });
+
+  it('emits update when an existing article is unpublished (draft on dev.to)', () => {
+    const p = post();
+    const payload = buildPayload(p, SITE);
+    const article: DevtoArticle = {
+      id: 9,
+      title: payload.title,
+      body_markdown: payload.body_markdown,
+      canonical_url: payload.canonical_url,
+      main_image: payload.main_image,
+      tag_list: payload.tags,
+      description: payload.description,
+      published: false,
+    };
+    const plan = computePlan({ posts: [p], existing: [article], siteUrl: SITE });
+    expect(plan[0]).toMatchObject({ kind: 'update', slug: 'sample', id: 9 });
   });
 });
