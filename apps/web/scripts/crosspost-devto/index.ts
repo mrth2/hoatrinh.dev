@@ -2,7 +2,7 @@ import { getBlogPosts } from '@hoatrinh/content';
 import { createArticle, listMyArticles, updateArticle } from './devto-client';
 import { computePlan } from './plan';
 import { readBodyMarkdown } from './raw-body';
-import type { Action } from './types';
+import type { Action, DevtoArticle } from './types';
 
 const RATE_LIMIT_MS = 1000;
 const DRY_RUN = process.argv.includes('--dry-run');
@@ -44,7 +44,17 @@ async function main(): Promise<number> {
     bodyMarkdown: readBodyMarkdown(p.slug),
   }));
 
-  const existing = DRY_RUN ? [] : await listMyArticles(apiKey);
+  let existing: DevtoArticle[];
+  if (DRY_RUN) {
+    existing = [];
+  } else {
+    try {
+      existing = await listMyArticles(apiKey);
+    } catch (err) {
+      console.error(`Failed to fetch existing articles from dev.to: ${(err as Error).message}`);
+      return 1;
+    }
+  }
   const actions = computePlan({ posts, existing, siteUrl });
 
   if (DRY_RUN) {
@@ -59,18 +69,17 @@ async function main(): Promise<number> {
       if (action.kind === 'create') {
         await createArticle(apiKey, action.payload);
         console.log(`created   ${action.slug}`);
+        await delay(RATE_LIMIT_MS);
       } else if (action.kind === 'update') {
         await updateArticle(apiKey, action.id, action.payload);
         console.log(`updated   ${action.slug} (id=${action.id})`);
+        await delay(RATE_LIMIT_MS);
       } else {
         console.log(`skipped   ${action.slug} (${action.reason})`);
       }
     } catch (err) {
       failed.add(action.slug);
       console.error(`FAILED    ${action.slug}: ${(err as Error).message}`);
-    }
-    if (action.kind === 'create' || action.kind === 'update') {
-      await delay(RATE_LIMIT_MS);
     }
   }
 
