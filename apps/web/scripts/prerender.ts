@@ -1,8 +1,10 @@
 import { mkdir, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { getBlogPosts } from '@hoatrinh/content';
 import { createServer } from 'vite';
 import solid from 'vite-plugin-solid';
+import { renderRss } from './build-rss';
 import { shellHtml } from './shell';
 
 type RenderResult = { body: string; head: string };
@@ -64,7 +66,13 @@ ${routes.map((r) => `  <url><loc>${SITE_URL}${r.path === '/' ? '' : r.path}</loc
   await writeFile(join(DIST, 'sitemap.xml'), sitemap);
 }
 
-await Promise.all([...routes.map(renderRoute), renderNotFound(), writeSitemap()]);
-console.log('  wrote sitemap.xml and 404.html');
+async function writeRss() {
+  const posts = getBlogPosts();
+  const xml = renderRss(posts, SITE_URL);
+  await writeFile(join(DIST, 'rss.xml'), xml);
+}
+
+await Promise.all([...routes.map(renderRoute), renderNotFound(), writeSitemap(), writeRss()]);
+console.log('  wrote sitemap.xml, rss.xml, and 404.html');
 
 await vite.close();
