@@ -41,3 +41,14 @@ test('back link returns to /blog', async ({ page }) => {
   await backLink.click();
   await expect(page).toHaveURL(/\/blog$/);
 });
+
+test('serves /rss.xml with the latest post slug', async ({ request }) => {
+  const res = await request.get('/rss.xml');
+  expect(res.status()).toBe(200);
+  const ct = res.headers()['content-type'] ?? '';
+  expect(ct).toMatch(/xml/);
+  const body = await res.text();
+  expect(body.startsWith('<?xml')).toBe(true);
+  expect(body).toContain('<rss version="2.0"');
+  expect(body).toContain('the-small-habits-i-keep-on-rails');
+});
