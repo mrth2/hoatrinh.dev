@@ -90,10 +90,9 @@ describe('__loadBlogFromRawFiles (fixture-driven)', () => {
     const raw = await loadBlogFixture('with-cover-and-tags.md');
     const posts = await __loadBlogFromRawFiles({ 'with-cover-and-tags.md': raw });
     expect(posts).toHaveLength(1);
-    const post = posts[0]!;
-    expect(post.cover).toBe('/images/blog/with-cover-and-tags.png');
-    expect(post.tags).toEqual(['test', 'devops', 'automation', 'web']);
-    expect(post.crosspost).toBeUndefined();
+    expect(posts[0]?.cover).toBe('/images/blog/with-cover-and-tags.png');
+    expect(posts[0]?.tags).toEqual(['test', 'devops', 'automation', 'web']);
+    expect(posts[0]?.crosspost).toBeUndefined();
   });
 
   it('rejects more than 4 tags', async () => {
