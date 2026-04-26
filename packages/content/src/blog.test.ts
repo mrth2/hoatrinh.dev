@@ -85,4 +85,34 @@ describe('__loadBlogFromRawFiles (fixture-driven)', () => {
       /frontmatter validation failed/,
     );
   });
+
+  it('parses optional cover, tags, and crosspost fields', async () => {
+    const raw = await loadBlogFixture('with-cover-and-tags.md');
+    const posts = await __loadBlogFromRawFiles({ 'with-cover-and-tags.md': raw });
+    expect(posts).toHaveLength(1);
+    const post = posts[0]!;
+    expect(post.cover).toBe('/images/blog/with-cover-and-tags.png');
+    expect(post.tags).toEqual(['test', 'devops', 'automation', 'web']);
+    expect(post.crosspost).toBeUndefined();
+  });
+
+  it('rejects more than 4 tags', async () => {
+    const raw = await loadBlogFixture('tags-overflow.md');
+    await expect(__loadBlogFromRawFiles({ 'tags-overflow.md': raw })).rejects.toThrow(
+      /frontmatter validation failed/,
+    );
+  });
+
+  it('rejects uppercase tags', async () => {
+    const raw = await loadBlogFixture('tags-uppercase.md');
+    await expect(__loadBlogFromRawFiles({ 'tags-uppercase.md': raw })).rejects.toThrow(
+      /frontmatter validation failed/,
+    );
+  });
+
+  it('parses crosspost: false', async () => {
+    const raw = await loadBlogFixture('crosspost-false.md');
+    const posts = await __loadBlogFromRawFiles({ 'crosspost-false.md': raw });
+    expect(posts[0]?.crosspost).toBe(false);
+  });
 });
