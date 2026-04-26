@@ -1,4 +1,5 @@
 import type { BlogPost } from '@hoatrinh/content';
+import { absolutize } from './url-utils';
 
 const HTML_ESCAPES: Record<string, string> = {
   '&': '&amp;',
@@ -28,11 +29,6 @@ function imageMime(url: string): string {
   if (ext === 'webp') return 'image/webp';
   if (ext === 'svg') return 'image/svg+xml';
   return 'application/octet-stream';
-}
-
-function absolutize(url: string, siteUrl: string): string {
-  if (url.startsWith('http://') || url.startsWith('https://')) return url;
-  return `${siteUrl}${url.startsWith('/') ? '' : '/'}${url}`;
 }
 
 function renderItem(post: BlogPost, siteUrl: string): string {

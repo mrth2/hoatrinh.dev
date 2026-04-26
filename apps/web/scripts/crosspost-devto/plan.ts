@@ -1,10 +1,6 @@
 import { createHash } from 'node:crypto';
+import { absolutize } from '../url-utils';
 import type { Action, DevtoArticle, DevtoPayload, PlanInput, PlanPost } from './types';
-
-function absolutize(url: string, siteUrl: string): string {
-  if (url.startsWith('http://') || url.startsWith('https://')) return url;
-  return `${siteUrl}${url.startsWith('/') ? '' : '/'}${url}`;
-}
 
 export function buildPayload(post: PlanPost, siteUrl: string): DevtoPayload {
   const tags = (post.tags ?? [post.tag]).slice(0, 4);
