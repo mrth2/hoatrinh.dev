@@ -11,6 +11,10 @@ function escapeXml(s: string): string {
   return s.replace(/[&<>"]/g, (c) => HTML_ESCAPES[c] ?? c);
 }
 
+function safeCdata(html: string): string {
+  return html.replace(/]]>/g, ']]]]><![CDATA[>');
+}
+
 function rfc822(dateYmd: string): string {
   return new Date(`${dateYmd}T00:00:00Z`).toUTCString();
 }
@@ -44,7 +48,7 @@ function renderItem(post: BlogPost, siteUrl: string): string {
     `      <pubDate>${rfc822(post.date)}</pubDate>`,
     `      <description>${escapeXml(post.excerpt)}</description>`,
     enclosure,
-    `      <content:encoded><![CDATA[${post.bodyHtml}]]></content:encoded>`,
+    `      <content:encoded><![CDATA[${safeCdata(post.bodyHtml)}]]></content:encoded>`,
     '    </item>',
   ]
     .filter((line) => line.length > 0)
