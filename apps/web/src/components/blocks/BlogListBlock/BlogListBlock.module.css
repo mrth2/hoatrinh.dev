@@ -59,7 +59,6 @@
 
 .row:hover {
   border-top-color: var(--border-strong);
-  text-decoration: none;
 }
 
 .row:focus-visible {
@@ -70,11 +69,6 @@
 .rowMeta {
   font-family: var(--font-code);
   font-size: var(--text-xs);
-  color: var(--text-muted);
-  text-decoration: none;
-}
-
-.row:hover .rowMeta {
   color: var(--text-muted);
   text-decoration: none;
 }
@@ -98,11 +92,6 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  text-decoration: none;
-}
-
-.row:hover .rowExcerpt {
-  color: var(--text-muted);
   text-decoration: none;
 }
 

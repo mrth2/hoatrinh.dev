@@ -74,19 +74,12 @@ describe('renderRss', () => {
 
   it('escapes CDATA terminator in bodyHtml so the section cannot close early', () => {
     const xml = renderRss([fixturePost({ bodyHtml: '<p>before ]]> after</p>' })], SITE);
-    // The safeCdata function escapes ]]> as ]]]]><![CDATA[>
-    // This allows the closing ]]></content:encoded> to be unambiguous
     expect(xml).toContain(']]]]><![CDATA[>');
-    // Verify the XML is well-formed by checking structure
     const cdataStart = xml.indexOf('<![CDATA[');
     const cdataEnd = xml.indexOf(']]></content:encoded>');
     expect(cdataStart).toBeGreaterThan(-1);
     expect(cdataEnd).toBeGreaterThan(cdataStart);
-    // The original ]]> from the content should be escaped; verify by checking
-    // that attempting to parse would not prematurely close the CDATA
-    // The escaped form contains: ]]]]><![CDATA[> which breaks the terminator
     const contentWithoutCdata = xml.slice(cdataStart + '<![CDATA['.length, cdataEnd);
-    // The content should have the escaped form, not the raw ]]>
     expect(contentWithoutCdata).toContain(']]]]><![CDATA[>');
   });
 });
