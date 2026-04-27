@@ -1,12 +1,13 @@
 import { createHash } from 'node:crypto';
 import { absolutize } from '../url-utils';
+import { normalizeBodyForDevto } from './normalize';
 import type { Action, DevtoArticle, DevtoPayload, PlanInput, PlanPost } from './types';
 
 export function buildPayload(post: PlanPost, siteUrl: string): DevtoPayload {
   const tags = (post.tags ?? [post.tag]).slice(0, 4);
   return {
     title: post.title,
-    body_markdown: post.bodyMarkdown,
+    body_markdown: normalizeBodyForDevto(post.bodyMarkdown, siteUrl),
     canonical_url: `${siteUrl}/blog/${post.slug}`,
     published: true,
     main_image: post.cover ? absolutize(post.cover, siteUrl) : null,
