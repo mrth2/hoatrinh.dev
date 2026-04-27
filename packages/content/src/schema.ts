@@ -57,6 +57,12 @@ export const BlogPostFrontmatter = z.object({
   tag: z.string().regex(/^[a-z0-9][a-z0-9-]*$/),
   readingTime: z.number().int().positive().optional(),
   draft: z.boolean().optional(),
+  cover: z.string().min(1).optional(),
+  tags: z
+    .array(z.string().regex(/^[a-z0-9][a-z0-9-]{0,29}$/))
+    .max(4)
+    .optional(),
+  crosspost: z.boolean().optional(),
 });
 export type BlogPostMeta = z.infer<typeof BlogPostFrontmatter>;
 export type BlogPost = BlogPostMeta & {

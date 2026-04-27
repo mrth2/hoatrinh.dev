@@ -17,7 +17,8 @@
     "e2e": "bun run --filter @hoatrinh/web e2e",
     "typecheck": "bun run --filter '*' typecheck",
     "lint": "biome check . && bun run --filter @hoatrinh/web check:contrast",
-    "format": "biome format --write ."
+    "format": "biome format --write .",
+    "crosspost:devto": "bun apps/web/scripts/crosspost-devto/index.ts"
   },
   "devDependencies": {
     "@biomejs/biome": "latest",
