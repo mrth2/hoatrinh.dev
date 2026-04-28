@@ -18,7 +18,12 @@ interface Context {
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export async function onRequestPost(context: Context): Promise<Response> {
-  const payload = (await context.request.json()) as SignupRequest;
+  let payload: SignupRequest;
+  try {
+    payload = (await context.request.json()) as SignupRequest;
+  } catch {
+    return json({ message: 'Please provide a valid email address.' }, 400);
+  }
 
   // Honeypot: non-empty company field = bot. Return 200 silently.
   const company = payload.company;
