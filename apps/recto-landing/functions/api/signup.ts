@@ -1,3 +1,5 @@
+import { checkRateLimit } from './_lib/rate-limit';
+
 interface Env {
   RESEND_API_KEY?: string;
   RESEND_SEGMENT_ID?: string;
@@ -5,6 +7,7 @@ interface Env {
 
 interface SignupRequest {
   email?: string;
+  company?: string;
 }
 
 interface Context {
@@ -16,6 +19,19 @@ const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export async function onRequestPost(context: Context): Promise<Response> {
   const payload = (await context.request.json()) as SignupRequest;
+
+  // Honeypot: non-empty company field = bot. Return 200 silently.
+  const company = payload.company;
+  if (company !== undefined && company.trim().length > 0) {
+    return json({ message: 'Saved. You will get first access updates.' }, 200);
+  }
+
+  // Rate limiting: 5 requests per minute per IP
+  const ip = context.request.headers.get('cf-connecting-ip') ?? 'unknown';
+  if (!checkRateLimit(ip)) {
+    return json({ message: 'Too many requests. Try again in a minute.' }, 429);
+  }
+
   const email = payload.email?.trim().toLowerCase();
 
   if (email === undefined || !EMAIL_REGEX.test(email)) {

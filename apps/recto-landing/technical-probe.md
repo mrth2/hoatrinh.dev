@@ -38,7 +38,7 @@ Tasks:
    - Target resolution: `AVCaptureSession.Preset.vga640x480`
 5. Build a `VisionProcessor`:
    - Input: `CMSampleBuffer` from the capture session
-   - Creates `VNDetectHumanBodyPoseRequest` (or `VNDetectHumanHandPoseRequest` as fallback if body pose is too noisy at desk distance - test both)
+   - Creates `VNDetectHumanBodyPoseRequest` (or `VNDetectFaceLandmarks` with a manually estimated shoulder proxy as fallback if body pose is too noisy at desk distance - see section 3b; test the primary first)
    - Runs request via `VNImageRequestHandler` with `.front` camera orientation
    - Extracts recognized points from `VNHumanBodyPoseObservation`
 6. Build a `DebugOverlayView` using `Canvas` or `Path` that draws a dot at each recognized landmark position (normalized VN coordinates -> view coordinates).
@@ -66,33 +66,57 @@ Suggested approach:
 2. Compute the inter-shoulder distance `S = distance(leftShoulder, rightShoulder)`.
 3. Normalize each landmark as: `normalized = (landmark - M) / S`
 
-This gives a scale- and translation-invariant pose vector. Use only landmarks with confidence > 0.5 in the normalization.
+This gives a scale- and translation-invariant pose vector.
+
+**Frame guards (apply before normalization):**
+- If `leftShoulder.confidence < 0.5` or `rightShoulder.confidence < 0.5`, drop the whole frame. Both shoulder anchors are required.
+- If `S` is below a minimum (suggest: 0.05 in normalized VN coordinates, or ~30 px in a 640x480 frame), drop the frame. Near-zero shoulder distance usually means occlusion or misdetection and would blow up the normalization.
+- In the downstream pose vector, include a non-shoulder landmark only if its own confidence > 0.5. Landmarks below that threshold are excluded from the baseline capture and the drift comparison for that frame, not used as zeros.
 
 #### 2b. Baseline Capture
 
 ```swift
+struct BaselineLandmark {
+    let point: CGPoint  // normalized
+    let confidence: Float  // per-landmark confidence at capture time
+}
+
 struct BaselineProfile {
     let capturedAt: Date
-    let landmarks: [VNHumanBodyPoseObservation.JointName: CGPoint]  // normalized
-    let quality: Float  // average confidence at capture time
+    let landmarks: [VNHumanBodyPoseObservation.JointName: BaselineLandmark]
+    let quality: Float  // average confidence across included landmarks at capture time
 }
 ```
 
+Per-landmark confidence is kept so the drift calculation can skip or down-weight joints that were unreliable at capture time (e.g. excluded if `baseline.confidence < 0.5`).
+
 On **Set Baseline** button tap:
-- Take the current normalized landmark set.
+- Take the current normalized landmark set (frame guards from 2a must have passed).
 - Reject the capture if average confidence < 0.6 (show a brief "signal too weak, adjust framing" message instead).
 - Store as `BaselineProfile`.
 
 #### 2c. Drift Computation
 
-For each incoming frame after baseline is set:
+For each incoming frame after baseline is set (and after the frame guards in 2a pass):
 
 ```
+eligible = [
+  joint for joint in baseline_landmarks.keys
+  where current_confidence[joint] > 0.5
+    and baseline_landmarks[joint].confidence > 0.5
+]
+
+if eligible.count < 3:
+  // too little signal this frame; skip the drift update and hold the last smoothed value
+  return nil
+
 driftPercent = mean(
-  distance(normalized_current[joint], baseline_landmarks[joint])
-  for each joint where current_confidence[joint] > 0.5
+  distance(normalized_current[joint], baseline_landmarks[joint].point)
+  for joint in eligible
 ) * 100
 ```
+
+The minimum of 3 eligible joints prevents a single flickering landmark from driving the reading. If `eligible.count < 3`, skip the update, do not emit NaN, and let the Confidence band reflect the dropout.
 
 Scale factor: tune this so that a visibly slouched position reads roughly 20-35%. You will calibrate this by observation on Day 3.
 
@@ -113,10 +137,18 @@ Apply an exponential moving average to the raw drift value before displaying:
 
 ```swift
 let alpha: Float = 0.15  // start here; tune if jitter is high or lag is noticeable
-smoothedDrift = alpha * rawDrift + (1 - alpha) * smoothedDrift
+
+if !hasSmoothedDrift {
+    smoothedDrift = rawDrift  // seed on first post-baseline sample, not 0
+    hasSmoothedDrift = true
+} else {
+    smoothedDrift = alpha * rawDrift + (1 - alpha) * smoothedDrift
+}
 ```
 
-Also apply outlier rejection: if `abs(rawDrift - smoothedDrift) > 40`, discard the frame (likely a Vision detection spike).
+Without this seed, the first ~1 second after baseline reads artificially low because `smoothedDrift` starts at 0. Reset `hasSmoothedDrift = false` whenever a new baseline is captured.
+
+Also apply outlier rejection: if `hasSmoothedDrift && abs(rawDrift - smoothedDrift) > 40`, discard the frame (likely a Vision detection spike). Do not run outlier rejection on the seed frame.
 
 #### 2f. UI State
 
@@ -255,9 +287,11 @@ DebugOverlayView(landmarks: viewModel.rawLandmarks)
 
 ## 5. Success Criteria
 
-Two of four pass = "needs tuning, extend by 2 days". Fewer than two pass = sensor problem, evaluate whether to retune landmark selection or shelve.
+Tally "Pass" columns only. "Weak" counts as half a pass when deciding, "Fail" counts as zero.
 
-Three or four pass = record the demo video and proceed to the concept post.
+- 3.0 - 4.0 points = record the demo video and proceed to the concept post.
+- 2.0 - 2.5 points = "needs tuning, extend by 2 days", then re-score.
+- Below 2.0 points = sensor problem, evaluate whether to retune landmark selection or shelve.
 
 All four pass + concept post traction + 100+ landing signups = start `PRD_RECTO_MVP_Version2.md`.
 
