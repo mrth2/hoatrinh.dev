@@ -66,17 +66,23 @@ export function EmailCaptureForm() {
         </button>
       </div>
 
-      <Show when={message() !== ''}>
-        <p class={state() === 'error' ? styles.error : styles.confirmation}>{message()}</p>
+      <Show when={state() === 'error'}>
+        <p class={styles.error}>{message()}</p>
       </Show>
 
-      <p class={styles.deposit}>
-        Optional: leave a{' '}
-        <a href={DEPOSIT_LINK} target="_blank" rel="noreferrer">
-          refundable $5 deposit
-        </a>
-        .
-      </p>
+      <Show when={state() === 'success'}>
+        <div>
+          <p class={styles.confirmation}>{message()}</p>
+          <a
+            class={styles.depositCta}
+            href={DEPOSIT_LINK}
+            target="_blank"
+            rel="noreferrer"
+          >
+            Reserve a copy — $5 refundable deposit →
+          </a>
+        </div>
+      </Show>
     </form>
   );
 }
