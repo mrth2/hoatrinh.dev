@@ -77,7 +77,7 @@ export function EmailCaptureForm() {
             class={styles.depositCta}
             href={DEPOSIT_LINK}
             target="_blank"
-            rel="noreferrer"
+            rel="noreferrer noopener"
           >
             Reserve a copy — $5 refundable deposit →
           </a>
