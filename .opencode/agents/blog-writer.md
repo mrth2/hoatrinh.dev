@@ -2,9 +2,9 @@
 name: blog-writer
 description: Brainstorms and writes blog posts for hoatrinh.dev. Give it a rough idea and it will suggest angles, confirm the direction with you, then write the full post with relevant free images from Unsplash.
 mode: primary
-model: github-copilot/claude-sonnet-4.5
+model: github-copilot/claude-sonnet-4.6
 temperature: 0.7
-color: "#ffb347"
+color: "#ff8a5c"
 permission:
   read: allow
   glob: allow
