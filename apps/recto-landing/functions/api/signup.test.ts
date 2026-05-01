@@ -1,6 +1,6 @@
-import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
-import { onRequestPost } from './signup';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { _resetRateLimiterForTests } from './_lib/rate-limit';
+import { onRequestPost } from './signup';
 
 function makeContext(body: unknown, ip = '1.2.3.4', env = {}) {
   return {
@@ -45,7 +45,7 @@ describe('onRequestPost', () => {
     const res = await onRequestPost(ctx);
 
     expect(res.status).toBe(200);
-    const body = await res.json() as { message: string };
+    const body = (await res.json()) as { message: string };
     expect(body.message).toBe('Saved. You will get first access updates.');
     expect(fetchSpy).not.toHaveBeenCalled();
   });
@@ -53,11 +53,10 @@ describe('onRequestPost', () => {
   it('returns 200 on valid submission', async () => {
     vi.stubGlobal('fetch', vi.fn().mockResolvedValue(new Response('{}', { status: 200 })));
 
-    const ctx = makeContext(
-      { email: 'user@example.com' },
-      '1.2.3.4',
-      { RESEND_API_KEY: 'key', RESEND_SEGMENT_ID: 'seg' },
-    );
+    const ctx = makeContext({ email: 'user@example.com' }, '1.2.3.4', {
+      RESEND_API_KEY: 'key',
+      RESEND_SEGMENT_ID: 'seg',
+    });
     const res = await onRequestPost(ctx);
     expect(res.status).toBe(200);
   });
@@ -68,7 +67,10 @@ describe('onRequestPost', () => {
       headers: { 'content-type': 'application/json', 'cf-connecting-ip': '1.2.3.4' },
       body: 'not-json',
     });
-    const res = await onRequestPost({ request: req, env: { RESEND_API_KEY: 'k', RESEND_SEGMENT_ID: 's' } });
+    const res = await onRequestPost({
+      request: req,
+      env: { RESEND_API_KEY: 'k', RESEND_SEGMENT_ID: 's' },
+    });
     expect(res.status).toBe(400);
   });
 
