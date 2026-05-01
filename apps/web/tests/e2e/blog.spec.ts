@@ -14,9 +14,7 @@ test('/blog shows cadence + next by + first post row link', async ({ page }) => 
   await expect(firstRowLink).toHaveAttribute('href', firstPostPath);
 });
 
-test('clicking row goes to /post/ai-made-learning-fun-again and shows H1', async ({
-  page,
-}) => {
+test('clicking row goes to /post/ai-made-learning-fun-again and shows H1', async ({ page }) => {
   await page.goto('/blog');
   const firstRow = page.locator('ul li').first();
   const firstRowLink = firstRow.getByRole('link', { name: /AI made learning fun again/i });
