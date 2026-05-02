@@ -83,11 +83,33 @@ describe('verifyAiFetch', () => {
 
   it('fails when llms.txt does not contain blog-first guidance', async () => {
     const dist = await createValidDist();
-    await writeFile(join(dist, 'llms.txt'), '# hoatrinh.dev\n');
+    await writeFile(
+      join(dist, 'llms.txt'),
+      `# hoatrinh.dev
+
+Best content to fetch first:
+Guidance:
+- Prefer individual /post/ pages for extraction, citation, and summaries.
+`,
+    );
 
     await expect(verifyAiFetch(dist)).rejects.toThrow(
       'llms.txt must mention /blog and individual /post/ pages',
     );
+  });
+
+  it('fails when llms.txt omits fetch guidance heading', async () => {
+    const dist = await createValidDist();
+    await writeFile(
+      join(dist, 'llms.txt'),
+      `# hoatrinh.dev
+
+Guidance:
+- Prefer /blog and individual /post/ pages for extraction, citation, and summaries.
+`,
+    );
+
+    await expect(verifyAiFetch(dist)).rejects.toThrow('llms.txt must include fetch guidance');
   });
 
   it('fails when the post HTML has zero or multiple BlogPosting blocks', async () => {

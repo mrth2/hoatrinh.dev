@@ -25,6 +25,7 @@ export async function verifyAiFetch(
   );
 
   const llms = await readText(distDir, 'llms.txt');
+  assertIncludes(llms, 'Best content to fetch first:', 'llms.txt must include fetch guidance');
   assertIncludes(
     llms,
     'Prefer /blog and individual /post/ pages',
@@ -70,7 +71,9 @@ async function readText(distDir: string, relativePath: string): Promise<string> 
 async function firstPostHtmlPath(distDir: string): Promise<{ absolute: string; relative: string }> {
   const postDir = join(distDir, 'post');
   const entries = await readdir(postDir, { withFileTypes: true });
-  const firstPost = entries.find((entry) => entry.isDirectory());
+  const firstPost = entries
+    .filter((entry) => entry.isDirectory())
+    .sort((a, b) => a.name.localeCompare(b.name))[0];
   if (!firstPost) {
     throw new Error('dist/post must contain at least one prerendered post directory');
   }
