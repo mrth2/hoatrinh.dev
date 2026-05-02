@@ -3,6 +3,9 @@ import { expect, test } from '@playwright/test';
 const firstPostSlug = 'ai-made-learning-fun-again';
 const firstPostPath = `/post/${firstPostSlug}`;
 const firstPostTitle = 'AI made learning fun again';
+const firstPostDate = '2026-05-01';
+const firstPostDescription =
+  'I did not get smarter overnight. AI just removed enough friction that I stopped quitting so early.';
 
 test('/blog shows cadence + next by + first post row link', async ({ page }) => {
   await page.goto('/blog');
@@ -49,4 +52,40 @@ test('serves /rss.xml with the latest post slug', async ({ request }) => {
   expect(body.startsWith('<?xml')).toBe(true);
   expect(body).toContain('<rss version="2.0"');
   expect(body).toContain('ai-made-learning-fun-again');
+});
+
+test('serves root AI discovery files with blog-first guidance', async ({ request }) => {
+  const robots = await request.get('/robots.txt');
+  expect(robots.status()).toBe(200);
+  const robotsBody = await robots.text();
+  expect(robotsBody).toContain('Sitemap: https://hoatrinh.dev/sitemap.xml');
+
+  const sitemap = await request.get('/sitemap.xml');
+  expect(sitemap.status()).toBe(200);
+  const sitemapBody = await sitemap.text();
+  expect(sitemapBody).toContain('https://hoatrinh.dev/blog');
+  expect(sitemapBody).toContain(`https://hoatrinh.dev${firstPostPath}`);
+  expect(sitemapBody).toContain(`<lastmod>${firstPostDate}</lastmod>`);
+
+  const llms = await request.get('/llms.txt');
+  expect(llms.status()).toBe(200);
+  const llmsBody = await llms.text();
+  expect(llmsBody).toContain('Best content to fetch first:');
+  expect(llmsBody).toContain('Prefer /blog and individual /post/ pages');
+});
+
+test('post HTML exposes article metadata and semantic article markup', async ({ request }) => {
+  const res = await request.get(firstPostPath);
+  expect(res.status()).toBe(200);
+  const body = await res.text();
+
+  expect(body).toContain(`<link rel="canonical" href="https://hoatrinh.dev${firstPostPath}" />`);
+  expect(body).toContain(`<meta name="description" content="${firstPostDescription}" />`);
+  expect(body).toContain('<meta property="og:type" content="article" />');
+  expect(body).toContain(`<meta property="article:published_time" content="${firstPostDate}" />`);
+  expect(body).toContain('"@type":"BlogPosting"');
+  expect(body).toContain('<article');
+  expect(body).toContain('<header>');
+  expect(body).toContain('<footer');
+  expect(body).toContain(`<time datetime="${firstPostDate}">${firstPostDate}</time>`);
 });

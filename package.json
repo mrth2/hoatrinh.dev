@@ -10,6 +10,7 @@
     "dev": "bun run --filter @hoatrinh/web dev",
     "build": "bun run --filter @hoatrinh/web build",
     "prerender": "bun run --filter @hoatrinh/web prerender",
+    "verify:ai-fetch": "bun run --filter @hoatrinh/web verify:ai-fetch",
     "preview": "bun run --filter @hoatrinh/web preview",
     "local:ai": "bun run --filter @hoatrinh/web local:ai",
     "test": "bun run --filter '*' test",

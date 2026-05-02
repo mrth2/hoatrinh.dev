@@ -13,6 +13,7 @@
     "check:contrast": "bun run scripts/check-contrast.ts",
     "preview": "bun run scripts/preview.ts",
     "prerender": "bun run scripts/prerender.ts",
+    "verify:ai-fetch": "bun run scripts/verify-ai-fetch.ts",
     "local:ai": "bun run build && bun run prerender && bunx wrangler pages dev dist",
     "e2e": "playwright test",
     "typecheck": "tsc --noEmit",

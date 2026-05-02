@@ -1,6 +1,7 @@
 import { readdir, readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { DEFAULT_SITE_URL, normalizeSiteUrl } from '../src/route-meta';
 
 export type VerifyAiFetchResult = {
   checked: string[];
@@ -8,21 +9,16 @@ export type VerifyAiFetchResult = {
 
 export async function verifyAiFetch(
   distDir = fileURLToPath(new URL('../dist', import.meta.url)),
+  siteUrl = process.env.SITE_URL ?? DEFAULT_SITE_URL,
 ): Promise<VerifyAiFetchResult> {
+  const baseUrl = normalizeSiteUrl(siteUrl);
+
   const robots = await readText(distDir, 'robots.txt');
-  assertIncludes(
-    robots,
-    'Sitemap: https://hoatrinh.dev/sitemap.xml',
-    'robots.txt must reference sitemap.xml',
-  );
+  assertIncludes(robots, `Sitemap: ${baseUrl}/sitemap.xml`, 'robots.txt must reference sitemap.xml');
 
   const sitemap = await readText(distDir, 'sitemap.xml');
-  assertIncludes(sitemap, 'https://hoatrinh.dev/blog', 'sitemap.xml must include /blog');
-  assertIncludes(
-    sitemap,
-    'https://hoatrinh.dev/post/',
-    'sitemap.xml must include at least one /post/ URL',
-  );
+  assertIncludes(sitemap, `${baseUrl}/blog`, 'sitemap.xml must include /blog');
+  assertIncludes(sitemap, `${baseUrl}/post/`, 'sitemap.xml must include at least one /post/ URL');
 
   const llms = await readText(distDir, 'llms.txt');
   assertIncludes(llms, 'Best content to fetch first:', 'llms.txt must include fetch guidance');
@@ -89,6 +85,6 @@ function assertIncludes(haystack: string, needle: string, message: string): void
 }
 
 if (import.meta.main) {
-  const result = await verifyAiFetch();
+  const result = await verifyAiFetch(undefined, process.env.SITE_URL);
   console.log(`AI fetch verification passed: ${result.checked.join(', ')}`);
 }

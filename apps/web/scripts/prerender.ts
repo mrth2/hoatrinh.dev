@@ -4,14 +4,17 @@ import { fileURLToPath } from 'node:url';
 import { getBlogPosts } from '@hoatrinh/content';
 import { createServer } from 'vite';
 import solid from 'vite-plugin-solid';
+import type { RouteMeta } from '../src/route-meta';
+import { renderLlmsTxt } from './build-llms';
+import { renderRobotsTxt } from './build-robots';
 import { renderRss } from './build-rss';
+import { renderSitemap } from './build-sitemap';
 import { shellHtml } from './shell';
 
 type RenderResult = { body: string; head: string };
-type RouteDef = { path: string; title: string; description: string };
 type EntryServer = {
   renderUrl: (url: string) => Promise<RenderResult>;
-  getRoutes: () => RouteDef[];
+  getRoutes: (siteUrl?: string) => RouteMeta[];
 };
 
 const DIST = fileURLToPath(new URL('../dist', import.meta.url));
@@ -29,15 +32,11 @@ const vite = await createServer({
 });
 const { renderUrl, getRoutes } = (await vite.ssrLoadModule('/src/entry-server.tsx')) as EntryServer;
 
-const routes = getRoutes();
+const routes = getRoutes(SITE_URL);
 
-async function renderRoute(route: RouteDef) {
+async function renderRoute(route: RouteMeta) {
   const rendered = await renderUrl(route.path);
-  const html = shellHtml(rendered.body, rendered.head, {
-    title: route.title,
-    description: route.description,
-    url: `${SITE_URL}${route.path === '/' ? '' : route.path}`,
-  });
+  const html = shellHtml(rendered.body, rendered.head, route);
   const outPath =
     route.path === '/' ? join(DIST, 'index.html') : join(DIST, route.path.slice(1), 'index.html');
   await mkdir(dirname(outPath), { recursive: true });
@@ -50,20 +49,17 @@ async function renderNotFound() {
   await writeFile(
     join(DIST, '404.html'),
     shellHtml(notFound.body, notFound.head, {
+      path: '/404',
+      kind: 'page',
       title: 'Not Found',
       description: 'Route not found.',
-      url: `${SITE_URL}/404`,
+      canonicalUrl: `${SITE_URL}/404`,
     }),
   );
 }
 
 async function writeSitemap() {
-  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${routes.map((r) => `  <url><loc>${SITE_URL}${r.path === '/' ? '' : r.path}</loc></url>`).join('\n')}
-</urlset>
-`;
-  await writeFile(join(DIST, 'sitemap.xml'), sitemap);
+  await writeFile(join(DIST, 'sitemap.xml'), renderSitemap(routes));
 }
 
 async function writeRss() {
@@ -72,7 +68,22 @@ async function writeRss() {
   await writeFile(join(DIST, 'rss.xml'), xml);
 }
 
-await Promise.all([...routes.map(renderRoute), renderNotFound(), writeSitemap(), writeRss()]);
-console.log('  wrote sitemap.xml, rss.xml, and 404.html');
+async function writeRobots() {
+  await writeFile(join(DIST, 'robots.txt'), renderRobotsTxt(SITE_URL));
+}
+
+async function writeLlms() {
+  await writeFile(join(DIST, 'llms.txt'), renderLlmsTxt(routes));
+}
+
+await Promise.all([
+  ...routes.map(renderRoute),
+  renderNotFound(),
+  writeSitemap(),
+  writeRss(),
+  writeRobots(),
+  writeLlms(),
+]);
+console.log('  wrote sitemap.xml, robots.txt, llms.txt, rss.xml, and 404.html');
 
 await vite.close();
