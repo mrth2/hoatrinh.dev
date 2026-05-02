@@ -14,7 +14,11 @@ export async function verifyAiFetch(
   const baseUrl = normalizeSiteUrl(siteUrl);
 
   const robots = await readText(distDir, 'robots.txt');
-  assertIncludes(robots, `Sitemap: ${baseUrl}/sitemap.xml`, 'robots.txt must reference sitemap.xml');
+  assertIncludes(
+    robots,
+    `Sitemap: ${baseUrl}/sitemap.xml`,
+    'robots.txt must reference sitemap.xml',
+  );
 
   const sitemap = await readText(distDir, 'sitemap.xml');
   assertIncludes(sitemap, `${baseUrl}/blog`, 'sitemap.xml must include /blog');
