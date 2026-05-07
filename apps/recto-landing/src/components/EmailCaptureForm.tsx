@@ -4,8 +4,6 @@ import styles from './EmailCaptureForm.module.css';
 
 type SubmitState = 'idle' | 'submitting' | 'success' | 'error';
 
-const DEPOSIT_LINK = 'https://buy.stripe.com/replace-with-recto-deposit-link';
-
 export function EmailCaptureForm() {
   const [email, setEmail] = createSignal('');
   const [state, setState] = createSignal<SubmitState>('idle');
@@ -71,17 +69,7 @@ export function EmailCaptureForm() {
       </Show>
 
       <Show when={state() === 'success'}>
-        <div>
-          <p class={styles.confirmation}>{message()}</p>
-          <a
-            class={styles.depositCta}
-            href={DEPOSIT_LINK}
-            target="_blank"
-            rel="noreferrer noopener"
-          >
-            Reserve a copy — $5 refundable deposit →
-          </a>
-        </div>
+        <p class={styles.confirmation}>{message()}</p>
       </Show>
     </form>
   );

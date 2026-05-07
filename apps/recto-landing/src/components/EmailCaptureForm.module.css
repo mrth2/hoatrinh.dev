@@ -58,20 +58,6 @@
   color: #ff7a7a;
 }
 
-.depositCta {
-  display: inline-block;
-  margin-top: 16px;
-  padding: 10px 16px;
-  background: #ff4500;
-  color: #1a1a1a;
-  font: inherit;
-  text-decoration: none;
-}
-
-.depositCta:hover {
-  filter: brightness(1.1);
-}
-
 @media (max-width: 560px) {
   .row {
     grid-template-columns: 1fr;
