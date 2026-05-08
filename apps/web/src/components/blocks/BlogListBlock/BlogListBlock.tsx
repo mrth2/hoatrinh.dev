@@ -39,14 +39,14 @@ export function BlogListBlock(props: { data: BlogListEntry['data'] }) {
         <ul class={styles.list}>
           <For each={props.data.posts}>
             {(p) => (
-              <li>
-                <a class={styles.row} href={`/post/${p.slug}`}>
-                  <span class={styles.rowMeta}>
-                    {p.date} · {p.readingTime} min · {p.tag}
-                  </span>
-                  <span class={styles.rowTitle}>{p.title}</span>
-                  <span class={styles.rowExcerpt}>{p.excerpt}</span>
+              <li class={styles.row}>
+                <span class={styles.rowMeta}>
+                  {p.date} · {p.readingTime} min · {p.tag}
+                </span>
+                <a class={styles.rowTitle} href={`/post/${p.slug}`}>
+                  {p.title}
                 </a>
+                <span class={styles.rowExcerpt}>{p.excerpt}</span>
               </li>
             )}
           </For>
