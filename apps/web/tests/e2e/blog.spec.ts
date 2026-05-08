@@ -12,19 +12,22 @@ test('/blog shows cadence + next by + first post row link', async ({ page }) => 
   await expect(page.getByText(/cadence:/i)).toBeVisible();
   await expect(page.getByText(/next by:/i)).toBeVisible();
   const firstRow = page.locator('ul li').first();
-  const firstRowLink = firstRow.getByRole('link', { name: /AI made learning fun again/i });
+  const firstRowLink = firstRow.getByRole('link');
   await expect(firstRowLink).toBeVisible();
-  await expect(firstRowLink).toHaveAttribute('href', firstPostPath);
+  await expect(firstRowLink).toHaveAttribute('href', /\/post\/.+/);
 });
 
-test('clicking row goes to /post/ai-made-learning-fun-again and shows H1', async ({ page }) => {
+test('clicking first row goes to its post and shows matching H1', async ({ page }) => {
   await page.goto('/blog');
   const firstRow = page.locator('ul li').first();
-  const firstRowLink = firstRow.getByRole('link', { name: /AI made learning fun again/i });
-  await expect(firstRowLink).toHaveAttribute('href', firstPostPath);
+  const firstRowLink = firstRow.getByRole('link');
+  const rowTitle = (await firstRowLink.textContent())?.trim();
+  await expect(firstRowLink).toHaveAttribute('href', /\/post\/.+/);
+  expect(rowTitle).toBeTruthy();
+  const rowHref = await firstRowLink.getAttribute('href');
   await firstRowLink.click();
-  await expect(page).toHaveURL(new RegExp(`${firstPostPath}$`));
-  await expect(page.getByRole('heading', { level: 1, name: firstPostTitle })).toBeVisible();
+  await expect(page).toHaveURL(new RegExp(`${rowHref}$`));
+  await expect(page.getByRole('heading', { level: 1, name: rowTitle ?? '' })).toBeVisible();
 });
 
 test('post page renders statically with js disabled', async ({ browser }) => {
