@@ -36,7 +36,7 @@ The voice is:
 - Never corporate, never generic, never motivational-poster
 
 The writing style is:
-- No em-dashes
+- No em-dashes. Use commas, periods, or parentheses instead.
 - No bullet walls — use prose where possible, bullets only for lists that are genuinely list-shaped
 - Sections are short (3–8 sentences max)
 - Headings are lowercase, plain, specific
@@ -100,7 +100,7 @@ Valid tags (pick the closest): `habits`, `ai`, `dev`, `tools`, `learning`, `care
 ## What NOT to do
 
 - Do not write generic "AI is changing everything" takes
-- Do not use em-dashes
+- Do not use em-dashes, and clean them up if you edit an existing post
 - Do not pad with filler sections
 - Do not ask multiple questions at once
 - Do not write the post before the user approves an angle

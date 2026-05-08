@@ -3,13 +3,51 @@
   font-size: var(--text-sm);
 }
 .table {
-  border-collapse: collapse;
+  display: table;
+  width: 100%;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--bg-elevated);
   font-family: var(--font-code);
   font-size: var(--text-sm);
 }
-.table td {
-  padding: var(--space-1) var(--space-3) var(--space-1) 0;
+
+@media (max-width: 640px) {
+  .table {
+    display: block;
+    width: max-content;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+.table td,
+.table th {
+  padding: var(--space-3) var(--space-4);
   vertical-align: top;
+  text-align: left;
+  border-bottom: 1px solid var(--border-default);
+}
+
+.table th {
+  color: var(--text-primary);
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  background: var(--bg-subtle);
+}
+
+.table tbody tr:nth-child(even) {
+  background: rgba(255, 179, 71, 0.04);
+}
+
+.table tbody tr:last-child td {
+  border-bottom: 0;
 }
 .usage {
   color: var(--accent-primary);
