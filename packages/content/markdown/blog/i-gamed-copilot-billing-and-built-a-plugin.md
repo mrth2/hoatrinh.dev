@@ -2,11 +2,13 @@
 slug: i-gamed-copilot-billing-and-built-a-plugin
 title: I gamed Copilot's billing model and built a plugin to do it properly
 date: 2026-05-08
-excerpt: I upgraded to Copilot Pro+, found a subagent loophole, and built an agent pack that lets me ship a lot while spending almost nothing on premium requests.
+excerpt: I upgraded to Copilot Pro+, found a subagent loophole, and built an agent pack that let me ship a lot while the metered Copilot usage still looked tiny.
 tag: ai
 ---
 
 I have been running agentic workflows daily for over a year. Jobs, side projects, experiments. The stack keeps changing. The habits around it slowly solidify.
+
+The part worth paying attention to is the billing math: the Copilot usage table only showed about $10 in orchestrator spend, while the subagents in my pack did much more work off that meter.
 
 I started with GitHub Copilot, used Claude Code for work for more than eight months, and eventually moved to OpenCode. Each switch taught me something. None of them felt final.
 
@@ -60,7 +62,7 @@ Eight days of real work, May 1 to May 8. Here is the full usage breakdown:
 | Gemini 2.5 Pro | 1 | 0 | $0.04 | **$0.00** |
 | Grok Code Fast 1 | 0.50 | 0 | $0.02 | **$0.00** |
 
-Total gross value: ~$10.43. Billed: $0.00. That is 260 premium request equivalents consumed, all inside the included quota. My 1500 monthly premium requests are at 17% used after 8 days of active shipping.
+Total gross value in the Copilot usage table: ~$10.43. Billed: $0.00. That table only reflects the metered Copilot requests shown above, not the much larger usage from my agent pack subagents. In total, this consumed 260 premium request equivalents, all inside the included quota. That is the whole trick behind the headline. My 1500 monthly premium requests are at 17% used after 8 days of active shipping.
 
 In those 8 days: a full project release, a batch of bug fixes across two repos, and an MVP for a new macOS app. Not bad.
 
