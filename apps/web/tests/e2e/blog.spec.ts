@@ -1,19 +1,23 @@
 import { expect, test } from '@playwright/test';
 
+// Helper: returns the first post row link from the blog list (scoped to
+// the terminal output section to avoid matching the command-index ul).
+function firstPostLink(page: import('@playwright/test').Page) {
+  return page.locator('section[role="log"] ul li').first().getByRole('link');
+}
+
 test('/blog shows cadence + next by + first post row link', async ({ page }) => {
   await page.goto('/blog');
   await expect(page.getByText(/cadence:/i)).toBeVisible();
   await expect(page.getByText(/next by:/i)).toBeVisible();
-  const firstRow = page.locator('ul li').first();
-  const firstRowLink = firstRow.getByRole('link');
+  const firstRowLink = firstPostLink(page);
   await expect(firstRowLink).toBeVisible();
   await expect(firstRowLink).toHaveAttribute('href', /\/post\/.+/);
 });
 
 test('clicking first row goes to its post and shows matching H1', async ({ page }) => {
   await page.goto('/blog');
-  const firstRow = page.locator('ul li').first();
-  const firstRowLink = firstRow.getByRole('link');
+  const firstRowLink = firstPostLink(page);
   const rowTitle = (await firstRowLink.textContent())?.trim();
   await expect(firstRowLink).toHaveAttribute('href', /\/post\/.+/);
   expect(rowTitle).toBeTruthy();
@@ -27,7 +31,7 @@ test('post page renders statically with js disabled', async ({ browser }) => {
   const context = await browser.newContext({ javaScriptEnabled: false });
   const page = await context.newPage();
   await page.goto('/blog');
-  const firstRowLink = page.locator('ul li').first().getByRole('link');
+  const firstRowLink = page.locator('section[role="log"] ul li').first().getByRole('link');
   const rowHref = await firstRowLink.getAttribute('href');
   expect(rowHref).toBeTruthy();
   await page.goto(rowHref ?? '');
@@ -37,7 +41,7 @@ test('post page renders statically with js disabled', async ({ browser }) => {
 
 test('back link returns to /blog', async ({ page }) => {
   await page.goto('/blog');
-  const firstRowLink = page.locator('ul li').first().getByRole('link');
+  const firstRowLink = firstPostLink(page);
   const rowHref = await firstRowLink.getAttribute('href');
   await page.goto(rowHref ?? '');
   const backLink = page.getByRole('link', { name: /back to \/blog/i });
@@ -81,7 +85,7 @@ test('post HTML exposes article metadata and semantic article markup', async ({
   request,
 }) => {
   await page.goto('/blog');
-  const firstRowLink = page.locator('ul li').first().getByRole('link');
+  const firstRowLink = firstPostLink(page);
   const rowHref = await firstRowLink.getAttribute('href');
   expect(rowHref).toBeTruthy();
 
