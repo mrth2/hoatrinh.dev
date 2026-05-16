@@ -27,7 +27,8 @@ jobs:
           SITE_URL: ${{ vars.SITE_URL || 'https://hoatrinh.dev' }}
       - run: bun run verify:ai-fetch
       - name: Install Playwright browsers
-        run: bun x playwright install --with-deps chromium
+        working-directory: apps/web
+        run: bunx playwright install --with-deps chromium
       - run: bun run e2e
       - uses: actions/upload-artifact@v4
         with:
