@@ -32,8 +32,8 @@ describe('renderRss', () => {
 
   it('emits one <item> per post with link, guid, pubDate, description, content:encoded', () => {
     const xml = renderRss([fixturePost()], SITE);
-    expect(xml).toContain(`<link>${SITE}/blog/sample</link>`);
-    expect(xml).toContain(`<guid isPermaLink="true">${SITE}/blog/sample</guid>`);
+    expect(xml).toContain(`<link>${SITE}/post/sample</link>`);
+    expect(xml).toContain(`<guid isPermaLink="true">${SITE}/post/sample</guid>`);
     expect(xml).toMatch(/<pubDate>Mon, 20 Apr 2026 00:00:00 GMT<\/pubDate>/);
     expect(xml).toContain('<description>Excerpt.</description>');
     expect(xml).toContain('<content:encoded><![CDATA[<p>Hello & welcome.</p>]]></content:encoded>');
@@ -67,8 +67,8 @@ describe('renderRss', () => {
       ],
       SITE,
     );
-    const olderIdx = xml.indexOf('/blog/older');
-    const newerIdx = xml.indexOf('/blog/newer');
+    const olderIdx = xml.indexOf('/post/older');
+    const newerIdx = xml.indexOf('/post/newer');
     expect(newerIdx).toBeLessThan(olderIdx);
   });
 

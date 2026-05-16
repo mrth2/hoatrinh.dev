@@ -32,7 +32,7 @@ function imageMime(url: string): string {
 }
 
 function renderItem(post: BlogPost, siteUrl: string): string {
-  const link = `${siteUrl}/blog/${post.slug}`;
+  const link = `${siteUrl}/post/${post.slug}`;
   const enclosure = post.cover
     ? `      <enclosure url="${escapeXml(absolutize(post.cover, siteUrl))}" type="${imageMime(post.cover)}" length="0" />`
     : '';
