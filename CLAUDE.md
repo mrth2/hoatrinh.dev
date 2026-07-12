@@ -77,6 +77,25 @@ CSS is vanilla + CSS Modules per component. Design tokens live in `apps/web/src/
 - Unit tests colocated with source (`*.test.ts(x)`), vitest + jsdom, setup in `src/test-setup.ts`.
 - E2E smoke tests in `apps/web/tests/e2e/` run against the prerendered preview.
 
+## Blog post authoring
+
+### Unsplash image embedding
+
+Blog posts use Unsplash images as `<ID>` in:
+
+```
+![alt text](https://images.unsplash.com/photo-<ID>?auto=format&fit=crop&w=1600&q=80)
+```
+
+**Critical: only numeric IDs work with the CDN.** Alphanumeric IDs (e.g. `ODtDOhyI6vw`) return 404 from `images.unsplash.com` — they use a different CDN path that is not publicly predictable. If someone provides an Unsplash URL with an alphanumeric ID, ask them to open the page in a browser, right-click the image, and copy the image address (which will contain the numeric CDN ID).
+
+**Workflow for finding images:**
+
+1. Use `curl -sI "https://images.unsplash.com/photo-<ID>?w=1600"` to verify the image exists (expect 200).
+2. To check what an image depicts before embedding it, fetch its metadata: `curl -s "https://images.unsplash.com/photo-<ID>?fm=json" | python3 -c "import sys,json; d=json.load(sys.stdin); print('Keywords:', d.get('IPTC',{}).get('Keywords','N/A'))"`. Not all images have keywords, but when present they confirm the subject.
+3. Do NOT try to scrape `unsplash.com` — it returns 401/Anubis PoW challenge from automated tools.
+4. `source.unsplash.com` is deprecated (returns 503).
+
 ## Gotchas
 
 - `biome.json` excludes `.keepgoing`, `dist`, `playwright-report`, `test-results`, `bun.lock`. If lint suddenly covers one of these, check `files.includes`.
