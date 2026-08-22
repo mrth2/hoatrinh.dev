@@ -15,8 +15,8 @@ function escapeXml(s: string): string {
 function renderUrl(route: RouteMeta): string {
   const lines = ['  <url>', `    <loc>${escapeXml(route.canonicalUrl)}</loc>`];
 
-  if (route.kind === 'article' && route.publishedTime !== undefined) {
-    const lastmod = route.modifiedTime ?? route.publishedTime;
+  const lastmod = route.modifiedTime ?? route.publishedTime;
+  if (lastmod !== undefined) {
     lines.push(`    <lastmod>${escapeXml(lastmod)}</lastmod>`);
   }
 
@@ -25,7 +25,10 @@ function renderUrl(route: RouteMeta): string {
 }
 
 export function renderSitemap(routes: RouteMeta[]): string {
-  const urls = routes.map(renderUrl).join('\n');
+  const urls = routes
+    .filter((route) => route.noindex !== true)
+    .map(renderUrl)
+    .join('\n');
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls}

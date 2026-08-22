@@ -32,10 +32,12 @@
   },
   "devDependencies": {
     "@playwright/test": "latest",
+    "@resvg/resvg-js": "^2.6.2",
     "@solidjs/testing-library": "latest",
     "@testing-library/jest-dom": "latest",
     "@types/bun": "latest",
     "jsdom": "latest",
+    "satori": "^0.33.3",
     "typescript": "latest",
     "vite": "^8.0.9",
     "vite-plugin-solid": "latest",
