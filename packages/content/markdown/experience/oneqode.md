@@ -21,7 +21,7 @@ highlights:
   - Built a secure deal room where investors and outside counterparties review confidential documents, with eight levels of access and a full record of who opened what
   - "Built three tools that run day-to-day operations: an NDA system that shortened time-to-signature, a staff file library, and a virtual office for the remote team"
   - Launched the public website in eight languages, on a shared design system now used across every OneQode product so brand and search visibility are managed in one place
-  - Built Frontier, a self-service quoting tool for custom infrastructure, from prototype to production and into investor and partner demos, then retired it cleanly when priorities shifted
+  - Built Frontier, a self-service quoting tool for custom infrastructure, from prototype to production, with its 3D globe becoming a primary selling point in investor and partner pitches, then retired it cleanly when priorities shifted
 askContext:
   - OneQode is a high-performance IaaS provider serving multinational enterprise and government customers, with a differentiated APAC Central region in Guam and its own international carrier network.
   - Identity is a centralized OAuth2/OIDC authorization server on Fastify and PostgreSQL, at v1.23.0 across 22 releases. It is the sole identity provider for seven registered clients, spanning WHMCS billing, the cloud console, the NDA tool, the staff library, the virtual office, the data room, and Cloudflare Access federation.
