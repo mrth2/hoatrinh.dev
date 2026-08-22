@@ -9,6 +9,8 @@ function fixturePage(over: Partial<RouteMeta> = {}): RouteMeta {
     description: 'Home page',
     kind: 'page',
     canonicalUrl: 'https://hoatrinh.dev',
+    ogImagePath: '/og/index.png',
+    ogImageUrl: 'https://hoatrinh.dev/og/index.png',
     ...over,
   };
 }
@@ -20,6 +22,8 @@ function fixtureBlog(over: Partial<RouteMeta> = {}): RouteMeta {
     description: 'Writing',
     kind: 'page',
     canonicalUrl: 'https://hoatrinh.dev/blog',
+    ogImagePath: '/og/blog.png',
+    ogImageUrl: 'https://hoatrinh.dev/og/blog.png',
     ...over,
   };
 }
@@ -31,6 +35,8 @@ function fixtureArticle(over: Partial<RouteMeta> = {}): RouteMeta {
     description: 'An article',
     kind: 'article',
     canonicalUrl: 'https://hoatrinh.dev/blog/hello',
+    ogImagePath: '/og/blog/hello.png',
+    ogImageUrl: 'https://hoatrinh.dev/og/blog/hello.png',
     publishedTime: '2026-04-20',
     ...over,
   };

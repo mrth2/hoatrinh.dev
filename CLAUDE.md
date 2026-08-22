@@ -62,6 +62,14 @@ Adding a new command = new file in `handlers/`, a `CommandSpec` entry in `comman
 - `scripts/prerender.ts` spins up a Vite SSR server, renders every route returned by `getRoutes()` plus a `/__not_found__` path, and injects the HTML into the built `dist/index.html` shell via `scripts/shell.ts`. `shell.ts` refuses to run twice on the same `dist/index.html` (it detects already-injected `og:title` meta) - rebuild before re-prerendering.
 - `entry-client.tsx` calls `hydrate()` when `#app` has SSR children, else `render()` (the recent `66381de` fix).
 
+### SEO metadata and OG cards
+
+- `src/route-meta.ts` owns the `RouteMeta` shape (canonical URL, `ogImagePath`/`ogImageUrl`, optional `noindex`) and the `SiteIdentity` shape (author name/role, `sameAs` links, site name, locale).
+- `entry-server.tsx#getRoutes` supplies titles and descriptions per route; `getSiteIdentity` derives the owner identity from `profile.md`. Descriptions are guarded by tests in `entry-server.test.ts` (60 to 200 chars, at least 8 words) so a route can never regress to a stub like "Past roles.".
+- `scripts/shell.ts` is a pure template renderer: it must never import `@hoatrinh/content`. Everything owner-specific arrives through the `SiteIdentity` argument. It emits OG, Twitter, robots, and JSON-LD (`WebSite` + `Person` on `/`, `BlogPosting` on articles, `BreadcrumbList` on `/post/*` and `/project/*`).
+- OG cards are generated at prerender time: `scripts/og-card.ts` builds a pure satori element tree, `scripts/render-og.ts` rasterizes it to a 1200x630 PNG via `@resvg/resvg-js`, and `prerender.ts` writes one per route to `dist/og/`. Fonts come from the installed `@fontsource/jetbrains-mono` `.woff` files (satori cannot read `.woff2`).
+- Routes marked `noindex` get a robots meta tag and are excluded from `sitemap.xml`. `changefreq` and `priority` are deliberately omitted from the sitemap: Google ignores both.
+
 ### Content package (`packages/content`)
 
 - Markdown files live under `packages/content/markdown/{projects,experience}/*.md` plus `profile.md`. Filename stem MUST equal the `slug` frontmatter field - `projects.ts` throws on mismatch.

@@ -9,6 +9,8 @@ function fixturePage(over: Partial<RouteMeta> = {}): RouteMeta {
     description: 'Home page',
     kind: 'page',
     canonicalUrl: 'https://hoatrinh.dev',
+    ogImagePath: '/og/index.png',
+    ogImageUrl: 'https://hoatrinh.dev/og/index.png',
     ...over,
   };
 }
@@ -20,6 +22,8 @@ function fixtureArticle(over: Partial<RouteMeta> = {}): RouteMeta {
     description: 'An article',
     kind: 'article',
     canonicalUrl: 'https://hoatrinh.dev/blog/hello',
+    ogImagePath: '/og/blog/hello.png',
+    ogImageUrl: 'https://hoatrinh.dev/og/blog/hello.png',
     publishedTime: '2026-04-20',
     ...over,
   };
@@ -50,8 +54,13 @@ describe('renderSitemap', () => {
     expect(xml).not.toContain('<lastmod>2026-04-20</lastmod>');
   });
 
-  it('omits <lastmod> for page routes even with publishedTime', () => {
-    const xml = renderSitemap([fixturePage({ publishedTime: '2026-04-20' })]);
+  it('emits <lastmod> for a non-article route that has modifiedTime', () => {
+    const xml = renderSitemap([fixturePage({ path: '/blog', modifiedTime: '2026-05-01' })]);
+    expect(xml).toContain('<lastmod>2026-05-01</lastmod>');
+  });
+
+  it('omits <lastmod> for a route with no publishedTime or modifiedTime', () => {
+    const xml = renderSitemap([fixturePage()]);
     expect(xml).not.toContain('<lastmod>');
   });
 
@@ -60,6 +69,15 @@ describe('renderSitemap', () => {
     const { publishedTime: _p, modifiedTime: _m, ...noPublish } = base;
     const xml = renderSitemap([noPublish as RouteMeta]);
     expect(xml).not.toContain('<lastmod>');
+  });
+
+  it('excludes noindex routes entirely', () => {
+    const xml = renderSitemap([
+      fixturePage(),
+      fixturePage({ path: '/help', canonicalUrl: 'https://hoatrinh.dev/help', noindex: true }),
+    ]);
+    expect(xml).not.toContain('/help');
+    expect((xml.match(/<url>/g) ?? []).length).toBe(1);
   });
 
   it('escapes XML-sensitive characters in canonicalUrl', () => {
