@@ -6,7 +6,7 @@ describe('getProjects', () => {
     const projects = getProjects();
     expect(projects.length).toBeGreaterThan(0);
     expect(projects.find((p) => p.slug === 'keepgoing')).toBeDefined();
-    expect(projects.find((p) => p.slug === 'social-scout')).toBeUndefined();
+    expect(projects.find((p) => p.slug === 'threadlens')).toBeDefined();
   });
 
   it('sorts featured first, then year desc', () => {
@@ -21,9 +21,9 @@ describe('getProjects', () => {
     }
   });
 
-  it('includes hidden projects when requested', () => {
-    const projects = getProjects({ includeUnlisted: true });
-    expect(projects.find((p) => p.slug === 'social-scout')?.listed).toBe(false);
+  it('does not include unlisted projects by default', () => {
+    const projects = getProjects();
+    expect(projects.every((p) => p.listed)).toBe(true);
   });
 });
 
@@ -32,8 +32,9 @@ describe('getProject', () => {
     expect(getProject('keepgoing')?.title).toBe('KeepGoing');
   });
 
-  it('can resolve hidden projects by slug', () => {
-    expect(getProject('social-scout')?.listed).toBe(false);
+  it('can resolve added projects by slug', () => {
+    expect(getProject('threadlens')?.title).toBe('ThreadLens');
+    expect(getProject('quote-quick')?.title).toBe('QuoteQuick');
   });
 
   it('returns undefined for unknown slug', () => {
