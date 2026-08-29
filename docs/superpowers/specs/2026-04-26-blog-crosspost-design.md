@@ -70,7 +70,7 @@ Schema validation:
 - Includes only non-draft posts (drafts are already filtered out of `getBlogPosts()`).
 - Per item:
   - `<title>` = `title`
-  - `<link>` and `<guid isPermaLink="true">` = `${siteUrl}/blog/${slug}`
+  - `<link>` and `<guid isPermaLink="true">` = `${siteUrl}/post/${slug}`
   - `<pubDate>` = RFC 822 derived from `date` at `00:00 UTC`
   - `<description>` = `excerpt`
   - `<content:encoded>` = full rendered `bodyHtml` (CDATA-wrapped)
@@ -113,7 +113,7 @@ A `--dry-run` flag is a first-class part of the publisher so the first run on an
 
 ```
 For each post:
-  canonical = `${siteUrl}/blog/${slug}`
+  canonical = `${siteUrl}/post/${slug}`
   payload = {
     title,
     body_markdown: <raw markdown body, frontmatter stripped>,

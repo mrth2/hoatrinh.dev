@@ -8,7 +8,7 @@ export function buildPayload(post: PlanPost, siteUrl: string): DevtoPayload {
   return {
     title: post.title,
     body_markdown: normalizeBodyForDevto(post.bodyMarkdown, siteUrl),
-    canonical_url: `${siteUrl}/blog/${post.slug}`,
+    canonical_url: `${siteUrl}/post/${post.slug}`,
     published: true,
     main_image: post.cover ? absolutize(post.cover, siteUrl) : null,
     tags,
@@ -51,11 +51,26 @@ export function normalizeExisting(article: DevtoArticle): DevtoPayload {
   };
 }
 
+// Articles are matched on the slug rather than the whole canonical URL so that changing the
+// canonical path updates the existing article instead of publishing a duplicate.
+export function canonicalSlug(canonicalUrl: string, siteUrl: string): string | null {
+  let path: string;
+  try {
+    const url = new URL(canonicalUrl);
+    if (url.origin !== new URL(siteUrl).origin) return null;
+    path = url.pathname;
+  } catch {
+    return null;
+  }
+  return path.replace(/\/+$/, '').split('/').pop() || null;
+}
+
 export function computePlan(input: PlanInput): Action[] {
   const { posts, existing, siteUrl } = input;
-  const byCanonical = new Map<string, DevtoArticle>();
+  const bySlug = new Map<string, DevtoArticle>();
   for (const a of existing) {
-    if (a.canonical_url) byCanonical.set(a.canonical_url, a);
+    const slug = a.canonical_url ? canonicalSlug(a.canonical_url, siteUrl) : null;
+    if (slug) bySlug.set(slug, a);
   }
 
   const actions: Action[] = [];
@@ -65,7 +80,7 @@ export function computePlan(input: PlanInput): Action[] {
       continue;
     }
     const payload = buildPayload(post, siteUrl);
-    const match = byCanonical.get(payload.canonical_url);
+    const match = bySlug.get(post.slug);
     if (!match) {
       actions.push({ kind: 'create', slug: post.slug, payload });
       continue;

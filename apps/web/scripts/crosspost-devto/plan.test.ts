@@ -22,7 +22,7 @@ describe('buildPayload', () => {
   it('uses tag as default when tags is absent', () => {
     const payload = buildPayload(post(), SITE);
     expect(payload.tags).toEqual(['test']);
-    expect(payload.canonical_url).toBe(`${SITE}/blog/sample`);
+    expect(payload.canonical_url).toBe(`${SITE}/post/sample`);
     expect(payload.main_image).toBeNull();
     expect(payload.published).toBe(true);
     expect(payload.body_markdown).toBe('Body.');
@@ -63,7 +63,7 @@ describe('normalizeExisting', () => {
       id: 1,
       title: 'A sample post',
       body_markdown: 'Body.',
-      canonical_url: `${SITE}/blog/sample`,
+      canonical_url: `${SITE}/post/sample`,
       main_image: null,
       tag_list: ['test'],
       description: 'Excerpt.',
@@ -71,7 +71,7 @@ describe('normalizeExisting', () => {
     const norm = normalizeExisting(article);
     expect(norm.title).toBe('A sample post');
     expect(norm.tags).toEqual(['test']);
-    expect(norm.canonical_url).toBe(`${SITE}/blog/sample`);
+    expect(norm.canonical_url).toBe(`${SITE}/post/sample`);
   });
 
   it('handles tag_list returned as a comma-separated string', () => {
@@ -146,7 +146,7 @@ describe('computePlan', () => {
       id: 7,
       title: 'A sample post',
       body_markdown: 'OLD body.',
-      canonical_url: `${SITE}/blog/sample`,
+      canonical_url: `${SITE}/post/sample`,
       main_image: null,
       tag_list: ['test'],
       description: 'Excerpt.',
@@ -179,5 +179,33 @@ describe('computePlan', () => {
     };
     const plan = computePlan({ posts: [p], existing: [article], siteUrl: SITE });
     expect(plan[0]).toMatchObject({ kind: 'update', slug: 'sample', id: 9 });
+  });
+
+  it('updates rather than duplicates an article still canonicalized to the old /blog path', () => {
+    const article: DevtoArticle = {
+      id: 11,
+      title: 'A sample post',
+      body_markdown: 'Body.',
+      canonical_url: `${SITE}/blog/sample`,
+      main_image: null,
+      tag_list: ['test'],
+      description: 'Excerpt.',
+    };
+    const plan = computePlan({ posts: [post()], existing: [article], siteUrl: SITE });
+    expect(plan[0]).toMatchObject({ kind: 'update', slug: 'sample', id: 11 });
+  });
+
+  it('ignores articles canonicalized to another site when matching', () => {
+    const article: DevtoArticle = {
+      id: 12,
+      title: 'A sample post',
+      body_markdown: 'Body.',
+      canonical_url: 'https://someone-else.example/sample',
+      main_image: null,
+      tag_list: ['test'],
+      description: 'Excerpt.',
+    };
+    const plan = computePlan({ posts: [post()], existing: [article], siteUrl: SITE });
+    expect(plan[0]).toMatchObject({ kind: 'create', slug: 'sample' });
   });
 });
