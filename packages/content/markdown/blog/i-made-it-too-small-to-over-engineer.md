@@ -1,7 +1,7 @@
 ---
 slug: i-made-it-too-small-to-over-engineer
 title: I made it too small to over-engineer
-date: 2026-09-04
+date: 2026-08-29
 excerpt: KeepGoing took months and died in the graveyard it was built to prevent. Its replacement reached the App Store in fifteen days, because I cut it to one thing.
 tag: tools
 ---
