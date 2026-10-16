@@ -4,6 +4,8 @@ title: I went quiet. The mascot would call this a comeback.
 date: 2026-10-16
 excerpt: Seven weeks without a post. I talked myself out of one app, built a different one, and shipped it today. KeepGoing Hub is out.
 tag: tools
+tags: [showdev, productivity, tools, sideprojects]
+cover: /blog/keepgoing-hub-cover.png
 ---
 
 My last post ended on this line: "The rail decides whether that holds."
