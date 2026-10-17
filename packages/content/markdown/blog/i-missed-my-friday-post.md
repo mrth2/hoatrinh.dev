@@ -4,6 +4,7 @@ title: I missed my Friday post
 date: 2026-06-22
 excerpt: I promised a post every Friday. Then I drove 500km with my family and did not write it. Here is what I actually learned about keeping promises to yourself.
 tag: habits
+tags: [writing, productivity, habits, career]
 ---
 
 It is Monday. The Friday post did not happen.

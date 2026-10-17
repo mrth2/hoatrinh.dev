@@ -4,6 +4,7 @@ title: I built a tool to find demand. It has none.
 date: 2026-06-26
 excerpt: ThreadLens has 548 commits and 0 stars. I know exactly why, and I keep choosing the work that won't fix it.
 tag: life
+tags: [sideprojects, startup, opensource, career]
 ---
 
 Here are the numbers, flat, no spin.

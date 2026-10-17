@@ -4,6 +4,7 @@ title: The small habits I keep on rails
 date: 2026-04-27
 excerpt: Why I wired my mornings to Todoist, and what I'd cut if I had to.
 tag: habits
+tags: [productivity, habits, career, motivation]
 ---
 
 Willpower is a bad scheduler. If a habit has to be decided every

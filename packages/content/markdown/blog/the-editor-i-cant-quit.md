@@ -4,6 +4,7 @@ title: iTerm took 95% of my work, but I still can't quit VSCode
 date: 2026-05-16
 excerpt: iTerm replaced VSCode for almost all of my work, but AI still falls apart on the last mile of pixel-perfect frontend detail.
 tag: tools
+tags: [vscode, terminal, ai, frontend]
 ---
 
 A year ago I was a daily VSCode user. Extensions, split panes, GitLens, Copilot side chat docked on the right. That was the setup, and I assumed that was just what modern coding looked like.

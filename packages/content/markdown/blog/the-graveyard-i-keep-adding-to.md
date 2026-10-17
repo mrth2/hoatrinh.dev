@@ -4,6 +4,7 @@ title: The graveyard I keep adding to
 date: 2026-05-23
 excerpt: I built a tool to stop abandoning side projects, then abandoned it. Here is what I actually learned.
 tag: life
+tags: [sideprojects, productivity, career, motivation]
 ---
 
 I have a folder on my machine called `projects`. It has 34 directories in it.

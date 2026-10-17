@@ -4,6 +4,7 @@ title: I gave up the second screen, and the road got longer
 date: 2026-07-24
 excerpt: My tech kit halved because the work moved out of the screen and into the terminal. The lighter bag has a real cost. I just pay it rarely now.
 tag: tools
+tags: [productivity, remote, terminal, tools]
 ---
 
 I am in a homestay somewhere in the Central Highlands. MacBook open, nothing else on the desk. I am trying to nudge a CSS gap, and I remember when the 16-inch portable monitor would have saved me twenty minutes. Two screens, the diff on one, the browser on the other, done.

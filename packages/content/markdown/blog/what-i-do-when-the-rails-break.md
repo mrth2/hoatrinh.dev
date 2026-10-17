@@ -4,6 +4,7 @@ title: What I do when the rails break
 date: 2026-06-05
 excerpt: Missing one day is never the real problem. The story I tell myself about the miss is the problem.
 tag: habits
+tags: [productivity, habits, mentalhealth, motivation]
 ---
 
 The 6:10 alarm fires. I am in a hotel room. The floor is cold and I already know the bodyweight stack is not happening this morning.

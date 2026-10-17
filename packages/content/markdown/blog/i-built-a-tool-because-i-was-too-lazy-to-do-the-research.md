@@ -4,6 +4,7 @@ title: I built a tool because I was too lazy to do the research
 date: 2026-05-29
 excerpt: I was building side projects but skipping the Reddit validation step. So I automated it, then open-sourced it.
 tag: dev
+tags: [showdev, opensource, sideprojects, startup]
 ---
 
 Every side project starts with an idea. Every idea needs validation. And every validation guide tells you the same thing: go to Reddit, find the communities, read the threads, see if people are actually complaining about the thing you want to solve.

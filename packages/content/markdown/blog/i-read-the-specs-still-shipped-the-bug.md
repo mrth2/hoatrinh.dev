@@ -4,6 +4,7 @@ title: I read the specs and still shipped the bug
 date: 2026-08-28
 excerpt: I compared foam and stack height for weeks before buying my third pair of Pumas. The blisters on run one were not in any spec sheet.
 tag: life
+tags: [watercooler, running, health, life]
 ---
 
 I run most days. Easy pace, about 5km. Nothing serious.

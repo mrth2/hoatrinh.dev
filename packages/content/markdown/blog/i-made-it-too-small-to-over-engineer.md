@@ -4,6 +4,7 @@ title: I made it too small to over-engineer
 date: 2026-08-29
 excerpt: KeepGoing took months and died in the graveyard it was built to prevent. Its replacement reached the App Store in fifteen days, because I cut it to one thing.
 tag: tools
+tags: [showdev, macos, sideprojects, productivity]
 ---
 
 In May I wrote about [the graveyard I keep adding to](/post/the-graveyard-i-keep-adding-to). Thirty four project folders, maybe six alive. KeepGoing was in there. I built it to stop myself abandoning side projects, spent months on it, over-engineered it, and then abandoned it.

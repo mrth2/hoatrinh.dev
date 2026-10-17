@@ -4,6 +4,7 @@ title: I was afraid of the recovery, not the surgery
 date: 2026-08-09
 excerpt: For years, secondhand recovery stories kept me from laser eye surgery. In my case, the no-screen recovery was 24 hours.
 tag: life
+tags: [health, watercooler, productivity, life]
 ---
 
 I have been nearsighted for 22 years. Grade 8, first pair of glasses, 1.5 diopters. By my early twenties it had climbed to 4.75 on the right, 5.0 on the left, with 0.5 of astigmatism, and then it stopped. Stayed there for over a decade. I learned to live with it. Glasses on the nightstand, glasses by the shower, glasses on the desk, a spare pair in the bag. That was just the shape of my day.

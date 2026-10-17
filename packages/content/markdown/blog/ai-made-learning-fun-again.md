@@ -4,6 +4,7 @@ title: AI made learning fun again
 date: 2026-05-01
 excerpt: I did not get smarter overnight. AI just removed enough friction that I stopped quitting so early.
 tag: ai
+tags: [ai, learning, productivity, programming]
 ---
 
 For a long time, learning new dev stuff felt like homework.

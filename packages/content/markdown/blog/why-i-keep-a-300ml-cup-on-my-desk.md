@@ -4,6 +4,7 @@ title: why I keep a 300ml cup on my desk
 date: 2026-06-13
 excerpt: A 300ml cup is too small to keep you still.
 tag: habits
+tags: [health, productivity, habits, watercooler]
 ---
 
 In my twenties I ran on milk tea and matcha. Sweet, cold, always a big cup from somewhere downstairs. Water felt boring. I never thought much about it.

@@ -4,6 +4,7 @@ title: I gamed Copilot's billing model and built a plugin to do it properly
 date: 2026-05-08
 excerpt: I upgraded to Copilot Pro+, found a subagent loophole, and built an agent pack that let me ship a lot while the metered Copilot usage still looked tiny.
 tag: ai
+tags: [ai, githubcopilot, productivity, showdev]
 ---
 
 I have been running agentic workflows daily for over a year. Jobs, side projects, experiments. The stack keeps changing. The habits around it slowly solidify.

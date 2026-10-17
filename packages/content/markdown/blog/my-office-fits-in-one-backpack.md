@@ -4,6 +4,7 @@ title: My office fits in one backpack
 date: 2026-07-12
 excerpt: 1000km into a family road trip across Vietnam, still shipping code from homestays. The whole system runs through one bag.
 tag: life
+tags: [remote, productivity, digitalnomad, career]
 ---
 
 I am writing this from Mang Den. It is Sunday, not Friday. The Friday post slipped again, and the rule I already wrote covers this: post on the next day I can, no guilt, no reset. So here it is.
