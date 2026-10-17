@@ -115,4 +115,19 @@ describe('normalizeBodyForDevto', () => {
     expect(normalizeBodyForDevto('A line.\n', SITE)).toBe('A line.\n');
     expect(normalizeBodyForDevto('A line.', SITE)).toBe('A line.');
   });
+
+  it('adds ref=devto to keepgoing.dev links only', () => {
+    const input = [
+      'Try [the Hub](https://keepgoing.dev/hub) or [home](https://keepgoing.dev).',
+      'See [tracked](https://keepgoing.dev/hub?ref=x) and [GitHub](https://github.com/a/b).',
+      '![shot](https://keepgoing.dev/a.png)',
+    ].join('\n');
+    expect(normalizeBodyForDevto(input, SITE)).toBe(
+      [
+        'Try [the Hub](https://keepgoing.dev/hub?ref=devto) or [home](https://keepgoing.dev/?ref=devto).',
+        'See [tracked](https://keepgoing.dev/hub?ref=x) and [GitHub](https://github.com/a/b).',
+        '![shot](https://keepgoing.dev/a.png)',
+      ].join(' '),
+    );
+  });
 });

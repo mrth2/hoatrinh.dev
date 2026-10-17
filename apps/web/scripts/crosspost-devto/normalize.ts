@@ -9,6 +9,8 @@ const ORDERED_LIST_RE = /^\s{0,3}\d+[.)]\s/;
 const INDENTED_CODE_RE = /^(?: {4}|\t)/;
 const HTML_BLOCK_RE = /^\s{0,3}<\/?[a-zA-Z]/;
 const LINK_TARGET_RE = /(!?\[[^\]]*\])\((\/[^)\s]*)\)/g;
+const ABSOLUTE_LINK_RE = /(!?\[[^\]]*\])\((https?:\/\/[^)\s]+)\)/g;
+const REF_HOSTS = new Set(['keepgoing.dev']);
 
 function isListStart(line: string): boolean {
   return UNORDERED_LIST_RE.test(line) || ORDERED_LIST_RE.test(line);
@@ -24,8 +26,17 @@ function isBlockStart(line: string): boolean {
   );
 }
 
+function tagRef(head: string, href: string): string {
+  const url = new URL(href);
+  if (head.startsWith('!') || !REF_HOSTS.has(url.hostname)) return `${head}(${href})`;
+  if (!url.searchParams.has('ref')) url.searchParams.set('ref', 'devto');
+  return `${head}(${url.toString()})`;
+}
+
 function rewriteLinks(line: string, siteUrl: string): string {
-  return line.replace(LINK_TARGET_RE, (_, head, path) => `${head}(${absolutize(path, siteUrl)})`);
+  return line
+    .replace(LINK_TARGET_RE, (_, head, path) => `${head}(${absolutize(path, siteUrl)})`)
+    .replace(ABSOLUTE_LINK_RE, (_, head, href) => tagRef(head, href));
 }
 
 export function normalizeBodyForDevto(raw: string, siteUrl: string): string {
