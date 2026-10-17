@@ -82,8 +82,13 @@ describe('TerminalPage session bar clock', () => {
 });
 
 describe('TerminalPage page heading', () => {
-  beforeEach(() => markBooted());
+  // Fake timers keep the scroll-into-view rAF from firing; jsdom lacks scrollIntoView.
+  beforeEach(() => {
+    markBooted();
+    vi.useFakeTimers();
+  });
   afterEach(() => {
+    vi.useRealTimers();
     resetBooted();
     cleanup();
   });
