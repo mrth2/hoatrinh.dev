@@ -33,6 +33,14 @@ export function payloadHash(payload: DevtoPayload): string {
   return createHash('sha256').update(stableStringify(normalized)).digest('hex');
 }
 
+const DEVTO_IMAGE_PROXY = /^https:\/\/media\d*\.dev\.to\/dynamic\/image\/[^/]+\/(https?%3A.+)$/;
+
+// dev.to returns covers wrapped in its resizing proxy, with the source URL encoded at the end.
+function unwrapDevtoImage(url: string | null): string | null {
+  const encoded = url?.match(DEVTO_IMAGE_PROXY)?.[1];
+  return encoded ? decodeURIComponent(encoded) : url;
+}
+
 export function normalizeExisting(article: DevtoArticle): DevtoPayload {
   const tags = Array.isArray(article.tag_list)
     ? article.tag_list
@@ -45,7 +53,7 @@ export function normalizeExisting(article: DevtoArticle): DevtoPayload {
     body_markdown: article.body_markdown,
     canonical_url: article.canonical_url ?? '',
     published: article.published !== false,
-    main_image: article.main_image ?? article.cover_image ?? null,
+    main_image: unwrapDevtoImage(article.main_image ?? article.cover_image ?? null),
     tags,
     description: article.description,
   };

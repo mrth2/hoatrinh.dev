@@ -99,6 +99,20 @@ describe('normalizeExisting', () => {
     expect(normalizeExisting(article).main_image).toBe('https://cdn.example.com/cover.png');
   });
 
+  it('unwraps the dev.to image proxy back to the source cover URL', () => {
+    const article: DevtoArticle = {
+      id: 4,
+      title: 't',
+      body_markdown: 'b',
+      canonical_url: 'x',
+      cover_image:
+        'https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fhoatrinh.dev%2Fblog%2Fcover.png',
+      tag_list: [],
+      description: 'd',
+    };
+    expect(normalizeExisting(article).main_image).toBe('https://hoatrinh.dev/blog/cover.png');
+  });
+
   it('preserves published: false from the article', () => {
     const article: DevtoArticle = {
       id: 4,
