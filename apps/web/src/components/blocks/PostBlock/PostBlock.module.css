@@ -150,8 +150,23 @@
 }
 
 .footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-2) var(--space-6);
   padding: var(--space-3) var(--space-6);
   border-top: 1px solid var(--border-default);
   font-family: var(--font-code);
   font-size: var(--text-xs);
+}
+
+.pager {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.pagerLabel {
+  color: var(--text-muted);
 }

@@ -71,12 +71,46 @@ describe('TerminalPage session bar clock', () => {
   it('keeps MOTD content visible after command-index navigation when booted from home', async () => {
     pathname = '/';
     const { container, getByRole } = render(() => <TerminalPage />);
-    fireEvent.click(getByRole('button', { name: /^about/i }));
+    fireEvent.click(getByRole('link', { name: /^about/i }));
 
     await waitFor(() => {
       expect(pathname).toBe('/about');
       expect(container.querySelector('[data-motd-compact]')).toBeTruthy();
       expect(container.querySelector('article[data-variant="titled"]')).toBeTruthy();
     });
+  });
+});
+
+describe('TerminalPage page heading', () => {
+  // Fake timers keep the scroll-into-view rAF from firing; jsdom lacks scrollIntoView.
+  beforeEach(() => {
+    markBooted();
+    vi.useFakeTimers();
+  });
+  afterEach(() => {
+    vi.useRealTimers();
+    resetBooted();
+    cleanup();
+  });
+
+  const h1Texts = (container: HTMLElement) =>
+    [...container.querySelectorAll('h1')].map((h) => h.textContent);
+
+  it('gives the home page a single h1 with the owner name and role', () => {
+    pathname = '/';
+    const { container } = render(() => <TerminalPage />);
+    expect(h1Texts(container)).toEqual([expect.stringMatching(/^Hoa Trinh Hai - /)]);
+  });
+
+  it('gives list pages an h1 named after the section', () => {
+    pathname = '/projects';
+    const { container } = render(() => <TerminalPage />);
+    expect(h1Texts(container)).toEqual([expect.stringMatching(/^Projects - Hoa Trinh Hai$/)]);
+  });
+
+  it('leaves pages whose block has its own h1 with exactly one', () => {
+    pathname = '/about';
+    const { container } = render(() => <TerminalPage />);
+    expect(h1Texts(container)).toEqual(['Hoa Trinh Hai']);
   });
 });

@@ -15,7 +15,7 @@ async function createValidDist(): Promise<string> {
   const dist = await mkdtemp(join(tmpdir(), 'ai-fetch-dist-'));
   tempDirs.push(dist);
 
-  await mkdir(join(dist, 'post', 'ai-made-learning-fun-again'), { recursive: true });
+  await mkdir(join(dist, 'post'), { recursive: true });
   await writeFile(
     join(dist, 'robots.txt'),
     `User-agent: *
@@ -46,7 +46,7 @@ Guidance:
 `,
   );
   await writeFile(
-    join(dist, 'post', 'ai-made-learning-fun-again', 'index.html'),
+    join(dist, 'post', 'ai-made-learning-fun-again.html'),
     `<!doctype html>
 <html lang="en">
   <head>
@@ -72,12 +72,7 @@ describe('verifyAiFetch', () => {
     const dist = await createValidDist();
 
     await expect(verifyAiFetch(dist)).resolves.toEqual({
-      checked: [
-        'robots.txt',
-        'sitemap.xml',
-        'llms.txt',
-        'post/ai-made-learning-fun-again/index.html',
-      ],
+      checked: ['robots.txt', 'sitemap.xml', 'llms.txt', 'post/ai-made-learning-fun-again.html'],
     });
   });
 
@@ -114,7 +109,7 @@ Guidance:
 
   it('fails when the post HTML has zero or multiple BlogPosting blocks', async () => {
     const dist = await createValidDist();
-    const postHtml = join(dist, 'post', 'ai-made-learning-fun-again', 'index.html');
+    const postHtml = join(dist, 'post', 'ai-made-learning-fun-again.html');
     await writeFile(postHtml, '<html><head></head><body><article></article></body></html>');
 
     await expect(verifyAiFetch(dist)).rejects.toThrow(

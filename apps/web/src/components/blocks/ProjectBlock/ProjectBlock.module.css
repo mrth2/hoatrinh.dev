@@ -57,3 +57,9 @@
   padding: 0;
   margin-top: var(--space-2);
 }
+
+.back {
+  margin-top: var(--space-4);
+  font-family: var(--font-code);
+  font-size: var(--text-xs);
+}

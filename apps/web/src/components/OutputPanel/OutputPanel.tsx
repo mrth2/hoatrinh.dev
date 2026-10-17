@@ -14,9 +14,10 @@ export function OutputPanel(props: {
 
   return (
     <article class={styles.panel} data-variant={props.variant} aria-labelledby={labelId}>
-      <h2 id={labelId} class="sr-only">
+      {/* Not a heading: it would precede each page's real h1 in the document outline. */}
+      <span id={labelId} class="sr-only">
         Output of: {displayInput()}
-      </h2>
+      </span>
 
       {props.variant === 'titled' ? (
         <div class={styles.header}>

@@ -53,6 +53,10 @@ function renderHead(meta: RouteMeta, site: SiteIdentity, hydrationHead: string):
 
   if (meta.path === '/') {
     lines.push(`    ${renderWebSiteJsonLd(meta, site)}`);
+  } else if (meta.path === '/about') {
+    lines.push(`    ${renderProfilePageJsonLd(meta, site)}`);
+  } else if (meta.path === '/blog') {
+    lines.push(`    ${renderBlogJsonLd(meta, site)}`);
   }
 
   const breadcrumbJsonLd = renderBreadcrumbJsonLd(meta, site);
@@ -136,6 +140,14 @@ function authorPerson(site: SiteIdentity): Record<string, unknown> {
   };
 }
 
+function fullPerson(site: SiteIdentity): Record<string, unknown> {
+  return {
+    ...authorPerson(site),
+    jobTitle: site.authorRole,
+    sameAs: site.sameAs,
+  };
+}
+
 function renderWebSiteJsonLd(meta: RouteMeta, site: SiteIdentity): string {
   const website: Record<string, unknown> = {
     '@type': 'WebSite',
@@ -144,18 +156,38 @@ function renderWebSiteJsonLd(meta: RouteMeta, site: SiteIdentity): string {
     description: meta.description,
     inLanguage: bcp47(site.locale),
   };
-  const person: Record<string, unknown> = {
-    '@type': 'Person',
-    name: site.authorName,
-    jobTitle: site.authorRole,
-    url: site.authorUrl,
-    sameAs: site.sameAs,
-  };
 
   return jsonLdScript({
     '@context': 'https://schema.org',
-    '@graph': [website, person],
+    '@graph': [website, fullPerson(site)],
   });
+}
+
+function renderProfilePageJsonLd(meta: RouteMeta, site: SiteIdentity): string {
+  return jsonLdScript({
+    '@context': 'https://schema.org',
+    '@type': 'ProfilePage',
+    url: meta.canonicalUrl,
+    name: meta.title,
+    description: meta.description,
+    inLanguage: bcp47(site.locale),
+    mainEntity: fullPerson(site),
+  });
+}
+
+function renderBlogJsonLd(meta: RouteMeta, site: SiteIdentity): string {
+  const data: Record<string, unknown> = {
+    '@context': 'https://schema.org',
+    '@type': 'Blog',
+    url: meta.canonicalUrl,
+    name: meta.title,
+    description: meta.description,
+    inLanguage: bcp47(site.locale),
+    author: authorPerson(site),
+  };
+  if (meta.modifiedTime) data.dateModified = meta.modifiedTime;
+
+  return jsonLdScript(data);
 }
 
 function renderBlogPostingJsonLd(meta: RouteMeta, site: SiteIdentity): string {
@@ -164,12 +196,12 @@ function renderBlogPostingJsonLd(meta: RouteMeta, site: SiteIdentity): string {
   const data: Record<string, unknown> = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
-    headline: meta.title,
+    headline: meta.heading ?? meta.title,
     description: meta.description,
     url: meta.canonicalUrl,
     author: person,
     publisher: person,
-    image: meta.ogImageUrl,
+    image: meta.coverImageUrl ? [meta.coverImageUrl, meta.ogImageUrl] : meta.ogImageUrl,
     mainEntityOfPage: { '@type': 'WebPage', '@id': meta.canonicalUrl },
     inLanguage: bcp47(site.locale),
   };
@@ -204,7 +236,7 @@ function renderBreadcrumbJsonLd(meta: RouteMeta, site: SiteIdentity): string | u
       name: section.indexLabel,
       item: `${siteUrl}${section.indexPath}`,
     },
-    { '@type': 'ListItem', position: 3, name: meta.title, item: meta.canonicalUrl },
+    { '@type': 'ListItem', position: 3, name: meta.heading ?? meta.title, item: meta.canonicalUrl },
   ];
 
   return jsonLdScript({

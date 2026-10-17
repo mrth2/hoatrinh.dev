@@ -8,6 +8,7 @@ type Row = {
   command: string;
   summary: string;
   count?: number;
+  href?: string;
 };
 
 function buildRows(): Row[] {
@@ -23,10 +24,18 @@ function buildRows(): Row[] {
       const count = counts[s.name];
       const command = s.name === '/ask' ? '/ask ' : s.name;
       const name = s.name === '/ask' ? '/ask <question>' : s.name;
-      return count !== undefined
-        ? { name, command, summary: s.summary, count }
-        : { name, command, summary: s.summary };
+      return {
+        name,
+        command,
+        summary: s.summary,
+        ...(count !== undefined ? { count } : {}),
+        ...(typeof s.route === 'string' ? { href: s.route } : {}),
+      };
     });
+}
+
+function isPlainClick(e: MouseEvent): boolean {
+  return e.button === 0 && !e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey;
 }
 
 export function CommandIndex(props: { onSuggestion: (cmd: string) => void }) {
@@ -40,21 +49,43 @@ export function CommandIndex(props: { onSuggestion: (cmd: string) => void }) {
       </div>
       <ul class={styles.list}>
         <For each={rows}>
-          {(row) => (
-            <li>
-              <button
-                type="button"
-                class={styles.row}
-                onClick={() => props.onSuggestion(row.command)}
-              >
+          {(row) => {
+            const content = (
+              <>
                 <span class={styles.name}>{row.name}</span>{' '}
                 <span class={styles.summary}>{row.summary}</span>
                 <span class={styles.meta} data-meta>
                   {row.count ?? ''}
                 </span>
-              </button>
-            </li>
-          )}
+              </>
+            );
+            return (
+              <li>
+                {row.href !== undefined ? (
+                  // Real hrefs keep the pages crawlable; a plain click still runs the command in place.
+                  <a
+                    class={styles.row}
+                    href={row.href}
+                    onClick={(e) => {
+                      if (!isPlainClick(e)) return;
+                      e.preventDefault();
+                      props.onSuggestion(row.command);
+                    }}
+                  >
+                    {content}
+                  </a>
+                ) : (
+                  <button
+                    type="button"
+                    class={styles.row}
+                    onClick={() => props.onSuggestion(row.command)}
+                  >
+                    {content}
+                  </button>
+                )}
+              </li>
+            );
+          }}
         </For>
       </ul>
     </nav>

@@ -71,6 +71,15 @@ function extractJsonLd(html: string): unknown[] {
   return matches.map((m) => JSON.parse(m[1] as string));
 }
 
+function findNode(html: string, type: string): Record<string, unknown> | undefined {
+  return extractJsonLd(html).find(
+    (node): node is Record<string, unknown> =>
+      typeof node === 'object' &&
+      node !== null &&
+      (node as { '@type'?: unknown })['@type'] === type,
+  );
+}
+
 describe('renderShellHtml', () => {
   it('renders website metadata for non-article routes', () => {
     const html = renderShellHtml(
@@ -294,5 +303,69 @@ describe('renderShellHtml', () => {
     );
     expect(blogPosting?.headline).toBe('Escape</script><script>alert(1)</script>');
     expect(blogPosting?.description).toBe('Also </script> here');
+  });
+
+  it('uses the bare heading for the BlogPosting headline and breadcrumb leaf', () => {
+    const html = renderShellHtml(
+      template,
+      '',
+      '',
+      { ...articleMeta, heading: 'AI made learning fun again' },
+      site,
+    );
+
+    expect(findNode(html, 'BlogPosting')?.headline).toBe('AI made learning fun again');
+    const items = findNode(html, 'BreadcrumbList')?.itemListElement as Record<string, unknown>[];
+    expect(items[2]?.name).toBe('AI made learning fun again');
+  });
+
+  it('lists the cover image ahead of the OG card when the post has one', () => {
+    const html = renderShellHtml(
+      template,
+      '',
+      '',
+      { ...articleMeta, coverImageUrl: 'https://hoatrinh.dev/blog/cover.png' },
+      site,
+    );
+
+    expect(findNode(html, 'BlogPosting')?.image).toEqual([
+      'https://hoatrinh.dev/blog/cover.png',
+      'https://hoatrinh.dev/og/post/ai-made-learning-fun-again.png',
+    ]);
+  });
+
+  it('renders ProfilePage JSON-LD with the full Person on /about', () => {
+    const html = renderShellHtml(
+      template,
+      '',
+      '',
+      { ...pageMeta, path: '/about', canonicalUrl: 'https://hoatrinh.dev/about' },
+      site,
+    );
+
+    const profile = findNode(html, 'ProfilePage');
+    expect(profile?.url).toBe('https://hoatrinh.dev/about');
+    expect(profile?.mainEntity).toEqual({
+      '@type': 'Person',
+      name: 'Hoa Trinh',
+      url: 'https://hoatrinh.dev/about',
+      jobTitle: 'Software Engineer',
+      sameAs: site.sameAs,
+    });
+  });
+
+  it('renders Blog JSON-LD on /blog', () => {
+    const html = renderShellHtml(
+      template,
+      '',
+      '',
+      { ...pageMeta, modifiedTime: '2026-10-16' },
+      site,
+    );
+
+    const blog = findNode(html, 'Blog');
+    expect(blog?.url).toBe('https://hoatrinh.dev/blog');
+    expect(blog?.dateModified).toBe('2026-10-16');
+    expect(findNode(html, 'ProfilePage')).toBeUndefined();
   });
 });
