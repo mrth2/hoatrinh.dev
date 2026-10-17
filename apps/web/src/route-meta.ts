@@ -22,6 +22,8 @@ export type SiteIdentity = {
 export type RouteMeta = {
   path: string;
   title: string;
+  /** Page title without the " - <author>" suffix, for headlines and breadcrumbs. */
+  heading?: string;
   description: string;
   kind: RouteKind;
   canonicalUrl: string;
@@ -31,6 +33,8 @@ export type RouteMeta = {
   ogImageUrl: string;
   /** Keep the route out of search indexes and the sitemap. */
   noindex?: boolean;
+  /** Absolute URL of the article's own cover image, when it has one. */
+  coverImageUrl?: string;
   publishedTime?: string;
   modifiedTime?: string;
   section?: string;

@@ -1,6 +1,6 @@
-import { getBlogPosts, getProjects } from '@hoatrinh/content';
+import { getBlogPosts, getProfile, getProjects } from '@hoatrinh/content';
 import { useLocation, useNavigate } from '@solidjs/router';
-import { createEffect, createMemo, createSignal, onCleanup, onMount } from 'solid-js';
+import { createEffect, createMemo, createSignal, onCleanup, onMount, Show } from 'solid-js';
 import { EntryList } from '@/components/EntryList/EntryList';
 import { Motd } from '@/components/Motd/Motd';
 import { Prompt } from '@/components/Prompt/Prompt';
@@ -16,10 +16,20 @@ const PROJECT_SLUGS = getProjects().map((p) => p.slug);
 const BLOG_SLUGS = getBlogPosts().map((p) => p.slug);
 const CANONICAL_NAMES = registry.specs.map((s) => s.name);
 const NOOP_NAVIGATE = () => {};
+const PROFILE = getProfile();
+// These blocks render their own h1.
+const SELF_TITLED_COMMANDS = new Set(['about', 'project', 'post']);
 const SESSION_DATE = new Date().toISOString().slice(0, 10);
 const CAN_AUTO_FOCUS =
   typeof window !== 'undefined' &&
   window.matchMedia?.('(hover: hover) and (pointer: fine)').matches === true;
+
+function pageHeading(pathname: string): string | undefined {
+  if (pathname === '/') return `${PROFILE.name} - ${PROFILE.role}`;
+  const name = pathToCommand(pathname)?.split(' ')[0];
+  if (!name || SELF_TITLED_COMMANDS.has(name) || !CANONICAL_NAMES.includes(name)) return undefined;
+  return `${name.charAt(0).toUpperCase()}${name.slice(1)} - ${PROFILE.name}`;
+}
 
 function formatClock(d: Date): string {
   const h = String(d.getHours()).padStart(2, '0');
@@ -138,6 +148,8 @@ export function TerminalPage() {
     focusInput();
   }
 
+  const heading = createMemo(() => pageHeading(location.pathname));
+
   const isErrored = () => {
     if (state.currentInput !== '') return false;
     const last = state.entries[state.entries.length - 1];
@@ -172,6 +184,7 @@ export function TerminalPage() {
         </span>
         <span class={styles.sessionHelp}>type 'help' for commands</span>
       </section>
+      <Show when={heading()}>{(text) => <h1 class="sr-only">{text()}</h1>}</Show>
       {/* biome-ignore lint/a11y/noStaticElementInteractions: click-to-focus is a pointer-only enhancement; keyboard users tab to #terminal-input directly */}
       {/* biome-ignore lint/a11y/useKeyWithClickEvents: keyboard users reach the input via Tab; this click handler is an enhancement */}
       <div ref={scrollEl} class={styles.scroll} onClick={onListClick}>

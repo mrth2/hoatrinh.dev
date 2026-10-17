@@ -46,6 +46,7 @@ function withUrls(route: RouteInput, siteUrl?: string): RouteMeta {
 export function getRoutes(siteUrl?: string): RouteMeta[] {
   const profile = getProfile();
   const posts = getBlogPosts();
+  const base = `${normalizeSiteUrl(siteUrl)}/`;
   const newestPostDate = posts.reduce(
     (newest, post) => (post.date > newest ? post.date : newest),
     '',
@@ -110,6 +111,7 @@ export function getRoutes(siteUrl?: string): RouteMeta[] {
       (p): RouteInput => ({
         path: `/project/${p.slug}`,
         title: `${p.title} - ${profile.name}`,
+        heading: p.title,
         description: p.tagline,
         kind: 'page',
       }),
@@ -118,8 +120,10 @@ export function getRoutes(siteUrl?: string): RouteMeta[] {
       (p): RouteInput => ({
         path: `/post/${p.slug}`,
         title: `${p.title} - ${profile.name}`,
+        heading: p.title,
         description: p.excerpt,
         kind: 'article',
+        ...(p.cover === undefined ? {} : { coverImageUrl: new URL(p.cover, base).href }),
         publishedTime: p.date,
         modifiedTime: p.date,
         section: p.tag,

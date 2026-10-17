@@ -23,6 +23,20 @@ export function PostBlock(props: { data: PostEntry['data'] }) {
       </div>
       <footer class={styles.footer}>
         <a href="/blog">← back to /blog</a>
+        {(props.data.prev || props.data.next) && (
+          <nav class={styles.pager} aria-label="More posts">
+            {props.data.next && (
+              <a href={`/post/${props.data.next.slug}`}>
+                <span class={styles.pagerLabel}>newer:</span> {props.data.next.title}
+              </a>
+            )}
+            {props.data.prev && (
+              <a href={`/post/${props.data.prev.slug}`}>
+                <span class={styles.pagerLabel}>older:</span> {props.data.prev.title}
+              </a>
+            )}
+          </nav>
+        )}
       </footer>
     </article>
   );

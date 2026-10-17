@@ -72,13 +72,13 @@ async function firstPostHtmlPath(distDir: string): Promise<{ absolute: string; r
   const postDir = join(distDir, 'post');
   const entries = await readdir(postDir, { withFileTypes: true });
   const firstPost = entries
-    .filter((entry) => entry.isDirectory())
+    .filter((entry) => entry.isFile() && entry.name.endsWith('.html'))
     .sort((a, b) => a.name.localeCompare(b.name))[0];
   if (!firstPost) {
-    throw new Error('dist/post must contain at least one prerendered post directory');
+    throw new Error('dist/post must contain at least one prerendered post .html file');
   }
 
-  const relative = `post/${firstPost.name}/index.html`;
+  const relative = `post/${firstPost.name}`;
   return { absolute: join(distDir, relative), relative };
 }
 

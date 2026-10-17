@@ -41,6 +41,9 @@ export function ProjectBlock(props: { data: Project }) {
           )}
         </ul>
       )}
+      <p class={styles.back}>
+        <a href="/projects">← back to /projects</a>
+      </p>
     </>
   );
 }

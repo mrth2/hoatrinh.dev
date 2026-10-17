@@ -11,7 +11,7 @@ import { renderLlmsTxt } from './build-llms';
 import { renderRobotsTxt } from './build-robots';
 import { renderRss } from './build-rss';
 import { renderSitemap } from './build-sitemap';
-import { renderOgPng } from './render-og';
+import { renderFavicons, renderOgPng } from './render-og';
 import { shellHtml } from './shell';
 
 type RenderResult = { body: string; head: string };
@@ -62,8 +62,9 @@ async function renderOgImage(route: RouteMeta) {
 async function renderRoute(route: RouteMeta) {
   const rendered = await renderUrl(route.path);
   const html = shellHtml(rendered.body, rendered.head, route, site);
+  // Pages serves about.html at /about (the canonical); about/index.html would 308 to /about/.
   const outPath =
-    route.path === '/' ? join(DIST, 'index.html') : join(DIST, route.path.slice(1), 'index.html');
+    route.path === '/' ? join(DIST, 'index.html') : join(DIST, `${route.path.slice(1)}.html`);
   await mkdir(dirname(outPath), { recursive: true });
   await writeFile(outPath, html);
   console.log(`  prerendered ${route.path} -> ${outPath.replace(DIST, 'dist')}`);
@@ -103,6 +104,15 @@ async function writeRobots() {
   await writeFile(join(DIST, 'robots.txt'), renderRobotsTxt(SITE_URL));
 }
 
+async function writeFavicons() {
+  const { svg, ico, appleTouch } = await renderFavicons();
+  await Promise.all([
+    writeFile(join(DIST, 'favicon.svg'), svg),
+    writeFile(join(DIST, 'favicon.ico'), ico),
+    writeFile(join(DIST, 'apple-touch-icon.png'), appleTouch),
+  ]);
+}
+
 async function writeLlms() {
   await writeFile(join(DIST, 'llms.txt'), renderLlmsTxt(routes));
 }
@@ -115,8 +125,9 @@ await Promise.all([
   writeRss(),
   writeRobots(),
   writeLlms(),
+  writeFavicons(),
 ]);
 console.log(`  rendered ${routes.length + 1} OG cards -> dist/og/`);
-console.log('  wrote sitemap.xml, robots.txt, llms.txt, rss.xml, and 404.html');
+console.log('  wrote sitemap.xml, robots.txt, llms.txt, rss.xml, favicons, and 404.html');
 
 await vite.close();

@@ -76,7 +76,7 @@ test('boot sequence is skippable by keypress', async ({ browser }) => {
 test('clicking an index row runs the command and updates the URL', async ({ page }) => {
   await page.goto('/');
   await page.keyboard.press('Escape');
-  const aboutRow = page.getByRole('button', { name: /^about\b/i });
+  const aboutRow = page.getByRole('link', { name: /^about\b/i });
   await expect(aboutRow).toBeVisible();
   await aboutRow.click();
   await expect(page).toHaveURL(/\/about$/);
@@ -84,7 +84,7 @@ test('clicking an index row runs the command and updates the URL', async ({ page
 
 test('command index shows project count', async ({ page }) => {
   await page.goto('/');
-  const projectsRow = page.getByRole('button', { name: /^projects\b/i });
+  const projectsRow = page.getByRole('link', { name: /^projects\b/i });
   await expect(projectsRow).toBeVisible();
   const meta = projectsRow.locator('[data-meta]');
   await expect(meta).toHaveText(/^\d+$/);

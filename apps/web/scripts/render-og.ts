@@ -7,6 +7,7 @@ import { readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { Resvg } from '@resvg/resvg-js';
 import satori from 'satori';
+import { buildFaviconTree, FAVICON_VIEWBOX, pngToIco } from './favicon';
 import { buildOgCardTree, type OgCard } from './og-card';
 
 const CARD_WIDTH = 1200;
@@ -55,4 +56,19 @@ export async function renderOgPng(card: OgCard): Promise<Uint8Array> {
   });
   const pngData = resvg.render();
   return pngData.asPng();
+}
+
+export type FaviconAssets = { svg: string; ico: Uint8Array; appleTouch: Uint8Array };
+
+export async function renderFavicons(): Promise<FaviconAssets> {
+  const fonts = await loadFonts();
+  const size = { width: FAVICON_VIEWBOX, height: FAVICON_VIEWBOX, fonts };
+  const [svg, squareSvg] = await Promise.all([
+    satori(buildFaviconTree(), size),
+    satori(buildFaviconTree(false), size),
+  ]);
+  const raster = (source: string, px: number) =>
+    new Resvg(source, { fitTo: { mode: 'width', value: px } }).render().asPng();
+
+  return { svg, ico: pngToIco(raster(svg, 48), 48), appleTouch: raster(squareSvg, 180) };
 }

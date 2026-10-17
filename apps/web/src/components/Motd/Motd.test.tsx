@@ -16,23 +16,23 @@ describe('Motd (compact mode)', () => {
     expect(getByRole('navigation', { name: /command index/i })).toBeInTheDocument();
   });
 
-  it('renders help and about as buttons via CommandIndex', () => {
+  it('renders help and about as links via CommandIndex', () => {
     const { getByRole } = render(() => <Motd onSuggestion={() => {}} />);
-    expect(getByRole('button', { name: /^help\b/i })).toBeInTheDocument();
-    expect(getByRole('button', { name: /^about\b/i })).toBeInTheDocument();
+    expect(getByRole('link', { name: /^help\b/i })).toBeInTheDocument();
+    expect(getByRole('link', { name: /^about\b/i })).toBeInTheDocument();
   });
 
   it('calls onSuggestion with "help"', () => {
     const onSuggestion = vi.fn();
     const { getByRole } = render(() => <Motd onSuggestion={onSuggestion} />);
-    fireEvent.click(getByRole('button', { name: /^help\b/i }));
+    fireEvent.click(getByRole('link', { name: /^help\b/i }));
     expect(onSuggestion).toHaveBeenCalledWith('help');
   });
 
   it('calls onSuggestion with "about"', () => {
     const onSuggestion = vi.fn();
     const { getByRole } = render(() => <Motd onSuggestion={onSuggestion} />);
-    fireEvent.click(getByRole('button', { name: /^about\b/i }));
+    fireEvent.click(getByRole('link', { name: /^about\b/i }));
     expect(onSuggestion).toHaveBeenCalledWith('about');
   });
 
