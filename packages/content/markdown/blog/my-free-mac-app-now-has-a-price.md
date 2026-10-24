@@ -1,24 +1,22 @@
 ---
-slug: i-put-a-price-on-one-quiet-nudge
-title: I put a price on one quiet nudge
+slug: my-free-mac-app-now-has-a-price
+title: My free Mac app now has a price. Here is the line I drew.
 date: 2026-10-25
-excerpt: Nine days after the free Hub, it has a new name and a price. KeepGoing Den stays free to use; a one-time licence keeps the nudge. Here is the line I drew.
+excerpt: My free Mac menu bar timer got a new name and a price. One quiet nudge is paid, everything else is free. Here is where I drew the line.
 tag: tools
 tags: [showdev, macos, sideprojects, productivity]
 cover: /blog/keepgoing-den-cover.png
 ---
 
-Nine days ago I [shipped KeepGoing Hub](/post/i-went-quiet-this-is-the-comeback) and wrote two things about it: it is free, and it makes no network requests at all.
+Nine days ago I [shipped KeepGoing Hub](/post/i-went-quiet-this-is-the-comeback), a Pomodoro timer for the Mac menu bar that gives each project its own desktop. I wrote two things about it: it is free, and it makes no network requests at all.
 
 Today it ships as 0.3.0, under a new name, KeepGoing Den. Part of it now costs money, and it now sends two things over the network. Both of those sentences contradict the last post, so this one is about where I drew the line and why I think it is the right one.
 
 ## what changed in nine days
 
-Five releases went out between 0.1.0 and today. 0.2.0 taught the app to update itself, which is the first of the two things it sends: a request to GitHub for one file, with nothing about you in it, and you can turn it off. 0.2.1 gave it an icon. The rest made release notes readable and showed which session of a run you are in.
+The release that matters here is 0.2.0, which taught the app to update itself. That is the first of the two things it sends: a request to GitHub for one file, with nothing about you in it, and you can turn it off.
 
-0.3.0 is the big one. The app is called KeepGoing Den now. It is the same app: an installed Hub updates in place and keeps your projects, your history and your settings.
-
-It also has a notch panel. Hover the top centre of a display and a small panel drops out of the notch: the clock, what you are working on with today's time, today's plants, and that display's desktops as tiles. Click a tile and you are on that desktop.
+0.3.0 renames the app to KeepGoing Den. An installed Hub updates in place and keeps your projects, your history and your settings. It also adds a notch panel: hover the top centre of a display to see what you are working on and that display's desktops as tiles you can click.
 
 ## the line
 
@@ -28,7 +26,7 @@ Here is what stays free, for good, on every Mac:
 - Time per project, budgets, history and a TSV export.
 - The Claude Code statusline.
 - Two desktops bound to projects.
-- Drift is always recorded. Leave a project's desktop mid-session and the app writes it down, licensed or not.
+- Drift, leaving a project's desktop mid-session, is always recorded, licensed or not.
 
 Here is what a licence adds:
 
@@ -36,7 +34,7 @@ Here is what a licence adds:
 - Switching desktops from the notch.
 - More than two bound desktops.
 
-The whole app exists to keep me on one job at a time. Everything that measures where your time went is free. What you pay for is the one thing that acts on it in the moment: one quiet nudge from the pet when you wander off. If the nudge does not earn its price for you, the record of every drift is still there, and you can read it yourself.
+The whole app exists to keep me on one job at a time. Everything that measures where your time went is free. What you pay for is the one thing that acts on it in the moment: one quiet nudge from the pet when you wander off. The other two paid parts are for people juggling many projects at once; the nudge is the reason the licence exists. If the nudge does not earn its price for you, the record of every drift is still there, and you can read it yourself.
 
 ## the price
 
