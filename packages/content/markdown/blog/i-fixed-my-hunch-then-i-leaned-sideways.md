@@ -1,7 +1,7 @@
 ---
 slug: i-fixed-my-hunch-then-i-leaned-sideways
 title: I fixed my hunch. Then I started leaning sideways.
-date: 2026-11-13
+date: 2026-11-11
 excerpt: My Mac app learned to spot me hunching. Then I caught myself slumped onto one armrest instead. Version 0.7.0 notices that too, and the pixel pet leans with me.
 tag: tools
 tags: [productivity, programming, discuss, showdev]
